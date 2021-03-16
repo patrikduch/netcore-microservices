@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NetCoreMicroservices.API.Data;
 using NetCoreMicroservices.API.Models;
 using System;
 using System.Collections.Generic;
@@ -26,13 +27,7 @@ namespace NetCoreMicroservices.API.Controllers
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            var rng = new Random();
-
-            return Enumerable.Range(1, 5).Select(index => new Product
-            {
-                Name = "asd"
-            }).ToArray();
-           
+            return ProductContext.Products;
         }
 
         // GET api/<ProductController>/5

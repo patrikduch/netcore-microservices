@@ -18,6 +18,12 @@ namespace NetCoreMicroservices.Client
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddHttpClient("NetcoreMicroservicesAPIClient", client =>
+            {
+                client.BaseAddress = new System.Uri("http://localhost:5000/"); //NetCoreMicroservices API url
+            });
+
             services.AddControllersWithViews();
         }
 

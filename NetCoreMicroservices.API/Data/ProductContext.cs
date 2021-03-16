@@ -1,7 +1,7 @@
-﻿using NetCoreMicroservices.Client.Models;
+﻿using NetCoreMicroservices.API.Models;
 using System.Collections.Generic;
 
-namespace NetCoreMicroservices.Client.Data
+namespace NetCoreMicroservices.API.Data
 {
     public static class ProductContext
     {
