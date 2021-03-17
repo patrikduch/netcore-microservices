@@ -33,7 +33,7 @@ namespace NetCoreMicroservices.Client.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            var response = await _httpClient.GetAsync("/product");
+            var response = await _httpClient.GetAsync("/api/product");
             var content = await response.Content.ReadAsStringAsync();
             var productList = JsonConvert.DeserializeObject<IEnumerable<Product>>(content);
 
