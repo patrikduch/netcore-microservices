@@ -3,3 +3,5 @@ NetCoreMicroservices.Client/obj/
 NetCoreMicroservices.API/bin/
 NetCoreMicroservices.API/obj/
 .vs/
+bin/
+obj/

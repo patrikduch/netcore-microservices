@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NetCoreMicroservices.Client.Configurations;
 
 namespace NetCoreMicroservices.Client
 {
@@ -18,10 +19,13 @@ namespace NetCoreMicroservices.Client
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Apis configuration
+            services.Configure<ApiSettings>(Configuration.GetSection("ApisConfiguration"));
+            #endregion
 
             services.AddHttpClient("NetcoreMicroservicesAPIClient", client =>
             {
-                client.BaseAddress = new System.Uri("http://localhost:5000/"); //NetCoreMicroservices API url
+                client.BaseAddress = new System.Uri(Configuration["ApisConfiguration:NetCoreMicroservicesAPIUrl"]); //NetCoreMicroservices API url
             });
 
             services.AddControllersWithViews();

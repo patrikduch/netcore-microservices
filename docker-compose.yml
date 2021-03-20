@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  netcoremicroservices.api:
+    image: ${DOCKER_REGISTRY-}netcoremicroservicesapi
+    build:
+      context: .
+      dockerfile: NetCoreMicroservices.API/Dockerfile
+
+  netcoremicroservices.client:
+    image: ${DOCKER_REGISTRY-}netcoremicroservicesclient
+    build:
+      context: .
+      dockerfile: NetCoreMicroservices.Client/Dockerfile
+  netcoremicroservices.db:
+    image: mongo
+
