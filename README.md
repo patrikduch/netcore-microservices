@@ -1,14 +1,5 @@
-# .NetCore-Dockerization
+# netcore-microservices
 
-## Dockerization
+## development
 
-
-### Build image
-
-docker build -f Dockerfile -t netcore-dockerization .
-
-
-### Run image
-
-docker run -p 8080:8080 netcore-dockerization 
-
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d

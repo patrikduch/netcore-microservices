@@ -9,18 +9,18 @@ services:
     depends_on:
       - netcoremicroservices.db
     ports:
-      - "5000:80"
+      - "8000:80"
 
   netcoremicroservices.client:
     container_name: netcoremicroservicesclient
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "NetCoreMicroservicesAPIUrl=http://netcoremicroservicesapi"
+      - NetCoreMicroservicesAPIUrl=http://netcoremicroservicesapi
     depends_on:
       - netcoremicroservices.db
       - netcoremicroservices.api
     ports:
-      - "5001:80"
+      - "8001:80"
 
   netcoremicroservices.db:
     container_name: netmicroservicesmongo
