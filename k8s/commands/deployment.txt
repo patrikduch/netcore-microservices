@@ -1,0 +1,3 @@
+# create deployment of netcoremicroservices-api
+kubectl apply -f ./k8s/services/netcoremicroservices-api/netcoremicroservices-api.yaml 
+
