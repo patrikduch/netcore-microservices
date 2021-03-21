@@ -15,7 +15,7 @@ services:
     container_name: netcoremicroservicesclient
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - NetCoreMicroservicesAPIUrl=http://netcoremicroservicesapi
+      - "NetCoreMicroservicesAPIUrl=http://netcoremicroservicesapi"
     depends_on:
       - netcoremicroservices.db
       - netcoremicroservices.api

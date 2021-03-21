@@ -20,7 +20,9 @@ namespace NetCoreMicroservices.Client
         {
             services.AddHttpClient("NetcoreMicroservicesAPIClient", client =>
             {
-                client.BaseAddress = new System.Uri(Configuration["NetCoreMicroservicesAPIUrl"]); //NetCoreMicroservices API url
+                var apiUrl = Configuration["NetCoreMicroservicesAPIUrl"];
+
+                client.BaseAddress = new System.Uri(apiUrl);
             });
 
             services.AddControllersWithViews();

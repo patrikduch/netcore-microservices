@@ -1,0 +1,2 @@
+kubectl get pod netcoremicroservices-client-deployment-5bbffdcb45-598gg -o wide  
+kubectl describe pod netcoremicroservices-client-deployment-5bbffdcb45-598gg

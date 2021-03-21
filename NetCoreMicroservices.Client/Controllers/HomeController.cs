@@ -32,6 +32,7 @@ namespace NetCoreMicroservices.Client.Controllers
         /// </summary>
         /// <returns></returns>
         public async Task<IActionResult> Index()
+        
         {
             var response = await _httpClient.GetAsync("/api/product");
             var content = await response.Content.ReadAsStringAsync();
