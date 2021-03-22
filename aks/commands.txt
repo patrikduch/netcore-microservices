@@ -55,7 +55,7 @@ kubectl get all
 kubectl create secret docker-registry acr-secret --docker-server=netcoremicroservicesacr.azurecr.io --docker-username=netcoremicroservicesacr --docker-password=rEa8L/g9JBTiPUqnCSIJXOMAt3bX1KRh --docker-email=duchpatrick@outlook.cz
 
 
-Check Kube Config
+# Check Kube Config
 
 kubectl config get-contexts
 kubectl config current-context
