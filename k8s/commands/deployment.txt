@@ -1,9 +1,9 @@
 # create deployment of netcoremicroservices-api
-kubectl apply -f ./k8s/services/netcoremicroservices-api/netcoremicroservices-api-configmap.yaml
-kubectl apply -f ./k8s/services/netcoremicroservices-api/netcoremicroservices-api.yaml 
+kubectl apply -f ./k8s/netcoremicroservices-api/netcoremicroservices-api-configmap.yaml
+kubectl apply -f ./k8s/netcoremicroservices-api/netcoremicroservices-api.yaml 
 
 # create deployment of netcoremicroservices-client
-kubectl apply -f ./k8s/services/netcoremicroservices-client/netcoremicroservices-client.yaml
+kubectl apply -f ./k8s/netcoremicroservices-client/netcoremicroservices-client.yaml
 
 
 # remove of netcoremicroservices-api deployment

@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netcoremicroservices-client-deployment
+  name: netcoremicroservicesapi-deployment
   labels:
-    app: netcoremicroservicesclient
+    app: netcoremicroservicesapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: netcoremicroservicesclient
+      app: netcoremicroservicesapi
   template:
     metadata:
       labels:
-        app: netcoremicroservicesclient
+        app: netcoremicroservicesapi
     spec:
       containers:
-        - name: netcoremicroservicesclient
-          image:  patrikduch/netmicroservices.client:latest
+        - name: netcoremicroservicesapi
+          image: netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
-            - name: NetCoreMicroservicesAPIUrl
+            - name: DatabaseSettings__ConnectionString
               valueFrom:
                   configMapKeyRef:
-                    name: netcoremicroservicesapi-configmap
-                    key: necoremicroserviceapi_url
+                    name: mongo-configmap
+                    key: connection_string
           resources:
             requests:
               memory: "64Mi"
@@ -39,13 +39,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: netcoremicroservicesclientservice
+  name: netcoremicroservicesapi
 spec:
   type: NodePort
   selector:
-    app: netcoremicroservicesclient
+    app: netcoremicroservicesapi
   ports:
     - protocol: TCP
-      port: 8001
+      port: 8000
       targetPort: 80
-      nodePort: 30000
+      nodePort: 31000

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netcoremicroservices-client-deployment
+  labels:
+    app: netcoremicroservicesclient
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netcoremicroservicesclient
+  template:
+    metadata:
+      labels:
+        app: netcoremicroservicesclient
+    spec:
+      containers:
+        - name: netcoremicroservicesclient
+          image:  netcoremicroservicesacr.azurecr.io/netcoremicroservicesclient:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: NetCoreMicroservicesAPIUrl
+              valueFrom:
+                  configMapKeyRef:
+                    name: netcoremicroservicesapi-configmap
+                    key: necoremicroserviceapi_url
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netcoremicroservicesclientservice
+spec:
+  type: LoadBalancer
+  selector:
+    app: netcoremicroservicesclient
+  ports:
+    - protocol: TCP
+      port: 80

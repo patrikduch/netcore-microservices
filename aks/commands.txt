@@ -1,0 +1,64 @@
+az login
+
+# Create a resource group
+az group create --name netcoreMicroservicesGroup --location westeurope
+
+# Create an Azure Container Registry
+az acr create --resource-group netcoreMicroservicesGroup --name netcoremicroservicesacr --sku Basic
+
+
+# Enable Admin Account for ACR Pull
+az acr update -n netcoremicroservicesacr --admin-enabled true 
+--
+# Log in to the container registry
+az acr login --name netcoremicroservicesacr
+Login Succeeded
+
+az acr list --resource-group netcoreMicroservicesGroup --query "[].{acrLoginServer:loginServer}" --output table
+netcoremicroservicesacr.azurecr.io
+
+
+# Tag your images
+
+docker tag netcoremicroservicesapi:latest netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v1
+docker tag netcoremicroservicesclient:latest netcoremicroservicesacr.azurecr.io/netcoremicroservicesclient:v1
+
+
+# Push images to registry
+docker push netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v1
+docker push netcoremicroservicesacr.azurecr.io/netcoremicroservicesclient:v1
+
+
+# List images in registry
+az acr repository list --name netcoremicroservicesacr --output table
+
+az acr repository show-tags --name netcoremicroservicesacr --repository netcoremicroservicesclient --output table
+
+
+
+# Create AKS cluster with attaching ACR
+az aks create --resource-group netcoreMicroservicesGroup --name netcoreMicroservicesCluster --node-count 1 --generate-ssh-keys --attach-acr netcoremicroservicesacr
+
+
+Install the Kubernetes CLI
+az aks install-cli
+--
+Connect to cluster using kubectl
+az aks get-credentials --resource-group netcoreMicroservicesGroup --name netcoreMicroservicesCluster
+
+
+To verify;
+kubectl get nodes
+kubectl get all
+
+
+kubectl create secret docker-registry acr-secret --docker-server=netcoremicroservicesacr.azurecr.io --docker-username=netcoremicroservicesacr --docker-password=rEa8L/g9JBTiPUqnCSIJXOMAt3bX1KRh --docker-email=duchpatrick@outlook.cz
+
+
+Check Kube Config
+
+kubectl config get-contexts
+kubectl config current-context
+kubectl config use-context gcpcluster-k8s-1
+	Switched to context "gcpcluster-k8s-1"
+--
