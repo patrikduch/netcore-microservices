@@ -1,0 +1,6 @@
+Version
+kubectl version
+
+Get all nodes for current Kubernetes cluster
+kubectl get nodes
+

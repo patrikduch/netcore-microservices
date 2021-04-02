@@ -15,3 +15,9 @@ services:
   netcoremicroservices.db:
     image: mongo
 
+  netcoremicroservices.apigateway:
+    image: ${DOCKER_REGISTRY-}netcoremicroservicesapigateway
+    build:
+      context: .
+      dockerfile: NetCoreMicroservices.APIGateway/Dockerfile
+

@@ -30,3 +30,11 @@ services:
     volumes:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
 
+
+  netcoremicroservices.apigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8082:80"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

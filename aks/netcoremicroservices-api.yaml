@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: netcoremicroservicesapi
-          image: netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v1
+          image: netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
