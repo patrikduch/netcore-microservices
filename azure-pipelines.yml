@@ -11,7 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'e63682fc-05ac-4786-bad2-f3af8fa6627b'
-  imageRepository: 'patrikduchnetcoremicroservices'
+  imageRepository: 'netcoremicroservicesapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/NetCoreMicroservices.API/Dockerfile'
   tag: '$(Build.BuildId)'
