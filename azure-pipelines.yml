@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: 'e63682fc-05ac-4786-bad2-f3af8fa6627b'
   imageRepository: 'patrikduchnetcoremicroservices'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
-  dockerfilePath: '/NetCoreMicroservices.API/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/NetCoreMicroservices.API/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
