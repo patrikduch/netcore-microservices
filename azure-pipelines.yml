@@ -35,6 +35,6 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        buildContext: $(Build.SourcesDirectory)/NetCoreMicroservices
+        buildContext: $(Build.SourcesDirectory)/
         tags: |
           $(tag)
