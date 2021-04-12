@@ -44,6 +44,7 @@ metadata:
   name: netcoremicroservicesapi
 spec:
   selector:
+  type: ClusterIP
     app: netcoremicroservicesapi
   ports:
     - protocol: TCP

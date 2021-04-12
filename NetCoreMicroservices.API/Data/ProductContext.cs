@@ -89,13 +89,14 @@ namespace NetCoreMicroservices.API.Data
                     Price = 380.00M,
                     Category = "Smart Phone"
                 },
-                new Product()
+
+                 new Product()
                 {
-                    Name = "LG G7 ThinQ New8",
+                    Name = "Iphone 6S",
                     Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
                     ImageFile = "product-6.png",
-                    Price = 240.00M,
-                    Category = "Home Kitchen"
+                    Price = 80.00M,
+                    Category = "Smart Phone by Patrik Duch"
                 }
             };
         }
