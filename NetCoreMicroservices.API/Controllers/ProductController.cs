@@ -32,10 +32,18 @@ namespace NetCoreMicroservices.API.Controllers
         [HttpGet]
         public async Task<IEnumerable<Product>> Get()
         {
-            return await _productContext
-                .Products
-                .Find(p => true)
-                .ToListAsync();
+            return new List<Product>
+            {
+                new Product()
+                {
+                    Name = "IPhone",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-1.png",
+                    Price = 950.00M,
+                    Category = "Smart Phone"
+                },
+
+            };
         }
     }
 }
