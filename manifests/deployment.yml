@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: netcoremicroservicesapi 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netcoremicroservicesapi
+  template:
+    metadata:
+      labels:
+        app: netcoremicroservicesapi 
+    spec:
+      containers:
+        - name: netcoremicroservicesapi 
+          image: netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi
+          ports:
+          - containerPort: 80
