@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netcoremicroservicesapi-deployment
+  labels:
+    app: netcoremicroservicesapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netcoremicroservicesapi
+  template:
+    metadata:
+      labels:
+        app: netcoremicroservicesapi
+    spec:
+      containers:
+        - name: netcoremicroservicesapi
+          image: netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  configMapKeyRef:
+                    name: mongo-configmap
+                    key: connection_string
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netcoremicroservicesapi
+spec:
+  selector:
+    app: netcoremicroservicesapi
+  ports:
+    - protocol: TCP
+      port: 80
