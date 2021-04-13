@@ -20,7 +20,7 @@ variables:
   dockerRegistryServiceConnection: '8454a2ba-d7b1-4962-8832-922f293b96db'
   imageRepository: 'netcoremicroservicesclient'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'NetCoreMicroservices.Client/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr1748cec4-auth'
 
