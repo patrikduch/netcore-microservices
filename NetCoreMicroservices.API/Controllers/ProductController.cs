@@ -43,6 +43,14 @@ namespace NetCoreMicroservices.API.Controllers
                     Category = "Smart Phone"
                 },
 
+                new Product()
+                {
+                    Name = "IPhone 5S",
+                    Description = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    ImageFile = "product-2.png",
+                    Price = 1150.00M,
+                    Category = "Smart Phone"
+                },
             };
         }
     }
