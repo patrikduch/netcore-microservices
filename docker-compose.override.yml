@@ -15,7 +15,7 @@ services:
     container_name: netcoremicroservicesclient
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "NetCoreMicroservicesAPIUrl=http://netcoremicroservicesapi"
+      - "NetCoreMicroservicesAPIUrl=http://catalogapi"
     depends_on:
       - netcoremicroservices.db
       - netcoremicroservices.api
@@ -40,8 +40,9 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   catalog.api:
+    container_name: catalogapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - "8083:80"
 
