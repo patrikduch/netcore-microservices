@@ -4,8 +4,16 @@ using System.Collections.Generic;
 
 namespace Catalog.API.Data
 {
+    /// <summary>
+    /// Catalog seed initializer that is used for testing purposes.
+    /// </summary>
     public class CatalogContextSeed
     {
+
+        /// <summary>
+        /// Seed data of static products.
+        /// </summary>
+        /// <param name="productCollection">MongoDb collection</param>
         public static void SeedData(IMongoCollection<Product> productCollection)
         {
             bool existProduct = productCollection.Find(p => true).Any();
@@ -19,7 +27,7 @@ namespace Catalog.API.Data
 
 
         /// <summary>
-        /// Static list of products.
+        /// Static list of preconfigured products.
         /// </summary>
         /// <returns></returns>
         private static IEnumerable<Product> GetPreconfiguredProducts()
