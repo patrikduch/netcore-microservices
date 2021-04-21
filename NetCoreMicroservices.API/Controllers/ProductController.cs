@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MongoDB.Driver;
 using NetCoreMicroservices.API.Data;
 using NetCoreMicroservices.API.Models;
 using System.Collections.Generic;
