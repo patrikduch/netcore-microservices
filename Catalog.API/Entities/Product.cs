@@ -2,6 +2,9 @@
 
 namespace Catalog.API.Entities
 {
+    /// <summary>
+    /// Entity that represents set of products.
+    /// </summary>
     public class Product
     {
 
