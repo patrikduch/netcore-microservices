@@ -43,6 +43,7 @@ services:
     container_name: catalogapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://netmicroservicesmongo:27017"
     ports:
       - "8083:80"
 
