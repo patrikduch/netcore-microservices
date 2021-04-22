@@ -12,6 +12,10 @@ services:
     build:
       context: .
       dockerfile: NetCoreMicroservices.Client/Dockerfile
+
+  discount.db:
+    image: postgres
+ 
   netcoremicroservices.db:
     image: mongo
 
