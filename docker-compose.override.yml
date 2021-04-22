@@ -30,14 +30,17 @@ services:
     volumes:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
 
-
-  netcoremicroservices.apigateway:
+  discount.db:
+    container_name: discountdb
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=duch
+      - POSTGRES_DB=DiscountDb
+    restart: always
     ports:
-      - "8082:80"
+      - "5432:5432"
     volumes:
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - postgres_data:/var/lib/postgresql/data 
 
   catalog.api:
     container_name: catalogapi
@@ -47,3 +50,13 @@ services:
     ports:
       - "8083:80"
 
+  webapi-gw:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "8081:80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

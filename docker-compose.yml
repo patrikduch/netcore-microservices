@@ -19,16 +19,19 @@ services:
   netcoremicroservices.db:
     image: mongo
 
-  netcoremicroservices.apigateway:
-    image: ${DOCKER_REGISTRY-}netcoremicroservicesapigateway
-    build:
-      context: .
-      dockerfile: NetCoreMicroservices.APIGateway/Dockerfile
-
-
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
       dockerfile: Catalog.API/Dockerfile
+
+
+  webapi-gw:
+    image: ${DOCKER_REGISTRY-}webapigw
+    build:
+      context: .
+      dockerfile: WebAPI-GW/Dockerfile
+
+volumes:
+  postgres_data:
 
