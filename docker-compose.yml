@@ -16,6 +16,9 @@ services:
   discount.db:
     image: postgres
 
+  pgadmin:
+    image: dpage/pgadmin4
+
   discount.grpc:
     image: ${DOCKER_REGISTRY-}discountgrpc
     build:
@@ -45,4 +48,5 @@ services:
 
 volumes:
   postgres_data:
+  pgadmin_data:
 

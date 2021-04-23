@@ -22,6 +22,16 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data 
 
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@patrikduch.com
+      - PGADMIN_DEFAULT_PASSWORD=duch
+    restart: always
+    ports:
+      -  "5050:80"
+    volumes:
+      -  pgadmin_data:/root/.pgadmnin 
 
   netcoremicroservices.api:
     container_name: netcoremicroservicesapi
