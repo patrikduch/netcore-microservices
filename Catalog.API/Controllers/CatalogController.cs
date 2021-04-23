@@ -15,12 +15,16 @@ namespace Catalog.API.Controllers
         private readonly IProductRepository _productRepository;
         private readonly ILogger<CatalogController> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="CatalogController"/> class.
+        /// </summary>
+        /// <param name="productRepository">Dependency for <seealso cref="ProductRepository"/> class.</param>
+        /// <param name="logger">Dependency for <seealso cref="ILogger"/> class.</param>
         public CatalogController(IProductRepository productRepository, ILogger<CatalogController> logger)
         {
             _logger = logger;
             _productRepository = productRepository;
         }
-
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int) HttpStatusCode.OK)]
@@ -54,7 +58,6 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-
         [HttpPost]
         [ProducesResponseType(typeof(Product), (int) HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> CreeateProduct([FromBody] Product product)
@@ -63,14 +66,12 @@ namespace Catalog.API.Controllers
             return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
 
-
         [HttpPut]
         [ProducesResponseType(typeof(Product), (int) HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateProduct([FromBody] Product product)
         {
             return Ok(await _productRepository.UpdateProduct(product));
         }
-
 
         [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]

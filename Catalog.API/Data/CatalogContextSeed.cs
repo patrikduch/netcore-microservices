@@ -9,7 +9,6 @@ namespace Catalog.API.Data
     /// </summary>
     public class CatalogContextSeed
     {
-
         /// <summary>
         /// Seed data of static products.
         /// </summary>
@@ -22,14 +21,12 @@ namespace Catalog.API.Data
             {
                 productCollection.InsertManyAsync(GetPreconfiguredProducts());
             }
-
         }
-
 
         /// <summary>
         /// Static list of preconfigured products.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of preconfigurated products.</returns>
         private static IEnumerable<Product> GetPreconfiguredProducts()
         {
             return new List<Product>
