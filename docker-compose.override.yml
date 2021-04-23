@@ -1,26 +1,6 @@
 version: '3.4'
 
 services:
-  netcoremicroservices.api:
-    container_name: netcoremicroservicesapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=mongodb://netmicroservicesmongo:27017"
-    depends_on:
-      - netcoremicroservices.db
-    ports:
-      - "8000:80"
-
-  netcoremicroservices.client:
-    container_name: netcoremicroservicesclient
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "NetCoreMicroservicesAPIUrl=http://catalogapi"
-    depends_on:
-      - netcoremicroservices.db
-      - netcoremicroservices.api
-    ports:
-      - "8001:80"
 
   netcoremicroservices.db:
     container_name: netmicroservicesmongo
@@ -42,13 +22,27 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data 
 
-  catalog.api:
-    container_name: catalogapi
+
+  netcoremicroservices.api:
+    container_name: netcoremicroservicesapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://netmicroservicesmongo:27017"
+    depends_on:
+      - netcoremicroservices.db
     ports:
-      - "8083:80"
+      - "8000:80"
+
+  netcoremicroservices.client:
+    container_name: netcoremicroservicesclient
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "NetCoreMicroservicesAPIUrl=http://catalogapi"
+    depends_on:
+      - netcoremicroservices.db
+      - netcoremicroservices.api
+    ports:
+      - "8001:80"
 
   webapi-gw:
     environment:
@@ -60,3 +54,27 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  discount.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8082:80"
+
+  catalog.api:
+    container_name: catalogapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://netmicroservicesmongo:27017"
+    ports:
+      - "8083:80"
+
+
+  discount.grpc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+
+

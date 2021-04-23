@@ -15,6 +15,12 @@ services:
 
   discount.db:
     image: postgres
+
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: NetCoreMicroservices.DiscountGrpc/Discount.Grpc/Dockerfile
  
   netcoremicroservices.db:
     image: mongo
@@ -25,12 +31,17 @@ services:
       context: .
       dockerfile: Catalog.API/Dockerfile
 
-
   webapi-gw:
     image: ${DOCKER_REGISTRY-}webapigw
     build:
       context: .
       dockerfile: WebAPI-GW/Dockerfile
+
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: Discount.API/Dockerfile
 
 volumes:
   postgres_data:
