@@ -42,6 +42,16 @@ services:
       - "DatabaseSettings__ConnectionString=mongodb://netmicroservicesmongo:27017"
     ports:
       - "8083:80"
+
+  discount.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
+    ports:
+      - "8082:80"
+    depends_on:
+    - discount.db
+
   netcoremicroservices.api:
     container_name: netcoremicroservicesapi
     environment:
@@ -74,14 +84,7 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
-  discount.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=blbost;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
-    ports:
-      - "8082:80"
-    depends_on:
-    - discount.db
+
 
   discount.grpc:
     environment:

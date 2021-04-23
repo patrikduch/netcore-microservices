@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Discount.API.Configurations;
 using Discount.API.Entities;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
@@ -17,9 +16,9 @@ namespace Discount.API.Repositories
         private readonly NpgsqlConnection _connection;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <seealso cref="DiscountRepository"/> class.
         /// </summary>
-        /// <param name="configuration"></param>
+        /// <param name="configuration">Configuration object that is derived from appsettings.json file.</param>
         public DiscountRepository(IConfiguration configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
