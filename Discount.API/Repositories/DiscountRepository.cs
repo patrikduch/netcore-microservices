@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Discount.API.Configurations;
 using Discount.API.Entities;
 using Microsoft.Extensions.Configuration;
 using Npgsql;

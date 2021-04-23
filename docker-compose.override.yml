@@ -33,6 +33,15 @@ services:
     volumes:
       -  pgadmin_data:/root/.pgadmnin 
 
+  catalog.api:
+    container_name: catalogapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__DatabaseName=ProductDb"
+      - "DatabaseSettings__CollectionName=Products"
+      - "DatabaseSettings__ConnectionString=mongodb://netmicroservicesmongo:27017"
+    ports:
+      - "8083:80"
   netcoremicroservices.api:
     container_name: netcoremicroservicesapi
     environment:
@@ -68,23 +77,14 @@ services:
   discount.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=blbost;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
     ports:
       - "8082:80"
-
-  catalog.api:
-    container_name: catalogapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=mongodb://netmicroservicesmongo:27017"
-    ports:
-      - "8083:80"
-
+    depends_on:
+    - discount.db
 
   discount.grpc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
-
-
-

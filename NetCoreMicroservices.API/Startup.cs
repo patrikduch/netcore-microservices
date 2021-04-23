@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using NetCoreMicroservices.API.Configurations;
 using NetCoreMicroservices.API.Data;
 
 namespace NetCoreMicroservices.API
@@ -29,10 +28,6 @@ namespace NetCoreMicroservices.API
             });
 
             services.AddScoped<ProductContext>();
-
-            #region Websettings setup
-            services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
-            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

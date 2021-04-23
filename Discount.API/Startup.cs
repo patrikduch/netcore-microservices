@@ -1,3 +1,4 @@
+using Discount.API.Configurations;
 using Discount.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,10 @@ namespace Discount.API
 
             #region Repositories registration DI
             services.AddScoped<IDiscountRepository, DiscountRepository>();
+            #endregion
+
+            #region DatabaseSettings setup
+            services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
             #endregion
         }
 
