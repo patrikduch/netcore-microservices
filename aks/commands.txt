@@ -23,11 +23,13 @@ netcoremicroservicesacr.azurecr.io
 docker tag netcoremicroservicesapi:latest netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v1
 docker tag netcoremicroservicesclient:latest netcoremicroservicesacr.azurecr.io/netcoremicroservicesclient:v1
 docker tag netcoremicroservicesapigateway:latest netcoremicroservicesacr.azurecr.io/netcoremicroservicesapigateway:v1
+docker tag catalogapi:latest netcoremicroservicesacr.azurecr.io/catalogapi:v1 
 
 # Push images to registry
 docker push netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v1
 docker push netcoremicroservicesacr.azurecr.io/netcoremicroservicesclient:v1
 docker push netcoremicroservicesacr.azurecr.io/netcoremicroservicesapigateway:v1
+docker push netcoremicroservicesacr.azurecr.io/catalogapi:v1
 
 az acr login --name netcoremicroservicesacr
 

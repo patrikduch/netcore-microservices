@@ -1,32 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netcoremicroservicesapi-deployment
+  name: catalog-api-deployment
   labels:
-    app: netcoremicroservicesapi
+    app: catalogapi
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: netcoremicroservicesapi
+      app: catalogapi
   template:
     metadata:
       labels:
-        app: netcoremicroservicesapi
+        app: catalogapi
     spec:
       containers:
-        - name: netcoremicroservicesapi
-          image: netcoremicroservicesacr.azurecr.io/netcoremicroservicesapi:v2
+        - name: catalogapi
+          image:  netcoremicroservicesacr.azurecr.io/catalogapi:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
+            - name: DatabaseSettings__DatabaseName
+              value: ProductDb
+            - name: DatabaseSettings__CollectionName
+              value: Products
             - name: DatabaseSettings__ConnectionString
               valueFrom:
                   configMapKeyRef:
-                    name: mongo-configmap
+                    name: catalog-db-configmap
                     key: connection_string
           resources:
             requests:
@@ -41,11 +45,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: netcoremicroservicesapi
+  name: catalogapiservice
 spec:
+  type: LoadBalancer
   selector:
-    app: netcoremicroservicesapi
-  type: ClusterIP
+    app: catalogapi
   ports:
     - protocol: TCP
       port: 80
