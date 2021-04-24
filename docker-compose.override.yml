@@ -10,6 +10,12 @@ services:
     volumes:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
 
+  basketdb:
+    container_name: basketdb
+    restart: always    
+    ports:
+        - "6379:6379"
+
   discount.db:
     container_name: discountdb
     environment:

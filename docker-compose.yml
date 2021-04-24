@@ -1,6 +1,10 @@
 version: '3.4'
 
 services:
+
+  basketdb:
+    image: redis:alpine
+  
   netcoremicroservices.client:
     image: ${DOCKER_REGISTRY-}netcoremicroservicesclient
     build:
