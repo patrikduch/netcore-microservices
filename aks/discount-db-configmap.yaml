@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: discount-db-configmap
+  labels:
+    app: discount-db
+data:
+  connection_string: Server=discount-db;Port=5432;Database=discountdb;User Id=patrikduch;Password=bcduchpatrik07041993;
+  POSTGRES_DB: discountdb
+  POSTGRES_USER: patrikduch
+  POSTGRES_PASSWORD: bcduchpatrik07041993

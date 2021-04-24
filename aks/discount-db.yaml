@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discount-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discount-db
+  template:
+    metadata:
+      labels:
+        app: discount-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:10.4
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: discount-db-configmap
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: discountdb
+      volumes:
+        - name: discountdb
+          persistentVolumeClaim:
+            claimName: discount-db-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discount-db
+  labels:
+    app: discount-db
+spec:
+  type: ClusterIP
+  ports:
+   - port: 5432
+  selector:
+   app: discount-db
