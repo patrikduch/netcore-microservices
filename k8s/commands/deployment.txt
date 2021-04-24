@@ -5,14 +5,11 @@ kubectl apply -f ./k8s/netcoremicroservices-api/netcoremicroservices-api.yaml
 # create deployment of netcoremicroservices-client
 kubectl apply -f ./k8s/netcoremicroservices-client/netcoremicroservices-client.yaml
 
-
 # remove of netcoremicroservices-api deployment
 kubectl delete deployment netcoremicroservicesapi-deployment
 
-
 # remove of netcoremicroservices-client deployment
 kubectl delete deployment netcoremicroservices-client-deployment
-
 
 # remove netcoremicroservicesapi service
 kubectl delete service netcoremicroservicesclientservice

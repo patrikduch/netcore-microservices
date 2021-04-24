@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: catalog-db-configmap
 data:
-  connection_string: mongodb://username:password@mongo-service:27017
+  connection_string: mongodb://patrikduch:bcduchpatrik07041993@catalog-db-service:27017

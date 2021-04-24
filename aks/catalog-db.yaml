@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-deployment
+  name: catalog-db-deployment
   labels:
-    app: mongodb
+    app: catalog-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongodb
+      app: catalog-db
   template:
     metadata:
       labels:
-        app: mongodb
+        app: catalog-db
     spec:
       containers:
-        - name: mongodb
+        - name: catalogdb
           image: mongo
           ports:
             - containerPort: 27017
@@ -30,21 +30,21 @@ spec:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: mongo-secret
+                  name: catalog-db-secret
                   key: mongo-root-username                  
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mongo-secret
+                  name: catalog-db-secret
                   key: mongo-root-password
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-service
+  name: catalog-db-service
 spec:
   selector:
-    app: mongodb
+    app: catalog-db
   ports:
     - protocol: TCP
       port: 27017

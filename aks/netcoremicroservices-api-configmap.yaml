@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: netcoremicroservicesapi-configmap
-data:
-  necoremicroserviceapi_url: http://netcoremicroservicesapi
