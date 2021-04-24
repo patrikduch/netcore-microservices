@@ -1,12 +1,6 @@
 version: '3.4'
 
 services:
-  netcoremicroservices.api:
-    image: ${DOCKER_REGISTRY-}netcoremicroservicesapi
-    build:
-      context: .
-      dockerfile: NetCoreMicroservices.API/Dockerfile
-
   netcoremicroservices.client:
     image: ${DOCKER_REGISTRY-}netcoremicroservicesclient
     build:
@@ -46,7 +40,14 @@ services:
       context: .
       dockerfile: Discount.API/Dockerfile
 
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Basket.API/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
+
 
