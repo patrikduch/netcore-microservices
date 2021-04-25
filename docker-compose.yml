@@ -5,12 +5,6 @@ services:
   basketdb:
     image: redis:alpine
 
-  netcoremicroservices.client:
-    image: ${DOCKER_REGISTRY-}netcoremicroservicesclient
-    build:
-      context: .
-      dockerfile: NetCoreMicroservices.Client/Dockerfile
-
   discount.db:
     image: postgres
 

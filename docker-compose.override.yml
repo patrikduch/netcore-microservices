@@ -72,17 +72,6 @@ services:
     depends_on:
     - discount.db
 
-  netcoremicroservices.client:
-    container_name: netcoremicroservicesclient
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "NetCoreMicroservicesAPIUrl=http://catalogapi"
-    depends_on:
-      - netcoremicroservices.db
-      - catalog.api
-    ports:
-      - "8085:80"
-
   webapi-gw:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
