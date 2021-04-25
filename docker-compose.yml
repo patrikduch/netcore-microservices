@@ -1,7 +1,6 @@
 version: '3.4'
 
 services:
-
   basketdb:
     image: redis
 
@@ -11,12 +10,6 @@ services:
   pgadmin:
     image: dpage/pgadmin4
 
-  discount.grpc:
-    image: ${DOCKER_REGISTRY-}discountgrpc
-    build:
-      context: .
-      dockerfile: NetCoreMicroservices.DiscountGrpc/Discount.Grpc/Dockerfile
- 
   netcoremicroservices.db:
     image: mongo
 
@@ -24,25 +17,25 @@ services:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
-      dockerfile: Catalog.API/Dockerfile
+      dockerfile: src/services/Catalog/Catalog.API/Dockerfile
 
   webapi-gw:
     image: ${DOCKER_REGISTRY-}webapigw
     build:
       context: .
-      dockerfile: WebAPI-GW/Dockerfile
+      dockerfile: src/services/API-Gws/WebAPI-GW/Dockerfile
 
   discount.api:
     image: ${DOCKER_REGISTRY-}discountapi
     build:
       context: .
-      dockerfile: Discount.API/Dockerfile
+      dockerfile: src/services/Discount/Discount.API/Dockerfile
 
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
     build:
       context: .
-      dockerfile: Basket.API/Dockerfile
+      dockerfile: src/services/Basket/Basket.API/Dockerfile
 
 volumes:
   postgres_data:

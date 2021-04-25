@@ -56,12 +56,6 @@ services:
     ports:
       - "8081:80"
 
-  discount.grpc:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "8082:80"
-
   discount.api:
     container_name: discountapi
     environment:

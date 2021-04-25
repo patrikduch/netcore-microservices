@@ -1,7 +1,11 @@
-NetCoreMicroservices.Client/bin/
-NetCoreMicroservices.Client/obj/
-NetCoreMicroservices.API/bin/
-NetCoreMicroservices.API/obj/
+src/services/API-Gws/WebAPI-GW/bin
+src/services/API-Gws/WebAPI-GW/obj
+src/services/Basket/Basket.API/bin
+src/services/Basket/Basket.API/obj
+src/services/Catalog/Catalog.API/bin
+src/services/Catalog/Catalog.API/obj
+src/services/Discount/Discount.API/bin
+src/services/Discount/Discount.API/obj
 .vs/
 bin/
 obj/
