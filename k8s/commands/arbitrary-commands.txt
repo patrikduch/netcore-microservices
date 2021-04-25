@@ -4,3 +4,6 @@ kubectl version
 Get all nodes for current Kubernetes cluster
 kubectl get nodes
 
+
+Go to the linux docker container
+kubectl exec --stdin --tty containername -- /bin/bash
