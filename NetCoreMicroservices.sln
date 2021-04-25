@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreMicroservices.Client", "NetCoreMicroservices.Client\NetCoreMicroservices.Client.csproj", "{4E365F33-B6E2-4498-95E4-4E0AC0A89A88}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{63F0AC7C-6516-463D-B542-2E9052839E48}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{568D619C-7FF9-4B77-BDC5-37D97FFF2A58}"
@@ -25,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI-GW", "WebAPI-GW\WebA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{EB6D1849-FD2E-4D7A-86E9-EB4872608329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.API", "Basket.API\Basket.API.csproj", "{23B464E0-8A74-492C-9247-6E3AD5EC4957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "Basket.API\Basket.API.csproj", "{23B464E0-8A74-492C-9247-6E3AD5EC4957}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4E365F33-B6E2-4498-95E4-4E0AC0A89A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E365F33-B6E2-4498-95E4-4E0AC0A89A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E365F33-B6E2-4498-95E4-4E0AC0A89A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E365F33-B6E2-4498-95E4-4E0AC0A89A88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63F0AC7C-6516-463D-B542-2E9052839E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63F0AC7C-6516-463D-B542-2E9052839E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F0AC7C-6516-463D-B542-2E9052839E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
