@@ -43,6 +43,9 @@ services:
     container_name: basketapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings__ConnectionString=basketdb:6379"
+    depends_on:
+        - basketdb
     ports:
       - "8080:80"
 
