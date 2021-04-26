@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: discount-db-configmap
+  name: discount-api-configmap
   labels:
     app: discount-db
 data:

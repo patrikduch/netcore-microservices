@@ -26,7 +26,7 @@ spec:
             - name: DatabaseSettings__ConnectionString
               valueFrom:
                   configMapKeyRef:
-                    name: discount-db-configmap
+                    name: discount-api-configmap
                     key: connection_string
           resources:
             requests:

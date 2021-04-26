@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: catalog-api-deployment
   labels:
-    app: catalogapi
+    app: catalog-api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: catalogapi
+      app: catalog-api
   template:
     metadata:
       labels:
-        app: catalogapi
+        app: catalog-api
     spec:
       containers:
         - name: catalogapi
@@ -30,7 +30,7 @@ spec:
             - name: DatabaseSettings__ConnectionString
               valueFrom:
                   configMapKeyRef:
-                    name: catalog-db-configmap
+                    name: catalog-api-configmap
                     key: connection_string
           resources:
             requests:
@@ -45,11 +45,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogapiservice
+  name: catalog-api-service
 spec:
   type: LoadBalancer
   selector:
-    app: catalogapi
+    app: catalog-api
   ports:
     - protocol: TCP
       port: 80
