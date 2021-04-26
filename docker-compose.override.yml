@@ -1,7 +1,6 @@
 version: '3.4'
 
 services:
-
   netcoremicroservices.db:
     container_name: netmicroservicesmongo
     restart: always
@@ -38,7 +37,6 @@ services:
       -  "5050:80"
     volumes:
       -  pgadmin_data:/root/.pgadmnin 
-
 
   basket.api:
     container_name: basketapi

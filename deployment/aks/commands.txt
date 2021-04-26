@@ -75,8 +75,8 @@ kubectl apply -f .\deployment\aks\services\catalog-api\
 kubectl apply -f .\deployment\aks\services\discount-api\
 
 
+# Removal of  basket-api service
 kubectl delete service basket-api-service
 kubectl delete service basket-db-service
-
 kubectl delete deployment basket-api-deployment
 kubectl delete deployment basket-db-master
