@@ -39,6 +39,7 @@ services:
     volumes:
       -  pgadmin_data:/root/.pgadmnin 
 
+
   basket.api:
     container_name: basketapi
     environment:
@@ -65,7 +66,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
     ports:
-      - "8083:80"
+      - "8082:80"
     depends_on:
     - discount.db
 
@@ -74,10 +75,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-      - "8086:80"
+      - "8083:80"
       - "443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-
- 

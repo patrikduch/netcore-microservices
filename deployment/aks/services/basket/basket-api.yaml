@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basket-api-deployment
+  labels:
+    app: basket-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: basket-api
+  template:
+    metadata:
+      labels:
+        app: basket-api
+    spec:
+      containers:
+        - name: basketapi
+          image:  netcoremicroservicesacr.azurecr.io/catalogapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: DatabaseSettings__DatabaseName
+              value: ProductDb
+            - name: DatabaseSettings__CollectionName
+              value: Products
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  configMapKeyRef:
+                    name: catalog-db-configmap
+                    key: connection_string
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogapiservice
+spec:
+  type: LoadBalancer
+  selector:
+    app: basket-api
+  ports:
+    - protocol: TCP
+      port: 80

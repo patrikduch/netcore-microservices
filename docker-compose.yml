@@ -19,11 +19,11 @@ services:
       context: .
       dockerfile: src/services/Catalog/Catalog.API/Dockerfile
 
-  webapi-gw:
-    image: ${DOCKER_REGISTRY-}webapigw
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
     build:
       context: .
-      dockerfile: src/services/API-Gws/WebAPI-GW/Dockerfile
+      dockerfile: src/services/Basket/Basket.API/Dockerfile
 
   discount.api:
     image: ${DOCKER_REGISTRY-}discountapi
@@ -31,14 +31,18 @@ services:
       context: .
       dockerfile: src/services/Discount/Discount.API/Dockerfile
 
-  basket.api:
-    image: ${DOCKER_REGISTRY-}basketapi
+  webapi-gw:
+    image: ${DOCKER_REGISTRY-}webapigw
     build:
       context: .
-      dockerfile: src/services/Basket/Basket.API/Dockerfile
+      dockerfile: src/services/API-Gws/WebAPI-GW/Dockerfile
 
 volumes:
   postgres_data:
   pgadmin_data:
+
+
+
+
 
 

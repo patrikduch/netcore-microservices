@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["src/services/API-Gws/WebAPI-GW/WebAPI-GW.csproj", "src/services/API-Gws/WebAPI-GW/"]
-RUN dotnet restore "src/services/API-Gws/WebAPI-GW/WebAPI-GW.csproj"
+COPY ["WebAPI-GW/WebAPI-GW.csproj", "WebAPI-GW/"]
+RUN dotnet restore "WebAPI-GW/WebAPI-GW.csproj"
 COPY . .
-WORKDIR "/src/src/services/API-Gws/WebAPI-GW"
+WORKDIR "/src/WebAPI-GW"
 RUN dotnet build "WebAPI-GW.csproj" -c Release -o /app/build
 
 FROM build AS publish
