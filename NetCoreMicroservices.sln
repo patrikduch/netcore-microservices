@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "src\services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI-GW", "src\services\API-Gws\WebAPI-GW\WebAPI-GW.csproj", "{739CE8AE-8CE7-4E62-B0BF-502FAF5B5AFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discount.Grpc", "src\services\Discount\Discount.Grpc\Discount.Grpc.csproj", "{77BC504C-44CD-460D-85CA-AC6A8D17B654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discount.Grpc", "src\services\Discount\Discount.Grpc\Discount.Grpc.csproj", "{77BC504C-44CD-460D-85CA-AC6A8D17B654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
