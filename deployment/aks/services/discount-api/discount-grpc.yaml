@@ -1,51 +1,51 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: basket-api-deployment
+  name: discount-grpc-deployment
   labels:
-    app: basket-api
+    app: discount-grpc
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: basket-api
+      app: discount-grpc
   template:
     metadata:
       labels:
-        app: basket-api
+        app: discount-grpc
     spec:
       containers:
-        - name: basketapi
-          image:  netcoremicroservicesacr.azurecr.io/basketapi:v1
+        - name: discount-grpc
+          image:  netcoremicroservicesacr.azurecr.io/discountapi:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
-            - name: CacheSettings__ConnectionString
+            - name: DatabaseSettings__ConnectionString
               valueFrom:
                   configMapKeyRef:
-                    name: basket-api-configmap
+                    name: discount-api-configmap
                     key: connection_string
-
-            - name: GrpcSettings__DiscountUrl
-              valueFrom:
-                  configMapKeyRef:
-                    name: basket-api-configmap
-                    key: discount_url
-
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
       imagePullSecrets:
         - name: acr-secret
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: basket-api-service
+  name: discount-grpc-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
-    app: basket-api
+    app: discount-grpc
   ports:
     - protocol: TCP
       port: 80

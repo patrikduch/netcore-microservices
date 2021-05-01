@@ -22,12 +22,14 @@ netcoremicroservicesacr.azurecr.io
 docker tag basketapi:latest netcoremicroservicesacr.azurecr.io/basketapi:v1 
 docker tag catalogapi:latest netcoremicroservicesacr.azurecr.io/catalogapi:v1 
 docker tag discountapi:latest netcoremicroservicesacr.azurecr.io/discountapi:v1 
+docker tag discountgrpc:latest netcoremicroservicesacr.azurecr.io/discountgrpc:v1 
+
 
 # Push images to registry
 docker push netcoremicroservicesacr.azurecr.io/basketapi:v1
 docker push netcoremicroservicesacr.azurecr.io/catalogapi:v1
 docker push netcoremicroservicesacr.azurecr.io/discountapi:v1
-
+docker push netcoremicroservicesacr.azurecr.io/discountgrpc:v1
 
 az acr login --name netcoremicroservicesacr
 

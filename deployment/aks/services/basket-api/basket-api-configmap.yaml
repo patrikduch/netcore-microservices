@@ -4,3 +4,4 @@ metadata:
   name: basket-api-configmap
 data:
   connection_string: basket-db-service:6379
+  discount_url: http://discount-grpc-service
