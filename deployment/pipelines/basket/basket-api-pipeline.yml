@@ -77,7 +77,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/deployment/aks/services/basket-api/basket-api.yaml
+                $(Pipeline.Workspace)/aks/services/basket-api/basket-api.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
