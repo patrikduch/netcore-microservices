@@ -18,7 +18,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '8454a2ba-d7b1-4962-8832-922f293b96db'
-  imageRepository: 'catalogapi'
+  imageRepository: 'basketapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Catalog/Catalog.API/Dockerfile'
   tag: '$(Build.BuildId)'
@@ -26,6 +26,8 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -62,7 +64,7 @@ stages:
     strategy:
       runOnce:
         deploy:
-          steps:W
+          steps:
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
