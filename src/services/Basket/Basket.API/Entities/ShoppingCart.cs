@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Basket.API.Entities
 {
     public class ShoppingCart
     {
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="ShoppingCart"/> WebAPI controller.
+        /// </summary>
+        /// <param name="username">Username for particular shopping cart.</param>
         public ShoppingCart(string username)
         {
             UserName = username;
