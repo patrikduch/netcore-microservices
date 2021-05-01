@@ -23,8 +23,8 @@ namespace Basket.API.GrpcServices
         {
             _configuration = configuration;
 
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
+            // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
 
             var channel = GrpcChannel.ForAddress(_configuration["GrpcSettings:DiscountUrl"], new GrpcChannelOptions
             {
@@ -42,7 +42,7 @@ namespace Basket.API.GrpcServices
         public async Task<CouponModel> GetDiscount(string productName)
         {
             var discountRequest = new GetDiscountRequest { ProductName = productName };
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
             return await _discountProtoServiceClient.GetDiscountAsync(discountRequest);
         }

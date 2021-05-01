@@ -26,8 +26,8 @@ namespace Basket.API
         {
             #region Discount gRPC client
             // Enable support for unencrypted HTTP2  
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
+            //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
 
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options => {
                 options.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
