@@ -44,11 +44,11 @@ namespace Basket.API.Controllers
             // and calculate latests prices of product into shopping cart
             // consume Discount gRPC
 
-            foreach(var item in basket.Items)
-            {
-                var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-                item.Price -= coupon.Amount;
-            }
+            // foreach(var item in basket.Items)
+            //{
+              //  var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
+              //  item.Price -= coupon.Amount;
+            //}
 
             return Ok(await _basketRepository.UpdateBasket(basket));
         }

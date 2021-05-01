@@ -1,5 +1,4 @@
 ﻿using Discount.Grpc.Protos;
-using Grpc.Net.ClientFactory;
 using System;
 using System.Threading.Tasks;
 
@@ -12,6 +11,10 @@ namespace Basket.API.GrpcServices
     {
         private readonly DiscountProtoService.DiscountProtoServiceClient _discountProtoServiceClient;
 
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="DiscountGrpcService"/> WebAPI controller.
+        /// </summary>
+        /// <param name="discountProtoServiceClient"></param>
         public DiscountGrpcService(DiscountProtoService.DiscountProtoServiceClient discountProtoServiceClient)
         {
             _discountProtoServiceClient = discountProtoServiceClient ?? throw new ArgumentNullException(nameof(discountProtoServiceClient));
