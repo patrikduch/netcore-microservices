@@ -33,7 +33,7 @@ namespace Discount.Grpc
                         
                         options.ListenAnyIP(80, listenOptions =>
                         {
-                            listenOptions.Protocols = HttpProtocols.Http1;
+                            listenOptions.Protocols = HttpProtocols.Http2;
                         });
                     });
                 });

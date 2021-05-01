@@ -39,10 +39,10 @@ services:
     build:
       context: .
       dockerfile: src/services/Discount/Discount.Grpc/Dockerfile
-
 volumes:
   postgres_data:
   pgadmin_data:
+
 
 
 

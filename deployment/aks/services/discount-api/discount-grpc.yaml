@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: discount-grpc
-          image:  netcoremicroservicesacr.azurecr.io/discountapi:v1
+          image:  netcoremicroservicesacr.azurecr.io/discountgrpc:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
