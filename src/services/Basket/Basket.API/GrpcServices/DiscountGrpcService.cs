@@ -42,7 +42,7 @@ namespace Basket.API.GrpcServices
         public async Task<CouponModel> GetDiscount(string productName)
         {
             var discountRequest = new GetDiscountRequest { ProductName = productName };
-            // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
             return await _discountProtoServiceClient.GetDiscountAsync(discountRequest);
         }
