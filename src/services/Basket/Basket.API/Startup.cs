@@ -27,6 +27,7 @@ namespace Basket.API
             #region Discount gRPC client
             // Enable support for unencrypted HTTP2  
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
 
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options => {
                 options.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
@@ -49,9 +50,6 @@ namespace Basket.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basket.API", Version = "v1" });
             });
-
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
 
             #region Data repositories registration
             services.AddScoped<IBasketRepository, BasketRepository>();
