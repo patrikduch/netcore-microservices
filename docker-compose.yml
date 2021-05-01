@@ -40,12 +40,6 @@ services:
       context: .
       dockerfile: src/services/Discount/Discount.Grpc/Dockerfile
 
-  inventory.api:
-    image: ${DOCKER_REGISTRY-}inventoryapi
-    build:
-      context: .
-      dockerfile: src/services/Inventory.API/Dockerfile
-
 volumes:
   postgres_data:
   pgadmin_data:
