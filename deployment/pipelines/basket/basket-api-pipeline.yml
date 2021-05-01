@@ -9,7 +9,7 @@ trigger:
     paths:
       include:
       - src/services/Basket/Basket.API/*
-      - aks/services/basket-api/basket-api.yaml
+      - deployment/aks/services/basket-api/basket-api.yaml
 
 resources:
 - repo: self
@@ -77,7 +77,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/services/basket-api/basket-api.yaml
+                $(Pipeline.Workspace)/deployment/aks/services/basket-api/basket-api.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
