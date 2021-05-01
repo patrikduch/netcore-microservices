@@ -26,7 +26,6 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
-W
 stages:
 - stage: Build
   displayName: Build stage
