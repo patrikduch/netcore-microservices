@@ -12,10 +12,14 @@ namespace Basket.API.Controllers
     [ApiController]
     public class BasketController : ControllerBase
     {
-
         private DiscountGrpcService _discountGrpcService;
         private readonly IBasketRepository _basketRepository;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="BasketController"/> WebAPI controller.
+        /// </summary>
+        /// <param name="basketRepository">Basket data repository dependency instance.</param>
+        /// <param name="discountGrpcService">Grpc Discount service dependency instance.</param>
         public BasketController(DiscountGrpcService discountGrpcService, IBasketRepository basketRepository)
         {
             _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
@@ -40,13 +44,11 @@ namespace Basket.API.Controllers
             // and calculate latests prices of product into shopping cart
             // consume Discount gRPC
 
-
             foreach(var item in basket.Items)
             {
                 var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
                 item.Price -= coupon.Amount;
             }
-
 
             return Ok(await _basketRepository.UpdateBasket(basket));
         }
@@ -58,6 +60,5 @@ namespace Basket.API.Controllers
             await _basketRepository.DeleteBasket(username);
             return Ok();
         }
-
     }
 }
