@@ -1,4 +1,5 @@
 ﻿using Discount.Grpc.Protos;
+using Grpc.Net.ClientFactory;
 using System;
 using System.Threading.Tasks;
 

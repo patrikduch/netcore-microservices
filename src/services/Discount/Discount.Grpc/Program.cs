@@ -1,5 +1,6 @@
 using Discount.Grpc.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
 
 namespace Discount.Grpc
@@ -22,6 +23,15 @@ namespace Discount.Grpc
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
+
+                    webBuilder.ConfigureKestrel(options =>
+                    {
+                        options.ListenAnyIP(
+                        80,
+                        listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; }
+                    );
+                    });
                 });
     }
 }
