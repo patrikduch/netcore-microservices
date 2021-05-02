@@ -31,7 +31,11 @@ namespace Basket.API
 
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options => {
                 options.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
-                options.ChannelOptionsActions.Add(channelOptions => channelOptions.Credentials = ChannelCredentials.Insecure);
+                options.ChannelOptionsActions.Add(channelOptions =>
+                {
+                    channelOptions.Credentials = ChannelCredentials.Insecure;
+                    channelOptions.HttpClient.Timeout = TimeSpan.FromMinutes(1);
+                });
             });
             
             services.AddScoped<DiscountGrpcService>();
