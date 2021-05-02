@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Discount.Grpc.Entities;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using System;
 using System.Threading.Tasks;
@@ -14,15 +15,17 @@ namespace Discount.Grpc.Repositories
     {
         private readonly IConfiguration _configuration;
         private readonly NpgsqlConnection _connection;
+        private readonly ILogger<DiscountRepository> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <seealso cref="DiscountRepository"/> class.
         /// </summary>
         /// <param name="configuration">Configuration object that is derived from appsettings.json file.</param>
-        public DiscountRepository(IConfiguration configuration)
+        public DiscountRepository(IConfiguration configuration, ILogger<DiscountRepository> logger)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             _connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+            _logger = logger;
         }
 
         /// <summary>
@@ -73,15 +76,23 @@ namespace Discount.Grpc.Repositories
         /// <returns>Async result with Coupon item encapsulation.</returns>
         public async Task<Coupon> GetDiscount(string productName)
         {
-            using (_connection)
+            try
             {
-                var coupon = await _connection.QueryFirstOrDefaultAsync<Coupon>
-               ("SELECT * FROM Coupon WHERE ProductName = @ProductName", new { ProductName = productName });
+                using (_connection)
+                {
+                    var coupon = await _connection.QueryFirstOrDefaultAsync<Coupon>
+                   ("SELECT * FROM Coupon WHERE ProductName = @ProductName", new { ProductName = productName });
 
-                if (coupon == null)
-                    return new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" };
+                    if (coupon == null)
+                        return new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" };
 
-                return coupon;
+                    return coupon;
+                }
+            
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
