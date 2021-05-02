@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Polly;
+using Polly.Timeout;
 using System;
 using System.Net.Http;
 
@@ -31,13 +33,21 @@ namespace Basket.API
             //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
 
+            Random jitterer = new Random();
+
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options => {
                 options.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
                 options.ChannelOptionsActions.Add(channelOptions =>
                 {
                     channelOptions.Credentials = ChannelCredentials.Insecure;
                 });
-            }).AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));
+            })
+                .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>().WaitAndRetryAsync(
+                5,
+                retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
+                                + TimeSpan.FromMilliseconds(jitterer.Next(0, 1000))
+            ))
+                .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));
 
             services.AddScoped<DiscountGrpcService>();
 
