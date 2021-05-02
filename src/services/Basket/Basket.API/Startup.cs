@@ -42,12 +42,6 @@ namespace Basket.API
                     channelOptions.Credentials = ChannelCredentials.Insecure;
                 });
             })
-                .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>().WaitAndRetryAsync(
-                5,
-                retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
-                                + TimeSpan.FromMilliseconds(jitterer.Next(0, 1000))
-            ))
-                .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));
 
             services.AddScoped<DiscountGrpcService>();
 
