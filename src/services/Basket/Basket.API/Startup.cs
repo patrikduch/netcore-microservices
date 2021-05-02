@@ -12,6 +12,8 @@ using Microsoft.OpenApi.Models;
 using Polly;
 using Polly.Timeout;
 using System;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 
 namespace Basket.API
@@ -35,6 +37,48 @@ namespace Basket.API
 
             Random jitterer = new Random();
 
+            var loggerFactory = LoggerFactory.Create(logging =>
+            {
+                logging.AddConsole();
+                logging.SetMinimumLevel(LogLevel.Debug);
+            });
+
+            var serverErrors = new HttpStatusCode[] {
+                HttpStatusCode.BadGateway,
+                HttpStatusCode.GatewayTimeout,
+                HttpStatusCode.ServiceUnavailable,
+                HttpStatusCode.InternalServerError,
+                HttpStatusCode.TooManyRequests,
+                HttpStatusCode.RequestTimeout
+            };
+
+            var gRpcErrors = new StatusCode[] {
+                StatusCode.DeadlineExceeded,
+                StatusCode.Internal,
+                StatusCode.NotFound,
+                StatusCode.ResourceExhausted,
+                StatusCode.Unavailable,
+                StatusCode.Unknown
+            };
+
+
+            Func<HttpRequestMessage, IAsyncPolicy<HttpResponseMessage>> retryFunc = (request) =>
+            {
+                return Policy.HandleResult<HttpResponseMessage>(r => {
+
+                    var grpcStatus = StatusManager.GetStatusCode(r);
+                    var httpStatusCode = r.StatusCode;
+
+                    return (grpcStatus == null && serverErrors.Contains(httpStatusCode)) || // if the server send an error before gRPC pipeline
+                           (httpStatusCode == HttpStatusCode.OK && gRpcErrors.Contains(grpcStatus.Value)); // if gRPC pipeline handled the request (gRPC always answers OK)
+                })
+                .WaitAndRetryAsync(3, (input) => TimeSpan.FromSeconds(3 + input), (result, timeSpan, retryCount, context) =>
+                {
+                    var grpcStatus = StatusManager.GetStatusCode(result.Result);
+                    Console.WriteLine($"Request failed with {grpcStatus}. Retry");
+                });
+            };
+
             services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
             {
                 options.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
@@ -42,7 +86,7 @@ namespace Basket.API
                 {
                     channelOptions.Credentials = ChannelCredentials.Insecure;
                 });
-            });
+            }).AddPolicyHandler(retryFunc);
 
             services.AddScoped<DiscountGrpcService>();
 
