@@ -17,16 +17,6 @@ namespace Basket.API.GrpcServices
         /// <param name="discountProtoServiceClient"></param>
         public DiscountGrpcService(DiscountProtoService.DiscountProtoServiceClient discountProtoServiceClient)
         {
-            //_configuration = configuration;
-
-            // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-            // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
-
-            // var channel = GrpcChannel.ForAddress(_configuration["GrpcSettings:DiscountUrl"], new GrpcChannelOptions
-            //{
-              //  LoggerFactory = loggerFactory
-            //});
-
             _discountProtoServiceClient = discountProtoServiceClient ?? throw new ArgumentNullException(nameof(discountProtoServiceClient));
         }
 
@@ -42,6 +32,5 @@ namespace Basket.API.GrpcServices
 
             return await _discountProtoServiceClient.GetDiscountAsync(discountRequest);
         }
-
     }
 }
