@@ -22,7 +22,7 @@ namespace Discount.Grpc
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
             services.AddGrpc();
-
+                
             #region Automapper
             services.AddAutoMapper(typeof(Startup));
             #endregion

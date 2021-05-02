@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Polly;
 using System;
+using System.Net.Http;
 
 namespace Basket.API
 {
@@ -34,10 +36,9 @@ namespace Basket.API
                 options.ChannelOptionsActions.Add(channelOptions =>
                 {
                     channelOptions.Credentials = ChannelCredentials.Insecure;
-                    channelOptions.HttpClient.Timeout = TimeSpan.FromMinutes(1);
                 });
-            });
-            
+            }).AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));
+
             services.AddScoped<DiscountGrpcService>();
 
             #endregion
