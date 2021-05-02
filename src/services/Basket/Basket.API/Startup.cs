@@ -35,13 +35,14 @@ namespace Basket.API
 
             Random jitterer = new Random();
 
-            services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options => {
+            services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+            {
                 options.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]);
                 options.ChannelOptionsActions.Add(channelOptions =>
                 {
                     channelOptions.Credentials = ChannelCredentials.Insecure;
                 });
-            })
+            });
 
             services.AddScoped<DiscountGrpcService>();
 
