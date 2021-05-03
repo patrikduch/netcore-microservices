@@ -45,9 +45,16 @@ services:
       context: .
       dockerfile: src/services/Discount/Discount.API/Dockerfile
 
+  gamecatalog.api:
+    image: ${DOCKER_REGISTRY-}gamecatalogapi
+    build:
+      context: .
+      dockerfile: src/services/GameCatalog/GameCatalog.API/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
+
 
 
 

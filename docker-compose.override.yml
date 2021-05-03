@@ -49,6 +49,12 @@ services:
     ports:
       - "8080:80"
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"
+        - "15672:15672"
   catalog.api:
     container_name: catalogapi
     environment:
@@ -90,9 +96,9 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  rabbitmq:
-    container_name: rabbitmq
-    restart: always
+  gamecatalog.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports:
-        - "5672:5672"
-        - "15672:15672"
+      - "8086:80"
+

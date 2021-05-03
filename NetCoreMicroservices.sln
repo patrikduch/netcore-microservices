@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI-GW", "src\services\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Discount.Grpc", "src\services\Discount\Discount.Grpc\Discount.Grpc.csproj", "{77BC504C-44CD-460D-85CA-AC6A8D17B654}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameCatalog", "GameCatalog", "{3AF5971E-7082-424D-ACF9-1B5CEE70B7A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCatalog.API", "src\services\GameCatalog\GameCatalog.API\GameCatalog.API.csproj", "{E4AD49C2-BC0D-4852-AA24-47056988A434}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{77BC504C-44CD-460D-85CA-AC6A8D17B654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77BC504C-44CD-460D-85CA-AC6A8D17B654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77BC504C-44CD-460D-85CA-AC6A8D17B654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4AD49C2-BC0D-4852-AA24-47056988A434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4AD49C2-BC0D-4852-AA24-47056988A434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4AD49C2-BC0D-4852-AA24-47056988A434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4AD49C2-BC0D-4852-AA24-47056988A434}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +77,8 @@ Global
 		{766CE820-F28E-4B72-9FE2-B25DF2AC3D37} = {CDE3AA45-E376-4D59-9174-AA42C63EEEFC}
 		{739CE8AE-8CE7-4E62-B0BF-502FAF5B5AFF} = {91983764-A493-4566-81DF-2F53EB7C6076}
 		{77BC504C-44CD-460D-85CA-AC6A8D17B654} = {FE5FDD91-4C7B-443B-AF81-8AB59CC1E0C8}
+		{3AF5971E-7082-424D-ACF9-1B5CEE70B7A1} = {568D619C-7FF9-4B77-BDC5-37D97FFF2A58}
+		{E4AD49C2-BC0D-4852-AA24-47056988A434} = {3AF5971E-7082-424D-ACF9-1B5CEE70B7A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61E0CB2F-1B7F-4DEF-9463-F5C807E66E33}
