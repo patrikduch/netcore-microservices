@@ -39,11 +39,9 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
-
-            // TODO: Communicate with Discount gRPC
+            // Communication with Discount gRPC
             // and calculate latests prices of product into shopping cart
             // consume Discount gRPC
-
             foreach(var item in basket.Items)
             {
                 var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
