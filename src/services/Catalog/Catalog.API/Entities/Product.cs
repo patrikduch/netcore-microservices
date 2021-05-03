@@ -8,6 +8,9 @@ namespace Catalog.API.Entities
     public class Product
     {
 
+        /// <summary>
+        /// Gets or sets product's identifier.
+        /// </summary>
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string Id { get; set; }

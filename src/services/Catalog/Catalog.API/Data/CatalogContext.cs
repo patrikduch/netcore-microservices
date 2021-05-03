@@ -9,7 +9,6 @@ namespace Catalog.API.Data
     /// </summary>
     public class CatalogContext : ICatalogContext
     {
-
         /// <summary>
         /// Initializes a new instance of the <seealso cref="CatalogContext"/> class.
         /// </summary>
