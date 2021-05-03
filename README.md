@@ -20,3 +20,6 @@ kubectl apply -f .\deployment\aks\services\discount\discount-db\
 
 kubectl apply -f .\deployment\aks\examples\postgres\
 kubectl apply -f .\deployment\aks\examples\redis\
+
+
+![Alt text](azure/images/azure-eks.png?raw=true "Azure EKS")
