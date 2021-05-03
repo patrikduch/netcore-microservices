@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: discount-api-configmap
+  labels:
+    app: discount-db
+data:
+  connection_string: Server=postgres-cluster-ip-service;Port=5432;Database=postgres;User Id=postgres;Password=patrikduch;
