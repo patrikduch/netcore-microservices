@@ -19,7 +19,6 @@ namespace Discount.Grpc.Extensions
                 var configuration = services.GetRequiredService<IConfiguration>();
                 var logger = services.GetRequiredService<ILogger<TContext>>();
 
-
                 try
                 {
 
@@ -55,8 +54,6 @@ namespace Discount.Grpc.Extensions
                     connection.Close();
 
                     logger.LogInformation("Postgress database has been successfully migrated.");
-
-
 
                 }
                 catch (NpgsqlException ex)
