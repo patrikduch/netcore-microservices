@@ -22,6 +22,4 @@ kubectl apply -f .\deployment\aks\examples\postgres\
 kubectl apply -f .\deployment\aks\examples\redis\
 
 
-![Alt text](azure/images/azure-eks.png?raw=true "Azure EKS")
-
-<img src="azure/images/azure-eks.png?raw=true" />
+<img src="https://github.com/patrikduch/netcore-microservices/blob/master/azure/images/azure-eks.PNG?raw=true" />
