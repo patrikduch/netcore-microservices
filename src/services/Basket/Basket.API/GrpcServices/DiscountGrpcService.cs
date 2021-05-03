@@ -1,5 +1,4 @@
 ﻿using Discount.Grpc.Protos;
-using Grpc.Core;
 using System;
 using System.Threading.Tasks;
 
@@ -28,17 +27,9 @@ namespace Basket.API.GrpcServices
         /// <returns></returns>
         public async Task<CouponModel> GetDiscount(string productName)
         {
-            try
-            {
-                var discountRequest = new GetDiscountRequest { ProductName = productName };
-                // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-                return await _discountProtoServiceClient.GetDiscountAsync(discountRequest);
-            }
-            catch (RpcException e)
-            {
-                Console.WriteLine("Remote procedure call failed: " + e);
-                throw;
-            }
+            var discountRequest = new GetDiscountRequest { ProductName = productName };
+            // AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+            return await _discountProtoServiceClient.GetDiscountAsync(discountRequest);
         }
     }
 }
