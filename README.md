@@ -23,3 +23,5 @@ kubectl apply -f .\deployment\aks\examples\redis\
 
 
 ![Alt text](azure/images/azure-eks.png?raw=true "Azure EKS")
+
+<img src="azure/images/azure-eks.png?raw=true" />
