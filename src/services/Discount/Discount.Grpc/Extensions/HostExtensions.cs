@@ -12,7 +12,6 @@ namespace Discount.Grpc.Extensions
         {
             int retryForAvailability = retry.Value;
 
-
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
