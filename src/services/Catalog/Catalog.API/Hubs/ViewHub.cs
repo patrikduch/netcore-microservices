@@ -7,7 +7,7 @@ namespace Catalog.API.Hubs
     {
         public static int ViewCount { get; set; } = 0;
 
-        public async Task NotifyWatching(int uId, string token)
+        public async Task NotifyWatching(string uId = "test", string token="tester")
         {
             await Clients.All.SendAsync("data", new { uId, token = token, });
         }
