@@ -29,5 +29,45 @@ namespace GameCatalog.API.Controllers
             var item = _items.Where(i => i.Id == id).SingleOrDefault();
             return item;
         }
+
+        // POST /items/{id}
+        [HttpPost]
+        public ActionResult<ItemDto> Post(CreateItemDto dto)
+        {
+            var item = new ItemDto(Guid.NewGuid(), dto.Name, dto.Description, dto.Price, DateTimeOffset.UtcNow);
+            _items.Add(item);
+
+            return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
+        }
+
+        // PUT /items/{id}
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, UpdateItemDto dto)
+        {
+            var existingItem = _items.Where(item => item.Id == id).SingleOrDefault();
+
+            var updatedItem = existingItem with
+            {
+                Name = dto.Name,
+                Description = dto.Description,
+                Price = dto.Price
+            };
+
+            var index = _items.FindIndex(existingItem => existingItem.Id == id);
+            _items[index] = updatedItem;
+
+            return NoContent();
+        }
+
+        // DELETE /items/{id}
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            var index = _items.FindIndex(existingItem => existingItem.Id == id);
+            _items.RemoveAt(index);
+
+            return NoContent();
+        }
+
     }
 }
