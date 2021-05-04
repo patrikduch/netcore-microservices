@@ -16,6 +16,12 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
+  web.mvc:
+    image: ${DOCKER_REGISTRY-}webmvc
+    build:
+      context: .
+      dockerfile: src/webapps/Web.Mvc/Dockerfile
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
@@ -54,6 +60,7 @@ services:
 volumes:
   postgres_data:
   pgadmin_data:
+
 
 
 

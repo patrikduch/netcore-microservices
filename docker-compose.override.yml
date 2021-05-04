@@ -38,6 +38,19 @@ services:
     volumes:
       -  pgadmin_data:/root/.pgadmnin 
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+
+  web.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:80"
+
   basket.api:
     container_name: basketapi
     environment:
@@ -47,14 +60,8 @@ services:
     depends_on:
         - basketdb
     ports:
-      - "8080:80"
+      - "8081:80"
 
-  rabbitmq:
-    container_name: rabbitmq
-    restart: always
-    ports:
-        - "5672:5672"
-        - "15672:15672"
   catalog.api:
     container_name: catalogapi
     environment:
@@ -63,7 +70,7 @@ services:
       - "DatabaseSettings__CollectionName=Products"
       - "DatabaseSettings__ConnectionString=mongodb://netmicroservicesmongo:27017"
     ports:
-      - "8081:80"
+      - "8082:80"
 
   webapi-gw:
     environment:
@@ -101,4 +108,6 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "8086:80"
+
+
 
