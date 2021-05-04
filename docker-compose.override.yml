@@ -109,5 +109,9 @@ services:
     ports:
       - "8086:80"
 
-
+  signalr.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8087:80"
 

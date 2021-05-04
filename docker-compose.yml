@@ -57,9 +57,16 @@ services:
       context: .
       dockerfile: src/services/GameCatalog/GameCatalog.API/Dockerfile
 
+  signalr.api:
+    image: ${DOCKER_REGISTRY-}signalrapi
+    build:
+      context: .
+      dockerfile: src/services/SignalR.API/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
+
 
 
 
