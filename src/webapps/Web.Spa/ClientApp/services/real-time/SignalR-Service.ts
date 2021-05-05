@@ -46,7 +46,7 @@ export default class SignalRService implements ISignalRService {
         console.log("Connected.");
         //this.notify();
 
-        this.signalRInstance.invoke("notifyWatching", "Patrik", "Duch").then((res) => {
+        this.signalRInstance.invoke("notifyWatching", "PatrikDuchUID", "tokenblabla").then((res) => {
             debugger;
         })
     }

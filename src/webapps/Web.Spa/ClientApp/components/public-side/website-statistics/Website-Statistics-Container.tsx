@@ -12,7 +12,7 @@ const WebStatisticsContainer: React.FC = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        const connection = new SignalRService('http://localhost:49159/hubs/test', 'notifyWatching');
+        const connection = new SignalRService('http://localhost:49160/hubs/test', 'notifyWatching');
         connection.getSignalInstance().start().then(connection.startSuccess, connection.startFail);
 
 
