@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Catalog.API.Repositiories
 {
-    
     /// <summary>
     /// Abstraction of product's data access. 
     /// </summary>

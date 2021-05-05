@@ -12,12 +12,12 @@ const WebStatisticsContainer: React.FC = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        const connection = new SignalRService('http://localhost:49160/hubs/test', 'notifyWatching');
+        const connection = new SignalRService('http://localhost:5000/hubs/test', 'SendNewPosition');
         connection.getSignalInstance().start().then(connection.startSuccess, connection.startFail);
 
 
         // on view update message from client
-        connection.getSignalInstance().on("data", (value: any) => {
+        connection.getSignalInstance().on("ReceivedNewPosition", (value: any) => {
             debugger;
             setCount(value);
             setLoading(false);

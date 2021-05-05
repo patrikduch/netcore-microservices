@@ -33,11 +33,11 @@ The project contains a fake authorization system, so you can change it to Identi
 ## App startup
 
 ### Run with  CLI
-dotnet run --project ./AspnetCore.React.Redux.Web.csproj
+dotnet run --project ./Web.Spa.csproj
 
-or for Unix
+or on Unix systems...
 
-sudo dotnet run --project ./AspnetCore.React.Redux.Web.csproj
+sudo dotnet run --project ./Web.Spa.csproj
 
 ## Deployment
 

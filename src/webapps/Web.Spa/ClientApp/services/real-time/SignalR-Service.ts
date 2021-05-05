@@ -44,11 +44,7 @@ export default class SignalRService implements ISignalRService {
      */
     startSuccess = () => {
         console.log("Connected.");
-        //this.notify();
-
-        this.signalRInstance.invoke("notifyWatching", "PatrikDuchUID", "tokenblabla").then((res) => {
-            debugger;
-        })
+        this.notify();
     }
 
     /**
@@ -56,6 +52,6 @@ export default class SignalRService implements ISignalRService {
      * @param eventName Name of event that will be triggered.
      */
     notify = () => {
-        this.signalRInstance.send(this.eventName);
+        this.signalRInstance.send(this.eventName, "uuu", "token");
     }
 }

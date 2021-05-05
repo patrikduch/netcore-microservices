@@ -1,6 +1,6 @@
 using Catalog.API.Data;
-using Catalog.API.Hubs;
 using Catalog.API.Repositiories;
+using Catalog.API.SignalR.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -69,7 +69,7 @@ namespace Catalog.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<HubWithParams>("/hubs/test");
+                endpoints.MapHub<TestHub>("/hubs/test");
                 endpoints.MapControllers();
             });
         }
