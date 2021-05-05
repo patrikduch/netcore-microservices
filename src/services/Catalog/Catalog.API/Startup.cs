@@ -69,7 +69,7 @@ namespace Catalog.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<ViewHub>("/hubs/test");
+                endpoints.MapHub<HubWithParams>("/hubs/test");
                 endpoints.MapControllers();
             });
         }

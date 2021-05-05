@@ -19,7 +19,6 @@ const slice = createSlice({
         },
 
         setProjectDetail: (state, action: PayloadAction<string>) => {
-            debugger;
             state.name = action.payload;
         },
     }

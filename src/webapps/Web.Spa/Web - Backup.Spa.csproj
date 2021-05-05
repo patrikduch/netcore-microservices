@@ -12,7 +12,7 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <UserSecretsId>69dd95ae-881a-45b3-930e-89dd3138250a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..\..</DockerfileContext>
+    <DockerfileContext>.</DockerfileContext>
     <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 

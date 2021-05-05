@@ -45,11 +45,25 @@ services:
         - "5672:5672"
         - "15672:15672"
 
+  
+  web.spa:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "8080:80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - catalog.api
+
   web.mvc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "8080:80"
+      - "8081:80"
 
   basket.api:
     container_name: basketapi
@@ -60,7 +74,7 @@ services:
     depends_on:
         - basketdb
     ports:
-      - "8081:80"
+      - "8082:80"
 
   catalog.api:
     container_name: catalogapi
@@ -70,14 +84,14 @@ services:
       - "DatabaseSettings__CollectionName=Products"
       - "DatabaseSettings__ConnectionString=mongodb://netmicroservicesmongo:27017"
     ports:
-      - "8082:80"
+      - "8083:80"
 
   webapi-gw:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-      - "8083:80"
+      - "8084:80"
       - "443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -89,14 +103,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
     ports:
-      - "8084:80"
+      - "8085:80"
 
   discount.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
     ports:
-      - "8085:80"
+      - "8086:80"
 
     depends_on:
       - discount.db
@@ -107,11 +121,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "8086:80"
+      - "8087:80"
 
   signalr.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "8087:80"
+      - "8088:80"
 

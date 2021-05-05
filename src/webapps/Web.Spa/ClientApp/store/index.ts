@@ -34,6 +34,5 @@ export function withStore<TStoreState, TActionCreators, TComponent extends React
     stateSelector: (state: IApplicationState) => TStoreState,
     actionCreators: TActionCreators
 ): TComponent {
-    debugger;
     return <TComponent> <unknown>connect(stateSelector, actionCreators)(component);
 }

@@ -63,9 +63,16 @@ services:
       context: .
       dockerfile: src/services/SignalR.API/Dockerfile
 
+  web.spa:
+    image: ${DOCKER_REGISTRY-}webspa
+    build:
+      context: .
+      dockerfile: src/webapps/Web.Spa/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
+
 
 
 
