@@ -52,7 +52,6 @@ namespace Catalog.API
             }
 
             app.UseRouting();
-            app.UseAuthorization();
 
             // global cors policy
             app.UseCors(x => x
@@ -61,7 +60,9 @@ namespace Catalog.API
                 .SetIsOriginAllowed(origin => true) // allow any origin
                 .AllowCredentials()); // allow credentials
 
+            app.UseAuthorization();
 
+  
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<TestHub>("/hubs/test");
