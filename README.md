@@ -9,7 +9,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 ### Deployment
 
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
-kubectl apply -f .\deployment\aks\services\catalog\catalog-api
+kubectl apply -f .\deployment\aks\services\catalog\catalog-api\
 kubectl apply -f .\deployment\aks\services\discount\discount-api\
 kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
