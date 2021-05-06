@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-catalog-api-deployment
+  labels:
+    app: game-catalog-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: game-catalog-api
+  template:
+    metadata:
+      labels:
+        app: game-catalog-api
+    spec:
+      containers:
+        - name: game-catalog-api
+          image:  netcoremicroservicesacr.azurecr.io/gamecatalogapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: DatabaseSettings__DatabaseName
+              value: ProductDb
+            - name: DatabaseSettings__CollectionName
+              value: Products
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-connection-secret
+                    key: connection_string
+
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: game-catalog-api-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: game-catalog-api
+  ports:
+    - protocol: TCP
+      port: 80

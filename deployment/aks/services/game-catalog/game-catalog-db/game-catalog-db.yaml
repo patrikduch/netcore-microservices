@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-catalog-db-deployment
+  labels:
+    app: game-catalog-db
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: game-catalog-db
+  template:
+    metadata:
+      labels:
+        app: game-catalog-db
+    spec:
+      containers:
+        - name: gamecatalogdb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: game-catalog-db-secret
+                  key: USER_DB                 
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: game-catalog-db-secret
+                  key: USER_PASS
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: game-catalog-db-service
+spec:
+  selector:
+    app: game-catalog-db
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
