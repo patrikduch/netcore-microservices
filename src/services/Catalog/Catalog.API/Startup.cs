@@ -35,20 +35,6 @@ namespace Catalog.API
             services.AddScoped<ICatalogContext, CatalogContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
-
-            #region CORS setup
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy", builder =>
-                    builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    );
-            });
-            #endregion
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +49,14 @@ namespace Catalog.API
 
             app.UseRouting();
             app.UseAuthorization();
-            app.UseCors("CorsPolicy");
+
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
+
 
             app.UseEndpoints(endpoints =>
             {
