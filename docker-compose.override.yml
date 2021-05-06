@@ -1,16 +1,8 @@
 version: '3.4'
 
 services:
-  netcoremicroservices.db:
-    container_name: netmicroservicesmongo
-    restart: always
-    ports:
-      - 27017:27017  
-    volumes:
-      - ${WEBAPP_STORAGE_HOME}/site:/data/db
-
-  gamecatalog.db:
-    container_name: gamecatalogmongo
+  mongo.db:
+    container_name: mongodbservice
     restart: always
     ports:
       - 27017:27017  
@@ -74,7 +66,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__DatabaseName=ProductDb"
       - "DatabaseSettings__CollectionName=Products"
-      - "DatabaseSettings__ConnectionString=mongodb://netmicroservicesmongo:27017"
+      - "DatabaseSettings__ConnectionString=mongodb://mongodbservice:27017"
     ports:
       - "8083:80"
 
@@ -112,9 +104,9 @@ services:
   gamecatalog.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__DatabaseName=ProductDb"
-      - "DatabaseSettings__CollectionName=Products"
-      - "DatabaseSettings__ConnectionString=mongodb://gamecatalogmongo:27017"
+      - "DatabaseSettings__DatabaseName=ItemsDb"
+      - "DatabaseSettings__CollectionName=items"
+      - "DatabaseSettings__ConnectionString=mongodb://mongodbservice:27017"
     ports:
       - "8087:80"
 

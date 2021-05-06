@@ -10,7 +10,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
 
-  netcoremicroservices.db:
+  mongo.db:
     image: mongo
 
   gamecatalog.db:

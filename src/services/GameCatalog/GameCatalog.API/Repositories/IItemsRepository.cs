@@ -12,6 +12,7 @@ namespace GameCatalog.API.Repositories
     {
         Task CreateItemAsync(Item entity);
         Task RemoveItemAsync(Guid id);
+        Task<Item> GetItemAsync(Guid id);
         Task<IReadOnlyCollection<Item>> GetAllItemsAsync();
         Task UpdateItemAsync(Item entity);
     }

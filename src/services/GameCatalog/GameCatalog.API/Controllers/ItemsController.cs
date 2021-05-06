@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GameCatalog.API.Entities;
+using GameCatalog.API.Extensions;
+using GameCatalog.API.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GameCatalog.API.Controllers
 {
@@ -16,73 +20,86 @@ namespace GameCatalog.API.Controllers
             new ItemDto(Guid.NewGuid(), "Bronze sword", "Deals a small amout of damage", 20, DateTimeOffset.UtcNow),
         };
 
+        private readonly IItemsRepository _itemsRepository;
 
-        [HttpGet]
-        public IEnumerable<ItemDto> Get()
+        public ItemsController(IItemsRepository itemsRepository)
         {
-            return _items;
+            _itemsRepository = itemsRepository;
+        }
+
+        // GET /items/
+        [HttpGet]
+        public async Task<IEnumerable<ItemDto>> GetAllAsync()
+        {
+            var items = (await _itemsRepository.GetAllItemsAsync())
+                .Select(item =>  item.AsDto());
+
+            return items;
         }
 
         // GET /items/{id}
         [HttpGet("{id}")]
-        public ActionResult<ItemDto> GetById(Guid id)
+        public async Task<ActionResult<ItemDto>> GetByIdAsync(Guid id)
         {
-            var item = _items.Where(i => i.Id == id).SingleOrDefault();
+            var item = await _itemsRepository.GetItemAsync(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            return item;
+            return item.AsDto();
         }
 
         // POST /items/{id}
         [HttpPost]
-        public ActionResult<ItemDto> Post(CreateItemDto dto)
+        public async Task<ActionResult<ItemDto>> PostAsync(CreateItemDto dto)
         {
-            var item = new ItemDto(Guid.NewGuid(), dto.Name, dto.Description, dto.Price, DateTimeOffset.UtcNow);
-            _items.Add(item);
+            var item = new Item
+            {
+                Name = dto.Name,
+                Description = dto.Description,
+                Price = dto.Price,
+                CreatedDate = DateTimeOffset.UtcNow
+            };
 
-            return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
+            await _itemsRepository.CreateItemAsync(item);
+
+            return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
         }
 
         // PUT /items/{id}
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, UpdateItemDto dto)
+        public async Task<IActionResult> Put(Guid id, UpdateItemDto updatedItemDto)
         {
-            var existingItem = _items.Where(item => item.Id == id).SingleOrDefault();
+            var existingItem = await _itemsRepository.GetItemAsync(id);
 
             if (existingItem == null)
             {
                 return NotFound();
             }
 
-            var updatedItem = existingItem with
-            {
-                Name = dto.Name,
-                Description = dto.Description,
-                Price = dto.Price
-            };
+            existingItem.Name = updatedItemDto.Name;
+            existingItem.Description = updatedItemDto.Description;
+            existingItem.Price = updatedItemDto.Price;
 
-            var index = _items.FindIndex(existingItem => existingItem.Id == id);
-            _items[index] = updatedItem;
-
+            await _itemsRepository.UpdateItemAsync(existingItem);
+            
             return NoContent();
         }
 
         // DELETE /items/{id}
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            var index = _items.FindIndex(existingItem => existingItem.Id == id);
+            var existingItem = await _itemsRepository.GetItemAsync(id);
 
-            if (index < 0)
+            if (existingItem == null)
             {
                 return NotFound();
             }
 
-            _items.RemoveAt(index);
+            await _itemsRepository.RemoveItemAsync(existingItem.Id);
             
             return NoContent();
         }
