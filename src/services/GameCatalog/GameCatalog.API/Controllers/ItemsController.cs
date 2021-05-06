@@ -52,6 +52,11 @@ namespace GameCatalog.API.Controllers
         {
             var existingItem = _items.Where(item => item.Id == id).SingleOrDefault();
 
+            if (existingItem == null)
+            {
+                return NotFound();
+            }
+
             var updatedItem = existingItem with
             {
                 Name = dto.Name,
@@ -70,8 +75,14 @@ namespace GameCatalog.API.Controllers
         public IActionResult Delete(Guid id)
         {
             var index = _items.FindIndex(existingItem => existingItem.Id == id);
-            _items.RemoveAt(index);
 
+            if (index < 0)
+            {
+                return NotFound();
+            }
+
+            _items.RemoveAt(index);
+            
             return NoContent();
         }
 
