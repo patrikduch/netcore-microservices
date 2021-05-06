@@ -16,6 +16,7 @@ namespace GameCatalog.API.Controllers
             new ItemDto(Guid.NewGuid(), "Bronze sword", "Deals a small amout of damage", 20, DateTimeOffset.UtcNow),
         };
 
+
         [HttpGet]
         public IEnumerable<ItemDto> Get()
         {

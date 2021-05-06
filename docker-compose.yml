@@ -13,6 +13,9 @@ services:
   netcoremicroservices.db:
     image: mongo
 
+  gamecatalog.db:
+    image: mongo
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
