@@ -52,6 +52,6 @@ export default class SignalRService implements ISignalRService {
      * @param eventName Name of event that will be triggered.
      */
     notify = () => {
-        this.signalRInstance.send(this.eventName, "uuu", "token");
+        this.signalRInstance.send(this.eventName, {uId: "uuu", token: "token" });
     }
 }

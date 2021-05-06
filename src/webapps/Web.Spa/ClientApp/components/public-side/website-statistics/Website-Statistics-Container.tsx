@@ -19,7 +19,7 @@ const WebStatisticsContainer: React.FC = () => {
         // on view update message from client
         connection.getSignalInstance().on("ReceivedNewPosition", (value: any) => {
             debugger;
-            setCount(value);
+            setCount(value.uid);
             setLoading(false);
         });    
     }, []);

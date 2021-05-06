@@ -5,9 +5,9 @@ namespace Catalog.API.SignalR.Hubs
 {
     public class TestHub : Hub
     {
-        public async Task SendNewPosition(string uId, string token)
+        public async Task SendNewPosition(CourierMessage message)
         {
-            await Clients.All.SendAsync("ReceivedNewPosition", new CourierMessage { Uid = uId, Token = token });
+            await Clients.All.SendAsync("ReceivedNewPosition", new CourierMessage { Uid = message.Uid, Token = message.Token });
         }
 
     }
