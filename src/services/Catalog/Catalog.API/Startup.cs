@@ -41,9 +41,7 @@ namespace Catalog.API
             {
                 options.AddPolicy("CorsPolicy", builder =>
                     builder
-                    .WithOrigins(
-                        "http://localhost"
-                    )
+                    .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
