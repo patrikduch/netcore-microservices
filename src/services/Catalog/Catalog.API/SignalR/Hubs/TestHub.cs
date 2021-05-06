@@ -7,7 +7,6 @@ namespace Catalog.API.SignalR.Hubs
 {
     public class TestHub : Hub
     {
-
         public override Task OnConnectedAsync()
         {
             TestHandler.ConnectedIds.Add(Context.ConnectionId);
@@ -19,7 +18,6 @@ namespace Catalog.API.SignalR.Hubs
             TestHandler.ConnectedIds.Remove(Context.ConnectionId);
             return base.OnDisconnectedAsync(exception);
         }
-
 
         public async Task SendNewPosition(CourierMessage message)
         {

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-
+using System;
 
 namespace Catalog.API
 {
@@ -23,7 +23,11 @@ namespace Catalog.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR();
+            services.AddSignalR(hubOptions => {
+
+                hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(45);
+
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
