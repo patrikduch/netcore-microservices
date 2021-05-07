@@ -104,9 +104,11 @@ services:
   gamecatalog.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__DatabaseName=ItemsDb"
-      - "DatabaseSettings__CollectionName=items"
-      - "DatabaseSettings__ConnectionString=mongodb://mongodbservice:27017"
+      - "MongoDbSettings__Host=mongodbservice"
+      - "MongoDbSettings__CollectionName=items"
+      - "MongoDbSettings__DatabaseName=ItemsDb"
+      - "MongoDbSettings__Port=27017"
+      - "ServiceSettings__ServiceName=GameCatalog"
     ports:
       - "8087:80"
 

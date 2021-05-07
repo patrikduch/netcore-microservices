@@ -13,13 +13,6 @@ namespace GameCatalog.API.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private static readonly List<ItemDto> _items = new()
-        {
-            new ItemDto(Guid.NewGuid(), "Potion", "Restores a small amount of  HP", 5, DateTimeOffset.UtcNow),
-            new ItemDto(Guid.NewGuid(), "Antidote", "Cures poison", 7, DateTimeOffset.UtcNow),
-            new ItemDto(Guid.NewGuid(), "Bronze sword", "Deals a small amout of damage", 20, DateTimeOffset.UtcNow),
-        };
-
         private readonly IItemsRepository _itemsRepository;
 
         public ItemsController(IItemsRepository itemsRepository)

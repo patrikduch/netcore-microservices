@@ -1,26 +1,27 @@
-﻿using GameCatalog.API.Entities;
-using Microsoft.Extensions.Configuration;
+﻿using GameCatalog.API.Data;
+using GameCatalog.API.Entities;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GameCatalog.API.Repositories
 {
+    /// <summary>
+    /// Abstraction of game-catalog item's data access. 
+    /// </summary>
     public class ItemsRepository : IItemsRepository
     {
-        private const string _collectionName = "items";
-
-        private readonly IMongoCollection<Item> _dbCollection;
-
         private readonly FilterDefinitionBuilder<Item> _filterBuilder = Builders<Item>.Filter;
+        private readonly IItemsContext _itemsContext;
 
-        public ItemsRepository(IConfiguration configuration)
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="ItemsRepository"/> class.
+        /// </summary>
+        /// <param name="itemsContext">Dependency for <seealso cref="IItemsContext"/> class.</param>
+        public ItemsRepository(IItemsContext itemsContext)
         {
-            var mongoClient = new MongoClient(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            var database = mongoClient.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
-            _dbCollection = database.GetCollection<Item>(_collectionName);
+            _itemsContext = itemsContext;
         }
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace GameCatalog.API.Repositories
         /// <returns>Async task with all items from Gamecatalog.</returns>
         public async Task<IReadOnlyCollection<Item>> GetAllItemsAsync()
         {
-            return await _dbCollection.Find(_filterBuilder.Empty).ToListAsync();
+            return await _itemsContext.Items.Find(_filterBuilder.Empty).ToListAsync();
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace GameCatalog.API.Repositories
         public async Task<Item> GetItemAsync(Guid id)
         {
             FilterDefinition<Item> filterDefinition = _filterBuilder.Eq(entity => entity.Id, id);
-            return await _dbCollection.Find(filterDefinition).FirstOrDefaultAsync();
+            return await _itemsContext.Items.Find(filterDefinition).FirstOrDefaultAsync();
         }
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace GameCatalog.API.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            await _dbCollection.InsertOneAsync(entity);
+            await _itemsContext.Items.InsertOneAsync(entity);
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace GameCatalog.API.Repositories
             }
 
             FilterDefinition<Item> filter = _filterBuilder.Eq(existingEntity => existingEntity.Id, entity.Id);
-            await _dbCollection.ReplaceOneAsync(filter, entity);
+            await _itemsContext.Items.ReplaceOneAsync(filter, entity);
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace GameCatalog.API.Repositories
         public async Task RemoveItemAsync(Guid id)
         {
             FilterDefinition<Item> filterDefinition = _filterBuilder.Eq(entity => entity.Id, id);
-            await _dbCollection.DeleteOneAsync(filterDefinition);
+            await _itemsContext.Items.DeleteOneAsync(filterDefinition);
         }
     }
 }
