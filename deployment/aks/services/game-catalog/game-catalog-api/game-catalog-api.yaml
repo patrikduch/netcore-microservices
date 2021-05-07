@@ -23,15 +23,41 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
-            - name: DatabaseSettings__DatabaseName
-              value: ProductDb
-            - name: DatabaseSettings__CollectionName
-              value: Products
-            - name: DatabaseSettings__ConnectionString
+            - name: MongoDbSettings__Host
               valueFrom:
                   secretKeyRef:
-                    name: game-catalog-api-connection-secret
-                    key: connection_string
+                    name: game-catalog-api-secret
+                    key: HOST
+
+            - name: MongoDbSettings__CollectionName
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-secret
+                    key: COLLECTION
+
+            - name: MongoDbSettings__DatabaseName
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-secret
+                    key: DB_NAME
+
+            - name: MongoDbSettings__Username
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-secret
+                    key: USER_NAME
+
+            - name: MongoDbSettings__Port
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-secret
+                    key: DB_PORT
+
+            - name: ServiceSettings__ServiceName
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-secret
+                    key: SERVICE_NAME
 
       imagePullSecrets:
         - name: acr-secret
