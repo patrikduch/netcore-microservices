@@ -47,6 +47,12 @@ spec:
                     name: game-catalog-api-secret
                     key: USER_NAME
 
+            - name: MongoDbSettings__Password
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-secret
+                    key: USER_PASS
+
             - name: MongoDbSettings__Port
               valueFrom:
                   secretKeyRef:

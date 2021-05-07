@@ -41,7 +41,7 @@
         public string ConnectionString { 
             get {
 
-                if (Username == null|| Password == null )
+                if (Username == null || Password == null )
                 {
                     return $"mongodb://{Host}:{Port}";
                 }
