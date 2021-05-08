@@ -31,20 +31,18 @@ stages:
 - stage: Build
   displayName: Build stage
   jobs:
-  - job: nuget_package_restore
-      steps:
-      - task: NuGetCommand@2
-        displayName: 'NuGet restore'
-        inputs:
-          command: 'restore'
-          feedsToUse: 'config'
-          nugetConfigPath: 'NuGet.Config'
-          restoreDirectory: '$(Build.SourcesDirectory)\packages'
   - job: Build
     displayName: Build
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: DotNetCoreCLI@2
+      displayName: Restore NuGet packages
+      inputs:
+        command: restore
+        feedsToUse: config
+        nugetConfigPath: nuget.config
+        
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
