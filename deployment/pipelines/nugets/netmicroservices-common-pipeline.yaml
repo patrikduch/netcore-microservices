@@ -21,14 +21,14 @@ steps:
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
-    projects: '**/*.csproj'
+    projects: 'src/nugets/NetMicroservices.Common/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: "dotnet pack"
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
-    packagesToPack: '**/*.csproj'
+    packagesToPack: 'src/nugets/NetMicroservices.Common/*.csproj'
     nobuild: true
     versioningScheme: 'off'
 
@@ -39,6 +39,6 @@ steps:
     feedsToUse: 'select'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'NetMicroservices.Common'
+    publishVstsFeed: 'patrikduch/NetMicroservices.Common'
     versioningScheme: 'off'
     allowPackageConflicts: true
