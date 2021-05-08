@@ -5,6 +5,7 @@
     <Authors>Patrik Duch</Authors>
     <Description>Shared functionality for NET 5 microservices.</Description>
     <Copyright>Patrik Duch</Copyright>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
