@@ -1,9 +1,12 @@
 trigger:
   batch: true
-  branches:
-    include:
-    - src/nugets/NetMicroservices.Common/*
-    - master
+  trigger:
+    branches:
+      include:
+      - master
+    paths:
+      include:
+      - src/nugets/NetMicroservices.Common/*
 
 pool:
   vmImage: 'ubuntu-latest'
