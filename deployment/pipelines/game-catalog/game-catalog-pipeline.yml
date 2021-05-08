@@ -31,6 +31,15 @@ stages:
 - stage: Build
   displayName: Build stage
   jobs:
+  - job: nuget_package_restore
+      steps:
+      - task: NuGetCommand@2
+        displayName: 'NuGet restore'
+        inputs:
+          command: 'restore'
+          feedsToUse: 'config'
+          nugetConfigPath: 'NuGet.Config'
+          restoreDirectory: '$(Build.SourcesDirectory)\packages'
   - job: Build
     displayName: Build
     pool:
