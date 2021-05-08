@@ -1,11 +1,11 @@
+
 trigger:
   batch: true
-  trigger:
-    branches:
-      include:
-      - master
-    paths:
-      include:
+  branches:
+    include:
+    - master
+  paths:
+    include:
       - src/nugets/NetMicroservices.Common/*
 
 pool:
