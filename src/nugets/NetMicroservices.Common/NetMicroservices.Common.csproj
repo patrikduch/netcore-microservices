@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Authors>Patrik Duch</Authors>
+    <Description>Shared functionality for NET 5 microservices.</Description>
+    <Copyright>Patrik Duch</Copyright>
   </PropertyGroup>
 
 </Project>
