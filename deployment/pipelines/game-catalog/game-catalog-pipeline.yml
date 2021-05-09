@@ -39,9 +39,9 @@ stages:
       - task: NuGetCommand@2
         inputs:
           command: 'restore'
-            restoreSolution: '**/*.sln'
-            feedsToUse: 'select'
-            vstsFeed: 'b5178acd-2812-4bff-bf45-a6b3029ca1c2/a4e2e3b4-0daf-4fbd-bcb9-6150e69da5e0'
+          restoreSolution: '**/*.sln'
+          feedsToUse: 'select'
+          vstsFeed: 'b5178acd-2812-4bff-bf45-a6b3029ca1c2/a4e2e3b4-0daf-4fbd-bcb9-6150e69da5e0'
     
     - task: Docker@2
       displayName: Build and push an image to container registry
