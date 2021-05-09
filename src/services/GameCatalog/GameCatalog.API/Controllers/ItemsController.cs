@@ -15,6 +15,10 @@ namespace GameCatalog.API.Controllers
     {
         private readonly IMongoRepository<Item> _mongoRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="ItemsController"/> class.
+        /// </summary>
+        /// <param name="mongoContext">Dependency for <seealso cref="IMongoRepository{T}"/> class.</param>
         public ItemsController(IMongoRepository<Item> mongoRepository)
         {
             _mongoRepository = mongoRepository;
