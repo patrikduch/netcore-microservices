@@ -1,5 +1,5 @@
-﻿using System;
-using NetMicroservices.Common;
+﻿using NetMicroservices.Common.Databases.Mongodb;
+using System;
 
 namespace GameCatalog.API.Entities
 {
