@@ -62,11 +62,7 @@ namespace GameCatalog.API
             #region Data contexts
             //services.AddScoped<IItemsContext, ItemsContext>();
 
-            var provider = services.BuildServiceProvider();
-
-            var demoService = provider.GetRequiredService<IMongoDatabase>();
-
-            services.AddScoped<IMongoContext<Item>>(x => new MongoContext<Item>("items", demoService, new List<Item>
+            services.AddScoped<IMongoContext<Item>>(x => new MongoContext<Item>("items", x.GetService<IMongoDatabase>(), new List<Item>
             {
                 new Item
                 {
