@@ -42,7 +42,7 @@ stages:
         command: 'restore'
         projects: '$(PathToSolution)'
         feedsToUse: 'config'
-        nugetConfigPath: '$(PathToNugetConfig)/nuget.config'
+        nugetConfigPath: '/nuget.config'
         includeNuGetOrg: true
         
     - task: Docker@2
