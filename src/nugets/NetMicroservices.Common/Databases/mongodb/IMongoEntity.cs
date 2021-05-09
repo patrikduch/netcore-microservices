@@ -7,6 +7,9 @@ namespace NetMicroservices.Common.Databases.Mongodb
     /// </summary>
     public interface IMongoEntity
     {
+        /// <summary>
+        /// Get or set mongo entity identifier.
+        /// </summary>
         public Guid Id { get; set; }
     }
 }
