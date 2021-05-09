@@ -40,11 +40,11 @@ stages:
       displayName: dotnet restore
       inputs:
         command: restore
-        projects: '/*.csproj'
-        feedsToUse: 'select'
-        vstsFeed: 'netmicroservices/NetMicroservices.Common'
-        includeNuGetOrg: true
-        
+        feedsToUse: config
+        nugetConfigPath: ./Nuget.config
+        #externalFeedCredentials: # Optional
+
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
