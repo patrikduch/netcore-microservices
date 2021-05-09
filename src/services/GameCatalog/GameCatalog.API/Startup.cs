@@ -1,5 +1,4 @@
-using GameCatalog.API.Data;
-using GameCatalog.API.Repositories;
+using GameCatalog.API.Entities;
 using GameCatalog.API.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +10,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using NetMicroservices.Common.Databases.mongodb;
+using NetMicroservices.Common.Databases.Mongodb;
+using System;
+using System.Collections.Generic;
 
 namespace GameCatalog.API
 {
@@ -57,11 +60,45 @@ namespace GameCatalog.API
             });
 
             #region Data contexts
-            services.AddScoped<IItemsContext, ItemsContext>();
+            //services.AddScoped<IItemsContext, ItemsContext>();
+
+            var provider = services.BuildServiceProvider();
+
+            var demoService = provider.GetRequiredService<IMongoDatabase>();
+
+            services.AddScoped<IMongoContext<Item>>(x => new MongoContext<Item>("items", demoService, new List<Item>
+            {
+                new Item
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Potion",
+                    Description = "Restores a small amount of  HP",
+                    Price = 5,
+                    CreatedDate = DateTimeOffset.UtcNow
+                },
+                new Item
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Antidote",
+                    Description = "Cures poison",
+                    Price = 7,
+                    CreatedDate = DateTimeOffset.UtcNow
+                },
+                new Item
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Bronze sword",
+                    Description = "Deals a small amout of damage",
+                    Price = 20,
+                    CreatedDate = DateTimeOffset.UtcNow
+                },
+            }));
+            services.AddScoped<IMongoRepository<Item>, MongoRepository<Item>>();
+
             #endregion
 
             #region Data repositories
-            services.AddScoped<IItemsRepository, ItemsRepository>();
+            //services.AddScoped<IItemsRepository, ItemsRepository>();
             #endregion
         }
 

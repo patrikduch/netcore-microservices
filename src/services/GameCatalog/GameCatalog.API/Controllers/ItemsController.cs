@@ -1,7 +1,7 @@
 ﻿using GameCatalog.API.Entities;
 using GameCatalog.API.Extensions;
-using GameCatalog.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using NetMicroservices.Common.Databases.Mongodb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +13,19 @@ namespace GameCatalog.API.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly IItemsRepository _itemsRepository;
+        private readonly IMongoRepository<Item> _mongoRepository;
 
-        public ItemsController(IItemsRepository itemsRepository)
+        public ItemsController(IMongoRepository<Item> mongoRepository)
         {
-            _itemsRepository = itemsRepository;
+            _mongoRepository = mongoRepository;
         }
 
         // GET /items/
         [HttpGet]
         public async Task<IEnumerable<ItemDto>> GetAllAsync()
         {
-            var items = (await _itemsRepository.GetAllItemsAsync())
-                .Select(item =>  item.AsDto());
+            var items = (await _mongoRepository.GetAllAsync())
+                .Select(item => item.AsDto());
 
             return items;
         }
@@ -34,7 +34,7 @@ namespace GameCatalog.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ItemDto>> GetByIdAsync(Guid id)
         {
-            var item = await _itemsRepository.GetItemAsync(id);
+            var item = await _mongoRepository.GetAsync(id);
 
             if (item == null)
             {
@@ -56,46 +56,25 @@ namespace GameCatalog.API.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            await _itemsRepository.CreateItemAsync(item);
+            await _mongoRepository.CreateAsync(item);
 
             return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
-        }
-
-        // PUT /items/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, UpdateItemDto updatedItemDto)
-        {
-            var existingItem = await _itemsRepository.GetItemAsync(id);
-
-            if (existingItem == null)
-            {
-                return NotFound();
-            }
-
-            existingItem.Name = updatedItemDto.Name;
-            existingItem.Description = updatedItemDto.Description;
-            existingItem.Price = updatedItemDto.Price;
-
-            await _itemsRepository.UpdateItemAsync(existingItem);
-            
-            return NoContent();
         }
 
         // DELETE /items/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            var existingItem = await _itemsRepository.GetItemAsync(id);
+            var existingItem = await _mongoRepository.GetAsync(id);
 
             if (existingItem == null)
             {
                 return NotFound();
             }
 
-            await _itemsRepository.RemoveItemAsync(existingItem.Id);
-            
+            await _mongoRepository.RemoveAsync(existingItem.Id);
+
             return NoContent();
         }
-
     }
 }
