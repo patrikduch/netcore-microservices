@@ -37,11 +37,12 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: DotNetCoreCLI@2
-      displayName: Restore NuGet packages
+      displayName: 'dotnet restore'
       inputs:
         command: restore
+        projects: '**/*.csproj'
         feedsToUse: config
-        nugetConfigPath: nuget.config
+        nugetConfigPath: 'nuget.config'
         
     - task: Docker@2
       displayName: Build and push an image to container registry
