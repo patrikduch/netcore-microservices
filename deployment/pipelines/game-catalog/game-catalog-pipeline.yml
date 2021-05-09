@@ -42,7 +42,7 @@ stages:
       inputs:
         command: restore
         feedsToUse: config
-        nugetConfigPath: './NuGet.config'
+        nugetConfigPath: 'nuget.config'
  
     - task: Docker@2
       displayName: Build and push an image to container registry
