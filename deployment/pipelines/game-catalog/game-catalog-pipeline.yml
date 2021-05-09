@@ -42,8 +42,7 @@ stages:
         version: '5.0.x'
 
     - task: NuGetAuthenticate@0
-
-     - task: NuGetToolInstaller@1
+    - task: NuGetToolInstaller@1
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
