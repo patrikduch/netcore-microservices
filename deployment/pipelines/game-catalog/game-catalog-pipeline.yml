@@ -40,7 +40,6 @@ stages:
       displayName: dotnet restore
       inputs:
         command: restore
-        projects: '/*.csproj'
         feedsToUse: 'select'
         vstsFeed: 'netmicroservices/NetMicroservices.Common'
         includeNuGetOrg: true
