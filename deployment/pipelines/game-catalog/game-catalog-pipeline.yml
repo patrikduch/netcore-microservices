@@ -25,7 +25,7 @@ variables:
   imagePullSecret: 'netcoremicroservicesacr1748cec4-auth'
 
   # Agent VM image name
-  vmImageName: 'windows-2019'
+  vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
