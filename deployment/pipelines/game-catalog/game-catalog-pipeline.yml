@@ -37,11 +37,9 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: UseDotNet@2
-      packageType: 'sdk'
       version: '5.0.x'
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
-      inputs:
       command: 'build'
 
     - task: DotNetCoreCLI@2
