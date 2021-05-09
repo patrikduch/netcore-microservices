@@ -40,9 +40,8 @@ stages:
       displayName: 'Nuget Restore'
       inputs:
         command: 'restore'
-        projects: '$(PathToSolution)'
         feedsToUse: 'config'
-        nugetConfigPath: '/nuget.config'
+        nugetConfigPath: '$(PathToNugetConfig)/nuget.config'
         includeNuGetOrg: true
         
     - task: Docker@2
