@@ -33,12 +33,8 @@ steps:
     versioningScheme: 'off'
 
 - task: NuGetCommand@2
-  displayName: 'nuget push'
   inputs:
     command: 'push'
-    feedsToUse: 'select'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'netmicroservices/NetMicroservices.Common'
-    versioningScheme: 'off'
-    allowPackageConflicts: true
+    publishVstsFeed: '6618f073-3cee-4ad9-8844-ac22490cfef8'
