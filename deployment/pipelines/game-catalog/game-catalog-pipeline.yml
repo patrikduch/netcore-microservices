@@ -41,8 +41,8 @@ stages:
         packageType: 'sdk'
         version: '5.0.x'
 
-
-    - task: DotNetCoreCLI@2
+      
+    - task: NuGetCommand@2
       displayName: Restore NuGet packages
       inputs:
         command: restore
