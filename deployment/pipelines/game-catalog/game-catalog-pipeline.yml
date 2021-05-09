@@ -36,14 +36,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: DotNetCoreCLI@2
-      displayName: dotnet restore
-      inputs:
-        command: restore
-        feedsToUse: config
-        nugetConfigPath: ./Nuget.config
-        #externalFeedCredentials: # Optional
-
+      - task: NuGetCommand@2
+        inputs:
+        command: 'restore'
+        restoreSolution: '**/*.sln'
+        feedsToUse: 'select'
+       vstsFeed: 'b5178acd-2812-4bff-bf45-a6b3029ca1c2/4bd1d25a-bbb0-456a-907c-40f2dd154cfa'
 
     - task: Docker@2
       displayName: Build and push an image to container registry
