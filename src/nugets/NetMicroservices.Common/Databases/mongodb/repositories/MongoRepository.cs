@@ -1,42 +1,88 @@
-﻿using NetMicroservices.Common.Databases.Mongodb;
+﻿using MongoDB.Driver;
+using NetMicroservices.Common.Databases.Mongodb;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NetMicroservices.Common.Databases.mongodb
 {
+    /// <summary>
+    /// Generic repository for common mongodb entities.
+    /// </summary>
     public class MongoRepository<T> : IMongoRepository<T> where T : IMongoEntity
     {
+        private readonly FilterDefinitionBuilder<T> _filterBuilder = Builders<T>.Filter;
         private readonly IMongoContext<T> _mongoCtx;
 
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="MongoRepository{T}"/> class.
+        /// </summary>
+        /// <param name="mongoContext">Dependency for <seealso cref="IMongoContext{T}"/> class.</param>
         public MongoRepository(IMongoContext<T> mongoContext)
         {
             _mongoCtx = mongoContext;
         }
 
-        public Task CreateAsync(T entity)
+        /// <summary>
+        /// Create a brand new item of particular mongodb entity.
+        /// </summary>
+        /// <param name="entity">Newly created data entry.</param>
+        /// <returns>Asynchronous task.</returns>
+        public async Task CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            await _mongoCtx.Collection.InsertOneAsync(entity);
         }
 
-        public Task<IReadOnlyCollection<T>> GetAllAsync()
+        /// <summary>
+        /// Get all items of particular mongodb entity.
+        /// </summary>
+        /// <returns>Async task with all items from Mongodb.</returns>
+        public async Task<IReadOnlyCollection<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _mongoCtx.Collection.Find(_filterBuilder.Empty).ToListAsync();
         }
 
-        public Task<T> GetAsync(Guid id)
+        /// <summary>
+        /// Get signle item of mongodb entity.
+        /// </summary>
+        /// <param name="id">Guid identifier of particular mongodb entity.</param>
+        /// <returns>Async task with particular item from mongodb entity.</returns>
+        public async Task<T> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            FilterDefinition<T> filterDefinition = _filterBuilder.Eq(entity => entity.Id, id);
+            return await _mongoCtx.Collection.Find(filterDefinition).FirstOrDefaultAsync();
         }
 
-        public Task RemoveAsync(Guid id)
+        /// <summary>
+        /// Remove particular entity item from Mongodb.
+        /// </summary>
+        /// <param name="id">Guid identifier of particular mongo entity item.</param>
+        /// <returns>Asynch task.</returns>
+        public async Task RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            FilterDefinition<T> filterDefinition = _filterBuilder.Eq(entity => entity.Id, id);
+            await _mongoCtx.Collection.DeleteOneAsync(filterDefinition);
         }
 
-        public Task UpdateAsync(T entity)
+        /// <summary>
+        /// Update mongo entity item.
+        /// </summary>
+        /// <param name="entity">Data that will be projected into persistent storage.</param>
+        /// <returns>Async task.</returns>
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            FilterDefinition<T> filter = _filterBuilder.Eq(existingEntity => existingEntity.Id, entity.Id);
+            await _mongoCtx.Collection.ReplaceOneAsync(filter, entity);
         }
     }
 }
