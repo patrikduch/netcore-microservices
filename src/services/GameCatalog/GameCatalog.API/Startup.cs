@@ -60,7 +60,6 @@ namespace GameCatalog.API
             });
 
             #region Data contexts
-            //services.AddScoped<IItemsContext, ItemsContext>();
 
             services.AddScoped<IMongoContext<Item>>(x => new MongoContext<Item>("items", x.GetService<IMongoDatabase>(), new List<Item>
             {
@@ -89,12 +88,10 @@ namespace GameCatalog.API
                     CreatedDate = DateTimeOffset.UtcNow
                 },
             }));
-            services.AddScoped<IMongoRepository<Item>, MongoRepository<Item>>();
-
             #endregion
 
             #region Data repositories
-            //services.AddScoped<IItemsRepository, ItemsRepository>();
+            services.AddScoped<IMongoRepository<Item>, MongoRepository<Item>>();
             #endregion
         }
 
