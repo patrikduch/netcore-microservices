@@ -36,7 +36,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: NuGetCommand@2
+    - task: DotNetCoreCLI@2
       displayName: 'Nuget Restore'
       inputs:
         command: 'restore'
