@@ -36,8 +36,8 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-      - task: NuGetCommand@2
-        inputs:
+    - task: NuGetCommand@2
+      inputs:
         command: 'restore'
         restoreSolution: '**/*.sln'
         feedsToUse: 'select'
