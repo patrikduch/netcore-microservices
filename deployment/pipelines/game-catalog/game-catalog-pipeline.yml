@@ -23,6 +23,7 @@ variables:
   dockerfilePath: 'src/services/GameCatalog/GameCatalog.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr1748cec4-auth'
+  pipelineName: game-catalog-api
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -58,7 +59,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'patrikduchnetcoremicroservices.default'
+    environment: $(pipelineName)
     strategy:
       runOnce:
         deploy:
