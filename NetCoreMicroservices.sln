@@ -43,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nugets", "Nugets", "{FA6EE9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.Common", "src\nugets\NetMicroservices.Common\NetMicroservices.Common.csproj", "{B43D3D42-D777-45A6-B608-CCCAEFA3CC72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMicroservices.MongoDbWrapper", "src\nugets\NetMicroservices.MongoDbWrapper\NetMicroservices.MongoDbWrapper.csproj", "{70796240-AF92-4CA4-A60B-F66209D2F9A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDbWrapper.Nuget", "src\nugets\MongoDbWrapper.Nuget\MongoDbWrapper.Nuget.csproj", "{4D0E521F-4BA7-475B-8A75-37629711334A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,10 +95,10 @@ Global
 		{B43D3D42-D777-45A6-B608-CCCAEFA3CC72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B43D3D42-D777-45A6-B608-CCCAEFA3CC72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B43D3D42-D777-45A6-B608-CCCAEFA3CC72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70796240-AF92-4CA4-A60B-F66209D2F9A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70796240-AF92-4CA4-A60B-F66209D2F9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70796240-AF92-4CA4-A60B-F66209D2F9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70796240-AF92-4CA4-A60B-F66209D2F9A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0E521F-4BA7-475B-8A75-37629711334A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0E521F-4BA7-475B-8A75-37629711334A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0E521F-4BA7-475B-8A75-37629711334A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0E521F-4BA7-475B-8A75-37629711334A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,7 +120,7 @@ Global
 		{562FC8CE-40EC-44ED-9ADA-82A5E947860C} = {8E0724A5-6B17-4699-836F-445ACB28A4C7}
 		{91D8EF76-F20E-4252-8DAB-9D4ECDB8355E} = {8E0724A5-6B17-4699-836F-445ACB28A4C7}
 		{B43D3D42-D777-45A6-B608-CCCAEFA3CC72} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
-		{70796240-AF92-4CA4-A60B-F66209D2F9A8} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
+		{4D0E521F-4BA7-475B-8A75-37629711334A} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61E0CB2F-1B7F-4DEF-9463-F5C807E66E33}
