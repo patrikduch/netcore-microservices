@@ -1,4 +1,4 @@
-﻿using NetMicroservices.Common.Databases.Mongodb;
+﻿// using NetMicroservices.Common.Databases.Mongodb;
 using System;
 
 namespace GameCatalog.API.Entities
@@ -6,7 +6,8 @@ namespace GameCatalog.API.Entities
     /// <summary>
     /// Entity for representation gamecatalog item.
     /// </summary>
-    public class Item : IMongoEntity
+    public class Item 
+        //: IMongoEntity
     {
         /// <summary>
         /// Gets or sets item entity identifier.

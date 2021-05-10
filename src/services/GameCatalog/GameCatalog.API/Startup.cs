@@ -10,8 +10,8 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using NetMicroservices.Common.Databases.mongodb;
-using NetMicroservices.Common.Databases.Mongodb;
+// using NetMicroservices.Common.Databases.mongodb;
+// using NetMicroservices.Common.Databases.Mongodb;
 using System;
 using System.Collections.Generic;
 
@@ -59,8 +59,12 @@ namespace GameCatalog.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameCatalog.API", Version = "v1" });
             });
 
+
+            /*
+             * 
             #region Data contexts
 
+           
             services.AddScoped<IMongoContext<Item>>(x => new MongoContext<Item>("items", x.GetService<IMongoDatabase>(), new List<Item>
             {
                 new Item
@@ -90,9 +94,13 @@ namespace GameCatalog.API
             }));
             #endregion
 
+            
+
             #region Data repositories
             services.AddScoped<IMongoRepository<Item>, MongoRepository<Item>>();
             #endregion
+
+            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

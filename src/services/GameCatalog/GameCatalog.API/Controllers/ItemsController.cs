@@ -1,7 +1,7 @@
 ﻿using GameCatalog.API.Entities;
 using GameCatalog.API.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using NetMicroservices.Common.Databases.Mongodb;
+// using NetMicroservices.Common.Databases.Mongodb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +13,9 @@ namespace GameCatalog.API.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly IMongoRepository<Item> _mongoRepository;
+        // private readonly IMongoRepository<Item> _mongoRepository;
 
+        /*
         /// <summary>
         /// Initializes a new instance of the <seealso cref="ItemsController"/> class.
         /// </summary>
@@ -80,5 +81,7 @@ namespace GameCatalog.API.Controllers
 
             return NoContent();
         }
+
+        */
     }
 }
