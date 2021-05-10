@@ -1,7 +1,7 @@
 ﻿using GameCatalog.API.Entities;
 using GameCatalog.API.Extensions;
+using GameCatalog.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
-// using NetMicroservices.Common.Databases.Mongodb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,23 +13,18 @@ namespace GameCatalog.API.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        // private readonly IMongoRepository<Item> _mongoRepository;
+        private readonly IGameCatalogRepository _itemsRepository;
 
-        /*
-        /// <summary>
-        /// Initializes a new instance of the <seealso cref="ItemsController"/> class.
-        /// </summary>
-        /// <param name="mongoContext">Dependency for <seealso cref="IMongoRepository{T}"/> class.</param>
-        public ItemsController(IMongoRepository<Item> mongoRepository)
+        public ItemsController(IGameCatalogRepository itemsRepository)
         {
-            _mongoRepository = mongoRepository;
+            _itemsRepository = itemsRepository;
         }
 
         // GET /items/
         [HttpGet]
-        public async Task<IEnumerable<ItemDto>> GetAllAsync()
+        public async Task<IEnumerable<GameItemDto>> GetAllAsync()
         {
-            var items = (await _mongoRepository.GetAllAsync())
+            var items = (await _itemsRepository.GetAllItemsAsync())
                 .Select(item => item.AsDto());
 
             return items;
@@ -37,9 +32,9 @@ namespace GameCatalog.API.Controllers
 
         // GET /items/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemDto>> GetByIdAsync(Guid id)
+        public async Task<ActionResult<GameItemDto>> GetByIdAsync(Guid id)
         {
-            var item = await _mongoRepository.GetAsync(id);
+            var item = await _itemsRepository.GetItemAsync(id);
 
             if (item == null)
             {
@@ -51,9 +46,9 @@ namespace GameCatalog.API.Controllers
 
         // POST /items/{id}
         [HttpPost]
-        public async Task<ActionResult<ItemDto>> PostAsync(CreateItemDto dto)
+        public async Task<ActionResult<GameItemDto>> PostAsync(CreateItemDto dto)
         {
-            var item = new Item
+            var item = new GameItem
             {
                 Name = dto.Name,
                 Description = dto.Description,
@@ -61,27 +56,45 @@ namespace GameCatalog.API.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            await _mongoRepository.CreateAsync(item);
+            await _itemsRepository.CreateItemAsync(item);
 
             return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
         }
 
-        // DELETE /items/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(Guid id)
+        // PUT /items/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, UpdateItemDto updatedItemDto)
         {
-            var existingItem = await _mongoRepository.GetAsync(id);
+            var existingItem = await _itemsRepository.GetItemAsync(id);
 
             if (existingItem == null)
             {
                 return NotFound();
             }
 
-            await _mongoRepository.RemoveAsync(existingItem.Id);
+            existingItem.Name = updatedItemDto.Name;
+            existingItem.Description = updatedItemDto.Description;
+            existingItem.Price = updatedItemDto.Price;
+
+            await _itemsRepository.UpdateItemAsync(existingItem);
 
             return NoContent();
         }
 
-        */
+        // DELETE /items/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            var existingItem = await _itemsRepository.GetItemAsync(id);
+
+            if (existingItem == null)
+            {
+                return NotFound();
+            }
+
+            await _itemsRepository.RemoveItemAsync(existingItem.Id);
+
+            return NoContent();
+        }
     }
 }

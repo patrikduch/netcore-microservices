@@ -1,4 +1,5 @@
-using GameCatalog.API.Entities;
+using GameCatalog.API.Data;
+using GameCatalog.API.Repositories;
 using GameCatalog.API.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,10 +11,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-// using NetMicroservices.Common.Databases.mongodb;
-// using NetMicroservices.Common.Databases.Mongodb;
-using System;
-using System.Collections.Generic;
 
 namespace GameCatalog.API
 {
@@ -59,48 +56,13 @@ namespace GameCatalog.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameCatalog.API", Version = "v1" });
             });
 
-
-            /*
-             * 
             #region Data contexts
-
-           
-            services.AddScoped<IMongoContext<Item>>(x => new MongoContext<Item>("items", x.GetService<IMongoDatabase>(), new List<Item>
-            {
-                new Item
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Potion",
-                    Description = "Restores a small amount of  HP",
-                    Price = 5,
-                    CreatedDate = DateTimeOffset.UtcNow
-                },
-                new Item
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Antidote",
-                    Description = "Cures poison",
-                    Price = 7,
-                    CreatedDate = DateTimeOffset.UtcNow
-                },
-                new Item
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Bronze sword",
-                    Description = "Deals a small amout of damage",
-                    Price = 20,
-                    CreatedDate = DateTimeOffset.UtcNow
-                },
-            }));
+            services.AddScoped<IGameCatalogContext, GameCatalogContext>();
             #endregion
-
-            
 
             #region Data repositories
-            services.AddScoped<IMongoRepository<Item>, MongoRepository<Item>>();
+            services.AddScoped<IGameCatalogRepository, GameCatalogRepository>();
             #endregion
-
-            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

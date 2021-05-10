@@ -7,9 +7,14 @@ namespace GameCatalog.API.Extensions
     /// </summary>
     public static class ItemExtensions
     {
-        public static ItemDto AsDto(this Item item)
+        /// <summary>
+        /// Convertion of  <seealso cref="GameItem"/> entity into  <seealso cref="GameItemDto"/>.
+        /// </summary>
+        /// <param name="item"><seealso cref="GameItem"/> that will be transfomed into  <seealso cref="GameItemDto"/>.</param>
+        /// <returns>Data-transfer object  <seealso cref="GameItemDto"/>.</returns>
+        public static GameItemDto AsDto(this GameItem item)
         {
-            return new ItemDto(item.Id, item.Name, item.Description, item.Price, item.CreatedDate);
+            return new GameItemDto(item.Id, item.Name, item.Description, item.Price, item.CreatedDate);
         }
     }
 }
