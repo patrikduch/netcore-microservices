@@ -39,6 +39,6 @@ steps:
     feedsToUse: 'select'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'netmicroservices/duchpatrick'
+    publishVstsFeed: 'netmicroservices/NetMicroservices.Common'
     versioningScheme: 'off'
     allowPackageConflicts: true
