@@ -22,6 +22,9 @@ namespace Catalog.API.Data
             CatalogContextSeed.SeedData(Products);
         }
 
+        /// <summary>
+        /// Gets or sets list of <seealso cref="Product"/> items.
+        /// </summary>
         public IMongoCollection<Product> Products { get; }
     }
 }
