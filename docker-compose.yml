@@ -66,9 +66,16 @@ services:
       context: .
       dockerfile: src/services/SignalR.API/Dockerfile
 
+  inventory.api:
+    image: ${DOCKER_REGISTRY-}inventoryapi
+    build:
+      context: .
+      dockerfile: src/services/Inventory/Inventory.API/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
+
 
 
 

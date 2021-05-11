@@ -118,3 +118,10 @@ services:
     ports:
       - "8088:80"
 
+
+  inventory.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8089:80"
+
