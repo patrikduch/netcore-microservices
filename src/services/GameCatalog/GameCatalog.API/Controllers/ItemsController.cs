@@ -46,7 +46,7 @@ namespace GameCatalog.API.Controllers
 
         // POST /items/{id}
         [HttpPost]
-        public async Task<ActionResult<GameItemDto>> PostAsync(CreateItemDto dto)
+        public async Task<ActionResult<GameItemDto>> PostAsync(CreateGameItemDto dto)
         {
             var item = new GameItem
             {
@@ -63,7 +63,7 @@ namespace GameCatalog.API.Controllers
 
         // PUT /items/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, UpdateItemDto updatedItemDto)
+        public async Task<IActionResult> Put(Guid id, UpdateGameItemDto updatedItemDto)
         {
             var existingItem = await _itemsRepository.GetItemAsync(id);
 

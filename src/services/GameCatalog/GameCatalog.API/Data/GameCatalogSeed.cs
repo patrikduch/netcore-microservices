@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace GameCatalog.API.Data
 {
     /// <summary>
-    /// GameCatalog items seed initializer that is used for testing purposes.
+    ///  <seealso cref="GameItem"/> entity seed initializer, that is used for testing purposes.
     /// </summary>
     public class GameCatalogSeed
     {
         /// <summary>
-        /// Seed data of static products.
+        /// Seed data of static  <seealso cref="GameItem"/> entity.
         /// </summary>
         /// <param name="productCollection">MongoDb collection</param>
         public static void SeedData(IMongoCollection<GameItem> productCollection)
@@ -27,7 +27,7 @@ namespace GameCatalog.API.Data
         /// <summary>
         /// Static list of preconfigured products.
         /// </summary>
-        /// <returns>List of preconfigurated products.</returns>
+        /// <returns>List of preconfigurated  <seealso cref="GameItem"/> objects.</returns>
         private static IEnumerable<GameItem> GetPreConfiguredItems()
         {
             return new List<GameItem>
