@@ -1,20 +1,23 @@
+using Inventory.API.Data;
+using Inventory.API.Repositories;
+using Inventory.API.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
 
 namespace Inventory.API
 {
     public class Startup
     {
+        private ServiceSettings _serviceSettings;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +34,32 @@ namespace Inventory.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory.API", Version = "v1" });
             });
+
+            #region Mongodb serializers
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+            #endregion
+
+            // Deserealization config file into memory object.
+            _serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+
+            // Register type or object and make sure that only one instance is available
+            services.AddSingleton(serviceProvider =>
+            {
+
+                var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+
+                return mongoClient.GetDatabase(_serviceSettings.ServiceName);
+            });
+
+            #region Data contexts
+            services.AddScoped<IInventoryContext, InventoryContext>();
+            #endregion
+
+            #region Data repositories
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

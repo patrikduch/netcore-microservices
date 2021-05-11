@@ -118,10 +118,14 @@ services:
     ports:
       - "8088:80"
 
-
   inventory.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "MongoDbSettings__Host=mongodbservice"
+      - "MongoDbSettings__CollectionName=inventories"
+      - "MongoDbSettings__DatabaseName=InventoryDb"
+      - "MongoDbSettings__Port=27017"
+      - "ServiceSettings__ServiceName=Inventory"
     ports:
       - "8089:80"
 
