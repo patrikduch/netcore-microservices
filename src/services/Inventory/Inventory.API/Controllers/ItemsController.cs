@@ -1,5 +1,9 @@
-﻿using Inventory.API.Data;
+﻿using Inventory.API.Dtos;
+using Inventory.API.Extensions;
+using Inventory.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Inventory.API.Controllers
 {
@@ -7,18 +11,20 @@ namespace Inventory.API.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly IInventoryContext _inventoryContext;
+        private readonly IInventoryRepository _inventoryRepository;
 
-        public ItemsController(IInventoryContext inventoryContext)
+        public ItemsController(IInventoryRepository inventoryRepository)
         {
-            _inventoryContext = inventoryContext;
+            _inventoryRepository = inventoryRepository;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<ActionResult<InventoryItemDto>> Get()
         {
-            return Ok();
+            var items = (await _inventoryRepository.GetAllIAsync())
+               .Select(item => item.AsDto());
 
+            return Ok(items);
         }
     }
 }
