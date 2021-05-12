@@ -15,7 +15,7 @@ namespace Inventory.API.Extensions
         /// <returns></returns>
         public static InventoryItemDto AsDto(this InventoryItem item)
         {
-            return new InventoryItemDto(item.CatalogItemId, item.UserId, item.Quantity, item.AcquiredDate);
+            return new InventoryItemDto(item.Id, item.CatalogItemId, item.UserId, item.Quantity, item.AcquiredDate);
         }
     }
 }
