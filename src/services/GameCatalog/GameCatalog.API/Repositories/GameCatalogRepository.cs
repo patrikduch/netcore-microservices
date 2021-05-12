@@ -53,8 +53,8 @@ namespace GameCatalog.API.Repositories
         {
 
             if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
+            
+                {throw new ArgumentNullException(nameof(entity));
             }
 
             await _gameCatalogCtx.GameItems.InsertOneAsync(entity);
