@@ -3,6 +3,7 @@ using Inventory.API.Entities;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Inventory.API.Repositories
@@ -41,12 +42,32 @@ namespace Inventory.API.Repositories
         }
 
         /// <summary>
-        /// Get all items of inventory items..
+        /// Get all items of inventory items.
         /// </summary>
-        /// <returns>Async task with all inventory items..</returns>
+        /// <returns>Async task with all inventory items.</returns>
         public async Task<IReadOnlyCollection<InventoryItem>> GetAllIAsync()
         {
             return await _inventoryCtx.InventoryItems.Find(_filterBuilder.Empty).ToListAsync();
+        }
+
+        /// <summary>
+        /// Get all items of inventory items with additional InventoryItem based mongodb filter.
+        /// </summary>
+        /// <param name="filter">InventoryItem LINQ expression for listing restriction.</param>
+        /// <returns></returns>
+        public async Task<IReadOnlyCollection<InventoryItem>> GetAllIAsync(Expression<Func<InventoryItem, bool>> filter)
+        {
+            return await _inventoryCtx.InventoryItems.Find(filter).ToListAsync();
+        }
+
+        /// <summary>
+        /// Get particular item from inventory list via InventoryItem provided expression, that limits entry selection.
+        /// </summary>
+        /// <param name="filter">InventoryItem LINQ expression for listing restriction.</param>
+        /// <returns></returns>
+        public async Task<InventoryItem> GetItemAsync(Expression<Func<InventoryItem, bool>> filter)
+        {
+            return await _inventoryCtx.InventoryItems.Find(filter).FirstOrDefaultAsync();
         }
 
         /// <summary>
