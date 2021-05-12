@@ -21,7 +21,17 @@ namespace Inventory.API.Controllers
             _inventoryRepository = inventoryRepository;
         }
 
+        [HttpGet()]
+        public async Task<ActionResult<IEnumerable<InventoryItemDto>>> GetAllAsync()
+        {
+            var items = (await _inventoryRepository.GetAllIAsync())
+               .Select(item => item.AsDto());
+
+            return Ok(items);
+        }
+
         [HttpGet]
+        [Route("/api/[controller]/{userId}")]
         public async Task<ActionResult<IEnumerable<InventoryItemDto>>> GetAsync(Guid userId)
         {
 
