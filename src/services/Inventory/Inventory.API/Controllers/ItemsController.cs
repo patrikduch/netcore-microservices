@@ -76,5 +76,22 @@ namespace Inventory.API.Controllers
 
             return Ok();
         }
+
+
+        [HttpDelete("/api/[controller]/{id}")]
+        public async Task<ActionResult> DeleteAsync(Guid id)
+        {
+
+            var existingItem = await _inventoryRepository.GetItemAsync(id);
+
+            if (existingItem == null)
+            {
+                return NotFound();
+            }
+
+            await _inventoryRepository.RemoveAsync(existingItem.Id);
+
+            return NoContent();
+        }
     }
 }
