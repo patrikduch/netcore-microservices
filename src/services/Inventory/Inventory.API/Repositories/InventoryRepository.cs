@@ -1,4 +1,6 @@
-﻿using Inventory.API.Data;
+﻿using AutoMapper;
+using Inventory.API.Data;
+using Inventory.API.Dtos;
 using Inventory.API.Entities;
 using MongoDB.Driver;
 using System;
@@ -15,14 +17,16 @@ namespace Inventory.API.Repositories
     {
         private readonly IInventoryContext _inventoryCtx;
         private readonly FilterDefinitionBuilder<InventoryItem> _filterBuilder = Builders<InventoryItem>.Filter;
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// Initializes a new instance of the <seealso cref="InventoryRepository"/> class.
         /// </summary>
         /// <param name="inventoryCtx">Dependency of Mongodb context for accessing all inventory objects.</param>
-        public InventoryRepository(IInventoryContext inventoryCtx)
+        public InventoryRepository(IInventoryContext inventoryCtx, IMapper mapper)
         {
             _inventoryCtx = inventoryCtx;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -47,7 +51,8 @@ namespace Inventory.API.Repositories
         /// <returns>Async task with all inventory items.</returns>
         public async Task<IReadOnlyCollection<InventoryItem>> GetAllIAsync()
         {
-            return await _inventoryCtx.InventoryItems.Find(_filterBuilder.Empty).ToListAsync();
+            var entities = await _inventoryCtx.InventoryItems.Find(_filterBuilder.Empty).ToListAsync();
+            return entities;
         }
 
         /// <summary>

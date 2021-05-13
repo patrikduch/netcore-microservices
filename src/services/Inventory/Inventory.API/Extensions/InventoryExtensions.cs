@@ -9,13 +9,13 @@ namespace Inventory.API.Extensions
     public static class InventoryExtensions
     {
         /// <summary>
-        /// Convert entity IventoryItem to datatransfer object InventoryItemDto.
+        /// Convert entity InventoryItem to datatransfer object GameCatalogItemDto.
         /// </summary>
         /// <param name="item">Entity data that will be converted into data-transfer-object.</param>
         /// <returns></returns>
-        public static InventoryItemDto AsDto(this InventoryItem item)
+        public static GameCatalogItemDto AsDto(this InventoryItem item, string name, string description)
         {
-            return new InventoryItemDto(item.Id, item.CatalogItemId, item.UserId, item.Quantity, item.AcquiredDate);
+            return new GameCatalogItemDto(item.Id, name, description);
         }
     }
 }

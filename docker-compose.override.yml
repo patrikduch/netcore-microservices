@@ -102,6 +102,7 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
   gamecatalog.api:
+    container_name: gamecatalogapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "MongoDbSettings__Host=mongodbservice"
@@ -126,6 +127,7 @@ services:
       - "MongoDbSettings__DatabaseName=InventoryDb"
       - "MongoDbSettings__Port=27017"
       - "ServiceSettings__ServiceName=Inventory"
+      - "ServiceSettings__GameCatalogUrl=http://gamecatalogapi"
     ports:
       - "8089:80"
 

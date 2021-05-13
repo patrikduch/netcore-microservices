@@ -1,3 +1,4 @@
+using Inventory.API.Clients;
 using Inventory.API.Data;
 using Inventory.API.Repositories;
 using Inventory.API.Settings;
@@ -11,6 +12,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using System;
 
 namespace Inventory.API
 {
@@ -29,11 +31,26 @@ namespace Inventory.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            var serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory.API", Version = "v1" });
             });
+
+
+            #region HTTP client
+            services.AddHttpClient<IGameCatalogClient, GameCatalogClient>(client =>
+            {
+                client.BaseAddress = new Uri(serviceSettings.GameCatalogUrl);
+            });
+
+            #endregion
+
+            #region Automapper
+            services.AddAutoMapper(typeof(Startup));
+            #endregion
 
             #region Mongodb serializers
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));

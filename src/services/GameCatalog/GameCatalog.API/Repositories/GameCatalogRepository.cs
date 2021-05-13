@@ -14,6 +14,7 @@ namespace GameCatalog.API.Repositories
     {
         private readonly IGameCatalogContext _gameCatalogCtx;
         private readonly FilterDefinitionBuilder<GameItem> _filterBuilder = Builders<GameItem>.Filter;
+        
 
         /// <summary>
         /// Initializes a new instance of the <seealso cref="GameCatalogRepository"/> class.
