@@ -13,6 +13,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Polly;
+using Polly.Extensions.Http;
 using System;
 using System.Net.Http;
 
@@ -41,13 +42,39 @@ namespace Inventory.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory.API", Version = "v1" });
             });
 
+            #region Polly policy setup
+
+            var retry = HttpPolicyExtensions.HandleTransientHttpError()
+                  .WaitAndRetryAsync(3, retryCount => 
+                        TimeSpan.FromSeconds(
+                            Math.Pow(
+                                2,
+                                retryCount
+                            )
+                        ),
+                  onRetry: (response, delay, retryCount, context) =>
+                  {
+                      var serviceProvider = services.BuildServiceProvider();
+      
+                  }
+            );
+            #endregion
 
             #region HTTP client
             services.AddHttpClient<IGameCatalogClient, GameCatalogClient>(client =>
             {
                 client.BaseAddress = new Uri(serviceSettings.GameCatalogUrl);
             })
-                #region Polly
+            #region Polly
+
+                .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(
+                    3,
+                    retryCount => TimeSpan.FromSeconds(Math.Pow(2, retryCount)),
+                    onRetry: (response, delay, retryCount, context) =>
+                    {
+                        Console.WriteLine("Exponential backoff");
+                    }
+                 ))
                 .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));  // wait one second before giving up
 
                 #endregion
