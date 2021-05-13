@@ -12,7 +12,9 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using Polly;
 using System;
+using System.Net.Http;
 
 namespace Inventory.API
 {
@@ -44,7 +46,11 @@ namespace Inventory.API
             services.AddHttpClient<IGameCatalogClient, GameCatalogClient>(client =>
             {
                 client.BaseAddress = new Uri(serviceSettings.GameCatalogUrl);
-            });
+            })
+                #region Polly
+                .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));  // wait one second before giving up
+
+                #endregion
 
             #endregion
 
