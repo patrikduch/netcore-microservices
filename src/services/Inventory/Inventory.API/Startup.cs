@@ -44,20 +44,6 @@ namespace Inventory.API
 
             #region Polly policy setup
 
-            var retry = HttpPolicyExtensions.HandleTransientHttpError()
-                  .WaitAndRetryAsync(3, retryCount => 
-                        TimeSpan.FromSeconds(
-                            Math.Pow(
-                                2,
-                                retryCount
-                            )
-                        ),
-                  onRetry: (response, delay, retryCount, context) =>
-                  {
-                      var serviceProvider = services.BuildServiceProvider();
-      
-                  }
-            );
             #endregion
 
             #region HTTP client
@@ -65,7 +51,7 @@ namespace Inventory.API
             {
                 client.BaseAddress = new Uri(serviceSettings.GameCatalogUrl);
             })
-            #region Polly
+                #region Polly
 
                 .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(
                     3,
