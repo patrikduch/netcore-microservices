@@ -20,6 +20,7 @@ export default class SignalRService implements ISignalRService {
         this.signalRInstance = new signalR.HubConnectionBuilder()
         .withUrl(serviceUrl)
         .configureLogging(LogLevel.Trace)
+        .withAutomaticReconnect([0, 10, 30, 60, 90])
         .build();
 
         this.eventName = eventName;

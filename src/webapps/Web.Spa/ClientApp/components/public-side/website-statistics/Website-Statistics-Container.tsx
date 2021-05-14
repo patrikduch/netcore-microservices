@@ -12,17 +12,23 @@ const WebStatisticsContainer: React.FC = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        const connection = new SignalRService('http://localhost:5000/hubs/test', 'SendNewPosition');
-        connection.getSignalInstance().start().then(connection.startSuccess, connection.startFail);
-
-
+        const connection = new SignalRService('http://51.144.186.129/hubs/test', 'SendNewPosition');
+        connection.getSignalInstance().start().then(connection.startSuccess, connection.startFail).catch((err => {
+            setTimeout(() => {
+                connection.getSignalInstance().start();
+            }, 5000);
+        }));
+      
         // on view update message from client
         connection.getSignalInstance().on("ReceivedNewPosition", (value: any) => {
             debugger;
             setCount(value.uid);
             setLoading(false);
         });    
-    }, []);
+
+
+
+    });
 
     return (
         <div className='col-sm-4 website-statistics-container'>
