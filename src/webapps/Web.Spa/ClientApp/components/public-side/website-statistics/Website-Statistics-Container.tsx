@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import SignalRService from '@Services/real-time/SignalR-Service';
-
 import './Website-Statistics-Container.scss';
 import { ClipLoader } from 'react-spinners';
-
 
 const WebStatisticsContainer: React.FC = () => {
     let [loading, setLoading] = useState(true);
     let [color] = useState("#000");
-
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState("");
 
     useEffect(() => {
         const connection = new SignalRService('http://51.144.186.129/hubs/test', 'SendNewPosition');
@@ -20,14 +17,26 @@ const WebStatisticsContainer: React.FC = () => {
         }));
       
         // on view update message from client
-        connection.getSignalInstance().on("ReceivedNewPosition", (value: any) => {
+        connection.getSignalInstance().on("ReceivedNewPosition", (value: {uid: string})  => {
             debugger;
             setCount(value.uid);
             setLoading(false);
         });    
+        
+        connection.getSignalInstance().onclose(() => {
 
+            setTimeout(() => {
+                connection.getSignalInstance().start();
+            }, 1000);
 
+            // on view update message from client
+            connection.getSignalInstance().on("ReceivedNewPosition", (value: {uid: string}) => {
+                debugger;
+                setCount(value.uid);
+                setLoading(false);
+            });   
 
+        });
     });
 
     return (
