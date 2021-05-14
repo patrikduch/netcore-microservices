@@ -51,6 +51,7 @@ namespace Catalog.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog.API v1"));
             }
 
+  
             app.UseRouting();
 
             // global cors policy

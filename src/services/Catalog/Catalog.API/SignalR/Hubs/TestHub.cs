@@ -1,5 +1,4 @@
-﻿using Catalog.API.SignalR.Handlers;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
 
@@ -7,18 +6,17 @@ namespace Catalog.API.SignalR.Hubs
 {
     public class TestHub : Hub
     {
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
-            TestHandler.ConnectedIds.Add(Context.ConnectionId);
-            return base.OnConnectedAsync();
+            await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
+            await base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnectedAsync(Exception exception)
+        public override async Task OnDisconnectedAsync(Exception exception)
         {
-            TestHandler.ConnectedIds.Remove(Context.ConnectionId);
-            return base.OnDisconnectedAsync(exception);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
+            await base.OnDisconnectedAsync(exception);
         }
-
         public async Task SendNewPosition(CourierMessage message)
         {
             await Clients.All.SendAsync("ReceivedNewPosition", new CourierMessage { Uid = message.Uid, Token = message.Token });
