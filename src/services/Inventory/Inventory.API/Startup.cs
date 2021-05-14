@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Polly;
-using Polly.Extensions.Http;
+using Polly.Timeout;
 using System;
 using System.Net.Http;
 
@@ -43,7 +44,7 @@ namespace Inventory.API
             });
 
             #region Polly policy setup
-
+            var jitter = new Random();
             #endregion
 
             #region HTTP client
@@ -51,14 +52,18 @@ namespace Inventory.API
             {
                 client.BaseAddress = new Uri(serviceSettings.GameCatalogUrl);
             })
-                #region Polly
+            #region Polly
 
-                .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(
+                .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>().WaitAndRetryAsync(
                     3,
-                    retryCount => TimeSpan.FromSeconds(Math.Pow(2, retryCount)),
+                    retryCount => TimeSpan.FromSeconds(Math.Pow(2, retryCount)) + TimeSpan.FromMilliseconds(jitter.Next(0, 1000)),
                     onRetry: (response, delay, retryCount, context) =>
                     {
                         Console.WriteLine("Exponential backoff");
+
+                        var serviceProvider = services.BuildServiceProvider();
+                        serviceProvider.GetService<ILogger<GameCatalogClient>>()?
+                        .LogWarning($"Delaying for {delay.TotalSeconds} seconds, then making retry {retryCount}");
                     }
                  ))
                 .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));  // wait one second before giving up
