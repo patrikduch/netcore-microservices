@@ -9,6 +9,9 @@ namespace Discount.Grpc.Mapper
     /// </summary>
     public class CouponProfile : Profile
     {
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="CouponProfile"/> class.
+        /// </summary>
         public CouponProfile()
         {
             CreateMap<Coupon, CouponModel>().ReverseMap();
