@@ -43,17 +43,17 @@ namespace Inventory.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory.API", Version = "v1" });
             });
 
-            #region Polly policy setup
             var jitter = new Random();
-            #endregion
 
             #region HTTP client
             services.AddHttpClient<IGameCatalogClient, GameCatalogClient>(client =>
             {
                 client.BaseAddress = new Uri(serviceSettings.GameCatalogUrl);
             })
+
             #region Polly
 
+                // Exponential backoff
                 .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>().WaitAndRetryAsync(
                     3,
                     retryCount => TimeSpan.FromSeconds(Math.Pow(2, retryCount)) + TimeSpan.FromMilliseconds(jitter.Next(0, 1000)),
@@ -66,6 +66,25 @@ namespace Inventory.API
                         .LogWarning($"Delaying for {delay.TotalSeconds} seconds, then making retry {retryCount}");
                     }
                  ))
+                // Circuit breaker
+                .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>().CircuitBreakerAsync(
+                    3, // How many failed requests are requred to open Circuit Breaker
+                    TimeSpan.FromSeconds(15), // How long will be "Circuit Breaker" in the open state
+                    onBreak: (result, delay) =>
+                    {
+                        var serviceProvider = services.BuildServiceProvider();
+                        serviceProvider.GetService<ILogger<GameCatalogClient>>()?
+                        .LogWarning($"Opening the circuit for {delay.TotalSeconds} seconds");
+
+                    },
+                    onReset: () =>
+                    {
+                        var serviceProvider = services.BuildServiceProvider();
+                        serviceProvider.GetService<ILogger<GameCatalogClient>>()?
+                        .LogWarning($"Closing the circuit");
+                    }
+                 ))
+                // Timeout 
                 .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));  // wait one second before giving up
 
                 #endregion
