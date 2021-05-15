@@ -110,6 +110,7 @@ services:
       - "MongoDbSettings__DatabaseName=ItemsDb"
       - "MongoDbSettings__Port=27017"
       - "ServiceSettings__ServiceName=GameCatalog"
+      - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
     ports:
       - "8087:80"
 

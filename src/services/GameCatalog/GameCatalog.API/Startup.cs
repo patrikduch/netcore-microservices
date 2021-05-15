@@ -1,6 +1,8 @@
 using GameCatalog.API.Data;
 using GameCatalog.API.Repositories;
 using GameCatalog.API.Settings;
+using MassTransit;
+using MassTransit.Definition;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -45,6 +47,29 @@ namespace GameCatalog.API
 
                 return mongoClient.GetDatabase(_serviceSettings.ServiceName);
             });
+
+            #region MassTransit
+
+            services.AddMassTransit(config =>
+            {
+                // Definition of transport type
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
+                    bool includeClassNamespaces = true;
+
+                    // Localization of RabbitMQ server host
+                    cfg.Host(rabbitMqSettings.Host);
+
+                    cfg.ConfigureEndpoints(ctx, new KebabCaseEndpointNameFormatter(_serviceSettings.ServiceName, includeClassNamespaces));
+                });
+            });
+
+            // 
+            services.AddMassTransitHostedService();
+
+            #endregion
+
 
             services.AddControllers(options => {
 

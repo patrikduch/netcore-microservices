@@ -1,6 +1,8 @@
 ﻿using GameCatalog.API.Entities;
 using GameCatalog.API.Extensions;
 using GameCatalog.API.Repositories;
+using GameCatalog.RabbitMq;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,12 @@ namespace GameCatalog.API.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly IGameCatalogRepository _itemsRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public ItemsController(IGameCatalogRepository itemsRepository)
+        public ItemsController(IGameCatalogRepository itemsRepository, IPublishEndpoint publishEndpoint)
         {
             _itemsRepository = itemsRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         // GET /items/
@@ -58,6 +62,9 @@ namespace GameCatalog.API.Controllers
 
             await _itemsRepository.CreateItemAsync(item);
 
+            // Publish message to the RabbitMQ
+            await _publishEndpoint.Publish(new GameCatalogItemCreated(item.Id, item.Name, item.Description));
+
             return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
         }
 
@@ -78,6 +85,9 @@ namespace GameCatalog.API.Controllers
 
             await _itemsRepository.UpdateItemAsync(existingItem);
 
+            // Publish message to the RabbitMQ
+            await _publishEndpoint.Publish(new GameCatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description));
+
             return NoContent();
         }
 
@@ -93,6 +103,9 @@ namespace GameCatalog.API.Controllers
             }
 
             await _itemsRepository.RemoveItemAsync(existingItem.Id);
+
+            // Publish message to the RabbitMQ
+            await _publishEndpoint.Publish(new GameCatalogItemDeleted(existingItem.Id));
 
             return NoContent();
         }
