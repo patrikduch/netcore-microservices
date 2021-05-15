@@ -16,8 +16,6 @@ namespace Basket.API
         {
             var host = CreateHostBuilder(args).Build();
             host.Run();
-
-            // CreateHostBuilder(args).Build().Run();
         }
 
         // Additional configuration is required to successfully run gRPC on macOS.
