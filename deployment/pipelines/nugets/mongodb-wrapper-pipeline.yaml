@@ -16,20 +16,6 @@ variables:
 
 steps:
 
-- task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: 'NetMicroservices.Common'
-
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
-    inputs:
-      restoreSolution: '$(solution)'
-      feedsToUse: 'config'
-      nugetConfigPath: 'NuGet.config'
-      externalFeedCredentials: 'NetMicroservices.Common'
-
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
