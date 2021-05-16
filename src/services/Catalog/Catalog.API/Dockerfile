@@ -6,7 +6,6 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["src/services/Catalog/Catalog.API/nuget.config", "src/services/Catalog/Catalog.API/"]
 COPY ["src/services/Catalog/Catalog.API/Catalog.API.csproj", "src/services/Catalog/Catalog.API/"]
 RUN dotnet restore "src/services/Catalog/Catalog.API/Catalog.API.csproj"
 COPY . .
