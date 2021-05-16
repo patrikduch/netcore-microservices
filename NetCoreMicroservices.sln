@@ -49,7 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCatalog.RabbitMq", "src\services\GameCatalog\GameCatalog.RabbitMq\GameCatalog.RabbitMq.csproj", "{2013A895-1081-46EF-9E71-DD2AEEE440A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDbWrapper.Nuget", "src\nugets\MongoDbWrapper.Nuget\MongoDbWrapper.Nuget.csproj", "{D3AA5A79-0ABE-45AF-A10E-F1067DA17D99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMicroservices.MongoDbWrapper", "src\nugets\NetMicroservices.MongoDbWrapper\NetMicroservices.MongoDbWrapper.csproj", "{7F44556F-B477-41D8-9A53-64A187BBE07D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,10 +109,10 @@ Global
 		{2013A895-1081-46EF-9E71-DD2AEEE440A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2013A895-1081-46EF-9E71-DD2AEEE440A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2013A895-1081-46EF-9E71-DD2AEEE440A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3AA5A79-0ABE-45AF-A10E-F1067DA17D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3AA5A79-0ABE-45AF-A10E-F1067DA17D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3AA5A79-0ABE-45AF-A10E-F1067DA17D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3AA5A79-0ABE-45AF-A10E-F1067DA17D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F44556F-B477-41D8-9A53-64A187BBE07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F44556F-B477-41D8-9A53-64A187BBE07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F44556F-B477-41D8-9A53-64A187BBE07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F44556F-B477-41D8-9A53-64A187BBE07D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,7 +137,7 @@ Global
 		{180A08C2-3AFC-4831-BD2A-C7AE0C248C5C} = {3CF7F540-7A8C-4B7A-9EF6-E78441F4D900}
 		{3CF7F540-7A8C-4B7A-9EF6-E78441F4D900} = {568D619C-7FF9-4B77-BDC5-37D97FFF2A58}
 		{2013A895-1081-46EF-9E71-DD2AEEE440A5} = {3AF5971E-7082-424D-ACF9-1B5CEE70B7A1}
-		{D3AA5A79-0ABE-45AF-A10E-F1067DA17D99} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
+		{7F44556F-B477-41D8-9A53-64A187BBE07D} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61E0CB2F-1B7F-4DEF-9463-F5C807E66E33}

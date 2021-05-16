@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MongoDbWrapper.Nuget
+namespace NetMicroservices.MongoDbWrapper
 {
     /// <summary>
     /// Contract for all Mongodb entities.
