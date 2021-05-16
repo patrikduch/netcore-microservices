@@ -41,8 +41,13 @@ services:
     container_name: rabbitmq
     restart: always
     ports:
-        - "5672:5672"
-        - "15672:15672"
+        - "5672:5672"   # RabbitMQ server
+        - "15672:15672" # Access to the portal
+  
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq 
+    hostname: rabbitmq  # How RabbitMQ stored data internally, if it's not specified then it gets random value a will be s
+  
   web.mvc:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -129,6 +134,7 @@ services:
       - "MongoDbSettings__Port=27017"
       - "ServiceSettings__ServiceName=Inventory"
       - "ServiceSettings__GameCatalogUrl=http://gamecatalogapi"
+      - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
     ports:
       - "8089:80"
 

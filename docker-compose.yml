@@ -3,7 +3,6 @@ version: '3.4'
 services:
   basketdb:
     image: redis
-
   discount.db:
     image: postgres
 
@@ -75,9 +74,10 @@ services:
 volumes:
   postgres_data:
   pgadmin_data:
+  rabbitmq_data:
 
 
-
+   
 
 
 

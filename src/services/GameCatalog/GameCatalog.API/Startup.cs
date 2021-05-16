@@ -1,6 +1,8 @@
 using GameCatalog.API.Data;
 using GameCatalog.API.Repositories;
 using GameCatalog.API.Settings;
+using GameCatalog.RabbitMq.Consumers;
+using GameCatalog.RabbitMq.Models;
 using MassTransit;
 using MassTransit.Definition;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +15,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using RabbitMQ.Client;
 
 namespace GameCatalog.API
 {
@@ -48,34 +51,36 @@ namespace GameCatalog.API
                 return mongoClient.GetDatabase(_serviceSettings.ServiceName);
             });
 
+   
+            services.AddControllers(options => {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
+
+
             #region MassTransit
 
             services.AddMassTransit(config =>
             {
+                //config.AddConsumer<OrderConsumer>();
+                var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
+
                 // Definition of transport type
                 config.UsingRabbitMq((ctx, cfg) =>
                 {
-                    var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
-                    bool includeClassNamespaces = true;
-
                     // Localization of RabbitMQ server host
                     cfg.Host(rabbitMqSettings.Host);
 
-                    cfg.ConfigureEndpoints(ctx, new KebabCaseEndpointNameFormatter(_serviceSettings.ServiceName, includeClassNamespaces));
+                    //cfg.ExchangeType = ExchangeType.Fanout;
+                    //cfg.ConfigureEndpoints(ctx);
                 });
             });
 
-            // 
-            services.AddMassTransitHostedService();
+
+            services.AddMassTransitHostedService();     
 
             #endregion
 
 
-            services.AddControllers(options => {
-
-                options.SuppressAsyncSuffixInActionNames = false;
-            
-            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameCatalog.API", Version = "v1" });

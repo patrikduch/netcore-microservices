@@ -2,6 +2,7 @@
 using GameCatalog.API.Extensions;
 using GameCatalog.API.Repositories;
 using GameCatalog.RabbitMq;
+using GameCatalog.RabbitMq.Models;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -62,9 +63,20 @@ namespace GameCatalog.API.Controllers
 
             await _itemsRepository.CreateItemAsync(item);
 
-            // Publish message to the RabbitMQ
-            await _publishEndpoint.Publish(new GameCatalogItemCreated(item.Id, item.Name, item.Description));
 
+            try {
+
+                // Publish message to the RabbitMQ
+                await _publishEndpoint.Publish(new Order() { Name = "test" });
+
+
+            }
+            catch (Exception ex)
+            {
+                var test = 4;
+            }
+             
+            
             return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
         }
 
@@ -85,9 +97,6 @@ namespace GameCatalog.API.Controllers
 
             await _itemsRepository.UpdateItemAsync(existingItem);
 
-            // Publish message to the RabbitMQ
-            await _publishEndpoint.Publish(new GameCatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description));
-
             return NoContent();
         }
 
@@ -103,9 +112,6 @@ namespace GameCatalog.API.Controllers
             }
 
             await _itemsRepository.RemoveItemAsync(existingItem.Id);
-
-            // Publish message to the RabbitMQ
-            await _publishEndpoint.Publish(new GameCatalogItemDeleted(existingItem.Id));
 
             return NoContent();
         }

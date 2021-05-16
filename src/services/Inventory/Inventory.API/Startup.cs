@@ -1,7 +1,9 @@
+using GameCatalog.RabbitMq.Consumers;
 using Inventory.API.Clients;
 using Inventory.API.Data;
 using Inventory.API.Repositories;
 using Inventory.API.Settings;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +17,7 @@ using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Polly;
 using Polly.Timeout;
+using RabbitMQ.Client;
 using System;
 using System.Net.Http;
 
@@ -38,6 +41,36 @@ namespace Inventory.API
             var serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
             services.AddControllers();
+
+
+            #region MassTransit
+
+            services.AddMassTransit(config =>
+            {
+                config.AddConsumer<OrderConsumer>();
+
+                //config.AddConsumer<OrderConsumer>();
+                var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
+
+                // Definition of transport type
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    // Localization of RabbitMQ server host
+                    cfg.Host(rabbitMqSettings.Host);
+
+                    cfg.ReceiveEndpoint("order-queue", action =>
+                    {
+                        action.ConfigureConsumer<OrderConsumer>(ctx);
+                    });
+                });
+            });
+
+
+            services.AddMassTransitHostedService();
+
+            #endregion
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory.API", Version = "v1" });
