@@ -38,15 +38,7 @@ stages:
       vmImage: $(vmImageName)
 
     steps:        
-    - task: NuGetToolInstaller@1
-
-    - task: NuGetCommand@2
-      inputs:
-        restoreSolution: '$(solution)'
-        feedsToUse: 'config'
-        nugetConfigPath: 'NuGet.config'
-        externalFeedCredentials: 'NetMicroservices.Common'
-    
+        
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
