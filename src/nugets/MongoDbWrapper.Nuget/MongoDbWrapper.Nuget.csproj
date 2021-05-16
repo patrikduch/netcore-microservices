@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Patrik Duch</Authors>
     <PackageId>MongoDbWrapper</PackageId>
+    <Version>1.0.1</Version>
+    <Description>MongoDb wrapper that provides easy setup of Mongo data layer and generic entity repositories.</Description>
   </PropertyGroup>
 
 </Project>
