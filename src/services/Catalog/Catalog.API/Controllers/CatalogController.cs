@@ -2,6 +2,7 @@
 using Catalog.API.Repositiories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace Catalog.API.Controllers
         [HttpGet("{id:length(24)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Product>> GetProductById(string id)
+        public async Task<ActionResult<Product>> GetProductById(Guid id)
         {
             var product = await _productRepository.GetProduct(id);
 
@@ -76,7 +77,7 @@ namespace Catalog.API.Controllers
         [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
 
-        public async Task<IActionResult> RemoveProductById(string id)
+        public async Task<IActionResult> RemoveProductById(Guid id)
         {
             return Ok(await _productRepository.DeleteProduct(id));
         }

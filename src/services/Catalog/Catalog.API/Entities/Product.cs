@@ -1,18 +1,20 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDbWrapper.Nuget;
+using System;
 
 namespace Catalog.API.Entities
 {
     /// <summary>
     /// Entity that represents set of products.
     /// </summary>
-    public class Product
+    public class Product : IMongoEntity
     {
         /// <summary>
         /// Gets or sets product's identifier.
         /// </summary>
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets product's name.
