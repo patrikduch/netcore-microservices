@@ -42,6 +42,14 @@ stages:
       inputs:
         command: 'restore'
         projects: '**/GameCatalog.API.csproj'
+        
+    - task: DotNetCoreCLI@2
+      displayName: 'Build GameCatalog.API '
+      inputs:
+        command: 'build'
+        projects: '**/GameCatalog.API.csproj'
+        arguments: '--no-restore'
+      
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
