@@ -41,7 +41,7 @@ stages:
       displayName: 'Restore Nuget Packages'
       inputs:
         command: 'restore'
-        projects: '**/*.csproj'
+        projects: 'src/services/GameCatalog/GameCatalog.API/*.csproj'
       
 
     - task: Docker@2
