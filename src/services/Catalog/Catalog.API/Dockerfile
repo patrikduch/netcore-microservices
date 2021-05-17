@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk AS build
 WORKDIR /src
 #COPY ["src/services/Catalog/Catalog.API/nuget.config", "src/services/Catalog/Catalog.API/"]
 COPY ["src/services/Catalog/Catalog.API/Catalog.API.csproj", "src/services/Catalog/Catalog.API/"]
-RUN dotnet restore  -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Dbs/nuget/v3/index.json" "src/services/Catalog/Catalog.API/Catalog.API.csproj"
+RUN dotnet restore  "src/services/Catalog/Catalog.API/Catalog.API.csproj"
 COPY . .
 WORKDIR "/src/src/services/Catalog/Catalog.API"
 RUN dotnet build "Catalog.API.csproj" -c Release -o /app/build
