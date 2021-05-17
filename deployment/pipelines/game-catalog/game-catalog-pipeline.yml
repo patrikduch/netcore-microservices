@@ -37,6 +37,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: NuGetCommand@2
+      inputs:
+        command: 'restore'
+        restoreSolution: '**/*.sln'
+        feedsToUse: 'select'
+        vstsFeed: 'dd3b55e1-3154-4dfe-a4c1-a0c524a49387/e6fc45f5-43f9-4bf6-a878-9cfe5392f9d1'
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
