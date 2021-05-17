@@ -37,7 +37,7 @@ namespace Catalog.API.Repositiories
         /// </summary>
         /// <param name="id">Product entity identifier.</param>
         /// <returns></returns>
-        public async Task<bool> DeleteProduct(Guid id)
+        public async Task<bool> DeleteProduct(string id)
         {
             FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(p => p.Id, id);
             DeleteResult deleteResult = await _catalogCtx.Products.DeleteOneAsync(filter);
@@ -50,7 +50,7 @@ namespace Catalog.API.Repositiories
         /// </summary>
         /// <param name="id">String Mongodb object_id entity identifier.</param>
         /// <returns>Single product entity.</returns>
-        public async Task<Product> GetProduct(Guid id)
+        public async Task<Product> GetProduct(string id)
         {
 
             return await _catalogCtx
