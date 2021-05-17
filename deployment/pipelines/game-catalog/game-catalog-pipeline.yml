@@ -41,7 +41,7 @@ stages:
       displayName: 'Restore Nuget Packages'
       inputs:
         command: 'restore'
-        projects: '**/src/*.csproj'
+        projects: '**/*.csproj'
       
 
     - task: Docker@2
