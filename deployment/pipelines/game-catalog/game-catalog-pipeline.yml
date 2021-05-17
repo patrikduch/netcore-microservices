@@ -41,9 +41,6 @@ stages:
       displayName: 'Restore Nuget Packages'
       inputs:
         command: 'restore'
-        projects: 'src/services/GameCatalog/GameCatalog.API/*.csproj'
-      
-
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
