@@ -1,5 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using NetMicroservices.MongoDbWrapper;
+// using NetMicroservices.MongoDbWrapper;
 // using MongoDbWrapper.Nuget;
 //using MongoDbWrapper.Nuget;
 using System;
@@ -9,7 +9,7 @@ namespace Catalog.API.Entities
     /// <summary>
     /// Entity that represents set of products.
     /// </summary>
-    public class Product : IMongoEntity
+    public class Product  // : IMongoEntity
     {
         /// <summary>
         /// Gets or sets product's identifier.
