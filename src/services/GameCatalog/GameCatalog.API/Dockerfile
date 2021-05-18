@@ -8,7 +8,11 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/services/GameCatalog/GameCatalog.API/GameCatalog.API.csproj", "src/services/GameCatalog/GameCatalog.API/"]
 RUN dotnet restore "src/services/GameCatalog/GameCatalog.API/GameCatalog.API.csproj"
-RUN echo $(RABBITMQSECRET)
+
+ARG RABBITMQSECRET
+ENV RABBITMQ_ENV=$RABBITMQSECRET
+
+RUN echo $(RABBITMQ_ENV)
 
 
 COPY . .
