@@ -52,14 +52,13 @@ stages:
       
     - task: Docker@2
       displayName: Build and push an image to container registry
-      env:
-        RABBITMQENV: $(RABBITMQSECRET)
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
+        arguments: --build-arg RABBITMQENV=$(RABBITMQSECRET)
         tags: |
           $(tag)
     - upload: deployment/aks
