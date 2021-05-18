@@ -10,9 +10,8 @@ COPY ["src/services/GameCatalog/GameCatalog.API/GameCatalog.API.csproj", "src/se
 RUN dotnet restore "src/services/GameCatalog/GameCatalog.API/GameCatalog.API.csproj"
 
 ARG RABBITMQENV
-ENV RABBITMQ_ENV=$RABBITMQENV
-
-RUN echo $(RABBITMQ_ENV)
+ENV SA_RABBIT=$RABBITMQENV
+RUN echo $(SA_RABBIT)
 
 
 COPY . .
