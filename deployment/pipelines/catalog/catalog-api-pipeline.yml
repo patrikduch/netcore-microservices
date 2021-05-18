@@ -48,7 +48,7 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
-        arguments: --build-arg NUGET=$(NUGET_SECRET)
+        arguments: --build-arg NUGET_PAT=$(NUGET_SECRET)
     
     # Docker image push
     - task: Docker@2
