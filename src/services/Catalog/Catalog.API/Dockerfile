@@ -7,9 +7,8 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk AS build
 
 WORKDIR /src
-#COPY ["src/services/Catalog/Catalog.API/nuget.config", "src/services/Catalog/Catalog.API/"]
-COPY ["src/services/Catalog/Catalog.API/Catalog.API.csproj", "src/services/Catalog/Catalog.API/"]
 
+COPY ["src/services/Catalog/Catalog.API/Catalog.API.csproj", "src/services/Catalog/Catalog.API/"]
 
 ARG NUGET_PAT
 
