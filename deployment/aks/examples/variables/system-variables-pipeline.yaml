@@ -1,4 +1,8 @@
 steps:  
   - bash: echo  $AGENT_ID
-  - bash: echo  $MY_VAR
+  
+  # Printing predefined azurepipeline variable
+  env:
+    MY_SECRET_VAR: $(MY_VAR)
+  - bash: echo  $MY_SECRET_VAR
 
