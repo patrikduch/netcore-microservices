@@ -4,6 +4,15 @@
 
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
+### Nuget auth
+
+Specify PAT (Personal Access Token) into .env for access private nuget feed.
+
+
+```bash
+NUGET_PAT: 'secretaccesstoken'
+```
+
 ## AKS
 
 ### Deployment
