@@ -1,2 +1,4 @@
 steps:  
   - bash: echo  $AGENT_ID
+  - bash: echo  $MY_VAR
+
