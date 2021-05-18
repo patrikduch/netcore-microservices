@@ -9,8 +9,8 @@ WORKDIR /src
 COPY ["src/services/GameCatalog/GameCatalog.API/GameCatalog.API.csproj", "src/services/GameCatalog/GameCatalog.API/"]
 RUN dotnet restore "src/services/GameCatalog/GameCatalog.API/GameCatalog.API.csproj"
 
-ARG RABBITMQSECRET
-ENV RABBITMQ_ENV=$RABBITMQSECRET
+ARG RABBITMQENV
+ENV RABBITMQ_ENV=$RABBITMQENV
 
 RUN echo $(RABBITMQ_ENV)
 
