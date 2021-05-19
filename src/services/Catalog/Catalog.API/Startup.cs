@@ -17,20 +17,11 @@ namespace Catalog.API
 {
     public class Startup
     {
-        private ILogger<Startup> _logger;
         private ServiceSettings _serviceSettings;
 
         public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
-
-            using var loggerFactory = LoggerFactory.Create(builder =>
-            {
-                builder.SetMinimumLevel(LogLevel.Information);
-                builder.AddConsole();
-                builder.AddEventSourceLogger();
-            });
-            _logger = loggerFactory.CreateLogger<Startup>();
         }
 
         public IConfiguration Configuration { get; }
@@ -58,27 +49,11 @@ namespace Catalog.API
                 try {
 
                     var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-
-                    _logger.LogInformation("Connection setup...");
-                    _logger.LogError(mongoDbSettings.CollectionName);
-                    _logger.LogError(mongoDbSettings.DatabaseName);
-                    _logger.LogError(mongoDbSettings.Username);
-                    _logger.LogError(mongoDbSettings.Password);
-
-                    _logger.LogError(mongoDbSettings.ConnectionString);
-
                     var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
-
-                    _logger.LogInformation("Connection string...");
-                    _logger.LogInformation(mongoDbSettings.ConnectionString);
-
                     return mongoClient.GetDatabase(_serviceSettings.ServiceName);
 
                 } catch (Exception ex)
                 {
-                    _logger.LogError("Mongodb setup failed...");
-                    _logger.LogError(ex.ToString());
-
                     return null;
                 }
             });
