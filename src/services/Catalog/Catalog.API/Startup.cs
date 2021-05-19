@@ -19,7 +19,7 @@ namespace Catalog.API
     {
         private ServiceSettings _serviceSettings;
 
-        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
