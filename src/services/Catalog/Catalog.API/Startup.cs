@@ -51,6 +51,15 @@ namespace Catalog.API
                 try {
 
                     var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+
+                    _logger.LogInformation("Connection setup...");
+                    _logger.LogError(mongoDbSettings.CollectionName);
+                    _logger.LogError(mongoDbSettings.DatabaseName);
+                    _logger.LogError(mongoDbSettings.Username);
+                    _logger.LogError(mongoDbSettings.Password);
+
+                    _logger.LogError(mongoDbSettings.ConnectionString);
+
                     var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
 
                     _logger.LogInformation("Connection string...");
