@@ -69,9 +69,11 @@ services:
     container_name: catalogapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__DatabaseName=ProductDb"
-      - "DatabaseSettings__CollectionName=Products"
-      - "DatabaseSettings__ConnectionString=mongodb://mongodbservice:27017"
+      - "MongoDbSettings__Host=mongodbservice"
+      - "MongoDbSettings__CollectionName=products"
+      - "MongoDbSettings__DatabaseName=ProductsDb"
+      - "MongoDbSettings__Port=27017"
+      - "ServiceSettings__ServiceName=Catalog"
     ports:
       - "8083:80"
 

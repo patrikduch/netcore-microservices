@@ -23,15 +23,37 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
+
             - name: DatabaseSettings__DatabaseName
-              value: ProductDb
-            - name: DatabaseSettings__CollectionName
-              value: Products
-            - name: DatabaseSettings__ConnectionString
               valueFrom:
-                  configMapKeyRef:
-                    name: catalog-api-configmap
-                    key: connection_string
+                  secretKeyRef:
+                    name: catalog-db-secret
+                    key: Host
+                    
+            - name: DatabaseSettings__CollectionName
+              valueFrom:
+                  secretKeyRef:
+                    name: catalog-db-secret
+                    key: CollectionName
+
+            - name: DatabaseSettings__Username
+              valueFrom:
+                  secretKeyRef:
+                    name: catalog-db-secret
+                    key: Username
+
+            - name: DatabaseSettings__Port
+              valueFrom:
+                  secretKeyRef:
+                    name: catalog-db-secret
+                    key: Port
+
+            - name: DatabaseSettings__ServiceName
+              valueFrom:
+                  secretKeyRef:
+                    name: catalog-db-secret
+                    key: ServiceName
+
       imagePullSecrets:
         - name: acr-secret
 ---

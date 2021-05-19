@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: catalog-api-configmap
-data:
-  connection_string: mongodb://patrikduch:bcduchpatrik07041993@catalog-db-service:27017

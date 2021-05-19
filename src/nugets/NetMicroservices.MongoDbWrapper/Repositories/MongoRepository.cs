@@ -13,13 +13,15 @@ namespace NetMicroservices.MongoDbWrapper
         private readonly FilterDefinitionBuilder<T> _filterBuilder = Builders<T>.Filter;
         private readonly IMongoContext<T> _mongoCtx;
 
+
         /// <summary>
         /// Initializes a new instance of the <seealso cref="MongoRepository{T}"/> class.
         /// </summary>
         /// <param name="mongoContext">Dependency for <seealso cref="IMongoContext{T}"/> class.</param>
-        public MongoRepository(IMongoContext<T> mongoContext)
+        /// <param name="collectionName"></param>
+        public MongoRepository(IMongoContext<T> mongoCtx)
         {
-            _mongoCtx = mongoContext;
+            _mongoCtx = _mongoCtx;
         }
 
         /// <summary>
