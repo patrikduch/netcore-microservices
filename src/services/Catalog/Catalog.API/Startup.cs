@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using NetMicroservices.MongoDbWrapper;
@@ -16,11 +17,13 @@ namespace Catalog.API
 {
     public class Startup
     {
+        private ILogger<Startup> _logger;
         private ServiceSettings _serviceSettings;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -28,10 +31,9 @@ namespace Catalog.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             _serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
-
+          
             services.AddSignalR(hubOptions => {
 
                 hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(45);
@@ -46,9 +48,23 @@ namespace Catalog.API
 
             services.AddSingleton(serviceProvider =>
             {
-                var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-                var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
-                return mongoClient.GetDatabase(_serviceSettings.ServiceName);
+                try {
+
+                    var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                    var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+
+                    _logger.LogInformation("Connection string...");
+                    _logger.LogInformation(mongoDbSettings.ConnectionString);
+
+                    return mongoClient.GetDatabase(_serviceSettings.ServiceName);
+
+                } catch (Exception ex)
+                {
+                    _logger.LogError("Mongodb setup failed...");
+                    _logger.LogError(ex.ToString());
+
+                    return null;
+                }
             });
 
             #region Data contexts
