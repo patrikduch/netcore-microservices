@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using NetMicroservices.MongoDbWrapper;
+using NetMicroservices.MongoDbWrapper.Settings;
 using System;
 using System.Collections.Generic;
 
