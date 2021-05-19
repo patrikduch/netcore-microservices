@@ -30,7 +30,7 @@ services:
       context: .
       dockerfile: src/services/Catalog/Catalog.API/Dockerfile
       args:
-        nuget_pat: ${NUGET_PAT}
+        - NUGET_PAT
 
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
