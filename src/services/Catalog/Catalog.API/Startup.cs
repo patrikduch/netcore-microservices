@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using NetMicroservices.MongoDbWrapper;
@@ -17,6 +16,7 @@ namespace Catalog.API
 {
     public class Startup
     {
+        private MongoDbSettings _mongoDbSettings;
         private ServiceSettings _serviceSettings;
 
         public Startup(IConfiguration configuration)
@@ -48,8 +48,8 @@ namespace Catalog.API
             {
                 try {
 
-                    var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-                    var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+                    _mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                    var mongoClient = new MongoClient(_mongoDbSettings.ConnectionString);
                     return mongoClient.GetDatabase(_serviceSettings.ServiceName);
 
                 } catch (Exception ex)
@@ -59,7 +59,7 @@ namespace Catalog.API
             });
 
             #region Data contexts
-            services.AddScoped<IMongoContext<Product>>(x => new MongoContext<Product>("products", x.GetService<IMongoDatabase>(), new List<Product>
+            services.AddScoped<IMongoContext<Product>>(x => new MongoContext<Product>(_serviceSettings.ServiceName, x.GetService<IMongoDatabase>(), new List<Product>
             {
                 new Product()
                 {

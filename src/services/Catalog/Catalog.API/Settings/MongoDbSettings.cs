@@ -8,17 +8,17 @@
         /// <summary>
         /// Gets name of MongoDb.
         /// </summary>
-        public string DatabaseName { get; init; }
+        public string DatabaseName { get; set; }
 
         /// <summary>
         /// Gets collection name for specified entity.
         /// </summary>
-        public string CollectionName { get; init; }
+        public string CollectionName { get; set; }
 
         /// <summary>
         /// Gets hostname of particular MongoDb.
         /// </summary>
-        public string Host { get; init; }
+        public string Host { get; set; }
 
         /// <summary>
         /// Gets username for connection to the Mongodb.
@@ -33,7 +33,7 @@
         /// <summary>
         /// Gets port of particular Mongodb.
         /// </summary>
-        public string Port { get; init; }
+        public string Port { get; set; }
 
         /// <summary>
         /// Get connection string that is determinated from properties "Host" and "Port".
