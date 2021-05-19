@@ -9,3 +9,4 @@ src/services/Discount/Discount.API/obj
 .vs/
 bin/
 obj/
+/.env

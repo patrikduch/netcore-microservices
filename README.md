@@ -4,13 +4,22 @@
 
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
-### Nuget auth
+### Nuget packages
+
+<ul>
+    <li>all nuget packages must deployed before run</li>
+    <li>in case of private feed (PAT) must be configured properly (even for dev environment)</li>
+    <li>recommended private storage: Azure Artifact</li>
+</ul>
+
+
+#### Specifiy PAT for Azure Artifact nuget feed
 
 Specify PAT (Personal Access Token) into .env for access private nuget feed.
 
 
 ```bash
-NUGET_PAT: 'secretaccesstoken'
+NUGET_PAT="secretaccesstoken"
 ```
 
 ## AKS
