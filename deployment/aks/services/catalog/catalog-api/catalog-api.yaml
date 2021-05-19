@@ -22,37 +22,46 @@ spec:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: Development
+              value: Release
 
-            - name: DatabaseSettings__DatabaseName
+            - name: MongoDbSettings__Host
               valueFrom:
                   secretKeyRef:
                     name: catalog-db-secret
                     key: Host
+
+            - name: MongoDbSettings__DatabaseName
+              valueFrom:
+                  secretKeyRef:
+                    name: catalog-db-secret
+                    key: DatabaseName
                     
-            - name: DatabaseSettings__CollectionName
+            - name: MongoDbSettings__CollectionName
               valueFrom:
                   secretKeyRef:
                     name: catalog-db-secret
                     key: CollectionName
 
-            - name: DatabaseSettings__Username
+            - name: MongoDbSettings__Username
               valueFrom:
                   secretKeyRef:
                     name: catalog-db-secret
                     key: Username
 
-            - name: DatabaseSettings__Port
+            - name: MongoDbSettings__Password
+              valueFrom:
+                  secretKeyRef:
+                    name: catalog-db-secret
+                    key: Password
+
+            - name: MongoDbSettings__Port
               valueFrom:
                   secretKeyRef:
                     name: catalog-db-secret
                     key: Port
 
-            - name: DatabaseSettings__ServiceName
-              valueFrom:
-                  secretKeyRef:
-                    name: catalog-db-secret
-                    key: ServiceName
+            - name: ServiceSettings__ServiceName
+              value: Catalog
 
       imagePullSecrets:
         - name: acr-secret
