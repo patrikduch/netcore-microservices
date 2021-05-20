@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Catalog.API.SignalR
+namespace SignalR.API.SignalR.Contracts
 {
     public class CourierMessage
     {

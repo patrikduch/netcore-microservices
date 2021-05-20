@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using SignalR.API.SignalR.Contracts;
 using System;
 using System.Threading.Tasks;
 
-namespace Catalog.API.SignalR.Hubs
+namespace SignalR.API.SignalR.Hubs
 {
-    public class TestHub : Hub
+    public class CourierTrackingHub : Hub
     {
         public override async Task OnConnectedAsync()
         {

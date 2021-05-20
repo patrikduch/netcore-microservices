@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SignalR.API.SignalR.Hubs;
+using System;
 
 namespace SignalR.API
 {
@@ -19,7 +21,12 @@ namespace SignalR.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR();
+            services.AddSignalR(hubOptions => {
+
+                hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(45);
+
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -37,12 +44,20 @@ namespace SignalR.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SignalR.API v1"));
             }
 
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
+
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<CourierTrackingHub>("/hubs/test");
                 endpoints.MapControllers();
             });
         }

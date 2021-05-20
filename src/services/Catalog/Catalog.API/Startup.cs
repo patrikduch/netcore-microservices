@@ -1,5 +1,4 @@
 using Catalog.API.Entities;
-using Catalog.API.SignalR.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +9,6 @@ using MongoDB.Driver;
 using NetMicroservices.Configuration.Nuget;
 using NetMicroservices.MongoDbWrapper;
 using NetMicroservices.MongoDbWrapper.Settings;
-using System;
 using System.Collections.Generic;
 
 namespace Catalog.API
@@ -32,13 +30,6 @@ namespace Catalog.API
         {
             _serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
-          
-            services.AddSignalR(hubOptions => {
-
-                hubOptions.KeepAliveInterval = TimeSpan.FromSeconds(45);
-
-            });
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -47,16 +38,9 @@ namespace Catalog.API
 
             services.AddSingleton(serviceProvider =>
             {
-                try {
-
-                    _mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-                    var mongoClient = new MongoClient(_mongoDbSettings.ConnectionString);
-                    return mongoClient.GetDatabase(_serviceSettings.ServiceName);
-
-                } catch (Exception ex)
-                {
-                    return null;
-                }
+                _mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();    
+                var mongoClient = new MongoClient(_mongoDbSettings.ConnectionString);    
+                return mongoClient.GetDatabase(_serviceSettings.ServiceName);
             });
 
             #region Data contexts
@@ -129,22 +113,11 @@ namespace Catalog.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog.API v1"));
             }
 
-  
             app.UseRouting();
-
-            // global cors policy
-            app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true) // allow any origin
-                .AllowCredentials()); // allow credentials
-
             app.UseAuthorization();
 
-  
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<TestHub>("/hubs/test");
                 endpoints.MapControllers();
             });
         }
