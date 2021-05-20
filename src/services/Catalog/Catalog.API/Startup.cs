@@ -9,6 +9,7 @@ using MongoDB.Driver;
 using NetMicroservices.Configuration.Nuget;
 using NetMicroservices.MongoDbWrapper;
 using NetMicroservices.MongoDbWrapper.Settings;
+using System;
 using System.Collections.Generic;
 
 namespace Catalog.API
@@ -39,7 +40,7 @@ namespace Catalog.API
             services.AddSingleton(serviceProvider =>
             {
                 _mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();    
-                var mongoClient = new MongoClient(_mongoDbSettings.ConnectionString);    
+                var mongoClient = new MongoClient(_mongoDbSettings.ConnectionString);
                 return mongoClient.GetDatabase(_serviceSettings.ServiceName);
             });
 
