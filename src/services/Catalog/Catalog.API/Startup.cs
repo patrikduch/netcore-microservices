@@ -9,7 +9,6 @@ using MongoDB.Driver;
 using NetMicroservices.Configuration.Nuget;
 using NetMicroservices.MongoDbWrapper;
 using NetMicroservices.MongoDbWrapper.Settings;
-using System;
 using System.Collections.Generic;
 
 namespace Catalog.API
