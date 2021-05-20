@@ -21,7 +21,7 @@ namespace NetMicroservices.MongoDbWrapper
         /// <param name="collectionName"></param>
         public MongoRepository(IMongoContext<T> mongoCtx)
         {
-            _mongoCtx = _mongoCtx;
+            _mongoCtx = mongoCtx;
         }
 
         /// <summary>
