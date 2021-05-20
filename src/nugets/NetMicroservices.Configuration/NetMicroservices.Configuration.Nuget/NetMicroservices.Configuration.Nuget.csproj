@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Patrik Duch</Authors>
+    <PackageId>NetMicroservices.Configuration</PackageId>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>
