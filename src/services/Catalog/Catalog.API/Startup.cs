@@ -1,5 +1,4 @@
 using Catalog.API.Entities;
-using Catalog.API.Settings;
 using Catalog.API.SignalR.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using NetMicroservices.Configuration.Nuget;
 using NetMicroservices.MongoDbWrapper;
 using NetMicroservices.MongoDbWrapper.Settings;
 using System;
