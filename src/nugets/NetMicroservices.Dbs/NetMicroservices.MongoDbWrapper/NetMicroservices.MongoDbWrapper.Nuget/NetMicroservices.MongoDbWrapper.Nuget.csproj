@@ -5,6 +5,7 @@
     <Description>MongoDb wrapper that provides easy setup of Mongo data layer and generic entity repositories.</Description>
     <Authors>Patrik Duch</Authors>
     <Version>1.2.0</Version>
+    <PackageId>NetMicroservices.MongoDbWrapper</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

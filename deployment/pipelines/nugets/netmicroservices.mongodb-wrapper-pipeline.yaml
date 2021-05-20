@@ -6,7 +6,7 @@ trigger:
     - master
   paths:
     include:
-      - src/nugets/NetMicroservices.MongoDbWrapper/*
+      - src/nugets/NetMicroservices.Dbs/NetMicroservices.MongoDbWrapper/NetMicroservices.MongoDbWrapper.Nuget/*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -21,14 +21,14 @@ steps:
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
-    projects: 'src/nugets/NetMicroservices.MongoDbWrapper/*.csproj'
+    projects: 'src/nugets/NetMicroservices.Dbs/NetMicroservices.MongoDbWrapper/NetMicroservices.MongoDbWrapper.Nuget/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: "dotnet pack"
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
-    packagesToPack: 'src/nugets/NetMicroservices.MongoDbWrapper/*.csproj'
+    packagesToPack: 'src/nugets/NetMicroservices.Dbs/NetMicroservices.MongoDbWrapper/NetMicroservices.MongoDbWrapper.Nuget/*.csproj'
     nobuild: true
     versioningScheme: 'off'
 

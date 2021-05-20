@@ -6,7 +6,7 @@ trigger:
     - master
   paths:
     include:
-      - src/nugets/NetMicroservices.Configuration/NetMicroservices.Configuration.Nuget/*
+      - src/nugets/NetMicroservices.Configuration/NetMicroservices.ServiceConfig/NetMicroservices.ServiceConfig.Nuget/*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -21,14 +21,14 @@ steps:
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
-    projects: 'src/nugets/NetMicroservices.Configuration/NetMicroservices.Configuration.Nuget/*.csproj'
+    projects: 'src/nugets/NetMicroservices.Configuration/NetMicroservices.ServiceConfig/NetMicroservices.ServiceConfig.Nuget/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: "dotnet pack"
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
-    packagesToPack: 'src/nugets/NetMicroservices.Configuration/NetMicroservices.Configuration.Nuget/*.csproj'
+    packagesToPack: 'src/nugets/NetMicroservices.Configuration/NetMicroservices.ServiceConfig/NetMicroservices.ServiceConfig.Nuget/*.csproj'
     nobuild: true
     versioningScheme: 'off'
 
@@ -39,6 +39,6 @@ steps:
     feedsToUse: 'select'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'netmicroservices/NetMicroservices.Dbs'
+    publishVstsFeed: 'netmicroservices/NetMicroservices.Configuration'
     versioningScheme: 'off'
     allowPackageConflicts: true
