@@ -45,6 +45,9 @@ kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-db\
 
+##### Webapps
+kubectl apply -f .\deployment\aks\webapps\
+
 ##### Examples
 kubectl apply -f .\deployment\aks\examples\postgres\
 kubectl apply -f .\deployment\aks\examples\redis\
