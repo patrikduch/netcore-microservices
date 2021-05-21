@@ -9,7 +9,7 @@ trigger:
     paths:
       include:
       - src/webapps/Web.Mvc/*
-      - deployment/aks/webapps/web-mvc-pipeline.yaml
+      - deployment/aks/webapps/web-mvc.yaml
 
 resources:
 - repo: self
@@ -48,8 +48,7 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
-        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-    
+
     # Docker image push
     - task: Docker@2
       displayName: Publish a docker image
@@ -90,7 +89,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/webapps/web-mvc-pipeline.yaml
+                $(Pipeline.Workspace)/aks/webapps/web-mvc.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
