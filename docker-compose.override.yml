@@ -139,4 +139,3 @@ services:
       - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
     ports:
       - "8089:80"
-

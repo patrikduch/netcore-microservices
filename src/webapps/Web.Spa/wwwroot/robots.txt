@@ -1,2 +1,0 @@
-User-agent: *
-Sitemap: http://aspnetcorereactreduxtemplate-env.eba-mcv635ym.eu-west-1.elasticbeanstalk.com/sitemap.xml
