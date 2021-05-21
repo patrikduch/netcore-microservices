@@ -18,7 +18,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '8454a2ba-d7b1-4962-8832-922f293b96db'
-  imageRepository: 'catalogapi'
+  imageRepository: 'webmvc'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/webapps/Web.Mvc/Dockerfile'
   tag: '$(Build.BuildId)'
