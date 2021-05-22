@@ -32,7 +32,7 @@ namespace RealTimeTransmission.API
                 options.AddPolicy("CorsPolicy", builder =>
                     builder
                     .WithOrigins(
-                        "http://localhost"
+                        "http://localhost:8080"
                     )
                     .AllowAnyMethod()
                     .AllowAnyHeader()
