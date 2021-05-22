@@ -44,6 +44,7 @@ kubectl apply -f .\deployment\aks\services\discount\discount-api\
 kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-db\
+kubectl apply -f .\deployment\aks\services\realtime-transmission\
 
 ##### Webapps
 kubectl apply -f .\deployment\aks\webapps\

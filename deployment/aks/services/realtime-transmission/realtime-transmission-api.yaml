@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realtime-transmission-api-deployment
+  labels:
+    app: realtime-transmission-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: realtime-transmission-api
+  template:
+    metadata:
+      labels:
+        app: realtime-transmission-api
+    spec:
+      containers:
+        - name: realtime-transmission-api
+          image:  netcoremicroservicesacr.azurecr.io/realtimetransmissionapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: realtime-transmission-api-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: realtime-transmission-api
+  ports:
+    - protocol: TCP
+      port: 80
