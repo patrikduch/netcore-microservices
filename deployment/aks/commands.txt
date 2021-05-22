@@ -25,7 +25,7 @@ docker tag discountapi:latest netcoremicroservicesacr.azurecr.io/discountapi:v1
 docker tag discountgrpc:latest netcoremicroservicesacr.azurecr.io/discountgrpc:v1 
 docker tag gamecatalogapi:latest netcoremicroservicesacr.azurecr.io/gamecatalogapi:v1 
 docker tag webmvc:latest netcoremicroservicesacr.azurecr.io/webmvc:v1 
-
+docker tag webspa:latest netcoremicroservicesacr.azurecr.io/webspa:v1 
 
 # Push images to registry
 docker push netcoremicroservicesacr.azurecr.io/basketapi:v1
@@ -34,7 +34,7 @@ docker push netcoremicroservicesacr.azurecr.io/discountapi:v1
 docker push netcoremicroservicesacr.azurecr.io/discountgrpc:v1
 docker push netcoremicroservicesacr.azurecr.io/gamecatalogapi:v1 
 docker push netcoremicroservicesacr.azurecr.io/webmvc:v1 
-
+docker push netcoremicroservicesacr.azurecr.io/webspa:v1 
 
 
 az acr login --name netcoremicroservicesacr
