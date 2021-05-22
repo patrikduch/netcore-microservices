@@ -1,0 +1,97 @@
+# Deploy to Azure Kubernetes Service
+# Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+    branches:
+      include:
+      - master
+    paths:
+      include:
+      - src/webapps/Web.Spa/*
+      - deployment/aks/webapps/web-spa.yaml
+
+resources:
+- repo: self
+
+variables:
+
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '8454a2ba-d7b1-4962-8832-922f293b96db'
+  imageRepository: 'webspa'
+  containerRegistry: 'netcoremicroservicesacr.azurecr.io'
+  dockerfilePath: 'src/webapps/Web.Mvc/Dockerfile'
+  tag: '$(Build.BuildId)'
+  imagePullSecret: 'netcoremicroservicesacr1748cec4-auth'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:      
+    
+    # Docker image build
+    - task: Docker@2
+      displayName: Build a docker image
+      inputs:
+        command: build
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        buildContext: $(Build.SourcesDirectory)/
+
+    # Docker image push
+    - task: Docker@2
+      displayName: Publish a docker image
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+    - publish: deployment/aks
+      artifact: aks    
+
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+    environment: 'patrikduchnetcoremicroservices.default'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              action: deploy
+              manifests: |
+                $(Pipeline.Workspace)/aks/webapps/web-spa.yaml
+              imagePullSecrets: |
+                $(imagePullSecret)
+              containers: |
+                $(containerRegistry)/$(imageRepository):$(tag)
+
