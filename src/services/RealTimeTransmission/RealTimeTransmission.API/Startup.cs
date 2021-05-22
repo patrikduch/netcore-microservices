@@ -1,25 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using RealTimeTransmission.API.Hubs;
 
 namespace RealTimeTransmission.API
 {
     public class Startup
     {
-        private IWebHostEnvironment _environment;
-
-        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        public Startup(IConfiguration configuration)
         {
-            _environment = environment;
             Configuration = configuration;
         }
 
@@ -29,6 +21,7 @@ namespace RealTimeTransmission.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -61,6 +54,7 @@ namespace RealTimeTransmission.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ViewHub>("/notifyWatching");
             });
         }
     }
