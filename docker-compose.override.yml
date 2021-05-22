@@ -9,8 +9,45 @@ services:
     volumes:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
 
+  basketdb:
+    container_name: basketdb
+    restart: always    
+    ports:
+        - "6379:6379"
+  discount.db:
+    container_name: discountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=duch
+      - POSTGRES_DB=DiscountDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
 
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@patrikduch.com
+      - PGADMIN_DEFAULT_PASSWORD=duch
+    restart: always
+    ports:
+      -  "5050:80"
+    volumes:
+      -  pgadmin_data:/root/.pgadmnin 
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"   # RabbitMQ server
+        - "15672:15672" # Access to the portal
+  
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq 
+    hostname: rabbitmq  # How RabbitMQ stored data internally, if it's not specified then it gets random value
+ 
   web.spa:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -21,3 +58,96 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  web.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8081:80"
+
+  basket.api:
+    container_name: basketapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings__ConnectionString=basketdb:6379"
+      - "GrpcSettings__DiscountUrl=http://discountgrpc"
+    depends_on:
+        - basketdb
+    ports:
+      - "8082:80"
+
+  catalog.api:
+    container_name: catalogapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "MongoDbSettings__Host=mongodbservice"
+      - "MongoDbSettings__CollectionName=products"
+      - "MongoDbSettings__DatabaseName=ProductsDb"
+      - "MongoDbSettings__Port=27017"
+      - "ServiceSettings__ServiceName=Catalog"
+    ports:
+      - "8083:80"
+
+  webapi-gw:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "8084:80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  discount.grpc:
+    container_name: discountgrpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
+    ports:
+      - "8085:80"
+
+  discount.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
+    ports:
+      - "8086:80"
+
+    depends_on:
+      - discount.db
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  gamecatalog.api:
+    container_name: gamecatalogapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "MongoDbSettings__Host=mongodbservice"
+      - "MongoDbSettings__CollectionName=items"
+      - "MongoDbSettings__DatabaseName=ItemsDb"
+      - "MongoDbSettings__Port=27017"
+      - "ServiceSettings__ServiceName=GameCatalog"
+      - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
+    ports:
+      - "8087:80"
+
+  signalr.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8088:80"
+
+  inventory.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "MongoDbSettings__Host=mongodbservice"
+      - "MongoDbSettings__CollectionName=inventories"
+      - "MongoDbSettings__DatabaseName=InventoryDb"
+      - "MongoDbSettings__Port=27017"
+      - "ServiceSettings__ServiceName=Inventory"
+      - "ServiceSettings__GameCatalogUrl=http://gamecatalogapi"
+      - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
+    ports:
+      - "8089:80"
+
