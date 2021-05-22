@@ -54,7 +54,7 @@ namespace RealTimeTransmission.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ViewHub>("/notifyWatching");
+                endpoints.MapHub<ViewHub>("/hubs/view");
             });
         }
     }
