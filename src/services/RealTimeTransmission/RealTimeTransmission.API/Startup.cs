@@ -23,24 +23,24 @@ namespace RealTimeTransmission.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IHostEnvironment environment)
         {
 
-            #region CORS setup
-            services.AddCors(options =>
+            if (environment.IsDevelopment())
             {
-                options.AddPolicy("CorsPolicy", builder =>
-                    builder
-                    .WithOrigins(
-                        "http://localhost:8080"
-                    )
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    );
-            });
-            #endregion
-
+                #region CORS setup
+                services.AddCors(options =>
+                {
+                    options.AddPolicy("CorsPolicy", builder =>
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        );
+                });
+                #endregion
+            }
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -57,9 +57,9 @@ namespace RealTimeTransmission.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RealTimeTransmission.API v1"));
+                app.UseCors("CorsPolicy");
             }
-
-            app.UseCors("CorsPolicy");
+            
             app.UseRouting();
             app.UseAuthorization();
 
