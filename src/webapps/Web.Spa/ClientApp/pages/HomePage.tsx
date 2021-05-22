@@ -56,7 +56,7 @@ class HomePage extends React.Component<IProps, IState> {
                     <ParagraphBasic>Prerendering phase is resolved via loadData functions, that must be appended to particular page component (same concept that you might know from <AnchorBasic targetUrl='https://nextjs.org' labelUrl='Next.js'></AnchorBasic> framework).</ParagraphBasic>
 
                     <ul>
-                        <li>Microservice architecture powered by AWS and MS Azure</li>
+                        <li>Microservice architecture powered by AWS and MS Azure cloud services.</li>
                         <li>Real-time communication: Signalr</li>
                         <li>Message broker: RabbitMQ</li>
                         <li>Client state management: React-Redux</li>
