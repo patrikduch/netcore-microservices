@@ -79,12 +79,19 @@ services:
       context: .
       dockerfile: src/webapps/Web.Spa/Dockerfile
 
+  realtimetransmission.api:
+    image: ${DOCKER_REGISTRY-}realtimetransmissionapi
+    build:
+      context: .
+      dockerfile: src/services/RealTimeTransmission.API/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
   rabbitmq_data:
 
    
+
 
 
 

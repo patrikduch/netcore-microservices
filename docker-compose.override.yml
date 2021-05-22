@@ -151,3 +151,10 @@ services:
     ports:
       - "8089:80"
 
+
+  realtimetransmission.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
