@@ -38,7 +38,7 @@ namespace AspnetReactReduxTemplate.TypeScript
                 opts.Filters.Add<SerilogMvcLoggingAttribute>();
             });
 
-            services.AddNodeServicesWithHttps(Configuration);
+            // services.AddNodeServicesWithHttps(Configuration);
 
 #pragma warning disable CS0618 // Type or member is obsolete
             services.AddSpaPrerenderer();
@@ -115,7 +115,7 @@ namespace AspnetReactReduxTemplate.TypeScript
               //  configure.MapHub<ViewHub>("/hub/view");
             // });
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
         }
     }
 }
