@@ -41,11 +41,13 @@ namespace RealTimeTransmission.API
 
             app.UseRouting();
 
-            app.UseCors(x => x
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .SetIsOriginAllowed(origin => true) // allow any origin
-            .AllowCredentials()); // allow credentials
+            app.UseCors(builder =>
+             builder
+             .WithOrigins("http://localhost")
+             .AllowAnyHeader()
+             .AllowAnyMethod()
+             .AllowCredentials()
+            );
 
             /*
 
@@ -60,7 +62,7 @@ namespace RealTimeTransmission.API
 
             app.UseAuthorization();
 
-            app.UseCors("CorsPolicy");
+            //app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
