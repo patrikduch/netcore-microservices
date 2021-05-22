@@ -43,7 +43,7 @@ namespace RealTimeTransmission.API
 
             app.UseCors(builder =>
              builder
-             .WithOrigins("http://localhost")
+             .WithOrigins("http://localhost/")
              .AllowAnyHeader()
              .AllowAnyMethod()
              .AllowCredentials()
