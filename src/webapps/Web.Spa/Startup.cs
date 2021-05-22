@@ -4,13 +4,11 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AspnetReactReduxTemplate.TypeScript.Extensions;
 using AspnetReactReduxTemplate.TypeScript.Infrastructure;
 using AspnetReactReduxTemplate.TypeScript.Services;
 using Serilog;
 using Serilog.Context;
 using AspnetCore.React.Redux.template.Services;
-using AspnetCore.React.Redux.Web.Hubs;
 
 namespace AspnetReactReduxTemplate.TypeScript
 {
@@ -27,8 +25,6 @@ namespace AspnetReactReduxTemplate.TypeScript
         public void ConfigureServices(IServiceCollection services)
         {
             Configuration.GetSection("AppSettings").Bind(AppSettings.Default);
-
-            // services.AddSignalR();
 
             services.AddLogging(loggingBuilder =>
                 loggingBuilder.AddSerilog(dispose: true));
@@ -112,10 +108,6 @@ namespace AspnetReactReduxTemplate.TypeScript
 
                 endpoints.MapFallbackToController("Index", "Main");
             });
-
-            //app.UseEndpoints(configure => {
-              //  configure.MapHub<ViewHub>("/hub/view");
-            // });
 
             // app.UseHttpsRedirection();
         }

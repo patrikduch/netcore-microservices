@@ -75,7 +75,6 @@
     <TypeScriptCompile Include="ClientApp\components\redux\containers\project-detail\Project-Title.tsx" />
     <TypeScriptCompile Include="ClientApp\components\shared\TopMenu.tsx" />
     <TypeScriptCompile Include="ClientApp\models\IProjectDetailModel.ts" />
-    <TypeScriptCompile Include="ClientApp\pages\AdsPage.tsx" />
     <TypeScriptCompile Include="ClientApp\components\redux\containers\project-detail\Project-Detail-Container.tsx" />
     <TypeScriptCompile Include="ClientApp\services\ProjectDetailService.ts" />
     <TypeScriptCompile Include="ClientApp\store\projectDetailStore.ts" />

@@ -55,6 +55,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.MongoDbWra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Spa", "src\webapps\Web.Spa\Web.Spa.csproj", "{2AA9C6C7-C4AB-49D3-A89B-5774425CB567}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealTimeTransmission", "RealTimeTransmission", "{807B20D7-9B71-4F93-AAFE-3129AB88FB86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeTransmission.API", "src\services\RealTimeTransmission.API\RealTimeTransmission.API.csproj", "{F8B053B3-83AD-4AE5-A9DB-BB16AD18A7B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +121,10 @@ Global
 		{2AA9C6C7-C4AB-49D3-A89B-5774425CB567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AA9C6C7-C4AB-49D3-A89B-5774425CB567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AA9C6C7-C4AB-49D3-A89B-5774425CB567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B053B3-83AD-4AE5-A9DB-BB16AD18A7B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B053B3-83AD-4AE5-A9DB-BB16AD18A7B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B053B3-83AD-4AE5-A9DB-BB16AD18A7B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B053B3-83AD-4AE5-A9DB-BB16AD18A7B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,6 +152,8 @@ Global
 		{11099116-2EC6-4022-9726-0C03AF2CFB8C} = {055A3C44-3BE9-4B8C-B13E-5B4ED75F86BE}
 		{0BDE2FE0-BF56-4F75-AF94-E659567701A2} = {055A3C44-3BE9-4B8C-B13E-5B4ED75F86BE}
 		{2AA9C6C7-C4AB-49D3-A89B-5774425CB567} = {8E0724A5-6B17-4699-836F-445ACB28A4C7}
+		{807B20D7-9B71-4F93-AAFE-3129AB88FB86} = {568D619C-7FF9-4B77-BDC5-37D97FFF2A58}
+		{F8B053B3-83AD-4AE5-A9DB-BB16AD18A7B0} = {807B20D7-9B71-4F93-AAFE-3129AB88FB86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61E0CB2F-1B7F-4DEF-9463-F5C807E66E33}

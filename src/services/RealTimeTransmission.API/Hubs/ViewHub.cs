@@ -1,9 +1,9 @@
-﻿using AspnetCore.React.Redux.Web.SignalR.handlers;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
+using RealTimeTransmission.API.MessageHandlers;
 using System;
 using System.Threading.Tasks;
 
-namespace AspnetCore.React.Redux.Web.Hubs
+namespace RealTimeTransmission.API.Hubs
 {
     public class ViewHub : Hub
     {
@@ -16,8 +16,6 @@ namespace AspnetCore.React.Redux.Web.Hubs
 
             return base.OnConnectedAsync();
         }
-
- 
 
         public async Task NotifyWatching()
         {
@@ -33,11 +31,5 @@ namespace AspnetCore.React.Redux.Web.Hubs
 
             return base.OnDisconnectedAsync(exception);
         }
-       
-        
-
-
-
-
     }
 }
