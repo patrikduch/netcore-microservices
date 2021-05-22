@@ -28,27 +28,17 @@ namespace RealTimeTransmission.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            if (_environment.IsDevelopment())
-            {
-                #region CORS setup
-                services.AddCors(options =>
-                {
-                    //if (_environment.IsDevelopment())
-                    // {
-                        options.AddDefaultPolicy(
-                           builder =>
-                           {
-                               builder.WithOrigins("http://localhost:8080/*",
-                                                   "https://localhost/*");
-                           });
-                    // }
-
-                    #endregion
-
-                });
-    
-            }
+            #region CORS setup
+            services.AddCors(options =>    
+            {        
+                options.AddDefaultPolicy(       
+                    builder =>       
+                    {       
+                        builder.WithOrigins("http://localhost:8080/*",
+                                                   "https://localhost/*");       
+                    });
+                #endregion
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
