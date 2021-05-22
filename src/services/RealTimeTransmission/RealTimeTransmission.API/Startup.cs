@@ -26,6 +26,22 @@ namespace RealTimeTransmission.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            #region CORS setup
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                    builder
+                    .WithOrigins(
+                        "http://localhost"
+                    )
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    );
+            });
+            #endregion
+
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -43,8 +59,8 @@ namespace RealTimeTransmission.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RealTimeTransmission.API v1"));
             }
 
+            app.UseCors("CorsPolicy");
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
