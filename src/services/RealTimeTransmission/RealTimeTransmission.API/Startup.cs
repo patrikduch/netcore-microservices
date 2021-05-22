@@ -15,31 +15,39 @@ namespace RealTimeTransmission.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IWebHostEnvironment _environment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
+            _environment = environment;
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IHostEnvironment environment)
+        public void ConfigureServices(IServiceCollection services)
         {
 
-            if (environment.IsDevelopment())
+            if (_environment.IsDevelopment())
             {
                 #region CORS setup
                 services.AddCors(options =>
                 {
-                    options.AddPolicy("CorsPolicy", builder =>
-                        builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials()
-                        );
+                    if (_environment.IsDevelopment())
+                    {
+                        options.AddDefaultPolicy(
+                           builder =>
+                           {
+                               builder.WithOrigins("http://localhost:8080/*",
+                                                   "https://localhost/*");
+                           });
+                    }
+
+                    #endregion
+
                 });
-                #endregion
+    
             }
 
             services.AddControllers();
