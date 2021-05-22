@@ -40,6 +40,8 @@ namespace AspnetReactReduxTemplate.TypeScript
 
             // services.AddNodeServicesWithHttps(Configuration);
 
+            services.AddNodeServices();
+
 #pragma warning disable CS0618 // Type or member is obsolete
             services.AddSpaPrerenderer();
 #pragma warning restore CS0618 // Type or member is obsolete
