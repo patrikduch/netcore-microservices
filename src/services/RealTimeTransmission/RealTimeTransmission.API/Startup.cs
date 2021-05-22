@@ -34,15 +34,15 @@ namespace RealTimeTransmission.API
                 #region CORS setup
                 services.AddCors(options =>
                 {
-                    if (_environment.IsDevelopment())
-                    {
+                    //if (_environment.IsDevelopment())
+                    // {
                         options.AddDefaultPolicy(
                            builder =>
                            {
                                builder.WithOrigins("http://localhost:8080/*",
                                                    "https://localhost/*");
                            });
-                    }
+                    // }
 
                     #endregion
 
@@ -65,9 +65,10 @@ namespace RealTimeTransmission.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RealTimeTransmission.API v1"));
-                app.UseCors("CorsPolicy");
             }
-            
+
+            app.UseCors();
+
             app.UseRouting();
             app.UseAuthorization();
 
