@@ -20,7 +20,7 @@ COPY src/webapps/Web.Spa/Web.Spa.csproj Web.Spa/
 
 
 RUN dotnet restore "Web.Spa/Web.Spa.csproj"
-COPY . Web.Spa/
+COPY src/webapps/Web.Spa/ Web.Spa/
 WORKDIR "/src/Web.Spa"
 RUN dotnet build "Web.Spa.csproj" -c Release -o /app/build
 
