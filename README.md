@@ -46,6 +46,9 @@ kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-db\
 kubectl apply -f .\deployment\aks\services\realtime-transmission\
 
+##### K8s extensions (Ingress, etc.)
+kubectl apply -f .\deployment\aks\extensions\
+
 ##### Webapps
 kubectl apply -f .\deployment\aks\webapps\
 

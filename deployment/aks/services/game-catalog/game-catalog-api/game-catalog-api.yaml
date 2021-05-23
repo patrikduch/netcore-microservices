@@ -65,6 +65,12 @@ spec:
                     name: game-catalog-api-secret
                     key: SERVICE_NAME
 
+            - name: RabbitMqSettings__Host
+              valueFrom:
+                  secretKeyRef:
+                    name: game-catalog-api-secret
+                    key: RABBITMQ_HOST
+
       imagePullSecrets:
         - name: acr-secret
 ---

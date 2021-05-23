@@ -55,7 +55,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
-      - "SignalRSettings__ConnectionString=http://realtimetransmissionapi"
+      - "SignalRSettings__ConnectionString=http://localhost:8090"
     ports:
       - "80:80"
       - "443"

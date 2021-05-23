@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+
+kind: Ingress
+
+metadata:
+  name: ingress-service
+  labels:
+    app: api
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "http://localhost"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: realtime-transmission-api-service
+              servicePort: 80

@@ -1,6 +1,8 @@
 import * as signalR from "@microsoft/signalr";
 import { LogLevel } from "@microsoft/signalr";
 import ISignalRService from './ISignalR-Service';
+import axios from 'axios';
+
 
 /**
  * @class SignalRService Arbitrary service for handling realtime-communication with SignalR hubs.
@@ -17,10 +19,14 @@ export default class SignalRService implements ISignalRService {
      * @param eventName Name of event that will be triggered from SignalR hub.
      */
     constructor(serviceUrl: string, eventName: string) {
+
         this.signalRInstance = new signalR.HubConnectionBuilder()
         .withUrl(serviceUrl)
         .configureLogging(LogLevel.Trace)
         .build();
+
+
+        debugger;
 
         this.eventName = eventName;
     }
