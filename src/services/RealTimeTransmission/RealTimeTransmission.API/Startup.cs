@@ -20,8 +20,12 @@ namespace RealTimeTransmission.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            // services.AddCors();
 
+            services.AddCors(conf => {
+                conf.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+       
             services.AddSignalR();
 
             services.AddControllers();
@@ -44,12 +48,17 @@ namespace RealTimeTransmission.API
 
             app.UseRouting();
 
+            /*
             app.UseCors(corsPolicyBuilder =>
                 corsPolicyBuilder.WithOrigins("http://localhost")
                 .AllowAnyMethod()
                 .AllowCredentials()
                 .AllowAnyHeader()
            );
+
+            */
+
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 
