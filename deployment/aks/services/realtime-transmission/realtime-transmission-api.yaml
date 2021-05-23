@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: realtime-transmission-api-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: realtime-transmission-api
   ports:
