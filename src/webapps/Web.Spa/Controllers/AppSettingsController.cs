@@ -20,5 +20,13 @@ namespace Web.Spa.Controllers
             var parameterValue = _configuration[$"{sectionName}:{paramName}"];
             return Ok(new { parameter = parameterValue });
         }
+
+        [HttpGet("all")]
+        public ActionResult GetConfigurations()
+        {
+
+            return Ok(_configuration.AsEnumerable());
+        }
+
     }
 }
