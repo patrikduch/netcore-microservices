@@ -34,14 +34,7 @@ namespace RealTimeTransmission.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(corsPolicyBuilder =>
-   corsPolicyBuilder.WithOrigins("http://localhost")
-  .AllowAnyMethod()
-   .AllowCredentials()
-  .AllowAnyHeader()
-);
-
-
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -50,6 +43,13 @@ namespace RealTimeTransmission.API
             }
 
             app.UseRouting();
+
+            app.UseCors(corsPolicyBuilder =>
+                corsPolicyBuilder.WithOrigins("http://localhost")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .AllowAnyHeader()
+           );
 
             app.UseAuthorization();
 
