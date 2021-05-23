@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AspnetReactReduxTemplate.TypeScript.Infrastructure;
-using AspnetReactReduxTemplate.TypeScript.Models;
+using WebSpa.TypeScript.Infrastructure;
+using WebSpa.TypeScript.Models;
 
-namespace AspnetReactReduxTemplate.TypeScript.Services
+namespace WebSpa.TypeScript.Services
 {
     public class PersonService : ServiceBase
     {

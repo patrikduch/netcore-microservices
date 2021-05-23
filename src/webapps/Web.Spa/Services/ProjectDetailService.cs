@@ -1,5 +1,5 @@
 ﻿using AspnetCore.React.Redux.template.Models;
-using AspnetReactReduxTemplate.TypeScript.Infrastructure;
+using WebSpa.TypeScript.Infrastructure;
 
 namespace AspnetCore.React.Redux.template.Services
 {

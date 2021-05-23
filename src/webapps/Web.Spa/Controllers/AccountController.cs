@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using AspnetReactReduxTemplate.TypeScript.Models;
-using AspnetReactReduxTemplate.TypeScript.Services;
+using WebSpa.TypeScript.Models;
+using WebSpa.TypeScript.Services;
 
-namespace AspnetReactReduxTemplate.TypeScript.Controllers
+namespace WebSpa.TypeScript.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

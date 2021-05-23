@@ -44,6 +44,7 @@ export default class SignalRService implements ISignalRService {
      */
     startSuccess = () => {
         console.log("Connected.");
+        debugger;
         this.notify();
     }
 

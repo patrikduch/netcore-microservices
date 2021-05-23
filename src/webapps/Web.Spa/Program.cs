@@ -5,7 +5,7 @@ using Serilog;
 using System;
 using System.IO;
 
-namespace AspnetReactReduxTemplate.TypeScript
+namespace WebSpa.TypeScript
 {
     public class Program
     {

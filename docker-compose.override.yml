@@ -49,11 +49,15 @@ services:
     hostname: rabbitmq  # How RabbitMQ stored data internally, if it's not specified then it gets random value
  
   web.spa:
+    container_name: webspa
+    depends_on:
+      - realtimetransmission.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - "SignalRSettings__ConnectionString=http://realtimetransmissionapi"
     ports:
-      - "8080:80"
+      - "80:80"
       - "443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -154,6 +158,7 @@ services:
 
 
   realtimetransmission.api:
+    container_name: realtimetransmissionapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:

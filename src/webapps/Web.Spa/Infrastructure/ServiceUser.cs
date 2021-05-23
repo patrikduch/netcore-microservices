@@ -1,4 +1,4 @@
-﻿namespace AspnetReactReduxTemplate.TypeScript.Infrastructure
+﻿namespace WebSpa.TypeScript.Infrastructure
 {
     public class ServiceUser
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.ExceptionServices;
 
-namespace AspnetReactReduxTemplate.TypeScript.Infrastructure
+namespace WebSpa.TypeScript.Infrastructure
 {
     public abstract class ServiceBase
     {

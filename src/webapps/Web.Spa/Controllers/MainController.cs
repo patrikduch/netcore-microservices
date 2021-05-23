@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using AspnetReactReduxTemplate.TypeScript.Infrastructure;
+using WebSpa.TypeScript.Infrastructure;
 
-namespace AspnetReactReduxTemplate.TypeScript.Controllers
+namespace WebSpa.TypeScript.Controllers
 {
     public class MainController : ControllerBase
     {

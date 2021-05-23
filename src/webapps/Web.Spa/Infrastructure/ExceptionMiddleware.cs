@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 
-namespace AspnetReactReduxTemplate.TypeScript.Infrastructure
+namespace WebSpa.TypeScript.Infrastructure
 {
     public class ExceptionMiddleware
     {

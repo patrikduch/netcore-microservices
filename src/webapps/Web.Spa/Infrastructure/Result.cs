@@ -2,7 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace AspnetReactReduxTemplate.TypeScript.Infrastructure
+namespace WebSpa.TypeScript.Infrastructure
 {
     public class Result
     {

@@ -2,7 +2,7 @@
 {
     using AspnetCore.React.Redux.template.Services;
     using Microsoft.AspNetCore.Mvc;
-    using ControllerBase = AspnetReactReduxTemplate.TypeScript.Controllers.ControllerBase;
+    using ControllerBase = WebSpa.TypeScript.Controllers.ControllerBase;
 
     /// <summary>
     /// ProjectDetail REST controller for manaing current project informations.

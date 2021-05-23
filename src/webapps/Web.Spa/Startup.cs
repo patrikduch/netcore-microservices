@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AspnetReactReduxTemplate.TypeScript.Infrastructure;
-using AspnetReactReduxTemplate.TypeScript.Services;
+using WebSpa.TypeScript.Infrastructure;
+using WebSpa.TypeScript.Services;
 using Serilog;
 using Serilog.Context;
 using AspnetCore.React.Redux.template.Services;
 
-namespace AspnetReactReduxTemplate.TypeScript
+namespace WebSpa.TypeScript
 {
     public class Startup
     {

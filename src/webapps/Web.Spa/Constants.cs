@@ -1,4 +1,4 @@
-﻿namespace AspnetReactReduxTemplate.TypeScript
+﻿namespace WebSpa.TypeScript
 {
     public static class Constants
     {

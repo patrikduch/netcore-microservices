@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace AspnetReactReduxTemplate.TypeScript.Infrastructure
+namespace WebSpa.TypeScript.Infrastructure
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class SerilogMvcLoggingAttribute : ActionFilterAttribute

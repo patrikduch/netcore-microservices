@@ -1,4 +1,4 @@
-﻿namespace AspnetReactReduxTemplate.TypeScript.Models
+﻿namespace WebSpa.TypeScript.Models
 {
     public class LoginModel
     {

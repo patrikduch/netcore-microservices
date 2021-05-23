@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.NodeServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspnetReactReduxTemplate.TypeScript.Extensions
+namespace WebSpa.TypeScript.Extensions
 {
     /// <summary>
     /// Contains methods for adding the HTTPS support by <c>NodeServices</c>.

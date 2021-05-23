@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using AspnetReactReduxTemplate.TypeScript.Infrastructure;
+using WebSpa.TypeScript.Infrastructure;
 
-namespace AspnetReactReduxTemplate.TypeScript.Controllers
+namespace WebSpa.TypeScript.Controllers
 {
     public class ControllerBase : Controller
     {

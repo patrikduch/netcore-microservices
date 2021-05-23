@@ -1,4 +1,4 @@
-﻿namespace AspnetReactReduxTemplate.TypeScript
+﻿namespace WebSpa.TypeScript
 {
     public class AppSettings
     {

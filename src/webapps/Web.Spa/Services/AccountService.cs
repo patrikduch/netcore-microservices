@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using AspnetReactReduxTemplate.TypeScript.Infrastructure;
+using WebSpa.TypeScript.Infrastructure;
 
-namespace AspnetReactReduxTemplate.TypeScript.Services
+namespace WebSpa.TypeScript.Services
 {
     public class AccountService : ServiceBase
     {

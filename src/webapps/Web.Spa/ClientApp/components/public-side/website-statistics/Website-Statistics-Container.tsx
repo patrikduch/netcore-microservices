@@ -12,15 +12,16 @@ const WebStatisticsContainer: React.FC = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        const connection = new SignalRService('https://signalr-sample-service.azurewebsites.net/hubs/view', 'notifyWatching');
+        const connection = new SignalRService('http://realtimetransmissionapi/hubs/view', 'notifyWatching');
         connection.getSignalInstance().start().then(connection.startSuccess, connection.startFail);
 
         // on view update message from client
         connection.getSignalInstance().on("viewCountUpdate", (value: number) => {
+            debugger;
             setCount(value);
             setLoading(false);
         });    
-    }, []);
+    });
 
     return (
         <div className='col-sm-4 website-statistics-container'>
