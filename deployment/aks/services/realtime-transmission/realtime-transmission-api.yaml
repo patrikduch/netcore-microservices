@@ -20,6 +20,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
+
       imagePullSecrets:
         - name: acr-secret
 ---
@@ -28,7 +29,7 @@ kind: Service
 metadata:
   name: realtime-transmission-api-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: realtime-transmission-api
   ports:

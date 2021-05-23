@@ -21,6 +21,16 @@ spec:
           ports:
             - containerPort: 80
 
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: SignalRSettings__ConnectionString
+              valueFrom:
+                  secretKeyRef:
+                    name: web-spa-secret
+                    key: SIGNALR_URL
+
+
       imagePullSecrets:
         - name: acr-secret
 ---
