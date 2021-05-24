@@ -18,12 +18,12 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '8c099962-5c7d-4d2b-9587-c8e042484598'
+  dockerRegistryServiceConnection: '67976f45-a518-44c8-a5ba-e0b3ae47e3be'
   imageRepository: 'basketapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Basket/Basket.API/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'netcoremicroservicesacr1217a59d-auth'
+  imagePullSecret: 'netcoremicroservicesacr587713ea-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
