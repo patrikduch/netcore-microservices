@@ -12,7 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '70e1bd7d-eedd-4e0a-82ea-b7b20b493e05'
-  imageRepository: 'patrikduchnetcoremicroservices'
+  imageRepository: 'basketapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
@@ -38,11 +38,11 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
+        buildContext: $(Build.SourcesDirectory)/
         tags: |
           $(tag)
-
-    - upload: manifests
-      artifact: manifests
+    - upload: deployment/aks
+      artifact: aks
 
 - stage: Deploy
   displayName: Deploy stage
@@ -53,7 +53,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'patrikduchnetcoremicroservices-1354.default'
+    environment: 'patrikduchnetcoremicroservices.default'
     strategy:
       runOnce:
         deploy:
@@ -70,10 +70,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                $(Pipeline.Workspace)/aks/services/basket/basket-api/basket-api.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
-
