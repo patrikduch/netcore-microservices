@@ -38,9 +38,9 @@ kubectl create secret generic game-catalog-db-secret --from-literal=HOST=bcpatri
 #### Deployment scripts
 
 ##### Helm extensions
+
+###### Ingress controllers
 .\deployment\aks\helm\extensions\ingress\install.bat
-
-
 
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
 kubectl apply -f .\deployment\aks\services\catalog\catalog-api\
