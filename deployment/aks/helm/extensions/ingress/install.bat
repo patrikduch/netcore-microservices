@@ -1,6 +1,7 @@
+kubectl create namespace ingress-basic
 
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
-# Use Helm to deploy an NGINX ingress controller
 helm install nginx-ingress ingress-nginx/ingress-nginx ^
     --namespace ingress-basic ^
     --set controller.replicaCount=2 ^
