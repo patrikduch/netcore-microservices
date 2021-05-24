@@ -37,7 +37,7 @@ stages:
         command: buildAndPush
         repository: $(ACR_IMAGE_REPOSITORY)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(DOCKER_REGISTRY_CONNECTION)
+        containerRegistry: $(ACR_CONTAINER_NAME)
         buildContext: $(Build.SourcesDirectory)/
         tags: |
           $(tag)
