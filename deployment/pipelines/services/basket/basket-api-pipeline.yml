@@ -25,7 +25,7 @@ variables:
   
 stages:
 - stage: Build
-  displayName: Build stagecontainerRegistry
+  displayName: Build stage
   jobs:
   - job: Build
     displayName: Build
@@ -34,10 +34,6 @@ stages:
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
-      env:
-        IMAGE_REPOSITORY: $(ACR_IMAGE_REPOSITORY)
-        CONTAINER_NAME: $(ACR_CONTAINER_NAME)
-
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
@@ -46,7 +42,37 @@ stages:
         buildContext: $(Build.SourcesDirectory)/
         tags: |
           $(tag)
-
     - upload: deployment/aks
       artifact: aks
 
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+    environment: 'patrikduchnetcoremicroservices.default'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              action: deploy
+              manifests: |
+                $(Pipeline.Workspace)/aks/services/basket/basket-api/basket-api.yaml
+              imagePullSecrets: |
+                $(imagePullSecret)
+              containers: |
+                $(containerRegistry)/$(imageRepository):$(tag)
