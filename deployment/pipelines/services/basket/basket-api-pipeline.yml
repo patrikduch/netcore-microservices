@@ -48,5 +48,3 @@ stages:
     - upload: deployment/aks
       artifact: aks
 
-- stage: Deploy
-
