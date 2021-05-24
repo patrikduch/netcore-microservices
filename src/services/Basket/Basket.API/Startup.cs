@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Polly;
-using Polly.Timeout;
 using System;
 using System.Linq;
 using System.Net;
@@ -121,7 +120,6 @@ namespace Basket.API
             }
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
