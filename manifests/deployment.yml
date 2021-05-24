@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: patrikduchnetcoremicroservices 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: patrikduchnetcoremicroservices
+  template:
+    metadata:
+      labels:
+        app: patrikduchnetcoremicroservices 
+    spec:
+      containers:
+        - name: patrikduchnetcoremicroservices 
+          image: netcoremicroservicesacr.azurecr.io/patrikduchnetcoremicroservices
+          ports:
+          - containerPort: 80
