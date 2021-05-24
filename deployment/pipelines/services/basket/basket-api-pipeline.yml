@@ -15,14 +15,8 @@ resources:
 - repo: self
 
 variables:
-
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: $(DOCKER_REGISTRY_CONNECTION)
-  imageRepository:  $(ACR_IMAGE_REPOSITORY)
-  containerRegistry: $(ACR_CONTAINER_NAME)
   dockerfilePath: 'src/services/Basket/Basket.API/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: $(ACR_IMAGE_PULL_SECRET)
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -30,7 +24,7 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build stage
+  displayName: Build stagecontainerRegistry
   jobs:
   - job: Build
     displayName: Build
@@ -41,9 +35,9 @@ stages:
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
-        repository: $(imageRepository)
+        repository: $(ACR_IMAGE_REPOSITORY)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: $(DOCKER_REGISTRY_CONNECTION)
         buildContext: $(Build.SourcesDirectory)/
         tags: |
           $(tag)
@@ -69,8 +63,8 @@ stages:
             displayName: Create imagePullSecret
             inputs:
               action: createSecret
-              secretName: $(imagePullSecret)
-              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+              secretName: $(ACR_IMAGE_PULL_SECRET)
+              dockerRegistryEndpoint: $(DOCKER_REGISTRY_CONNECTION)
 
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
@@ -79,7 +73,7 @@ stages:
               manifests: |
                 $(Pipeline.Workspace)/aks/services/basket/basket-api/basket-api.yaml
               imagePullSecrets: |
-                $(imagePullSecret)
+                $(ACR_IMAGE_PULL_SECRET)
               containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
+                $(ACR_CONTAINER_NAME)/$(ACR_IMAGE_REPOSITORY):$(tag)
 
