@@ -59,7 +59,7 @@ Install the Kubernetes CLI
 az aks install-cli
 --
 Connect to cluster using kubectl
-az aks get-credentials --resource-group netcoreMicroservicesGroup --name netcoreMicroservicesCluster
+az aks get-credentials --resource-group netcoreMicroservicesGroup --name "clusterName"
 
 
 To verify;
@@ -78,6 +78,9 @@ kubectl config use-context gcpcluster-k8s-1
 	Switched to context "gcpcluster-k8s-1"
 --
 
+# Delete Kube cluster from config context
+
+kubectl config delete-context "clusterName"
 
 
 # Deployment
