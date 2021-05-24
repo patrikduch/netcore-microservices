@@ -3,7 +3,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
+    branches:
+      include:
+      - master
+    paths:
+      include:
+      - src/services/Basket/Basket.API/*
+      - deployment/aks/services/basket/basket-api/basket-api.yaml
 
 resources:
 - repo: self
