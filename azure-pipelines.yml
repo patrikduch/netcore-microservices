@@ -20,7 +20,7 @@ variables:
   dockerRegistryServiceConnection: '70e1bd7d-eedd-4e0a-82ea-b7b20b493e05'
   imageRepository: 'basketapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'src/services/Basket/Basket.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr1317e57a-auth'
 
