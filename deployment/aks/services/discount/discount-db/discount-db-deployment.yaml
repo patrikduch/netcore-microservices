@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discount-postgres-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: discount-postgresdb
+  template:
+    metadata:
+      labels:
+        component: discount-postgresdb
+    spec:
+      volumes:
+        - name: discount-postgresdb-storage
+          persistentVolumeClaim:
+            claimName: discount-postgres-db-pv-claim
+      containers:
+        - name: discountdb
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: discount-postgresdb-storage
+              mountPath:  /var/lib/postgresql/data
+              subPath: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom: 
+                secretKeyRef:
+                    name: pgpassword
+                    key: PGPASSWORD
