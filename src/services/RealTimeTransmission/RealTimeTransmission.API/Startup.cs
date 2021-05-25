@@ -21,15 +21,7 @@ namespace RealTimeTransmission.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-
-        
             services.AddCors();
-
-            // services.AddCors();
-
-            // services.AddCors(conf => {
-            // conf.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
-            // });
 
             services.AddSignalR();
 
@@ -59,19 +51,6 @@ namespace RealTimeTransmission.API
 
             app.UseRouting();
 
-            /*
-            app.UseCors(corsPolicyBuilder =>
-                corsPolicyBuilder.WithOrigins("http://localhost")
-                .AllowAnyMethod()
-                .AllowCredentials()
-                .AllowAnyHeader()
-           );
-
-            */
-
-            //app.UseCors("AllowAll");
-
-            //app.UseCors();
 
             app.UseAuthorization();
 
