@@ -5,7 +5,7 @@ metadata:
   labels:
     app: realtime-transmission-api
 spec:
-  replicas: 1
+  replicas: 6
   selector:
     matchLabels:
       app: realtime-transmission-api

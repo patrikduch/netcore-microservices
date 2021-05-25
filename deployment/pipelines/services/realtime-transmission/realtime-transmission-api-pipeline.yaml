@@ -15,7 +15,6 @@ resources:
 - repo: self
 
 variables:
-
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '67976f45-a518-44c8-a5ba-e0b3ae47e3be'
   imageRepository: 'realtimetransmissionapi'
@@ -23,10 +22,8 @@ variables:
   dockerfilePath: 'src/services/RealTimeTransmission/RealTimeTransmission.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr587713ea-auth'
-
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
-
 
 stages:
 - stage: Build
