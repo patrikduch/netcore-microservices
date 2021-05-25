@@ -21,7 +21,7 @@ namespace RealTimeTransmission.API.Hubs
         {
             ViewCount = UserHandler.ConnectedIds.Count;
 
-            await this.Clients.All.SendAsync("viewCountUpdate", ViewCount);
+            await this.Clients.All.SendAsync("viewCountUpdate", 1);
         }
 
 
