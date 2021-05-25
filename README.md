@@ -42,10 +42,23 @@ kubectl create secret generic game-catalog-db-secret --from-literal=HOST=bcpatri
 ###### Ingress controllers
 .\deployment\aks\helm\extensions\ingress\install.bat
 
+
+##### Microservices deployment
+
+##### Basket microservice (WebAPI + Redis)
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
+kubectl apply -f .\deployment\aks\services\basket\basket-db\
+
+##### Catalog microservice (WebAPI + MongoDb) 
 kubectl apply -f .\deployment\aks\services\catalog\catalog-api\
+kubectl apply -f .\deployment\aks\services\catalog\catalog-db\
+
+##### Dicount microservice (WebAPI + gRPC + Postgres db) 
+kubectl apply -f .\deployment\aks\services\discount\discount-db\
 kubectl apply -f .\deployment\aks\services\discount\discount-api\
 kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
+
+##### Gamecatalog microservice (WebAPI + MongoDb) 
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-db\
 kubectl apply -f .\deployment\aks\services\realtime-transmission\
