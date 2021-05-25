@@ -1,8 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using NetMicroservices.MongoDbWrapper;
-// using NetMicroservices.MongoDbWrapper;
-// using MongoDbWrapper.Nuget;
-//using MongoDbWrapper.Nuget;
 using System;
 
 namespace Catalog.API.Entities
