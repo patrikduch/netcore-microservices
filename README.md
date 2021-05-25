@@ -53,6 +53,15 @@ kubectl apply -f .\deployment\aks\services\basket\basket-db\
 kubectl apply -f .\deployment\aks\services\catalog\catalog-api\
 kubectl apply -f .\deployment\aks\services\catalog\catalog-db\
 
+###### Required secrets
+
+```bash
+
+kubectl create secret generic catalog-db-secret --from-literal=Host=catalog-db-service --from-literal=CollectionName=products --from-literal=DatabaseName=ProductsDb --from-literal=Port=27017 --from-literal=ServiceName=Catalog --from-literal=Username=patrikduch --from-literal=Password=bcduchpatrik07041993
+```
+
+
+
 ##### Dicount microservice (WebAPI + gRPC + Postgres db) 
 kubectl apply -f .\deployment\aks\services\discount\discount-db\
 kubectl apply -f .\deployment\aks\services\discount\discount-api\
