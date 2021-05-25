@@ -17,12 +17,12 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '8454a2ba-d7b1-4962-8832-922f293b96db'
-  imageRepository: 'webmvc'
+  dockerRegistryServiceConnection: '67976f45-a518-44c8-a5ba-e0b3ae47e3be'
+  imageRepository: 'realtimetransmissionapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/RealTimeTransmission/RealTimeTransmission.API/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'netcoremicroservicesacr1748cec4-auth'
+  imagePullSecret: 'netcoremicroservicesacr587713ea-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -72,7 +72,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'patrikduchnetcoremicroservices.default'
+    environment: 'patrikduchnetcoremicroservices-2072.default'
     strategy:
       runOnce:
         deploy:
