@@ -1,8 +1,8 @@
 import * as signalR from "@microsoft/signalr";
 import { LogLevel } from "@microsoft/signalr";
 import ISignalRService from './ISignalR-Service';
-import axios from 'axios';
-
+import CustomRetryPolicy from "./policies/CustomRetryPolicy";
+// import axios from 'axios';
 
 /**
  * @class SignalRService Arbitrary service for handling realtime-communication with SignalR hubs.
@@ -23,10 +23,8 @@ export default class SignalRService implements ISignalRService {
         this.signalRInstance = new signalR.HubConnectionBuilder()
         .withUrl(serviceUrl)
         .configureLogging(LogLevel.Trace)
+        .withAutomaticReconnect(new CustomRetryPolicy())
         .build();
-
-
-        debugger;
 
         this.eventName = eventName;
     }
@@ -59,6 +57,6 @@ export default class SignalRService implements ISignalRService {
      * @param eventName Name of event that will be triggered.
      */
     notify = () => {
-        this.signalRInstance.send(this.eventName);
+        //this.signalRInstance.send(this.eventName);
     }
 }
