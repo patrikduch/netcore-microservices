@@ -9,27 +9,28 @@ namespace RealTimeTransmission.API.Hubs
     {
         public int ViewCount { get; set; }
 
-        public override Task OnConnectedAsync()
+      
+        /// <summary>
+        /// Happens whenever the new connection occurs
+        /// </summary>
+        /// <returns>Asynchronous task</returns>
+        public async override Task OnConnectedAsync()
         {
-
-            UserHandler.ConnectedIds.Add(Context.ConnectionId);
-
-            return base.OnConnectedAsync();
+            ViewCount++;
+            await this.Clients.All.SendAsync("viewCountUpdate", ViewCount);
+            await base.OnConnectedAsync();
         }
 
-        public async Task NotifyWatching()
+        /// <summary>
+        /// Happens whenever the closing connection occurs
+        /// </summary>
+        /// <returns>Asynchronous task</returns>
+        public async override Task OnDisconnectedAsync(Exception exception)
         {
-            ViewCount = UserHandler.ConnectedIds.Count;
+            ViewCount--;
+            await this.Clients.All.SendAsync("viewCountUpdate", ViewCount);
 
-            await this.Clients.All.SendAsync("viewCountUpdate", 1);
-        }
-
-
-        public override Task OnDisconnectedAsync(Exception exception)
-        {
-            UserHandler.ConnectedIds.Remove(Context.ConnectionId);
-
-            return base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }
