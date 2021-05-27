@@ -35,6 +35,5 @@ namespace RealTimeTransmission.API.Hubs
             ViewCount++;
             await Clients.All.ViewCountUpdate(ViewCount);
         }
-
     }
 }
