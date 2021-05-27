@@ -60,17 +60,21 @@ kubectl apply -f .\deployment\aks\services\catalog\catalog-db\
 kubectl create secret generic catalog-db-secret --from-literal=Host=catalog-db-service --from-literal=CollectionName=products --from-literal=DatabaseName=ProductsDb --from-literal=Port=27017 --from-literal=ServiceName=Catalog --from-literal=Username=patrikduch --from-literal=Password=bcduchpatrik07041993
 ```
 
-
-
 ##### Dicount microservice (WebAPI + gRPC + Postgres db) 
 kubectl apply -f .\deployment\aks\services\discount\discount-db\
 kubectl apply -f .\deployment\aks\services\discount\discount-api\
 kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
 
+
 ##### Gamecatalog microservice (WebAPI + MongoDb) 
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-db\
-kubectl apply -f .\deployment\aks\services\realtime-transmission\
+
+
+##### RealTimeTransmission microservice (SignalR + Redis backplane)
+kubectl apply -f .\deployment\aks\services\realtime-transmission\realtime-transmission-api\
+kubectl apply -f .\deployment\aks\services\realtime-transmission\realtime-transmission-db\
+
 
 ##### K8s extensions (Ingress, etc.)
 kubectl apply -f .\deployment\aks\extensions\

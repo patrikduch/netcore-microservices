@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1  # API version
+kind: Deployment
+metadata:
+  name: realtime-transmission-db-master # Unique name for the deployment
+  labels:
+    app: realtimetransmissiondb       # Labels to be applied to this deployment
+spec:
+  selector:
+    matchLabels:     # This deployment applies to the Pods matching these labels
+      app: realtimetransmissiondb
+      role: master
+      tier: backend
+  replicas: 6       # Run a single pod in the deployment
+  template:          # Template for the pods that will be created by this deployment
+    metadata:
+      labels:        # Labels to be applied to the Pods in this deployment
+        app: realtimetransmissiondb
+        role: master
+        tier: backend
+    spec:            # Spec for the container which will be run inside the Pod.
+      containers:
+      - name: realtimetransmissiondb
+        image: redis
+        ports:
+        - containerPort: 6379
+---        
+apiVersion: v1
+kind: Service        # Type of Kubernetes resource
+metadata:
+  name: realtime-transmission-service # Name of the Kubernetes resource
+  labels:            # Labels that will be applied to this resource
+    app: realtimetransmissiondb
+    role: master
+    tier: backend
+spec:
+  ports:
+  - port: 6379       # Map incoming connections on port 6379 to the target port 6379 of the Pod
+    targetPort: 6379
+  selector:          # Map any Pod with the specified labels to this service
+    app: realtimetransmissiondb
+    role: master
+    tier: backend
