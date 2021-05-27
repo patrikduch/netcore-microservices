@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace RealTimeTransmission.API.Hubs
 {
-    public class ViewHub : Hub
+    public class ViewHub : Hub<IViewHub>
     {
         public int ViewCount { get; set; } = 0;
 
@@ -26,11 +26,14 @@ namespace RealTimeTransmission.API.Hubs
             await base.OnDisconnectedAsync(exception);
         }
 
-
+        /// <summary>
+        /// Notify users about total visitor count.
+        /// </summary>
+        /// <returns></returns>
         public async Task NotifyWatching()
         {
             ViewCount++;
-            await this.Clients.All.SendAsync("viewCountUpdate", ViewCount);
+            await Clients.All.ViewCountUpdate(ViewCount);
         }
 
     }
