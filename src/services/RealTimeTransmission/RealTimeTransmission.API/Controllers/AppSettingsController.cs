@@ -2,7 +2,6 @@
 
 namespace RealTimeTransmission.API.Controllers
 {
-    [Route("/")]
     [ApiController]
     public class AppSettingsController : ControllerBase
     {
