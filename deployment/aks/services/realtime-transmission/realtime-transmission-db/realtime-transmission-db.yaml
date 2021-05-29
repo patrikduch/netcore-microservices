@@ -11,7 +11,7 @@ spec:
       app: realtimetransmissiondb
       role: master
       tier: backend
-  replicas: 6       # Run a single pod in the deployment
+  replicas: 1       # Run a single pod in the deployment
   template:          # Template for the pods that will be created by this deployment
     metadata:
       labels:        # Labels to be applied to the Pods in this deployment
@@ -34,7 +34,6 @@ metadata:
     role: master
     tier: backend
 spec:
-  type: ClusterIP
   ports:
   - port: 6379       # Map incoming connections on port 6379 to the target port 6379 of the Pod
     targetPort: 6379
