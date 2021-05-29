@@ -34,7 +34,7 @@ metadata:
     role: master
     tier: backend
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 6379       # Map incoming connections on port 6379 to the target port 6379 of the Pod
     targetPort: 6379
