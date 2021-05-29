@@ -31,7 +31,10 @@ namespace RealTimeTransmission.API
             #endregion
 
 
-            services.AddSignalR().AddStackExchangeRedis(Configuration.GetValue<string>("CacheSettings:ConnectionString"));
+            services.AddSignalR().AddStackExchangeRedis(Configuration.GetValue<string>("CacheSettings:ConnectionString"), configure => {
+                configure.Configuration.ClientName = "RealTimeTransmissionSignalR";
+            
+            });
 
             services.AddCors();
 
