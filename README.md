@@ -49,6 +49,8 @@ kubectl create secret generic game-catalog-db-secret --from-literal=HOST=bcpatri
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
 kubectl apply -f .\deployment\aks\services\basket\basket-db\
 
+###### Required secrets
+
 ```bash
 kubectl create secret generic basket-db-secret --from-literal=ConnectionString=basket-db-service:6379 --from-literal=DiscountUrl=http://discount-grpc-service:80
 ```
@@ -68,6 +70,9 @@ kubectl create secret generic catalog-db-secret --from-literal=Host=catalog-db-s
 kubectl apply -f .\deployment\aks\services\discount\discount-db\
 kubectl apply -f .\deployment\aks\services\discount\discount-api\
 kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
+
+###### Required secrets
+
 
 
 ##### Gamecatalog microservice (WebAPI + MongoDb) 
