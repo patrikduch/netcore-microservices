@@ -22,9 +22,8 @@ spec:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: Release
-
-            - name: Backplane_Connection
+              value: Development
+            - name: CacheSettings__ConnectionString
               valueFrom:
                   secretKeyRef:
                     name: realtime-backplane-db-secret

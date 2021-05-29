@@ -20,15 +20,18 @@ namespace RealTimeTransmission.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             // Connection string to redis
-            var connectionString = "http://20.86.224.21:6379/";
+            // var connectionString = "http://20.86.224.21:6379/";
+
+            #region Redis connection configuration
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
+            });
+            #endregion
 
 
-            // STEP 2: Add StackExchange Redis helper
-            services.AddSignalR().AddStackExchangeRedis(connectionString);
-
-
+            services.AddSignalR();
 
             services.AddCors();
 
