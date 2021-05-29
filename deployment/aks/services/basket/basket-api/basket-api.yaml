@@ -25,15 +25,15 @@ spec:
               value: Development
             - name: CacheSettings__ConnectionString
               valueFrom:
-                  configMapKeyRef:
-                    name: basket-api-configmap
-                    key: connection_string
+                  secretKeyRef:
+                    name: basket-db-secret
+                    key: ConnectionString
 
             - name: GrpcSettings__DiscountUrl
               valueFrom:
                   configMapKeyRef:
-                    name: basket-api-configmap
-                    key: discount_url
+                    name: basket-db-secret
+                    key: DiscountUrl
 
       imagePullSecrets:
         - name: acr-secret
