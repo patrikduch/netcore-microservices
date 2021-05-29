@@ -28,12 +28,13 @@ spec:
 apiVersion: v1
 kind: Service        # Type of Kubernetes resource
 metadata:
-  name: realtime-transmission-service # Name of the Kubernetes resource
+  name: realtime-transmission-backplane-service # Name of the Kubernetes resource
   labels:            # Labels that will be applied to this resource
     app: realtimetransmissiondb
     role: master
     tier: backend
 spec:
+  type: LoadBalancer
   ports:
   - port: 6379       # Map incoming connections on port 6379 to the target port 6379 of the Pod
     targetPort: 6379

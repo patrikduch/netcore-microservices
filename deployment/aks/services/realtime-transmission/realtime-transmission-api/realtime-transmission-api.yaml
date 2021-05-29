@@ -20,6 +20,15 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+
+            - name: Backplane_Connection
+              valueFrom:
+                  secretKeyRef:
+                    name: realtime-backplane-db-secret
+                    key: ConnectionString
 
       imagePullSecrets:
         - name: acr-secret

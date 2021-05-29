@@ -21,9 +21,16 @@ namespace RealTimeTransmission.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddCors();
+            // Connection string to redis
+            var connectionString = "http://20.86.224.21:6379/";
 
-            services.AddSignalR();
+
+            // STEP 2: Add StackExchange Redis helper
+            services.AddSignalR().AddStackExchangeRedis(connectionString);
+
+
+
+            services.AddCors();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
