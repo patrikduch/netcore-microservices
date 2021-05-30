@@ -39,9 +39,16 @@ kubectl create secret generic game-catalog-db-secret --from-literal=HOST=bcpatri
 
 ##### Helm extensions
 
+###### RabbitMQ
+
+```bash
+helm repo add azure-marketplace https://marketplace.azurecr.io/helm/v1/repo
+helm install rabbitmq-service azure-marketplace/rabbitmq
+```
+
+
 ###### Ingress controllers
 .\deployment\aks\helm\extensions\ingress\install.bat
-
 
 ##### Microservices deployment
 
@@ -73,8 +80,6 @@ kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
 
 ###### Required secrets
 
-
-
 ##### Gamecatalog microservice (WebAPI + MongoDb) 
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-db\
@@ -92,7 +97,7 @@ kubectl apply -f .\deployment\aks\extensions\
 kubectl apply -f .\deployment\aks\webapps\
 
 ##### Examples
-kubectl apply -f .\deployment\aks\examples\ingress-controller\
+kubectl apply -f .\deployment\aks\examples\ingress-controller\without-cors\
 kubectl apply -f .\deployment\aks\examples\postgres\
 kubectl apply -f .\deployment\aks\examples\redis\
 
