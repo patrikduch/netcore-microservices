@@ -31,7 +31,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: game-catalog-db-secret
-                  key: USER_DB                 
+                  key: USER_NAME                 
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:

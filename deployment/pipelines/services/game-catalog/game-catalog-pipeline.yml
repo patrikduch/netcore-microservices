@@ -82,7 +82,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'patrikduchnetcoremicroservices.default'
+    environment: 'patrikduchnetcoremicroservices-2072.default'
     strategy:
       runOnce:
         deploy:
