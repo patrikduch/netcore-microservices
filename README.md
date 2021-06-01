@@ -46,13 +46,13 @@ helm repo add azure-marketplace https://marketplace.azurecr.io/helm/v1/repo
 helm install rabbitmq-service  azure-marketplace/rabbitmq
 ```
 
-<p><sub>To Access the RabbitMQ AMQP port:</sub></p>
+<b><p><sub>To Access the RabbitMQ AMQP port:</sub></p></b>
 
 ```bash
  kubectl port-forward --namespace default svc/rabbitmq-service 5672:5672
 ```
 
-<p><sub>To Access the RabbitMQ Management interface:</sub></p>
+<b><p><sub>To Access the RabbitMQ Management interface:</sub></p></b>
 
 ```bash
  kubectl port-forward --namespace default svc/rabbitmq-service 15672:15672
