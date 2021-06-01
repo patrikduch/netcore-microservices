@@ -52,7 +52,7 @@ helm install rabbitmq-service  azure-marketplace/rabbitmq
  kubectl port-forward --namespace default svc/rabbitmq-service 5672:5672
 ```
 
-<p><small>To Access the RabbitMQ Management interface:</small></p>
+<p><sub>To Access the RabbitMQ Management interface:</sub></p>
 
 ```bash
  kubectl port-forward --namespace default svc/rabbitmq-service 15672:15672
