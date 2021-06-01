@@ -41,14 +41,12 @@ kubectl create secret generic game-catalog-db-secret --from-literal=HOST=bcpatri
 
 ###### RabbitMQ
 
-Installation
-
 ```bash
 helm repo add azure-marketplace https://marketplace.azurecr.io/helm/v1/repo
 helm install rabbitmq-service  azure-marketplace/rabbitmq
 ```
 
-<i>To Access the RabbitMQ AMQP port:</i>
+<p>To Access the RabbitMQ AMQP port:</p>
 
 ```bash
  kubectl port-forward --namespace default svc/rabbitmq-service 5672:5672
