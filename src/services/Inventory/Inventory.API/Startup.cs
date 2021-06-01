@@ -60,7 +60,7 @@ namespace Inventory.API
 
                     cfg.ReceiveEndpoint("order-queue", action =>
                     {
-                        action.ConfigureConsumer<OrderConsumer>(ctx);
+                        //action.ConfigureConsumer<OrderConsumer>(ctx);
                     });
                 });
             });
