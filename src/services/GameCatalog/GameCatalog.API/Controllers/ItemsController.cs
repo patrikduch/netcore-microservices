@@ -111,6 +111,9 @@ namespace GameCatalog.API.Controllers
 
             await _itemsRepository.RemoveItemAsync(existingItem.Id);
 
+            // Publish message to the RabbitMQ    
+            await _publishEndpoint.Publish(new GameCatalogItemDeleted(existingItem.Id));
+
             return NoContent();
         }
     }
