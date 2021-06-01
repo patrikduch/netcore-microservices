@@ -19,6 +19,11 @@ namespace GameCatalog.API.Controllers
         private readonly IGameCatalogRepository _itemsRepository;
         private readonly IPublishEndpoint _publishEndpoint;
 
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="ItemsController"/> class.
+        /// </summary>
+        /// <param name="itemsRepository">Dependency of Mongodb context for accessing all gamecatalog objects.</param>
+        /// <param name="publishEndpoint">Dependency that enables publish functionality for RabbitMQ service bus.</param>
         public ItemsController(IGameCatalogRepository itemsRepository, IPublishEndpoint publishEndpoint)
         {
             _itemsRepository = itemsRepository;
@@ -50,7 +55,7 @@ namespace GameCatalog.API.Controllers
         }
 
         // POST /items/{id}
-        [HttpPost]
+        [HttpPost("{id}")]
         public async Task<ActionResult<GameItemDto>> PostAsync(CreateGameItemDto dto)
         {
             var item = new GameItem
@@ -63,19 +68,8 @@ namespace GameCatalog.API.Controllers
 
             await _itemsRepository.CreateItemAsync(item);
 
-
-            try {
-
-                // Publish message to the RabbitMQ
-                await _publishEndpoint.Publish(new Order() { Name = "test" });
-
-
-            }
-            catch (Exception ex)
-            {
-                var test = 4;
-            }
-             
+            // Publish message to the RabbitMQ    
+            await _publishEndpoint.Publish(new GameCatalogItemCreated(item.Id, item.Name, item.Description));
             
             return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
         }
@@ -96,6 +90,10 @@ namespace GameCatalog.API.Controllers
             existingItem.Price = updatedItemDto.Price;
 
             await _itemsRepository.UpdateItemAsync(existingItem);
+
+
+            // Publish message to the RabbitMQ    
+            await _publishEndpoint.Publish(new GameCatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description));
 
             return NoContent();
         }

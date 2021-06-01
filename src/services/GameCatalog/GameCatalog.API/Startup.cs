@@ -1,10 +1,7 @@
 using GameCatalog.API.Data;
 using GameCatalog.API.Repositories;
 using GameCatalog.API.Settings;
-using GameCatalog.RabbitMq.Consumers;
-using GameCatalog.RabbitMq.Models;
 using MassTransit;
-using MassTransit.Definition;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +12,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
-using RabbitMQ.Client;
 
 namespace GameCatalog.API
 {
