@@ -31,11 +31,11 @@ namespace Inventory.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             var serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
+            #region MVC
             services.AddControllers();
-
+            #endregion
 
             #region MassTransit
 
@@ -59,9 +59,8 @@ namespace Inventory.API
                 });
             });
 
-
             services.AddMassTransitHostedService();
-
+    
             #endregion
 
 
