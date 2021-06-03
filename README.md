@@ -90,12 +90,28 @@ kubectl apply -f .\deployment\aks\services\discount\discount-db\
 kubectl apply -f .\deployment\aks\services\discount\discount-api\
 kubectl apply -f .\deployment\aks\services\discount\discount-grpc\
 
-###### Required secrets
 
 ##### Gamecatalog microservice (WebAPI + MongoDb) 
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-api\
 kubectl apply -f .\deployment\aks\services\game-catalog\game-catalog-db\
 
+
+###### Required secrets
+
+```bash
+kubectl create secret generic game-catalog-api-secret  --from-literal=HOST=game-catalog-db-service --from-literal=COLLECTION=items --from-literal=DB_NAME=ItemsDb --from-literal=USER_NAME=patrikduch --from-literal=USER_PASS=bcpatrikduch07041993 --from-literal=DB_PORT=27017 --from-literal=SERVICE_NAME=GameCatalog --from-literal=RABBITMQ_HOST=amqp://guest:guest@my-release-rabbitmq:5672
+```
+
+##### Inventory microservice (WebAPI + MongoDb) 
+kubectl apply -f .\deployment\aks\services\inventory\inventory-api\
+kubectl apply -f .\deployment\aks\services\inventory\inventory-db\
+
+###### Required secrets
+
+```bash
+kubectl create secret generic inventory-db-secret --from-literal=Host=inventory-db-service --from-literal=CollectionName=inventories --from-literal=DatabaseName=InventoryDb --from-literal=Port=27017 --from-literal=ServiceName=Inventory --from-literal=Username=patrikduch --from-literal=Password=bcduchpatrik07041993
+--from-literal=RABBITMQ_HOST=amqp://guest:guest@my-release-rabbitmq:5672
+```
 
 ##### RealTimeTransmission microservice (SignalR + Redis backplane)
 kubectl apply -f .\deployment\aks\services\realtime-transmission\realtime-transmission-api\

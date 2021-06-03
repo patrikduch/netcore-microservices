@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-api-deployment
+  labels:
+    app: inventory-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inventory-api
+  template:
+    metadata:
+      labels:
+        app: inventory-api
+    spec:
+      containers:
+        - name: inventory-api
+          image:  netcoremicroservicesacr.azurecr.io/inventoryapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+
+            - name: MongoDbSettings__Host
+              valueFrom:
+                  secretKeyRef:
+                    name: inventory-db-secret
+                    key: Host
+
+            - name: MongoDbSettings__DatabaseName
+              valueFrom:
+                  secretKeyRef:
+                    name: inventory-db-secret
+                    key: DatabaseName
+                    
+            - name: MongoDbSettings__CollectionName
+              valueFrom:
+                  secretKeyRef:
+                    name: inventory-db-secret
+                    key: CollectionName
+
+            - name: MongoDbSettings__Username
+              valueFrom:
+                  secretKeyRef:
+                    name: inventory-db-secret
+                    key: Username
+
+            - name: MongoDbSettings__Password
+              valueFrom:
+                  secretKeyRef:
+                    name: inventory-db-secret
+                    key: Password
+
+            - name: MongoDbSettings__Port
+              valueFrom:
+                  secretKeyRef:
+                    name: inventory-db-secret
+                    key: Port
+
+            - name: ServiceSettings__ServiceName
+              value: Inventory
+
+            - name: RabbitMqSettings__Host
+              valueFrom:
+                  secretKeyRef:
+                    name: inventory-db-secret
+                    key: RABBITMQ_HOST
+
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-api-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: inventory-api
+  ports:
+    - protocol: TCP
+      port: 80

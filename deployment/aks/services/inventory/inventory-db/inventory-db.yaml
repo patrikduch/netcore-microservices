@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-db-deployment
+  labels:
+    app: inventory-db
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: inventory-db
+  template:
+    metadata:
+      labels:
+        app: inventory-db
+    spec:
+      containers:
+        - name: inventorygdb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: inventory-db-secret
+                  key: Username                  
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: inventory-db-secret
+                  key: Password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-db-service
+spec:
+  selector:
+    app: inventory-db
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
