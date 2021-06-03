@@ -17,11 +17,6 @@ namespace Inventory.API.Controllers
     public class ItemsController : ControllerBase
     {
         /// <summary>
-        /// Instance of a <seealso cref="GameCatalogClient"/> that enables synchronous communication with GameCatalog microservice. 
-        /// </summary>
-        private readonly IGameCatalogClient _gameCatalogClient;
-
-        /// <summary>
         /// Instance of a <seealso cref="InventoryRepository"/> for inventory data access via Repository pattern. 
         /// </summary>
         private readonly IInventoryRepository _inventoryRepository;
@@ -34,12 +29,10 @@ namespace Inventory.API.Controllers
         /// <summary>
         /// Initializes a new instance of the <seealso cref="ItemsController"/> class.
         /// </summary>
-        /// <param name="gameCatalogClient">Dependency for synchronous HTTP call into GameCatalog microservice.</param>
         /// <param name="inventoryRepository">Dependency data repository for accessing list of inventory items.</param>
         /// <param name="mapper">Dependency for accessing functionality of Automapper library.</param>
-        public ItemsController(IGameCatalogClient gameCatalogClient, IInventoryRepository inventoryRepository, IMapper mapper)
+        public ItemsController(IInventoryRepository inventoryRepository, IMapper mapper)
         {
-            _gameCatalogClient = gameCatalogClient;
             _inventoryRepository = inventoryRepository;
             _mapper = mapper;
         }
@@ -60,6 +53,8 @@ namespace Inventory.API.Controllers
                 return BadRequest();
             }
 
+            /*
+
             // Synchronous call to the microservice "GameCatalog".
             var catalogItems = await _gameCatalogClient.GetCatalogItemsAsync();
 
@@ -74,7 +69,11 @@ namespace Inventory.API.Controllers
                 return inventoryItem.AsDto(catalogItem.Name, catalogItem.Description); 
             });
 
-            return Ok(inventoryItemsDtos);           
+            */
+
+            //return Ok(inventoryItemsDtos);
+
+            return Ok();
         }
 
         [HttpPost]
