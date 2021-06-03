@@ -31,12 +31,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: catalog-db-secret
-                  key: mongo-root-username                  
+                  key: Username                  
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: catalog-db-secret
-                  key: mongo-root-password
+                  key: Password
 ---
 apiVersion: v1
 kind: Service
