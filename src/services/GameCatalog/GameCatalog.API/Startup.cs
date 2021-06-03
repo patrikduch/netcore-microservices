@@ -2,6 +2,7 @@ using GameCatalog.API.Data;
 using GameCatalog.API.Repositories;
 using GameCatalog.API.Settings;
 using MassTransit;
+using MassTransit.Definition;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -65,6 +66,8 @@ namespace GameCatalog.API
                 {
                     // Localization of RabbitMQ server host
                     cfg.Host(rabbitMqSettings.Host);
+                    bool propageQueueFullName = false;
+                    cfg.ConfigureEndpoints(ctx, new KebabCaseEndpointNameFormatter(_serviceSettings.ServiceName, propageQueueFullName));
 
                     //cfg.ExchangeType = ExchangeType.Fanout;
                     //cfg.ConfigureEndpoints(ctx);

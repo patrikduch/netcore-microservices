@@ -2,7 +2,6 @@
 using GameCatalog.API.Extensions;
 using GameCatalog.API.Repositories;
 using GameCatalog.RabbitMq;
-using GameCatalog.RabbitMq.Models;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -69,8 +68,9 @@ namespace GameCatalog.API.Controllers
             await _itemsRepository.CreateItemAsync(item);
 
             // Publish message to the RabbitMQ    
-            await _publishEndpoint.Publish(new GameCatalogItemCreated(item.Id, item.Name, item.Description));
-            
+            await _publishEndpoint.Publish(new GameCatalogItemUCreated(item.Id, item.Name, item.Description));
+
+
             return CreatedAtAction(nameof(GetByIdAsync), new { id = item.Id }, item);
         }
 

@@ -1,3 +1,4 @@
+using GameCatalog.RabbitMq.Constants;
 using GameCatalog.RabbitMq.Consumers;
 using Inventory.API.Clients;
 using Inventory.API.Data;
@@ -17,7 +18,6 @@ using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Polly;
 using Polly.Timeout;
-using RabbitMQ.Client;
 using System;
 using System.Net.Http;
 
@@ -47,7 +47,7 @@ namespace Inventory.API
 
             services.AddMassTransit(config =>
             {
-                config.AddConsumer<OrderConsumer>();
+                config.AddConsumer<GameCatalogConsumer>();
 
                 //config.AddConsumer<OrderConsumer>();
                 var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
@@ -58,9 +58,9 @@ namespace Inventory.API
                     // Localization of RabbitMQ server host
                     cfg.Host(rabbitMqSettings.Host);
 
-                    cfg.ReceiveEndpoint("order-queue", action =>
+                    cfg.ReceiveEndpoint(QueueConstants.GameCatalogQueue, action =>
                     {
-                        //action.ConfigureConsumer<OrderConsumer>(ctx);
+                        action.ConfigureConsumer<GameCatalogConsumer>(ctx);
                     });
                 });
             });

@@ -1,13 +1,12 @@
-﻿using GameCatalog.RabbitMq.Models;
-using MassTransit;
+﻿using MassTransit;
 using System;
 using System.Threading.Tasks;
 
 namespace GameCatalog.RabbitMq.Consumers
 {
-    public class OrderConsumer : IConsumer<Order>
+    public class GameCatalogConsumer : IConsumer<GameCatalogItemUCreated>
     {
-        public async Task Consume(ConsumeContext<Order> context)
+        public async Task Consume(ConsumeContext<GameCatalogItemUCreated> context)
         {
             await Console.Out.WriteLineAsync(context.Message.Name);
         }
