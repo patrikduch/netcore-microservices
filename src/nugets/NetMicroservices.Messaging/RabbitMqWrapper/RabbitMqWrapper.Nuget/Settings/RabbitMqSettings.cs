@@ -1,4 +1,4 @@
-﻿namespace GameCatalog.API.Settings
+﻿namespace RabbitMqWrapper.Nuget.Settings
 {
     /// <summary>
     /// Connection setting for RabbitMQ service bus.
@@ -8,6 +8,6 @@
         /// <summary>
         /// Host name of RabbitMQ service bus.
         /// </summary>
-        public string Host { get; init; }
+        public string Host { get;}
     }
 }

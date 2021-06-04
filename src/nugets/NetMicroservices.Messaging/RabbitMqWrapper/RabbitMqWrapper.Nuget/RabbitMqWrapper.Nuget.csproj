@@ -5,6 +5,7 @@
     <Authors>Patrik Duch</Authors>
     <PackageId>RabbitMqWrapper</PackageId>
     <Description>RabbitMQ wrapper</Description>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>
