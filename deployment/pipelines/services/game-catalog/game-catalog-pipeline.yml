@@ -59,7 +59,7 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
-        arguments: --build-arg RABBITMQENV=$(RABBITMQSECRET)
+        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
     - task: Docker@2
       displayName: Publish a docker image
       inputs:
