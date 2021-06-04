@@ -36,15 +36,7 @@ stages:
     displayName: Build
     pool:
       vmImage: $(vmImageName)
-    steps:            
-    - task: DotNetCoreCLI@2
-      displayName: 'Build GameCatalog.API '
-      inputs:
-        command: 'build'
-        projects: '**/GameCatalog.API.csproj'
-        arguments: '--no-restore'
-      
-    
+    steps:                
     - task: Docker@2
       displayName: Build a docker image
       inputs:
