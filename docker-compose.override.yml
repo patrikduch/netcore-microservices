@@ -41,8 +41,8 @@ services:
     container_name: rabbitmq
     restart: always
     ports:
-        - "5672:5672"   # RabbitMQ server
-        - "15672:15672" # Access to the portal
+        - "5672:5672"   # RabbitMQ server for accessing and publishing new messages
+        - "15672:15672" # Access to the RabbitMQ portal
   
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq 
@@ -57,7 +57,7 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - "SignalRSettings__ConnectionString=http://localhost:8090"
     ports:
-      - "80:80"
+      - "81:80"
       - "443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -150,7 +150,6 @@ services:
       - "MongoDbSettings__DatabaseName=InventoryDb"
       - "MongoDbSettings__Port=27017"
       - "ServiceSettings__ServiceName=Inventory"
-      - "ServiceSettings__GameCatalogUrl=http://gamecatalogapi"
       - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
     ports:
       - "8089:80"
