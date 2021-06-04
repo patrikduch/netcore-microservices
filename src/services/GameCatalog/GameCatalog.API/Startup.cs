@@ -1,5 +1,4 @@
-using GameCatalog.API.Data;
-using GameCatalog.API.Repositories;
+using GameCatalog.API.Entities;
 using GameCatalog.API.Settings;
 using MassTransit;
 using MassTransit.Definition;
@@ -13,6 +12,9 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using NetMicroservices.MongoDbWrapper;
+using System;
+using System.Collections.Generic;
 
 namespace GameCatalog.API
 {
@@ -69,14 +71,48 @@ namespace GameCatalog.API
                     bool propageQueueFullName = false;
                     cfg.ConfigureEndpoints(ctx, new KebabCaseEndpointNameFormatter(_serviceSettings.ServiceName, propageQueueFullName));
 
-                    //cfg.ExchangeType = ExchangeType.Fanout;
-                    //cfg.ConfigureEndpoints(ctx);
                 });
             });
 
 
-            services.AddMassTransitHostedService();     
+            services.AddMassTransitHostedService();
 
+            #endregion
+
+
+            #region Data contexts
+            services.AddScoped<IMongoContext<GameItem>>(x => new MongoContext<GameItem>(_serviceSettings.ServiceName, x.GetService<IMongoDatabase>(), new List<GameItem>
+            {
+                new GameItem
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Potion",
+                    Description = "Restores a small amount of  HP",
+                    Price = 5,
+                    CreatedDate = DateTimeOffset.UtcNow
+                },
+                new GameItem
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Antidote",
+                    Description = "Cures poison",
+                    Price = 7,
+                    CreatedDate = DateTimeOffset.UtcNow
+                },
+                new GameItem
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Bronze sword",
+                    Description = "Deals a small amout of damage",
+                    Price = 20,
+                    CreatedDate = DateTimeOffset.UtcNow
+                },
+
+            }));
+            #endregion
+
+            #region Data repositories
+            services.AddScoped<IMongoRepository<GameItem>, MongoRepository<GameItem>>();
             #endregion
 
 
@@ -84,14 +120,6 @@ namespace GameCatalog.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameCatalog.API", Version = "v1" });
             });
-
-            #region Data contexts
-            services.AddScoped<IGameCatalogContext, GameCatalogContext>();
-            #endregion
-
-            #region Data repositories
-            services.AddScoped<IGameCatalogRepository, GameCatalogRepository>();
-            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

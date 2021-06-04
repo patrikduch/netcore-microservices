@@ -1,11 +1,12 @@
-﻿using System;
+﻿using NetMicroservices.MongoDbWrapper;
+using System;
 
 namespace GameCatalog.API.Entities
 {
     /// <summary>
     /// Entity for representation gamecatalog item.
     /// </summary>
-    public class GameItem 
+    public class GameItem : IMongoEntity
     {
         /// <summary>
         /// Gets or sets item entity identifier.

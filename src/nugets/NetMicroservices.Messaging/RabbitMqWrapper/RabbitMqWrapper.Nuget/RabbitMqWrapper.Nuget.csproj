@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Patrik Duch</Authors>
     <PackageId>RabbitMqWrapper</PackageId>
+    <Description>RabbitMQ wrapper</Description>
   </PropertyGroup>
 
 </Project>

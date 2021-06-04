@@ -1,9 +1,9 @@
 ﻿using GameCatalog.API.Entities;
 using GameCatalog.API.Extensions;
-using GameCatalog.API.Repositories;
 using GameCatalog.RabbitMq;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using NetMicroservices.MongoDbWrapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +15,17 @@ namespace GameCatalog.API.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly IGameCatalogRepository _itemsRepository;
+        private readonly IMongoRepository<GameItem> _mongoRepository;
         private readonly IPublishEndpoint _publishEndpoint;
 
         /// <summary>
         /// Initializes a new instance of the <seealso cref="ItemsController"/> class.
         /// </summary>
-        /// <param name="itemsRepository">Dependency of Mongodb context for accessing all gamecatalog objects.</param>
+        /// <param name="mongoRepository">Dependency of Mongodb context for accessing all gamecatalog objects.</param>
         /// <param name="publishEndpoint">Dependency that enables publish functionality for RabbitMQ service bus.</param>
-        public ItemsController(IGameCatalogRepository itemsRepository, IPublishEndpoint publishEndpoint)
+        public ItemsController(IMongoRepository<GameItem> mongoRepository, IPublishEndpoint publishEndpoint)
         {
-            _itemsRepository = itemsRepository;
+            _mongoRepository = mongoRepository;
             _publishEndpoint = publishEndpoint;
         }
 
@@ -33,7 +33,7 @@ namespace GameCatalog.API.Controllers
         [HttpGet]
         public async Task<IEnumerable<GameItemDto>> GetAllAsync()
         {
-            var items = (await _itemsRepository.GetAllItemsAsync())
+            var items = (await _mongoRepository.GetAllAsync())
                 .Select(item => item.AsDto());
 
             return items;
@@ -43,7 +43,7 @@ namespace GameCatalog.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GameItemDto>> GetByIdAsync(Guid id)
         {
-            var item = await _itemsRepository.GetItemAsync(id);
+            var item = await _mongoRepository.GetAsync(id);
 
             if (item == null)
             {
@@ -65,7 +65,7 @@ namespace GameCatalog.API.Controllers
                 CreatedDate = DateTimeOffset.UtcNow
             };
 
-            await _itemsRepository.CreateItemAsync(item);
+            await _mongoRepository.CreateAsync(item);
 
             // Publish message to the RabbitMQ    
             await _publishEndpoint.Publish(new GameCatalogItemUCreated(item.Id, item.Name, item.Description));
@@ -78,7 +78,7 @@ namespace GameCatalog.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, UpdateGameItemDto updatedItemDto)
         {
-            var existingItem = await _itemsRepository.GetItemAsync(id);
+            var existingItem = await _mongoRepository.GetAsync(id);
 
             if (existingItem == null)
             {
@@ -89,7 +89,7 @@ namespace GameCatalog.API.Controllers
             existingItem.Description = updatedItemDto.Description;
             existingItem.Price = updatedItemDto.Price;
 
-            await _itemsRepository.UpdateItemAsync(existingItem);
+            await _mongoRepository.UpdateAsync(existingItem);
 
 
             // Publish message to the RabbitMQ    
@@ -102,14 +102,14 @@ namespace GameCatalog.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            var existingItem = await _itemsRepository.GetItemAsync(id);
+            var existingItem = await _mongoRepository.GetAsync(id);
 
             if (existingItem == null)
             {
                 return NotFound();
             }
 
-            await _itemsRepository.RemoveItemAsync(existingItem.Id);
+            await _mongoRepository.RemoveAsync(existingItem.Id);
 
             // Publish message to the RabbitMQ    
             await _publishEndpoint.Publish(new GameCatalogItemDeleted(existingItem.Id));
