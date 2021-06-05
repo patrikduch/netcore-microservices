@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,6 +6,7 @@
     <Product>NetMicroservices.RabbitMqWrapper.Nuget</Product>
     <PackageId>NetMicroservices.RabbitMqWrapper</PackageId>
     <Description>Wrapper for communication with RabbitMQ message broker.</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
