@@ -7,7 +7,6 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/services/Inventory/Inventory.API/Inventory.API.csproj", "src/services/Inventory/Inventory.API/"]
-
 ARG NUGET_PAT
 
 # Set environment variables
@@ -19,7 +18,6 @@ RUN wget -O - https://raw.githubusercontent.com/Microsoft/artifacts-credprovider
 
 # Restore your nugets from nuget.org and your private feed.
 RUN dotnet restore -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Messaging/nuget/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Dbs/nuget/v3/index.json" -s "https://api.nuget.org/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Configuration/nuget/v3/index.json" "src/services/Inventory/Inventory.API/Inventory.API.csproj"
-
 
 
 COPY . .
