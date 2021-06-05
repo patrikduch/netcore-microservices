@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Authors>Patrik Duch</Authors>
-    <PackageId>RabbitMqWrapper</PackageId>
-    <Description>Wrapper for communication with RabbitMQ message broker.</Description>
+    <Product>NetMicroservices.RabbitMqWrapper.Nuget</Product>
+    <PackageId>NetMicroservices.RabbitMqWrapper</PackageId>
   </PropertyGroup>
 
 </Project>

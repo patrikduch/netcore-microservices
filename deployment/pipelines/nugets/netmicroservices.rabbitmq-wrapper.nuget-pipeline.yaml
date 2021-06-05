@@ -5,7 +5,7 @@ trigger:
     - master
   paths:
     include:
-      - src/nugets/NetMicroservices.Messaging/RabbitMqWrapper/RabbitMqWrapper.Nuget/*
+      - src/nugets/NetMicroservices.Messaging/RabbitMqWrapper/NetMicroservices.RabbitMqWrapper.Nuget/*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -20,14 +20,14 @@ steps:
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
-    projects: 'src/nugets/NetMicroservices.Messaging/RabbitMqWrapper/RabbitMqWrapper.Nuget/*.csproj'
+    projects: 'src/nugets/NetMicroservices.Messaging/RabbitMqWrapper/NetMicroservices.RabbitMqWrapper.Nuget/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: "dotnet pack"
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
-    packagesToPack: 'src/nugets/NetMicroservices.Messaging/RabbitMqWrapper/RabbitMqWrapper.Nuget/*.csproj'
+    packagesToPack: 'src/nugets/NetMicroservices.Messaging/RabbitMqWrapper/NetMicroservices.RabbitMqWrapper.Nuget/*.csproj'
     nobuild: true
     versioningScheme: 'off'
 

@@ -1,7 +1,5 @@
 using GameCatalog.API.Entities;
 using GameCatalog.API.Settings;
-using MassTransit;
-using MassTransit.Definition;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,9 +12,9 @@ using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using NetMicroservices.MongoDbWrapper;
 using NetMicroservices.MongoDbWrapper.Settings;
-using RabbitMqWrapper.Nuget.Settings;
 using System;
 using System.Collections.Generic;
+
 
 namespace GameCatalog.API
 {
