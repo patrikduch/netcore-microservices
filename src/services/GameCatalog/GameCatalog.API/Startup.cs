@@ -13,6 +13,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using NetMicroservices.MongoDbWrapper;
+using NetMicroservices.MongoDbWrapper.Settings;
 using RabbitMqWrapper.Nuget.Settings;
 using System;
 using System.Collections.Generic;
@@ -57,28 +58,10 @@ namespace GameCatalog.API
             });
 
 
-            #region MassTransit
+            var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
 
-            services.AddMassTransit(config =>
-            {
-                //config.AddConsumer<OrderConsumer>();
-                var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
+            
 
-                // Definition of transport type
-                config.UsingRabbitMq((ctx, cfg) =>
-                {
-                    // Localization of RabbitMQ server host
-                    cfg.Host(rabbitMqSettings.Host);
-                    bool propageQueueFullName = false;
-                    cfg.ConfigureEndpoints(ctx, new KebabCaseEndpointNameFormatter(_serviceSettings.ServiceName, propageQueueFullName));
-
-                });
-            });
-
-
-            services.AddMassTransitHostedService();
-
-            #endregion
 
 
             #region Data contexts

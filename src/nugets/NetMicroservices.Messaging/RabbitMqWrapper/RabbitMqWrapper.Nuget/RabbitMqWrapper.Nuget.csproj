@@ -5,7 +5,12 @@
     <Authors>Patrik Duch</Authors>
     <PackageId>RabbitMqWrapper</PackageId>
     <Description>RabbitMQ wrapper</Description>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.0" />
+  </ItemGroup>
 
 </Project>
