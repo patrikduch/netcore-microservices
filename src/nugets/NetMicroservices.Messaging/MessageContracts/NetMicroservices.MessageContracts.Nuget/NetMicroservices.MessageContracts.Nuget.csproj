@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Patrik Duch</Authors>
+    <PackageId>NetMicroservices.MessageContracts</PackageId>
+    <Description>RabbitMQ message contracts to support asynchronous communication among Microservice Architecture.</Description>
+  </PropertyGroup>
+
+</Project>
