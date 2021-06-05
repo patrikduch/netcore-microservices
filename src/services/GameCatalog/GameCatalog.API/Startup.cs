@@ -12,6 +12,7 @@ using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using NetMicroservices.MongoDbWrapper;
 using NetMicroservices.MongoDbWrapper.Settings;
+using NetMicroservices.RabbitMqWrapper.Nuget;
 using System;
 using System.Collections.Generic;
 
