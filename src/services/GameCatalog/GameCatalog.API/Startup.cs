@@ -56,12 +56,9 @@ namespace GameCatalog.API
                 options.SuppressAsyncSuffixInActionNames = false;
             });
 
-
-            var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
-
-            
-
-
+            #region RabbitMQ (MassTransit)
+            services.AddMassTransitWithRabbitMq(_serviceSettings.ServiceName);
+            #endregion
 
             #region Data contexts
             services.AddScoped<IMongoContext<GameItem>>(x => new MongoContext<GameItem>(_serviceSettings.ServiceName, x.GetService<IMongoDatabase>(), new List<GameItem>
