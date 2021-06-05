@@ -36,19 +36,29 @@ stages:
     displayName: Build
     pool:
       vmImage: $(vmImageName)
-    steps:
+    steps:                
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build a docker image
       inputs:
-        command: buildAndPush
+        command: build
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        buildContext: $(Build.SourcesDirectory)/
+        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
+
+    - task: Docker@2
+      displayName: Publish a docker image
+      inputs:
+        command: push
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         tags: |
           $(tag)
-
-    - upload: deployment/aks
+        
+    - publish: deployment/aks
       artifact: aks
 
 - stage: Deploy
