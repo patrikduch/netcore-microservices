@@ -1,4 +1,4 @@
-﻿namespace GameCatalog.RabbitMq.Constants
+﻿namespace GameCatalog.API.Constants
 {
     public static class QueueConstants
     {

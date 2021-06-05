@@ -1,8 +1,8 @@
 ﻿using GameCatalog.API.Entities;
 using GameCatalog.API.Extensions;
-using GameCatalog.RabbitMq;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using NetMicroservices.MessageContracts.Nuget;
 using NetMicroservices.MongoDbWrapper;
 using System;
 using System.Collections.Generic;

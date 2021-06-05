@@ -41,8 +41,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.API", "src\servic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{3CF7F540-7A8C-4B7A-9EF6-E78441F4D900}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCatalog.RabbitMq", "src\services\GameCatalog\GameCatalog.RabbitMq\GameCatalog.RabbitMq.csproj", "{2013A895-1081-46EF-9E71-DD2AEEE440A5}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoWrapper", "MongoWrapper", "{055A3C44-3BE9-4B8C-B13E-5B4ED75F86BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{14DB75FC-AB06-4F1A-9809-37C69669557E}"
@@ -63,7 +61,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQWrapper", "RabbitMQ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.RabbitMqWrapper.Nuget", "src\nugets\NetMicroservices.Messaging\RabbitMqWrapper\NetMicroservices.RabbitMqWrapper.Nuget\NetMicroservices.RabbitMqWrapper.Nuget.csproj", "{B4616F9C-C510-4AC7-8AE5-9EB001CF7315}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMicroservices.MessageContracts.Nuget", "src\nugets\NetMicroservices.Messaging\MessageContracts\NetMicroservices.MessageContracts.Nuget\NetMicroservices.MessageContracts.Nuget.csproj", "{B5A31DAF-4B8E-48DF-8083-EF10B777603D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.MessageContracts.Nuget", "src\nugets\NetMicroservices.Messaging\MessageContracts\NetMicroservices.MessageContracts.Nuget\NetMicroservices.MessageContracts.Nuget.csproj", "{B5A31DAF-4B8E-48DF-8083-EF10B777603D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,10 +105,6 @@ Global
 		{180A08C2-3AFC-4831-BD2A-C7AE0C248C5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{180A08C2-3AFC-4831-BD2A-C7AE0C248C5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{180A08C2-3AFC-4831-BD2A-C7AE0C248C5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2013A895-1081-46EF-9E71-DD2AEEE440A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2013A895-1081-46EF-9E71-DD2AEEE440A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2013A895-1081-46EF-9E71-DD2AEEE440A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2013A895-1081-46EF-9E71-DD2AEEE440A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{529C6583-ACDB-46E1-92D3-FE3E910EC915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{529C6583-ACDB-46E1-92D3-FE3E910EC915}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{529C6583-ACDB-46E1-92D3-FE3E910EC915}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -159,7 +153,6 @@ Global
 		{562FC8CE-40EC-44ED-9ADA-82A5E947860C} = {8E0724A5-6B17-4699-836F-445ACB28A4C7}
 		{180A08C2-3AFC-4831-BD2A-C7AE0C248C5C} = {3CF7F540-7A8C-4B7A-9EF6-E78441F4D900}
 		{3CF7F540-7A8C-4B7A-9EF6-E78441F4D900} = {568D619C-7FF9-4B77-BDC5-37D97FFF2A58}
-		{2013A895-1081-46EF-9E71-DD2AEEE440A5} = {3AF5971E-7082-424D-ACF9-1B5CEE70B7A1}
 		{055A3C44-3BE9-4B8C-B13E-5B4ED75F86BE} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
 		{14DB75FC-AB06-4F1A-9809-37C69669557E} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
 		{529C6583-ACDB-46E1-92D3-FE3E910EC915} = {14DB75FC-AB06-4F1A-9809-37C69669557E}

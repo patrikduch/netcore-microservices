@@ -1,9 +1,6 @@
-using GameCatalog.RabbitMq.Constants;
-using GameCatalog.RabbitMq.Consumers;
 using Inventory.API.Data;
 using Inventory.API.Repositories;
 using Inventory.API.Settings;
-using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +11,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using NetMicroservices.RabbitMqWrapper.Nuget;
 
 namespace Inventory.API
 {
@@ -37,32 +35,9 @@ namespace Inventory.API
             services.AddControllers();
             #endregion
 
-            #region MassTransit
-
-            services.AddMassTransit(config =>
-            {
-                config.AddConsumer<GameCatalogConsumer>();
-
-                //config.AddConsumer<OrderConsumer>();
-                var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
-
-                // Definition of transport type
-                config.UsingRabbitMq((ctx, cfg) =>
-                {
-                    // Localization of RabbitMQ server host
-                    cfg.Host(rabbitMqSettings.Host);
-
-                    cfg.ReceiveEndpoint(QueueConstants.GameCatalogQueue, action =>
-                    {
-                        action.ConfigureConsumer<GameCatalogConsumer>(ctx);
-                    });
-                });
-            });
-
-            services.AddMassTransitHostedService();
-    
+            #region RabbitMQ (MassTransit)
+            services.AddMassTransitWithRabbitMq(_serviceSettings.ServiceName);
             #endregion
-
 
             services.AddSwaggerGen(c =>
             {

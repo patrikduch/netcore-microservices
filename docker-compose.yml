@@ -74,6 +74,8 @@ services:
     build:
       context: .
       dockerfile: src/services/Inventory/Inventory.API/Dockerfile
+      args:
+        - NUGET_PAT
 
   web.spa:
     image: ${DOCKER_REGISTRY-}webspa
