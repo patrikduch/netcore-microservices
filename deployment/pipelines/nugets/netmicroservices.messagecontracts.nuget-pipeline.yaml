@@ -1,0 +1,43 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+      - src/nugets/NetMicroservices.Messaging/MessageContracts/NetMicroservices.MessageContracts.Nuget/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    projects: 'src/nugets/NetMicroservices.Messaging/MessageContracts/NetMicroservices.MessageContracts.Nuget/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack"
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: 'src/nugets/NetMicroservices.Messaging/MessageContracts/NetMicroservices.MessageContracts.Nuget/*.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  displayName: 'nuget push'
+  inputs:
+    command: 'push'
+    feedsToUse: 'select'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'netmicroservices/NetMicroservices.Messaging'
+    versioningScheme: 'off'
+    allowPackageConflicts: true
