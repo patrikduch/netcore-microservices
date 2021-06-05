@@ -1,4 +1,4 @@
-﻿namespace RabbitMqWrapper.Nuget.Settings
+﻿namespace RabbitMqWrapper.Nuget
 {
     /// <summary>
     /// Connection setting for RabbitMQ service bus.

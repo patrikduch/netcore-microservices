@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTimeTransmission.API", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQWrapper", "RabbitMQWrapper", "{ABCC8CFD-4D53-42D5-9B73-695184BB793E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqWrapper.Nuget", "src\nugets\NetMicroservices.Messaging\RabbitMqWrapper\RabbitMqWrapper.Nuget\RabbitMqWrapper.Nuget.csproj", "{BD884512-2DA6-4C94-9589-1531D62D98FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqWrapper.Nuget", "src\nugets\NetMicroservices.Messaging\RabbitMqWrapper\RabbitMqWrapper.Nuget\RabbitMqWrapper.Nuget.csproj", "{FA09FA38-06BA-4568-9049-C52928AD8F99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,10 +129,10 @@ Global
 		{179268BE-251B-4C7D-8E10-A9D61B186ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{179268BE-251B-4C7D-8E10-A9D61B186ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{179268BE-251B-4C7D-8E10-A9D61B186ADC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD884512-2DA6-4C94-9589-1531D62D98FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD884512-2DA6-4C94-9589-1531D62D98FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD884512-2DA6-4C94-9589-1531D62D98FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD884512-2DA6-4C94-9589-1531D62D98FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA09FA38-06BA-4568-9049-C52928AD8F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA09FA38-06BA-4568-9049-C52928AD8F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA09FA38-06BA-4568-9049-C52928AD8F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA09FA38-06BA-4568-9049-C52928AD8F99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,7 +163,7 @@ Global
 		{807B20D7-9B71-4F93-AAFE-3129AB88FB86} = {568D619C-7FF9-4B77-BDC5-37D97FFF2A58}
 		{179268BE-251B-4C7D-8E10-A9D61B186ADC} = {807B20D7-9B71-4F93-AAFE-3129AB88FB86}
 		{ABCC8CFD-4D53-42D5-9B73-695184BB793E} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
-		{BD884512-2DA6-4C94-9589-1531D62D98FE} = {ABCC8CFD-4D53-42D5-9B73-695184BB793E}
+		{FA09FA38-06BA-4568-9049-C52928AD8F99} = {ABCC8CFD-4D53-42D5-9B73-695184BB793E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61E0CB2F-1B7F-4DEF-9463-F5C807E66E33}

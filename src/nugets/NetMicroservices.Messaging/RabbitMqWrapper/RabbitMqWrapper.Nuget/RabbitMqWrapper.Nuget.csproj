@@ -1,16 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <Authors>Patrik Duch</Authors>
     <PackageId>RabbitMqWrapper</PackageId>
-    <Description>RabbitMQ wrapper</Description>
-    <Version>1.4.0</Version>
+    <Description>Wrapper for communication with RabbitMQ message broker.</Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.0" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.0" />
-  </ItemGroup>
 
 </Project>
