@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-gw-deployment
+  labels:
+    app: web-gw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-gw
+  template:
+    metadata:
+      labels:
+        app: web-gw
+    spec:
+      containers:
+        - name: basketapi
+          image:  netcoremicroservicesacr.azurecr.io/webgw:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+          
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-gw-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: web-gw
+  ports:
+    - protocol: TCP
+      port: 80
