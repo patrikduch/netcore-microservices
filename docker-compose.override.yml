@@ -53,7 +53,6 @@ services:
     depends_on:
       - realtimetransmission.api
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - "SignalRSettings__ConnectionString=http://localhost:8090"
     ports:
@@ -91,17 +90,6 @@ services:
       - "ServiceSettings__ServiceName=Catalog"
     ports:
       - "8083:80"
-
-  webapi-gw:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
-    ports:
-      - "8084:80"
-      - "443"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   discount.grpc:
     container_name: discountgrpc
@@ -162,4 +150,16 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "8090:80"
+
+
+
+  web-gw:
+    container_name: webgwservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9000:80"
+
+    depends_on:
+      - catalog.api
 

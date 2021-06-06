@@ -24,6 +24,13 @@ namespace Web_GW
                 app.UseDeveloperExceptionPage();
             }
 
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             await app.UseOcelot();
         }
     }

@@ -38,12 +38,6 @@ services:
       context: .
       dockerfile: src/services/Basket/Basket.API/Dockerfile
 
-  webapi-gw:
-    image: ${DOCKER_REGISTRY-}webapigw
-    build:
-      context: .
-      dockerfile: src/services/API-Gws/WebAPI-GW/Dockerfile
-
   discount.grpc:
     image: ${DOCKER_REGISTRY-}discountgrpc
     build:
@@ -90,12 +84,20 @@ services:
       context: .
       dockerfile: src/services/RealTimeTransmission/RealTimeTransmission.API/Dockerfile
 
+  web-gw:
+    image: ${DOCKER_REGISTRY-}webgw
+    build:
+      context: .
+      dockerfile: src/services/API-Gws/Web-GW/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
   rabbitmq_data:
 
    
+
+
 
 
 

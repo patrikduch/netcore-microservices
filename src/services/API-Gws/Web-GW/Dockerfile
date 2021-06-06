@@ -7,7 +7,6 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/services/API-Gws/Web-GW/Web-GW.csproj", "src/services/API-Gws/Web-GW/"]
-COPY ["src/services/API-Gws/Web-GW/configuration.dev.json", "src/services/API-Gws/Web-GW/"]
 RUN dotnet restore "src/services/API-Gws/Web-GW/Web-GW.csproj"
 COPY . .
 WORKDIR "/src/src/services/API-Gws/Web-GW"

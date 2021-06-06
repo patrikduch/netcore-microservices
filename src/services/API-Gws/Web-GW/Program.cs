@@ -15,6 +15,10 @@ namespace Web_GW
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
 
+                .ConfigureAppConfiguration((hostingCtx, config) =>
+                {
+                    config.AddJsonFile($"ocelot.{hostingCtx.HostingEnvironment.EnvironmentName}.json", true, true);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
