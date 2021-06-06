@@ -19,7 +19,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '67976f45-a518-44c8-a5ba-e0b3ae47e3be'
-  imageRepository: 'basketapi'
+  imageRepository: 'webgw'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/API-Gws/Web-GW/Dockerfile'
   tag: '$(Build.BuildId)'
