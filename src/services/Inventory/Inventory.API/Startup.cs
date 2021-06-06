@@ -1,5 +1,4 @@
-using Inventory.API.Data;
-using Inventory.API.Repositories;
+using Inventory.API.Entities;
 using Inventory.API.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +10,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using NetMicroservices.MongoDbWrapper;
+using NetMicroservices.MongoDbWrapper.Settings;
 using NetMicroservices.RabbitMqWrapper.Nuget;
+using System.Collections.Generic;
 
 namespace Inventory.API
 {
@@ -29,7 +31,7 @@ namespace Inventory.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+            _serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
             #region MVC
             services.AddControllers();
@@ -67,12 +69,15 @@ namespace Inventory.API
                 return mongoClient.GetDatabase(_serviceSettings.ServiceName);
             });
 
+
             #region Data contexts
-            services.AddScoped<IInventoryContext, InventoryContext>();
+            services.AddScoped<IMongoContext<InventoryItem>>(x => new MongoContext<InventoryItem>(_serviceSettings.ServiceName, x.GetService<IMongoDatabase>(), new List<InventoryItem>
+            {
+            }));
             #endregion
 
             #region Data repositories
-            services.AddScoped<IInventoryRepository, InventoryRepository>();
+            services.AddScoped<IMongoRepository<InventoryItem>, MongoRepository<InventoryItem>>();
             #endregion
         }
 

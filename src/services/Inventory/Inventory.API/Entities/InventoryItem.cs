@@ -1,11 +1,12 @@
-﻿using System;
+﻿using NetMicroservices.MongoDbWrapper;
+using System;
 
 namespace Inventory.API.Entities
 {
     /// <summary>
     /// Entity for representation inventory items.
     /// </summary>
-    public class InventoryItem
+    public class InventoryItem : IMongoEntity
     {
         /// <summary>
         /// Gets or sets inventory item identifier.
