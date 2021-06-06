@@ -2,12 +2,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace NetCoreMicroservices.APIGateway
+namespace Web_GW
 {
     public class Program
     {
@@ -18,9 +14,17 @@ namespace NetCoreMicroservices.APIGateway
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+
+                .ConfigureLogging((hostingCtx, loggingBuilder) =>
+                {
+                    loggingBuilder.AddConfiguration(hostingCtx.Configuration.GetSection("Logging"));
+                    loggingBuilder.AddConsole();
+                    loggingBuilder.AddDebug();
                 });
     }
 }

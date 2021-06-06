@@ -2,15 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-    <UserSecretsId>fb3d7245-1849-4531-81e6-10ec5ea22dc0</UserSecretsId>
+    <RootNamespace>Web_GW</RootNamespace>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Ocelot" Version="17.0.0" />
   </ItemGroup>
 
 </Project>

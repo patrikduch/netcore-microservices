@@ -58,11 +58,13 @@ helm install rabbitmq-service  azure-marketplace/rabbitmq
  kubectl port-forward --namespace default svc/rabbitmq-service 15672:15672
 ```
 
-
 ###### Ingress controllers
 .\deployment\aks\helm\extensions\ingress\install.bat
 
 ##### Microservices deployment
+
+##### Web API Gateway
+kubectl apply -f .\deployment\aks\services\api-gateways\web-gw\
 
 ##### Basket microservice (WebAPI + Redis)
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
@@ -109,7 +111,7 @@ kubectl apply -f .\deployment\aks\services\inventory\inventory-db\
 ###### Required secrets
 
 ```bash
-kubectl create secret generic inventory-db-secret --from-literal=Host=inventory-db-service --from-literal=CollectionName=inventories --from-literal=DatabaseName=InventoryDb --from-literal=Port=27017 --from-literal=ServiceName=Inventory --from-literal=Username=patrikduch --from-literal=Password=bcduchpatrik07041993--from-literal=RABBITMQ_HOST=amqp://user:UVpizt6Tzj@rabbitmq-service:5672
+kubectl create secret generic inventory-db-secret --from-literal=Host=inventory-db-service --from-literal=CollectionName=inventories --from-literal=DatabaseName=InventoryDb --from-literal=Port=27017 --from-literal=ServiceName=Inventory --from-literal=Username=patrikduch --from-literal=Password=bcduchpatrik07041993 --from-literal=RABBITMQ_HOST=amqp://user:UVpizt6Tzj@rabbitmq-service:5672
 ```
 
 ##### RealTimeTransmission microservice (SignalR + Redis backplane)
