@@ -79,7 +79,7 @@ kind: Service
 metadata:
   name: game-catalog-api-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: game-catalog-api
   ports:
