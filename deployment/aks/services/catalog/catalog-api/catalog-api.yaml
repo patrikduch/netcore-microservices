@@ -71,7 +71,7 @@ kind: Service
 metadata:
   name: catalog-api-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: catalog-api
   ports:
