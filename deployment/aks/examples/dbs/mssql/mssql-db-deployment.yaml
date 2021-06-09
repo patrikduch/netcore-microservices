@@ -29,7 +29,7 @@ spec:
         - name: SA_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mssql
+              name: mssql-db-secret
               key: SA_PASSWORD 
         volumeMounts:
         - name: mssqldb
