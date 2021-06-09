@@ -70,6 +70,8 @@ kubectl apply -f .\deployment\aks\services\api-gateways\web-gw\
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
 kubectl apply -f .\deployment\aks\services\basket\basket-db\
 
+
+
 ###### Required secrets
 
 ```bash
@@ -127,8 +129,14 @@ kubectl apply -f .\deployment\aks\webapps\
 
 ##### Examples
 kubectl apply -f .\deployment\aks\examples\ingress-controller\without-cors\
-kubectl apply -f .\deployment\aks\examples\postgres\
-kubectl apply -f .\deployment\aks\examples\redis\
+
+
+###### Db examples
+
+kubectl apply -f .\deployment\aks\examples\dbs\postgres\
+kubectl apply -f .\deployment\aks\examples\dbs\redis\
+kubectl apply -f .\deployment\aks\examples\dbs\mssql\
+
 
 
 ### AKS netcoreMicroservices cluster
