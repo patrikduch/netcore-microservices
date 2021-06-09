@@ -35,7 +35,7 @@ namespace Inventory.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<InventoryItemDto>>> GetAllAsync()
         {
             var items = await _inventoryRepository.GetAllAsync();
