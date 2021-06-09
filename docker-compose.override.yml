@@ -161,6 +161,7 @@ services:
       - "9000:80"
 
     depends_on:
+      - basket.api
       - catalog.api
       - gamecatalog.api
       - inventory.api
