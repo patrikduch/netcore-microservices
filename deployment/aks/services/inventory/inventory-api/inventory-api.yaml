@@ -77,7 +77,7 @@ kind: Service
 metadata:
   name: inventory-api-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: inventory-api
   ports:
