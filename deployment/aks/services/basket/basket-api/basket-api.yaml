@@ -43,7 +43,7 @@ kind: Service
 metadata:
   name: basket-api-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: basket-api
   ports:
