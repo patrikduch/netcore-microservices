@@ -162,4 +162,5 @@ services:
 
     depends_on:
       - catalog.api
+      - gamecatalog.api
 
