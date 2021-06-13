@@ -1,7 +1,7 @@
 ﻿namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
 {
     /// <summary>
-    /// DTO for Order mediator design pattern.
+    /// View model class for Order mediator design pattern.
     /// </summary>
     public class OrdersVm
     {
