@@ -142,8 +142,6 @@ services:
     ports:
       - "8089:80"
 
-
-
   realtimetransmission.api:
     container_name: realtimetransmissionapi
     environment:
@@ -151,7 +149,11 @@ services:
     ports:
       - "8090:80"
 
-
+  ordering.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8091:80"
 
   web-gw:
     container_name: webgwservice
@@ -165,4 +167,6 @@ services:
       - catalog.api
       - gamecatalog.api
       - inventory.api
+
+
 
