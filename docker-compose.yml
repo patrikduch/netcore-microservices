@@ -96,12 +96,19 @@ services:
       context: .
       dockerfile: src/services/Ordering/Ordering.API/Dockerfile
 
+  customer.api:
+    image: ${DOCKER_REGISTRY-}customerapi
+    build:
+      context: .
+      dockerfile: src/services/Customer/Customer.API/Dockerfile
+
 volumes:
   postgres_data:
   pgadmin_data:
   rabbitmq_data:
 
    
+
 
 
 

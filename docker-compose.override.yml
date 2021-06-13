@@ -155,6 +155,12 @@ services:
     ports:
       - "8091:80"
 
+  customer.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8092:80"
+
   web-gw:
     container_name: webgwservice
     environment:
@@ -167,6 +173,8 @@ services:
       - catalog.api
       - gamecatalog.api
       - inventory.api
+
+
 
 
 
