@@ -1,16 +1,15 @@
-﻿using Ordering.Domain.Common;
-
-namespace Ordering.Domain.Entities
+﻿namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
 {
     /// <summary>
-    /// Order domain entity object.
+    /// DTO for Order mediator design pattern.
     /// </summary>
-    public class Order : EntityBase
+    public class OrdersVm
     {
-        public string Username { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
         public decimal TotalPrice { get; set; }
 
-        // Billing Address
+        // BillingAddress
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
@@ -18,7 +17,6 @@ namespace Ordering.Domain.Entities
         public string Country { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-
 
         // Payment
         public string CardName { get; set; }
