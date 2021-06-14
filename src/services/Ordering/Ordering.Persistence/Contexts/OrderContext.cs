@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ordering.Domain.Common;
+using NetMicroservices.SqlWrapper.Nuget;
 using Ordering.Domain.Entities;
 using System;
 using System.Threading;

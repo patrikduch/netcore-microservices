@@ -4,4 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Behaviours\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="Features\Commands\" />
+    <Folder Include="Features\Queries\GetAllCustomers\" />
+  </ItemGroup>
+
 </Project>

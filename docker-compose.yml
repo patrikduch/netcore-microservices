@@ -95,12 +95,16 @@ services:
     build:
       context: .
       dockerfile: src/services/Ordering/Ordering.API/Dockerfile
+      args:
+        - NUGET_PAT
 
   customer.api:
     image: ${DOCKER_REGISTRY-}customerapi
     build:
       context: .
       dockerfile: src/services/Customer/Customer.API/Dockerfile
+      args:
+        - NUGET_PAT
 
 volumes:
   postgres_data:

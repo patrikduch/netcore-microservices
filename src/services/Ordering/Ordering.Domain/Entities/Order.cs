@@ -1,4 +1,4 @@
-﻿using Ordering.Domain.Common;
+﻿using NetMicroservices.SqlWrapper.Nuget;
 
 namespace Ordering.Domain.Entities
 {
