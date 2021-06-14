@@ -121,6 +121,11 @@ kubectl apply -f .\deployment\aks\services\realtime-transmission\realtime-transm
 kubectl apply -f .\deployment\aks\services\realtime-transmission\realtime-transmission-db\
 
 
+##### Ordering microservice (WebAPI) 
+kubectl apply -f .\deployment\aks\services\ordering\ordering-api\
+
+
+
 ##### K8s extensions (Ingress, etc.)
 kubectl apply -f .\deployment\aks\extensions\
 

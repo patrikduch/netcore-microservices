@@ -29,6 +29,7 @@ docker tag webspa:latest netcoremicroservicesacr.azurecr.io/webspa:v1
 docker tag realtimetransmissionapi:latest netcoremicroservicesacr.azurecr.io/realtimetransmissionapi:v1
 docker tag inventoryapi:latest netcoremicroservicesacr.azurecr.io/inventoryapi:v1 
 docker tag webgw:latest netcoremicroservicesacr.azurecr.io/webgw:v1 
+docker tag orderingapi:latest netcoremicroservicesacr.azurecr.io/orderingapi:v1 
 
 
 # Push images to registry
@@ -42,6 +43,7 @@ docker push netcoremicroservicesacr.azurecr.io/webspa:v1
 docker push netcoremicroservicesacr.azurecr.io/realtimetransmissionapi:v1
 docker push netcoremicroservicesacr.azurecr.io/inventoryapi:v1 
 docker push netcoremicroservicesacr.azurecr.io/webgw:v1
+docker push netcoremicroservicesacr.azurecr.io/orderingapi:v1
 
 az acr login --name netcoremicroservicesacr
 

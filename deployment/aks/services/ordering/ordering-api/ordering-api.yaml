@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ordering-api-deployment
+  labels:
+    app: ordering-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ordering-api
+  template:
+    metadata:
+      labels:
+        app: ordering-api
+    spec:
+      containers:
+        - name: ordering-api
+          image:  netcoremicroservicesacr.azurecr.io/orderingapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ordering-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: ordering-api
+  ports:
+    - protocol: TCP
+      port: 80
