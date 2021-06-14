@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NetMicroservices.SqlWrapper
+namespace NetMicroservices.SqlWrapper.Nuget
 {
     /// <summary>
     /// Common fields for all SqlServer entities.
