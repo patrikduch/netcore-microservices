@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
 {
     /// <summary>
-    /// Mediator handler of  <seealso cref="GetOrdersListQuery"/> object. 
+    /// Mediator handler of <seealso cref="GetOrdersListQuery"/> object. 
     /// </summary>
     public class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, List<OrdersVm>>
     {

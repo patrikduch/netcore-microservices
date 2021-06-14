@@ -1,12 +1,18 @@
-﻿using Ordering.Domain.Common;
+﻿using MediatR;
+using Ordering.Domain.Entities;
 
-namespace Ordering.Domain.Entities
+namespace Ordering.Application.Features.Commands.UpdateOrder
 {
     /// <summary>
-    /// Order domain entity object.
+    /// CQRS update functionality for particular <seealso cref="Order"/> entity.
     /// </summary>
-    public class Order : EntityBase
+    public class UpdateOrderCommand : IRequest
     {
+        /// <summary>
+        /// Gets or sets numeric order identifier.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets name of order owner.
         /// </summary>
@@ -26,53 +32,52 @@ namespace Ordering.Domain.Entities
         /// Gets or sets order owner last name.
         /// </summary>
         public string LastName { get; set; }
-        
+
         /// <summary>
         /// Gets or sets order owner e-mail address.
         /// </summary>
         public string EmailAddress { get; set; }
-        
+
         /// <summary>
         /// Gets or sets order owner address line.
         /// </summary>
         public string AddressLine { get; set; }
-        
+
         /// <summary>
         /// Gets or sets owner's country name.
         /// </summary>
         public string Country { get; set; }
-        
+
         /// <summary>
         /// Gets or sets owner's state name.
         /// </summary>
         public string State { get; set; }
-        
+
         /// <summary>
         /// Gets or sets zipcode of owner's billing address.
         /// </summary>
         public string ZipCode { get; set; }
 
-
         /// <summary>
         /// Gets or sets name of owner credit card.
         /// </summary>
         public string CardName { get; set; }
-        
+
         /// <summary>
         /// Gets or sets number of owner credit card.
         /// </summary>
         public string CardNumber { get; set; }
-        
+
         /// <summary>
         /// Gets or sets expiration date of owner credit card.
         /// </summary>
         public string Expiration { get; set; }
-        
+
         /// <summary>
         /// Gets or sets card CVV verification code.
         /// </summary>
         public string CVV { get; set; }
-        
+
         /// <summary>
         /// Gets or sets type of payment method.
         /// </summary>

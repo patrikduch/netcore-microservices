@@ -7,6 +7,9 @@ namespace Ordering.Application.Features.Commands.CheckoutOrder
     /// </summary>
     public class CheckoutOrderCommandValidator : AbstractValidator<CheckoutOrderCommand>
     {
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="CheckoutOrderCommandValidator"/>.
+        /// </summary>
         public CheckoutOrderCommandValidator()
         {
             RuleFor(p => p.Username)

@@ -5,10 +5,13 @@ using System.Collections.Generic;
 namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
 {
     /// <summary>
-    /// Request class for Order Query object.
+    /// Request class for Query object.
     /// </summary>
     public class GetOrdersListQuery : IRequest<List<OrdersVm>>
     {
+        /// <summary>
+        /// Gets or sets owner username.
+        /// </summary>
         public string Username { get; set; }
 
         /// <summary>
