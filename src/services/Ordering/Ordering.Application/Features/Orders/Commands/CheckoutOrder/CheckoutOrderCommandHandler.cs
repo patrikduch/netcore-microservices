@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Ordering.Application.Contacts.Infrastructure;
-using Ordering.Application.Contacts.Persistence;
+using Ordering.Application.Contracts.Infrastructure;
+using Ordering.Application.Contracts.Persistence;
 using Ordering.Application.Models;
 using Ordering.Domain.Entities;
 using System;

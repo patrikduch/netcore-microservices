@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using Ordering.Application.Contacts.Persistence;
+using Ordering.Application.Contracts.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Threading;
