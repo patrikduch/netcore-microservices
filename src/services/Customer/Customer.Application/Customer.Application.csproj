@@ -6,9 +6,16 @@
 
   <ItemGroup>
     <Folder Include="Behaviours\" />
-    <Folder Include="Contracts\" />
     <Folder Include="Features\Commands\" />
     <Folder Include="Features\Queries\GetAllCustomers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetMicroservices.SqlWrapper" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Customer.Domain\Customer.Domain.csproj" />
   </ItemGroup>
 
 </Project>

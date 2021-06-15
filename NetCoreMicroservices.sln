@@ -77,7 +77,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Persistence", "src\services\Ordering\Ordering.Persistence\Ordering.Persistence.csproj", "{A4D4E1F9-CC55-4E15-B261-0CDE0AA7CE33}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customer", "Customer", "{BF053AFE-EC0B-4253-A347-AF4A17B91729}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customers", "Customers", "{BF053AFE-EC0B-4253-A347-AF4A17B91729}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer.API", "src\services\Customer\Customer.API\Customer.API.csproj", "{083B4526-4EC6-467A-A078-FED1C8E1359A}"
 EndProject
