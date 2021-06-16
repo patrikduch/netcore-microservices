@@ -38,11 +38,11 @@ namespace Ordering.Persistence.Contexts
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedAt = DateTime.Now;
-                        entry.Entity.CreatedBy = "swn";
+                        entry.Entity.CreatedBy = "patrikduch";
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedDate = DateTime.Now;
-                        entry.Entity.LastModifiedBy = "swn";
+                        entry.Entity.LastModifiedBy = "patrikduch";
                         break;
                 }
             }
