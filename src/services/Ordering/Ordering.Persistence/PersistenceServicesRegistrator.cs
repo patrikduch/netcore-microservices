@@ -3,7 +3,7 @@
     /// <summary>
     /// Registration of persistence services.
     /// </summary>
-    public static class PersistenceServiceRegistrator
+    public static class PersistenceServicesRegistrator
     {
     }
 }

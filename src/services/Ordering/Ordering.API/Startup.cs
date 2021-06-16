@@ -28,7 +28,7 @@ namespace Ordering.API
             });
 
 
-            ApplicationServiceRegistrator.AddApplicationServices(services);
+            ApplicationServicesRegistrator.AddApplicationServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
