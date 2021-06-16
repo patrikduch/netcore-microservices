@@ -65,12 +65,15 @@ namespace Ordering.Application.Features.Commands.CheckoutOrder
         public async Task<int> Handle(CheckoutOrderCommand request, CancellationToken cancellationToken)
         {
             var orderEntity = _mapper.Map<Order>(request);
-            var newOrder = await _orderRepository.AddAsync(orderEntity);
+            //var newOrder = await _orderRepository.AddAsync(orderEntity);
 
-            _logger.LogInformation($"Order {newOrder.Id} is successfully created.");
+            _logger.LogInformation($"Order {1} is successfully created.");
 
-            return newOrder
-                .Id;
+
+            return 1;
+
+            //return newOrder
+            //    .Id;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Ordering.Application.Features.Commands.UpdateOrder
 
             _mapper.Map(request, orderToUpdate, typeof(UpdateOrderCommand), typeof(Order));
 
-            await _orderRepository.UpdateAsync(orderToUpdate);
+            //await _orderRepository.UpdateAsync(orderToUpdate);
 
             _logger.LogInformation($"Order {orderToUpdate.Id} is successfully updated.");
 

@@ -7,6 +7,12 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/services/Ordering/Ordering.API/Ordering.API.csproj", "src/services/Ordering/Ordering.API/"]
+COPY ["src/services/Ordering/Ordering.Application/Ordering.Application.csproj", "src/services/Ordering/Ordering.Application/"]
+COPY ["src/services/Ordering/Ordering.Domain/Ordering.Domain.csproj", "src/services/Ordering/Ordering.Domain/"]
+COPY ["src/services/Ordering/Ordering.Infrastructure/Ordering.Infrastructure.csproj", "src/services/Ordering/Ordering.Infrastructure/"]
+COPY ["src/services/Ordering/Ordering.Persistence/Ordering.Persistence.csproj", "src/services/Ordering/Ordering.Persistence/"]
+
+
 
 ARG NUGET_PAT
 

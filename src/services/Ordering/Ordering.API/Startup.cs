@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Ordering.Application;
+using Ordering.Infrastructure;
+using Ordering.Persistence;
 
 namespace Ordering.API
 {
@@ -29,6 +31,8 @@ namespace Ordering.API
 
 
             ApplicationServicesRegistrator.AddApplicationServices(services);
+            InfrastructureServicesRegistrator.AddInfrastructureServices(services, Configuration);
+            PersistenceServicesRegistrator.AddPersistenceServices(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
