@@ -124,10 +124,12 @@ kubectl apply -f .\deployment\aks\services\realtime-transmission\realtime-transm
 ##### Ordering microservice (WebAPI) 
 kubectl apply -f .\deployment\aks\services\ordering\ordering-api\
 
+```bash
+kubectl create secret generic ordering-api-secret --from-literal="ConnectionString=Server=mssql-deployment;Database=OrderDb;User Id=sa Password=bcduchpatrik07041993"
+```
+
 ##### Customer microservice (WebAPI) 
 kubectl apply -f .\deployment\aks\services\customer\customer-api\
-
-
 
 ##### K8s extensions (Ingress, etc.)
 kubectl apply -f .\deployment\aks\extensions\
