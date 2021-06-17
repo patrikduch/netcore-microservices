@@ -38,7 +38,7 @@ kind: Service
 metadata:
   name: ordering-api-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: ordering-api
   ports:
