@@ -71,7 +71,6 @@ kubectl apply -f .\deployment\aks\services\basket\basket-api\
 kubectl apply -f .\deployment\aks\services\basket\basket-db\
 
 
-
 ###### Required secrets
 
 ```bash
@@ -159,7 +158,6 @@ MSSQL
 ```bash
 kubectl create secret generic mssql-db-secret --from-literal=SA_PASSWORD=bcduchpatrik07041993
 ```
-
 
 ### AKS netcoreMicroservices cluster
 
