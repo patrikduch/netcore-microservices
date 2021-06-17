@@ -134,6 +134,17 @@ kubectl create secret generic ordering-db-secret --from-literal=SA_PASSWORD=bcdu
 
 ##### Customer microservice (WebAPI) 
 kubectl apply -f .\deployment\aks\services\customer\customer-api\
+kubectl apply -f .\deployment\aks\services\customer\customer-db\
+
+```bash
+kubectl create secret generic customer-api-secret --from-literal="ConnectionString=Server=customer-db-service;Database=CustomerDb;User Id=sa; Password=bcduchpatrik07041993"
+```
+
+```bash
+kubectl create secret generic customer-db-secret --from-literal=SA_PASSWORD=bcduchpatrik07041993
+```
+
+
 
 ##### K8s extensions (Ingress, etc.)
 kubectl apply -f .\deployment\aks\extensions\
