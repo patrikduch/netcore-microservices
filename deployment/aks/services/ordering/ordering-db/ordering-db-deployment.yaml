@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ordering-db-deployment
+spec:
+  replicas: 1
+  selector:
+     matchLabels:
+       app: ordering-db
+  template:
+    metadata:
+      labels:
+        app: ordering-db
+    spec:
+      terminationGracePeriodSeconds: 30
+      hostname: mssqlinst
+      securityContext:
+        fsGroup: 10001
+      containers:
+      - name: mssql
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        ports:
+        - containerPort: 1433
+        env:
+        - name: MSSQL_PID
+          value: "Developer"
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ordering-db-secret
+              key: SA_PASSWORD 
+        volumeMounts:
+        - name: orderingdbvolume
+          mountPath: /var/opt/mssql
+      volumes:
+      - name: orderingdbvolume
+        persistentVolumeClaim:
+          claimName: ordering-db-data
