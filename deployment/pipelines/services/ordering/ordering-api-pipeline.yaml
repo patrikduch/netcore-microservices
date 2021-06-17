@@ -17,7 +17,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '67976f45-a518-44c8-a5ba-e0b3ae47e3be'
-  imageRepository: 'realtimetransmissionapi'
+  imageRepository: 'orderingapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Ordering/Ordering.API/Dockerfile'
   tag: '$(Build.BuildId)'
