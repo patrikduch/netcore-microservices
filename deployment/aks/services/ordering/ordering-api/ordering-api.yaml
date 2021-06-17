@@ -22,7 +22,14 @@ spec:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: Development
+              value: Release
+              
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  secretKeyRef:
+                    name: ordering-api-secret
+                    key: ConnectionString
+
       imagePullSecrets:
         - name: acr-secret
 ---
