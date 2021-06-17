@@ -95,7 +95,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlWrapper", "SqlWrapper", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dbs", "Dbs", "{49003256-E5AC-473A-8A44-D5BEA2874A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMicroservices.SqlWrapper.Nuget", "src\nugets\NetMicroservices.Dbs\NetMicroservices.SqlWrapper\NetMicroservices.SqlWrapper.Nuget\NetMicroservices.SqlWrapper.Nuget.csproj", "{6D17D8D5-E5CB-4D81-BC1E-A498F63C2984}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.SqlWrapper.Nuget", "src\nugets\NetMicroservices.Dbs\NetMicroservices.SqlWrapper\NetMicroservices.SqlWrapper.Nuget\NetMicroservices.SqlWrapper.Nuget.csproj", "{6D17D8D5-E5CB-4D81-BC1E-A498F63C2984}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

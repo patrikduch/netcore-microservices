@@ -24,8 +24,10 @@ namespace Ordering.Persistence
         {
             services.AddScoped<DbContext, OrderContext>();
 
+            var res = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
+
             services.AddDbContext<OrderContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("OrderingConnectionString")));
+                options.UseSqlServer((configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
 
             services.AddScoped(typeof(IAsyncRepository<Order>), typeof(RepositoryBase<Order, OrderContext>));
             services.AddScoped<IOrderRepository, OrderRepository>();

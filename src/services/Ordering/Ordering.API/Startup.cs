@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Ordering.API.Settings;
 using Ordering.Application;
 using Ordering.Infrastructure;
 using Ordering.Persistence;
@@ -28,6 +29,10 @@ namespace Ordering.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ordering.API", Version = "v1" });
             });
+
+            #region DatabaseSettings setup
+            services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
+            #endregion
 
 
             ApplicationServicesRegistrator.AddApplicationServices(services);

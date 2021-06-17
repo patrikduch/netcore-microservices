@@ -161,6 +161,7 @@ services:
   ordering.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;"
     ports:
       - "8091:80"
 
