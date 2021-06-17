@@ -87,7 +87,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/services/realtime-transmission/realtime-transmission-api/realtime-transmission-api.yaml
+                $(Pipeline.Workspace)/aks/services/ordering/ordering-api/ordering-api.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
