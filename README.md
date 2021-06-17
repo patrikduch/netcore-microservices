@@ -128,6 +128,7 @@ kubectl apply -f .\deployment\aks\services\ordering\ordering-api\
 kubectl apply -f .\deployment\aks\services\customer\customer-api\
 
 
+
 ##### K8s extensions (Ingress, etc.)
 kubectl apply -f .\deployment\aks\extensions\
 
