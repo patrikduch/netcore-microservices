@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Ordering.Application.Exceptions
+namespace NetMicroservices.MediatorWrapper.Nuget.Exceptions
 {
     /// <summary>
     /// Custom exception handler when particular item is not valid.

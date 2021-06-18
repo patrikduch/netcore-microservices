@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ValidationException = Ordering.Application.Exceptions.ValidationException;
 
-namespace Ordering.Application.Behaviours
+namespace NetMicroservices.MediatorWrapper.Nuget.Behaviors
 {
     /// <summary>
     /// Validation executor that will check all registered validations.
@@ -26,7 +25,8 @@ namespace Ordering.Application.Behaviours
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
 
-            if (_validators.Any()) {
+            if (_validators.Any())
+            {
                 var ctx = new ValidationContext<TRequest>(request);
 
                 var validationResults = await Task.WhenAll(_validators.Select(v => v.ValidateAsync(ctx)));
@@ -35,12 +35,11 @@ namespace Ordering.Application.Behaviours
 
                 if (failures.Count != 0)
                 {
-                    throw new  ValidationException(failures);
+                    throw new ValidationException(failures);
                 }
             }
 
             return await next();
         }
     }
-
 }
