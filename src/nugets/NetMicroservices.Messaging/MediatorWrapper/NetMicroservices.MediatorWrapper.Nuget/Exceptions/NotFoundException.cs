@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ordering.Application.Exceptions
+namespace NetMicroservices.MediatorWrapper.Nuget.Exceptions
 {
     /// <summary>
     /// Custom exception handler when particular item doesn't exists.
