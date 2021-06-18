@@ -7,5 +7,5 @@ namespace Customer.Application.Contracts
     ///  Data repository contract of <seealso cref="Person"/> entity.
     /// </summary>
     public interface IPersonRepository : IAsyncRepository<Person>
-    {}
+    { }
 }

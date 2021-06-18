@@ -1,3 +1,5 @@
+using Customer.API.Configurations;
+using Customer.Application;
 using Customer.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +29,11 @@ namespace Customer.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer.API", Version = "v1" });
             });
 
+            #region DatabaseSettings setup
+            services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
+            #endregion
+
+            ApplicationServicesRegistrator.AddApplicationServices(services);
             PersistenceServicesRegistrator.AddPersistenceServices(services, Configuration);
 
         }

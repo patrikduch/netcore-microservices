@@ -18,6 +18,9 @@ services:
   order.db:
     image: mcr.microsoft.com/mssql/server:2017-latest
 
+  customer.db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
 

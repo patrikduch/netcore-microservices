@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Customer.Application.Features.Queries.GetAllCustomers;
+using Customer.Application.Features.Queries.GetOrderList;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Customer.API.Controllers
 {
@@ -7,9 +12,29 @@ namespace Customer.API.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private readonly IMediator _mediatR;
+
+        /// <summary>
+        /// Initializes a new instance of the <seealso cref="CustomerController"/>.
+        /// </summary>
+        /// <param name="mediatR">Mediator dependency object.</param>
+        public CustomerController(IMediator mediatR)
+        {
+            _mediatR = mediatR ?? throw new ArgumentNullException(nameof(mediatR));
+        }
 
 
+        /// <summary>
+        /// Get the list of customers.
+        /// </summary>
+        /// <returns>Collection of all customers.</returns>
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<PersonVm>>> GetPersonsList()
+        {
+            var query = new GetPersonsListQuery();
+            var personsList = await _mediatR.Send(query);
 
-
+            return Ok(personsList);
+        }
     }
 }
