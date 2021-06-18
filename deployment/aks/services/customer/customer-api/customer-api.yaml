@@ -23,6 +23,11 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Release
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  secretKeyRef:
+                    name: customer-api-secret
+                    key: ConnectionString
 
       imagePullSecrets:
         - name: acr-secret
