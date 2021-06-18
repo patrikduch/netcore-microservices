@@ -97,6 +97,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dbs", "Dbs", "{49003256-E5A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.SqlWrapper.Nuget", "src\nugets\NetMicroservices.Dbs\NetMicroservices.SqlWrapper\NetMicroservices.SqlWrapper.Nuget\NetMicroservices.SqlWrapper.Nuget.csproj", "{6D17D8D5-E5CB-4D81-BC1E-A498F63C2984}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MediatorWrapper", "MediatorWrapper", "{6C1CB36E-DDD4-44E3-A812-792CE351E5DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMicroservices.MediatorWrapper.Nuget", "src\nugets\NetMicroservices.Messaging\MediatorWrapper\NetMicroservices.MediatorWrapper.Nuget\NetMicroservices.MediatorWrapper.Nuget.csproj", "{823C244E-3D8C-442D-9CCC-A39182C9B9BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -219,6 +223,10 @@ Global
 		{6D17D8D5-E5CB-4D81-BC1E-A498F63C2984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D17D8D5-E5CB-4D81-BC1E-A498F63C2984}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D17D8D5-E5CB-4D81-BC1E-A498F63C2984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{823C244E-3D8C-442D-9CCC-A39182C9B9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823C244E-3D8C-442D-9CCC-A39182C9B9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823C244E-3D8C-442D-9CCC-A39182C9B9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823C244E-3D8C-442D-9CCC-A39182C9B9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -267,6 +275,8 @@ Global
 		{53B6F11E-F8F6-4C99-888A-5131470C7256} = {49003256-E5AC-473A-8A44-D5BEA2874A89}
 		{49003256-E5AC-473A-8A44-D5BEA2874A89} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
 		{6D17D8D5-E5CB-4D81-BC1E-A498F63C2984} = {53B6F11E-F8F6-4C99-888A-5131470C7256}
+		{6C1CB36E-DDD4-44E3-A812-792CE351E5DB} = {FA6EE94A-06E6-4621-89C6-EDE430C5887F}
+		{823C244E-3D8C-442D-9CCC-A39182C9B9BC} = {6C1CB36E-DDD4-44E3-A812-792CE351E5DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61E0CB2F-1B7F-4DEF-9463-F5C807E66E33}

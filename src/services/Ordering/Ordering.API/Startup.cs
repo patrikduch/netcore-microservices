@@ -34,7 +34,6 @@ namespace Ordering.API
             services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
             #endregion
 
-
             ApplicationServicesRegistrator.AddApplicationServices(services);
             InfrastructureServicesRegistrator.AddInfrastructureServices(services, Configuration);
             PersistenceServicesRegistrator.AddPersistenceServices(services, Configuration);

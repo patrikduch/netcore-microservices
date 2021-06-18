@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using NetMicroservices.MediatorWrapper.Nuget.Exceptions;
 using Ordering.Application.Contracts.Persistence;
-using Ordering.Application.Exceptions;
 using Ordering.Domain.Entities;
 using System;
 using System.Threading;

@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Behaviours\**" />
+    <Compile Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Behaviours\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <None Remove="Behaviours\**" />
+    <None Remove="Exceptions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
   </ItemGroup>
 
@@ -15,6 +24,7 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.2.3" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="NetMicroservices.MediatorWrapper" Version="1.3.0" />
     <PackageReference Include="NetMicroservices.SqlWrapper" Version="1.2.0" />
   </ItemGroup>
 

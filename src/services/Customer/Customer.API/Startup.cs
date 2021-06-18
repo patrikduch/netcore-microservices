@@ -1,3 +1,4 @@
+using Customer.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,9 @@ namespace Customer.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer.API", Version = "v1" });
             });
+
+            PersistenceServicesRegistrator.AddPersistenceServices(services, Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,9 +2,14 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using NetMicroservices.MediatorWrapper.Nuget.Behaviors;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ordering.Application
+namespace Customer.Application
 {
     /// <summary>
     /// Registration of application services.
@@ -27,5 +32,6 @@ namespace Ordering.Application
 
             return services;
         }
+
     }
 }
