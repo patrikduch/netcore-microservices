@@ -37,7 +37,7 @@ kind: Service
 metadata:
   name: customer-api-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: customer-api
   ports:
