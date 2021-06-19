@@ -3,16 +3,18 @@ using Customer.Application.Contracts;
 using Customer.Application.Features.Queries.GetAllCustomers;
 using Customer.Application.Features.Queries.GetOrderList;
 using MediatR;
+using NetMicroservices.ServiceConfig.Nuget;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ServiceBase = NetMicroservices.ServiceConfig.Nuget.ServiceBase;
 
 namespace Customer.Application.Features.Queries.GetPersonsList
 {
-    public class GetPersonsListQueryHandler : IRequestHandler<GetPersonsListQuery, List<PersonVm>>
+    public class GetPersonsListQueryHandler : ServiceBase, IRequestHandler<GetPersonsListQuery, Result<List<PersonVm>>>
     {
         private readonly IMapper _mapper;
         private readonly IPersonRepository _personRepository;
@@ -23,13 +25,11 @@ namespace Customer.Application.Features.Queries.GetPersonsList
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<List<PersonVm>> Handle(GetPersonsListQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<PersonVm>>> Handle(GetPersonsListQuery request, CancellationToken cancellationToken)
         {
             var personList = await _personRepository.GetAllAsync();
 
-            var test =  _mapper.Map<List<PersonVm>>(personList);
-
-            return test;
+            return Ok(_mapper.Map<List<PersonVm>>(personList));
         }
     }
 }

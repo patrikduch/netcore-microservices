@@ -17,6 +17,7 @@
 	  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
 	  <PackageReference Include="NetMicroservices.MediatorWrapper" Version="1.1.0" />
+	  <PackageReference Include="NetMicroservices.ServiceConfig" Version="1.1.0" />
 	  <PackageReference Include="NetMicroservices.SqlWrapper" Version="1.2.0" />
   </ItemGroup>
 
