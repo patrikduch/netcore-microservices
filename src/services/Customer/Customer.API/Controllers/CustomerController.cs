@@ -1,5 +1,4 @@
 ﻿using Customer.Application.Features.Queries.GetAllCustomers;
-using Customer.Application.Features.Queries.GetOrderList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,12 +28,13 @@ namespace Customer.API.Controllers
         /// </summary>
         /// <returns>Collection of all customers.</returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PersonVm>>> GetPersonsList()
+        [Produces("application/json")]
+        public async Task<IActionResult> GetPersonsList()
         {
             var query = new GetPersonsListQuery();
             var personsList = await _mediatR.Send(query);
 
-            return Ok(personsList);
+            return Ok((personsList));
         }
     }
 }
