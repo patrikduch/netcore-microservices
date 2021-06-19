@@ -33,17 +33,16 @@ The project contains a fake authorization system, so you can change it to Identi
 ## App startup
 
 ### Run with  CLI
-sudo dotnet run --project ./AspnetCore.React.Redux.Web.csproj
+sudo dotnet run --project ./Web.Spa.csproj
 
 ## Deployment
-
 
 ### classic production build script
 dotnet publish -c Release 
 
 ### more advanced production build script
 
-dotnet publish AspnetReactReduxTemplate.sln -c Release -o out
+dotnet publish [name].sln -c Release -o out
 
 
 

@@ -5,14 +5,17 @@ import { IPersonModel } from "@Models/IPersonModel";
 
 export default class PersonService extends ServiceBase {
 
-    public async search(term: string = null): Promise<Result<IPersonModel[]>> {
+    public async search(term: string = null): Promise<any> {
         if (term == null) {
             term = "";
         }
-        var result = await this.requestJson<IPersonModel[]>({
-            url: `/api/Person/Search?term=${term}`,
+        var result = await this.requestJson<any>({
+            url: `http://20.86.197.55/Customer`,
             method: "GET"
         });
+
+        debugger;
+
         return result;
     }
 

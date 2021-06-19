@@ -15,12 +15,6 @@ namespace WebSpa.TypeScript.Controllers
             PersonService = personService;
         }
 
-        [HttpGet("[action]")]
-        public IActionResult Search([FromQuery]string term = null)
-        {
-            return Json(PersonService.Search(term));
-        }
-
         [HttpPost("[action]")]
         public IActionResult Add(PersonModel model)
         {

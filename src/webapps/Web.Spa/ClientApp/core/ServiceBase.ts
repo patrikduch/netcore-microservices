@@ -37,6 +37,8 @@ export abstract class ServiceBase {
             if (data) {
                 return `${url}?${queryString.stringify(data)}`;
             }
+
+            debugger;
             return url;
         };
 
@@ -76,6 +78,7 @@ export abstract class ServiceBase {
             }
             result = new Result(axiosResult.data.value, ...axiosResult.data.errors);
         } catch (error) {
+            debugger;
             result = new Result(null, error.message);
         }
 

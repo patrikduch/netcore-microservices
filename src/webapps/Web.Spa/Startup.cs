@@ -44,7 +44,7 @@ namespace WebSpa.TypeScript
 
             // Add your own services here.
             services.AddScoped<AccountService>();
-            services.AddScoped<PersonService>();
+            // services.AddScoped<PersonService>();
             services.AddScoped<ProjectDetailService>();
         }
 
