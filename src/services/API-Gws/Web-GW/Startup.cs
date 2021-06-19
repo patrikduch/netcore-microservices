@@ -14,6 +14,19 @@ namespace Web_GW
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                    builder
+                    .WithOrigins(
+                        "http://localhost"
+                    )
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    );
+            });
+
             services.AddOcelot()
                  .AddKubernetesFixed();
         }
@@ -28,11 +41,13 @@ namespace Web_GW
 
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
+           
             await app.UseOcelot();
         }
     }
