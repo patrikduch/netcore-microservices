@@ -19,7 +19,8 @@ namespace Web_GW
                 options.AddPolicy("CorsPolicy", builder =>
                     builder
                     .WithOrigins(
-                        "http://localhost"
+                        "http://localhost",
+                        "http://20.86.224.155" // Web.Spa
                     )
                     .AllowAnyMethod()
                     .AllowAnyHeader()
