@@ -1,6 +1,8 @@
 ﻿using Customer.Application.Features.Queries.GetAllCustomers;
+using Customer.Application.Features.Queries.GetOrderList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using NetMicroservices.ServiceConfig.Nuget;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -29,12 +31,12 @@ namespace Customer.API.Controllers
         /// <returns>Collection of all customers.</returns>
         [HttpGet]
         [Produces("application/json")]
-        public async Task<IActionResult> GetPersonsList()
+        public async Task<ActionResult<Result<PersonVm>>> GetPersonsList()
         {
             var query = new GetPersonsListQuery();
             var personsList = await _mediatR.Send(query);
 
-            return Ok((personsList));
+            return Ok(personsList);
         }
     }
 }
