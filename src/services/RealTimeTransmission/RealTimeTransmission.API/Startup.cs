@@ -24,17 +24,14 @@ namespace RealTimeTransmission.API
             // var connectionString = "http://20.86.224.21:6379/";
 
             #region Redis connection configuration
-            services.AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
-            });
+            //services.AddStackExchangeRedisCache(options =>
+            //{
+            //  options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
+            //});
             #endregion
 
 
-            services.AddSignalR().AddStackExchangeRedis(Configuration.GetValue<string>("CacheSettings:ConnectionString"), configure => {
-                configure.Configuration.ClientName = "RealTimeTransmissionSignalR";
-            
-            });
+            services.AddSignalR();
 
             services.AddCors();
 
@@ -70,7 +67,7 @@ namespace RealTimeTransmission.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                // endpoints.MapHub<ViewHub>("/hubs/view");
+                endpoints.MapHub<ViewHub>("/hubs/view");
             });
         }
     }
