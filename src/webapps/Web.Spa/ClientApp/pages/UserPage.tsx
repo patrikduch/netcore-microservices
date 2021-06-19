@@ -3,16 +3,17 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 import { RouteComponentProps, withRouter } from "react-router";
 import { IPersonModel } from "@Models/IPersonModel";
-import * as personStore from "@Store/personStore";
 import { withStore } from "@Store/index";
 import Paginator from "@Components/shared/Paginator";
 import AwesomeDebouncePromise from "awesome-debounce-promise";
-import { paginate, getPromiseFromActionCreator } from "@Utils";
-import { Modal, Button, Container, Row, Card } from "react-bootstrap";
+import { paginate } from "@Utils";
+import { Container } from "react-bootstrap";
 import { wait } from "domain-wait";
 import * as projectDetailStore from '@Store/projectDetailStore';
+import * as customerStore from '@Store/customerStore';
+import PageTitle from "@Components/common/headings/page-title/Page-Title";
 
-type Props = typeof personStore.actionCreators & typeof projectDetailStore.actionCreators & personStore.IPersonStoreState & RouteComponentProps<{}>;
+type Props = typeof customerStore.actionCreators & typeof projectDetailStore.actionCreators & customerStore.ICustomerStoreState & RouteComponentProps<{}>;
 
 
 interface IState {
@@ -31,6 +32,16 @@ class UserPage extends React.Component<Props, IState> {
 
     private debouncedSearch: (term: string) => void;
 
+    private renderRows = (data: IPersonModel[]) => {
+        return paginate(data, this.state.currentPageNum, this.state.limitPerPage)
+            .map(person =>
+                <tr>
+                    <td>{person.firstName}</td>
+                    <td>{person.lastName}</td>
+                </tr>
+            );
+    }
+
     constructor(props: Props) {
         super(props);
 
@@ -46,36 +57,21 @@ class UserPage extends React.Component<Props, IState> {
 
         // "AwesomeDebouncePromise" makes a delay between
         // the end of input term and search request.
-        this.debouncedSearch = AwesomeDebouncePromise((term: string) => {
-            props.search(term);
+        this.debouncedSearch = AwesomeDebouncePromise(() => {
+            props.getAll();
         }, 500);
 
-
-
         wait(async () => {
             // Lets tell Node.js to wait for the request completion.
             // It's necessary when you want to see the fethched data 
             // in your prerendered HTML code (by SSR).
-            await this.props.search();
-        }, "examplesPageTask");
-
-        wait(async () => {
-            // Lets tell Node.js to wait for the request completion.
-            // It's necessary when you want to see the fethched data 
-            // in your prerendered HTML code (by SSR).
-            await this.props.getProjectDetail();
-        }, "projectDetailTask");
+            //await this.props.getAll();
+            //await this.props.getProjectDetail();
+            await this.props.getAll();
+        }, "personTask");
     }
 
-    private renderRows = (data: IPersonModel[]) => {
-        return paginate(data, this.state.currentPageNum, this.state.limitPerPage)
-            .map(person =>
-                <tr key={person.id}>
-                    <td>{person.firstName}</td>
-                    <td>{person.lastName}</td>
-                </tr>
-            );
-    }   
+   
     render() {
 
         return <Container className='page-container'>
@@ -85,8 +81,9 @@ class UserPage extends React.Component<Props, IState> {
                 <meta property="og:title" content="E-commerce template | Users" />
                 <title>E-commerce template | Users</title>
             </Helmet>
-    
-            <h1 className='mb-4'>User list</h1>
+            
+            <PageTitle>User list</PageTitle>
+
             <table className="table">
                 <thead>
                     <tr>
@@ -98,6 +95,7 @@ class UserPage extends React.Component<Props, IState> {
                     {this.renderRows(this.props.collection)}
                 </tbody>
             </table>
+
 
             <Paginator
                 ref={x => this.paginator = x}
@@ -113,8 +111,8 @@ class UserPage extends React.Component<Props, IState> {
 // Connect component with Redux store.
 const connectedComponent = withStore(
     UserPage,
-    state => state.person, // Selects which state properties are merged into the component's props.
-    {...personStore.actionCreators, ...projectDetailStore.actionCreators}, // Selects which action creators are merged into the component's props.
+    state => state.customers, // Selects which state properties are merged into the component's props.
+    {...projectDetailStore.actionCreators, ...customerStore.actionCreators}, // Selects which action creators are merged into the component's props.
 );
 
 // Attach the React Router to the component to have an opportunity

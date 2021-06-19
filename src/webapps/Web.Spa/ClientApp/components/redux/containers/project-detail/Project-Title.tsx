@@ -1,7 +1,6 @@
 ﻿import * as React from "react";
-
 import { withStore } from "@Store/index";
-import * as projectDetailStore from "@Store/projectDetailStore";
+
 
 
 class ProjectTitle extends React.Component<any, any> {
@@ -11,7 +10,7 @@ class ProjectTitle extends React.Component<any, any> {
         return (
 
             <div>
-                {this.props.name}
+                Ecommerce-Template
 
             </div>
         );

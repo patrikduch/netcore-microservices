@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Helmet } from 'react-helmet';
-import { withStore } from '@Store/index';
-import * as projectDetailStore from '@Store/projectDetailStore';
 import { withRouter } from 'react-router';
-import { wait } from 'domain-wait';
 
 import OwnerInfoContainer from '@Components/public-side/owner-info/Owner-Info-Container';
 import HorizontalLine from '@Components/common/horizontal-lines/Horizontal-Line';
@@ -32,12 +29,6 @@ class HomePage extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {
         super(props);
-        wait(async () => {
-            // Lets tell Node.js to wait for the request completion.
-            // It's necessary when you want to see the fethched data 
-            // in your prerendered HTML code (by SSR).
-            await this.props.getProjectDetail();
-        }, "projectDetailTask");
     }
     render() {
 
@@ -98,20 +89,12 @@ class HomePage extends React.Component<IProps, IState> {
             </div>
         );
     }
-
 }
 
-
-// Connect component with Redux store.
-const connectedComponent = withStore(
-    HomePage,
-    state => state.projectDetail, // Selects which state properties are merged into the component's props.
-    projectDetailStore.actionCreators, // Selects which action creators are merged into the component's props.
-);
 
 // Attach the React Router to the component to have an opportunity
 // to interract with it: use some navigation components, 
 // have an access to React Router fields in the component's props, etc.
-export default withRouter(connectedComponent);
+export default withRouter(HomePage);
 
 

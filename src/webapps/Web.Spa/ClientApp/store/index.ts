@@ -1,13 +1,13 @@
+import * as customerStore from '@Store/customerStore';
 import * as loginStore from "@Store/loginStore";
-import * as personStore from "@Store/personStore";
 import * as projectDetailStore from "@Store/projectDetailStore";
 import { connect } from "react-redux";
 
 // The top-level state object.
 export interface IApplicationState {
     login: loginStore.ILoginStoreState;
-    person: personStore.IPersonStoreState;
-    projectDetail: projectDetailStore.IProjectDetailStoreState
+    projectDetail: projectDetailStore.IProjectDetailStoreState,
+    customers: customerStore.ICustomerStoreState,
 }
 
 // Whenever an action is dispatched, Redux will update each top-level application state property using
@@ -15,8 +15,8 @@ export interface IApplicationState {
 // acts on the corresponding ApplicationState property type.
 export const reducers = {
     login: loginStore.reducer,
-    person: personStore.reducer,
-    projectDetail: projectDetailStore.reducer
+    projectDetail: projectDetailStore.reducer,
+    customers: customerStore.reducer 
 };
 
 // This type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are

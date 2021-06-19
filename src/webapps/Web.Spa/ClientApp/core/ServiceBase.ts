@@ -31,14 +31,13 @@ export abstract class ServiceBase {
         var axiosResult = null;
         var result = null;
 
-        opts.url = transformUrl(opts.url); // Allow requests also for the Node.
+        //opts.url = transformUrl(opts.url); // Allow requests also for the Node.
 
         var processQuery = (url: string, data: any): string => {
+
             if (data) {
                 return `${url}?${queryString.stringify(data)}`;
             }
-
-            debugger;
             return url;
         };
 
@@ -54,14 +53,20 @@ export abstract class ServiceBase {
             axiosRequestConfig = {
                 headers: {
                     Cookie: cookie
-                }
+                },
             }
         }
 
         try {
             switch (opts.method) {
                 case "GET":
-                    axiosResult = await Axios.get(processQuery(opts.url, opts.data), axiosRequestConfig);
+                    var finalUrl = "http://20.86.197.55"+opts.url;
+                    axiosResult = await Axios.get(processQuery(finalUrl, opts.data), axiosRequestConfig);
+
+                    console.log("axios");
+                    console.log(finalUrl);
+
+    
                     break;
                 case "POST":
                     axiosResult = await Axios.post(opts.url, opts.data, axiosRequestConfig);
