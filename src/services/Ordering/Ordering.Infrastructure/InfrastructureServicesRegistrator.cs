@@ -13,7 +13,7 @@ namespace Ordering.Infrastructure
         /// Definition of service sets that are being used by Infrastructure project.
         /// </summary>
         /// <param name="services">Service collection fo Dependency Injection Container.</param>
-        /// <returns></returns>
+        /// <returns>Collection of Dependency Injection services.</returns>
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             //services.Configure<EmailSettings>(c => configuration.GetSection("EmailSettings"));
