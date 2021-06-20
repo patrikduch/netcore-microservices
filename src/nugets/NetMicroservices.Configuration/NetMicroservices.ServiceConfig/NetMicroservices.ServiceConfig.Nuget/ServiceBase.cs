@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.ExceptionServices;
 
 namespace NetMicroservices.ServiceConfig.Nuget
 {

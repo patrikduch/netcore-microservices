@@ -1,7 +1,5 @@
 import * as React from "react";
-import { Route, RouteProps, Redirect } from "react-router";
-import SessionManager from "@Core/session";
-import responseContext from "@Core/responseContext";
+import { Route, RouteProps} from "react-router";
 
 export interface IProps extends RouteProps {
     layout: React.ComponentClass<any>;
