@@ -1,8 +1,8 @@
-using Customer.API.Extensions;
 using Customer.Persistence.Contexts;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NetMicroservices.SqlWrapper.Nuget.Extensions;
 
 namespace Customer.API
 {
@@ -14,7 +14,6 @@ namespace Customer.API
 
                  .MigrateDatabase<PersonContext>((context, services) =>
                  {
-
                      var logger = services.GetService(typeof(ILogger<PersonContextSeed>)) as ILogger<PersonContextSeed>;
 
                      PersonContextSeed
