@@ -17,6 +17,10 @@ const TopMenu: React.FC = () => {
                 <LinkContainer exact to={'/'}>
                     <Nav.Link>Home</Nav.Link>
                 </LinkContainer>
+                
+                <LinkContainer exact to={'/products'}>
+                    <Nav.Link>Products</Nav.Link>
+                </LinkContainer>
 
                 <LinkContainer exact to={'/users'}>
                     <Nav.Link>Users</Nav.Link>

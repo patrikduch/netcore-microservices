@@ -1,5 +1,4 @@
-﻿import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
-import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
+﻿import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
 import ProjectDetailService from '../services/ProjectDetailService';
 
 export interface IProjectDetailStoreState {
@@ -20,10 +19,6 @@ const slice = createSlice({
         },
 
         setProjectDetail: (state, action: PayloadAction<string>) => {
-
-            console.log("Patrik Duch");
-            console.log(action.payload);
-            debugger;
             state.name = action.payload;
         },
     }

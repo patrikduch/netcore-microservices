@@ -31,7 +31,7 @@ docker tag inventoryapi:latest netcoremicroservicesacr.azurecr.io/inventoryapi:v
 docker tag webgw:latest netcoremicroservicesacr.azurecr.io/webgw:v1 
 docker tag orderingapi:latest netcoremicroservicesacr.azurecr.io/orderingapi:v1 
 docker tag customerapi:latest netcoremicroservicesacr.azurecr.io/customerapi:v1 
-
+docker tag projectdetailapi:latest netcoremicroservicesacr.azurecr.io/projectdetailapi:v1 
 
 # Push images to registry
 docker push netcoremicroservicesacr.azurecr.io/basketapi:v1
