@@ -2,12 +2,14 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Helmet } from 'react-helmet';
 import { withRouter } from 'react-router';
-
 import OwnerInfoContainer from '@Components/public-side/owner-info/Owner-Info-Container';
 import HorizontalLine from '@Components/common/horizontal-lines/Horizontal-Line';
 import WebStatisticsContainer from '@Components/public-side/website-statistics/Website-Statistics-Container';
 import ParagraphBasic from '@Components/common/paragraph/Paragraph-Basic';
 import AnchorBasic from '@Components/common/anchor-tag/Anchor-Basic';
+import { withStore } from "@Store/index";
+import * as projectDetailStore from '@Store/projectDetailStore';
+import { wait } from 'domain-wait';
 
 
 /**
@@ -29,7 +31,17 @@ class HomePage extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {
         super(props);
+
+        wait(async () => {
+            // Lets tell Node.js to wait for the request completion.
+            // It's necessary when you want to see the fethched data 
+            // in your prerendered HTML code (by SSR).
+            //await this.props.getAll();
+            //await this.props.getProjectDetail();
+            await this.props.getProjectDetail();
+        }, "homepageTask");
     }
+
     render() {
 
         return (
@@ -92,9 +104,15 @@ class HomePage extends React.Component<IProps, IState> {
 }
 
 
+// Connect component with Redux store.
+const connectedComponent = withStore(
+    HomePage,
+    state => state.customers, // Selects which state properties are merged into the component's props.
+    {...projectDetailStore.actionCreators }, // Selects which action creators are merged into the component's props.
+);
+
 // Attach the React Router to the component to have an opportunity
 // to interract with it: use some navigation components, 
 // have an access to React Router fields in the component's props, etc.
-export default withRouter(HomePage);
-
+export default withRouter(connectedComponent);
 

@@ -1,20 +1,25 @@
 ﻿import * as React from "react";
 import { withStore } from "@Store/index";
 
+/**
+ * @interface IProps Component's props interface.
+ */
+interface IProps {
+    name?: string; // Name of the web-application
+}
 
+/**
+ * @function ProjectTitle Displays name of web-application.
+ * @param name Current name of web-application.
+ * @returns JSX for displaying name of web-application.
+ */
+const ProjectTitle: React.FC<IProps> = ({ name }) => {
 
-class ProjectTitle extends React.Component<any, any> {
-
-    render() {
-
-        return (
-
-            <div>
-                Ecommerce-Template
-
-            </div>
-        );
-    }
+    return (
+        <>
+            {name}
+        </>
+    )
 }
 
 

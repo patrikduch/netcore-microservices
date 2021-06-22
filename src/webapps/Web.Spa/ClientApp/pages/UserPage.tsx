@@ -68,6 +68,7 @@ class UserPage extends React.Component<Props, IState> {
             //await this.props.getAll();
             //await this.props.getProjectDetail();
             await this.props.getAll();
+            await this.props.getProjectDetail();
         }, "personTask");
     }
 

@@ -7,7 +7,7 @@ export default class ProjectDetailService extends ServiceBase {
     public async getDetails(): Promise<Result<IProjectDetailModel>> {
       
         var result = await this.requestJson<IProjectDetailModel>({
-            url: `/api/project`,
+            url: `/ProjectDetail`,
             method: "GET"
         });
         return result;
