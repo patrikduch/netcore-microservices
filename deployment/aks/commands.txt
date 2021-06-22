@@ -46,6 +46,8 @@ docker push netcoremicroservicesacr.azurecr.io/inventoryapi:v1
 docker push netcoremicroservicesacr.azurecr.io/webgw:v1
 docker push netcoremicroservicesacr.azurecr.io/orderingapi:v1
 docker push netcoremicroservicesacr.azurecr.io/customerapi:v1
+docker push netcoremicroservicesacr.azurecr.io/projectdetailapi:v1
+
 
 az acr login --name netcoremicroservicesacr
 

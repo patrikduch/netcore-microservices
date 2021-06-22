@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-detail-api-deployment
+  labels:
+    app: project-detail-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project-detail-api
+  template:
+    metadata:
+      labels:
+        app: project-detail-api
+    spec:
+      containers:
+        - name: projectdetailapi
+          image:  netcoremicroservicesacr.azurecr.io/projectdetailapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  secretKeyRef:
+                    name: project-detail-api-secret
+                    key: ConnectionString
+
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project-detail-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: project-detail-api
+  ports:
+    - protocol: TCP
+      port: 80

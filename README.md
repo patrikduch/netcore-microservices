@@ -132,7 +132,7 @@ kubectl create secret generic ordering-api-secret --from-literal="ConnectionStri
 kubectl create secret generic ordering-db-secret --from-literal=SA_PASSWORD=bcduchpatrik07041993
 ```
 
-##### Customer microservice (WebAPI) 
+##### Customer microservice (WebAPI + MSSQL database) 
 kubectl apply -f .\deployment\aks\services\customer\customer-api\
 kubectl apply -f .\deployment\aks\services\customer\customer-db\
 
@@ -142,6 +142,19 @@ kubectl create secret generic customer-api-secret --from-literal="ConnectionStri
 
 ```bash
 kubectl create secret generic customer-db-secret --from-literal=SA_PASSWORD=bcduchpatrik07041993
+```
+
+##### ProjectDetail microservice (WebAPI + MSSQL database) 
+
+kubectl apply -f .\deployment\aks\services\project-detail\project-detail-api\
+kubectl apply -f .\deployment\aks\services\project-detail\project-detail-db\
+
+```bash
+kubectl create secret generic project-detail-api-secret --from-literal="ConnectionString=Server=project-detail-db-service;Database=ProjectDetailDb;User Id=sa; Password=bcduchpatrik07041993"
+```
+
+```bash
+kubectl create secret generic project-detail-db-secret --from-literal=SA_PASSWORD=bcduchpatrik07041993
 ```
 
 
