@@ -21,6 +21,9 @@ services:
   customer.db:
     image: mcr.microsoft.com/mssql/server:2017-latest
 
+  projectdetail.db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
@@ -112,12 +115,21 @@ services:
       args:
         - NUGET_PAT
 
+  projectdetail.api:
+    image: ${DOCKER_REGISTRY-}projectdetailapi
+    build:
+      context: .
+      dockerfile: src/services/ProjectDetail/ProjectDetail.API/Dockerfile
+      args:
+        - NUGET_PAT
+
 volumes:
   postgres_data:
   pgadmin_data:
   rabbitmq_data:
 
    
+
 
 
 

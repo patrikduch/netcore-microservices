@@ -20,7 +20,7 @@ namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
         /// Initializes a new instance of the <seealso cref="GetOrdersListQueryHandler"/> request query handler mediator object.
         /// </summary>
         /// <param name="orderRepository">Data repository</param>
-        /// <param name="mapper"></param>
+        /// <param name="mapper">Domain to Application object mapper dependency.</param>
         public GetOrdersListQueryHandler(IOrderRepository orderRepository, IMapper mapper)
         {
             _orderRepository = orderRepository ?? throw new ArgumentException(nameof(orderRepository));

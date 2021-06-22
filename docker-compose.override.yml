@@ -44,6 +44,15 @@ services:
     ports:
         - "1432:1433"
 
+  projectdetail.db:
+    container_name: projectdetaildb
+    environment:
+        SA_PASSWORD: "SwN12345678"
+        ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+        - "1431:1433"
+
   pgadmin:
     container_name: pgadmin
     environment:
@@ -185,6 +194,15 @@ services:
       - "8092:80"
     depends_on:
       - customer.db
+  
+  projectdetail.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=projectdetaildb;Database=ProjectDb;User Id=sa;Password=SwN12345678;"
+    ports:
+      - "8093:80"
+    depends_on:
+      - projectdetail.db
 
   web-gw:
     container_name: webgwservice
@@ -196,10 +214,9 @@ services:
     depends_on:
       - basket.api
       - catalog.api
+      - customer.api
       - gamecatalog.api
       - inventory.api
-
-
-
+      - projectdetail.api
 
 
