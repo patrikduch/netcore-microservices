@@ -75,7 +75,7 @@ class ProductPage extends React.Component<Props, IState> {
             <Helmet>
                 <meta data-react-helmet="true" name="title" content="E-commerce template | Users"/>
                 <meta property="og:title" content="E-commerce template | Products" />
-                <title>E-commerce template | Users</title>
+                <title>E-commerce template | Products</title>
             </Helmet>
             
             <PageTitle>Product page</PageTitle>
@@ -98,9 +98,6 @@ class ProductPage extends React.Component<Props, IState> {
                 limitPerPage={this.state.limitPerPage}
                 currentPage={this.state.currentPageNum}
                 onChangePage={(pageNum) => this.setState({ currentPageNum: pageNum })} />
-
-       
-
         </Container>;
     }
 }

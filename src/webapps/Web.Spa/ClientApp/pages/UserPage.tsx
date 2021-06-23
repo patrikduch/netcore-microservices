@@ -72,7 +72,6 @@ class UserPage extends React.Component<Props, IState> {
         }, "personTask");
     }
 
-   
     render() {
 
         return <Container className='page-container'>
@@ -96,7 +95,6 @@ class UserPage extends React.Component<Props, IState> {
                     {this.renderRows(this.props.collection)}
                 </tbody>
             </table>
-
 
             <Paginator
                 ref={x => this.paginator = x}
