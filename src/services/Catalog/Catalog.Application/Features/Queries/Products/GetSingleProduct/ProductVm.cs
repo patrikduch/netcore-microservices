@@ -1,19 +1,10 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using NetMicroservices.MongoDbWrapper;
 using System;
 
-namespace Catalog.API.Entities
+namespace Catalog.Application.Features.Queries.Products.GetSingleProduct
 {
-    /// <summary>
-    /// Entity that represents set of products.
-    /// </summary>
-    public class Product : IMongoEntity
+    public class ProductVm
     {
-        /// <summary>
-        /// Gets or sets product's identifier.
-        /// </summary>
-        //[BsonId]
-        // [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public Guid Id { get; set; }
 
         /// <summary>

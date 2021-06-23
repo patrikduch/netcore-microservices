@@ -1,7 +1,8 @@
-﻿using Catalog.API.Entities;
+﻿using Catalog.Application.Features.Queries.Products.GetProducts;
+using Catalog.Application.Features.Queries.Products.GetSingleProduct;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using NetMicroservices.MongoDbWrapper;
+using NetMicroservices.ServiceConfig.Nuget;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -13,28 +14,38 @@ namespace Catalog.API.Controllers
     [Route("/api/v1/[controller]")]
     public class CatalogController : ControllerBase
     {
-        private readonly IMongoRepository<Product> _productRepository;
-        private readonly ILogger<CatalogController> _logger;
+        private readonly IMediator _mediatR;
 
         /// <summary>
         /// Initializes a new instance of the <seealso cref="CatalogController"/> class.
         /// </summary>
-        /// <param name="productRepository">Dependency for <seealso cref="ProductRepository"/> class.</param>
-        /// <param name="logger">Dependency for <seealso cref="ILogger"/> class.</param>
-        public CatalogController(IMongoRepository<Product> productRepository, ILogger<CatalogController> logger)
+        public CatalogController(IMediator mediatR)
         {
-            _logger = logger;
-            _productRepository = productRepository;
+            _mediatR = mediatR ?? throw new ArgumentNullException(nameof(mediatR));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Product>), (int) HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        [ProducesResponseType(typeof(Result<List<ProductsVm>>), (int) HttpStatusCode.OK)]
+        public async Task<ActionResult<Result<ProductsVm>>> GetProducts()
         {
-            var products = await _productRepository.GetAllAsync();
-            return Ok(products);
+            var query = new GetProductsQuery();
+            var result = await _mediatR.Send(query);
+
+            return Ok(result);
         }
 
+       [HttpGet("{id}")]
+       [ProducesResponseType((int)HttpStatusCode.NotFound)]
+       [ProducesResponseType(typeof(Result<ProductVm>), (int)HttpStatusCode.OK)]
+       public async Task<ActionResult<Result<ProductVm>>> GetProductById(Guid id)
+       {
+           var query = new GetProductQuery(id);
+           var product = await _mediatR.Send(query);
+
+           return Ok(product);
+       }
+       
+        /*
         [HttpGet("{id:length(24)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
@@ -49,6 +60,9 @@ namespace Catalog.API.Controllers
 
             return Ok(product);
         }
+        */
+
+        /*
 
         [HttpPost]
         [ProducesResponseType(typeof(Product), (int) HttpStatusCode.OK)]
@@ -58,6 +72,9 @@ namespace Catalog.API.Controllers
             return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
 
+        */
+
+        /*
         [HttpPut]
         [ProducesResponseType(typeof(Product), (int) HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateProduct([FromBody] Product product)
@@ -65,6 +82,11 @@ namespace Catalog.API.Controllers
             await _productRepository.UpdateAsync(product);
             return Ok(product);
         }
+
+        */
+
+
+        /*
 
         [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
@@ -75,5 +97,7 @@ namespace Catalog.API.Controllers
             return Ok();
            
         }
+
+        */
     }
 }
