@@ -4,6 +4,10 @@ import { Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap'
 import ProjectTitle from "../redux/containers/project-detail/Project-Title";
 
+/**
+ * @function TopMenu Display main navigation on public side.
+ * @returns JSX with main public side navigation.
+ */
 const TopMenu: React.FC = () => {
     return <Navbar bg="light" expand="lg">
         <LinkContainer exact to={'/'}>
@@ -22,9 +26,6 @@ const TopMenu: React.FC = () => {
                     <Nav.Link>Products</Nav.Link>
                 </LinkContainer>
 
-                <LinkContainer exact to={'/users'}>
-                    <Nav.Link>Users</Nav.Link>
-                </LinkContainer>
             </Nav>
         </Navbar.Collapse>
     </Navbar>;
