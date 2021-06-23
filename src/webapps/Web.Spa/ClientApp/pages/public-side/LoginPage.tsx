@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import { Formik, Field } from "formik";
 import { FormGroup } from "react-bootstrap";
 import { withStore } from "@Store/index";
-import SessionManager from "../core/session";
+import SessionManager from "../../core/session";
 
 type Props = RouteComponentProps<{}> & typeof loginStore.actionCreators & loginStore.ILoginStoreState;
 
