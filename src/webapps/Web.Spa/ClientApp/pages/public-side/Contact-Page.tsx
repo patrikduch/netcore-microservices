@@ -5,8 +5,9 @@ import { withRouter } from 'react-router';
 import { withStore } from "@Store/index";
 import * as projectDetailStore from '@Store/projectDetailStore';
 import { wait } from 'domain-wait';
-import PageTitle from '@Components/common/headings/page-title/Page-Title';
 
+import ContactUsHeadingTitle from '@Components/public-side/contact-us/heading-title/Contact-Us-Heading-Title';
+import ContactUsBreadcrumb from '@Components/public-side/contact-us/contact-us-breads/Contact-Us-Breadcrumb';
 
 /**
  * @interface IProps Component's props interface.
@@ -21,7 +22,7 @@ interface IProps extends RouteComponentProps<{}> {
 interface IState {}
 
 /**
- * @class Entry Contact Page component for root route of the web application.
+ * @class Entry page component for contact us information.
  */
 class ContactPage extends React.Component<IProps, IState> {
 
@@ -35,7 +36,7 @@ class ContactPage extends React.Component<IProps, IState> {
             //await this.props.getAll();
             //await this.props.getProjectDetail();
             await this.props.getProjectDetail();
-        }, "contactTask");
+        }, "contactpageTask");
     }
 
     render() {
@@ -49,9 +50,10 @@ class ContactPage extends React.Component<IProps, IState> {
                 </Helmet>
 
                 <div className='container mt-4 page-container'>
-                    <PageTitle>Contact</PageTitle>
+                    <ContactUsHeadingTitle />
+                    <ContactUsBreadcrumb />
                 </div>
-            </div>
+        </div>
         );
     }
 }

@@ -21,7 +21,7 @@ interface IProps extends RouteComponentProps<{}> {
 interface IState {}
 
 /**
- * @class Entry Contact Page component for root route of the web application.
+ * @class Entry page component for acccessing list of orders.
  */
 class OrderPage extends React.Component<IProps, IState> {
 
@@ -35,7 +35,7 @@ class OrderPage extends React.Component<IProps, IState> {
             //await this.props.getAll();
             //await this.props.getProjectDetail();
             await this.props.getProjectDetail();
-        }, "orderTask");
+        }, "orderpageTask");
     }
 
     render() {

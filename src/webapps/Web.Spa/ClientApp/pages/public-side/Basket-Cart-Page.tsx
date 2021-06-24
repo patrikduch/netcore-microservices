@@ -21,9 +21,9 @@ interface IProps extends RouteComponentProps<{}> {
 interface IState {}
 
 /**
- * @class Entry Basket Page component for root route of the web application.
+ * @class BasketCartPage Entry page component for acccessing user's basket cart.
  */
-class BasketPage extends React.Component<IProps, IState> {
+class BasketCartPage extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {
         super(props);
@@ -59,7 +59,7 @@ class BasketPage extends React.Component<IProps, IState> {
 
 // Connect component with Redux store.
 const connectedComponent = withStore(
-    BasketPage,
+    BasketCartPage,
     null, // Selects which state properties are merged into the component's props.
     {...projectDetailStore.actionCreators }, // Selects which action creators are merged into the component's props.
 );

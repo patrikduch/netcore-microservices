@@ -25,6 +25,9 @@ interface IState {
     modelForEdit?: IProductModel;
 }
 
+/**
+ * @class ProductPage Entry page component for acccessing list of products.
+ */
 class ProductPage extends React.Component<Props, IState> {
 
     private paginator: Paginator;
