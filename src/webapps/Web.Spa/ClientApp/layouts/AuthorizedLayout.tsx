@@ -1,8 +1,8 @@
-﻿import TopMenu from "@Components/shared/TopMenu";
-import * as React from "react";
+﻿import * as React from "react";
 import "@Styles/authorizedLayout.scss";
 import { ToastContainer } from "react-toastify";
 import Footer from "@Components/shared/footer/Footer-Container";
+import NavigationBar from "@Components/public-side/shared/navigation/navigation-bar/Navigation-Bar";
 
 interface IProps {
     children?: React.ReactNode;
@@ -14,7 +14,7 @@ export default class AuthorizedLayout extends React.Component<Props, {}> {
     render() {
         return (
                 <div id="authorizedLayout" className="layout">
-                    <TopMenu />
+                    <NavigationBar />
                     {this.props.children}
                     <ToastContainer />
                     <Footer />
