@@ -3,19 +3,19 @@ import React from 'react';
 import { Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap'
 
-import './Navigation-Bar.scss';
+import './Navigation-Admin-Bar.scss';
 
 /**
- * @function NavigationBar Display administration navigation bar.
+ * @function NavigationAdminBar Display administration navigation bar.
  * @returns JSX for displaying administration navigation bar.
  */
-const NavigationBar: React.FC = () => {
+const NavigationAdminBar: React.FC = () => {
     return (
         <>
             <Navbar bg="light" expand="lg">
                 <LinkContainer exact to={'/admin'}>
                     <Navbar.Brand>
-                        <ProjectTitle />
+                        <ProjectTitle /> - Administration
                     </Navbar.Brand>
                 </LinkContainer>
                 
@@ -29,7 +29,6 @@ const NavigationBar: React.FC = () => {
                         <LinkContainer exact to={'/admin/products'}>
                             <Nav.Link>Products</Nav.Link>
                         </LinkContainer>
-
                     </Nav>
             </Navbar.Collapse>
         </Navbar>
@@ -37,4 +36,4 @@ const NavigationBar: React.FC = () => {
     );
 }
 
-export default NavigationBar;
+export default NavigationAdminBar;

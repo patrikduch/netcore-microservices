@@ -1,6 +1,6 @@
 import * as React from "react";
 import "@Styles/authorizedLayout.scss";
-import NavigationBar from "@Components/admin/shared/navigation/navigation-bar/Navigation-Bar";
+import NavigationAdminBar from "@Components/admin/shared/navigation/navigation-bar/Navigation-Admin-Bar";
 
 /**
  * @interface IProps Component's props interface.
@@ -19,7 +19,7 @@ class AdminLayout extends React.Component<Props, {}> {
     render() {
         return (
             <>
-                <NavigationBar />
+                <NavigationAdminBar />
                 <div id="adminLayout" className="layout">
                     {this.props.children}
                 </div>
