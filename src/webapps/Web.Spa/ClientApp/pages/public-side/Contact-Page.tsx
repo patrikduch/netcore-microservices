@@ -8,6 +8,7 @@ import { wait } from 'domain-wait';
 
 import ContactUsHeadingTitle from '@Components/public-side/contact-us/heading-title/Contact-Us-Heading-Title';
 import ContactUsBreadcrumb from '@Components/public-side/contact-us/contact-us-breads/Contact-Us-Breadcrumb';
+import ContactUsFormContainer from '@Components/public-side/contact-us/Contact-Us-Form-Container';
 
 /**
  * @interface IProps Component's props interface.
@@ -52,7 +53,11 @@ class ContactPage extends React.Component<IProps, IState> {
                 <div className='container mt-4 page-container'>
                     <ContactUsHeadingTitle />
                     <ContactUsBreadcrumb />
+                    <ContactUsFormContainer />
                 </div>
+
+               
+                
         </div>
         );
     }
