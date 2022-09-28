@@ -1,6 +1,6 @@
 The project contains a fake authorization system, so you can change it to Identity or another.
 
-# AspnetCore-React-Redux-template
+# Web.Spa
 
 ## Installation
 	0. Install of the latest stable Node.js: https://nodejs.org/en/
@@ -30,6 +30,20 @@ The project contains a fake authorization system, so you can change it to Identi
 	Don't forget to mention the version of the React Core Boilerplate in your issue (e.g. TypeScript, JavaScript).
 
 
+## Requirements
+
+### Python specification for npm run build
+
+https://www.python.org/downloads/release/python-271/
+
+
+```bash
+npm config set python "C:\Python27\python.exe"
+```
+
+
+
+
 ## App startup
 
 ### Run with  CLI
@@ -44,8 +58,6 @@ dotnet publish -c Release
 
 dotnet publish [name].sln -c Release -o out
 
-
-
 ## Dockerization
 
 ### Build image
@@ -54,7 +66,6 @@ docker build -f Dockerfile -t docker-netcore-redux .
 
 
 ## SEO
-
 
 ### Sitemap
 https://www.xml-sitemaps.com/details-aspnetcorereactreduxtemplate-env.eba-mcv635ym.eu-west-1.elasticbeanstalk.com-da438de8d.html
