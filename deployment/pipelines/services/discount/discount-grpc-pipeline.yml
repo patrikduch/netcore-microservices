@@ -17,7 +17,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '8454a2ba-d7b1-4962-8832-922f293b96db'
+  dockerRegistryServiceConnection: '2578cea5-a1d6-4155-9513-b1c91d48839f'
   imageRepository: 'discountgrpc'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Discount/Discount.Grpc/Dockerfile'
