@@ -17,13 +17,13 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '84fec162-2c8d-472a-991a-3c265a5e5ae3'
+  dockerRegistryServiceConnection: '01ab7204-c1e9-4d35-a361-caebc2515fb6'
   imageRepository: 'webmvc'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/webapps/Web.Mvc/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'acr-secret'
-
+  
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
