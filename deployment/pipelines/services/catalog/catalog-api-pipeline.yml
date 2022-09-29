@@ -17,7 +17,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '67976f45-a518-44c8-a5ba-e0b3ae47e3be'
+  dockerRegistryServiceConnection: '2578cea5-a1d6-4155-9513-b1c91d48839f'
   imageRepository: 'catalogapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Catalog/Catalog.API/Dockerfile'
