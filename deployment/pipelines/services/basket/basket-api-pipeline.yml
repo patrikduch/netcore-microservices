@@ -18,7 +18,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '044983a3-cd5f-4dde-9ac3-4dac36b87776'
+  dockerRegistryServiceConnection: '362e9a9c-ddcf-4cf6-badf-9abff26b14c8'
   imageRepository: 'basketapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Basket/Basket.API/Dockerfile'
