@@ -23,7 +23,7 @@ variables:
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Basket/Basket.API/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'netcoremicroservicesacr587713ea-auth'
+  imagePullSecret: 'netcoremicroservicesacr1172b081-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
