@@ -3,6 +3,7 @@ import { withStore } from "@Store/index";
 
 /**
  * @interface IProps Component's props interface.
+ * @author Patrik Duch
  */
 interface IProps {
     name?: string; // Name of the web-application
@@ -11,10 +12,10 @@ interface IProps {
 /**
  * @function ProjectTitle Displays name of web-application.
  * @param name Current name of web-application.
+ * @author Patrik Duch
  * @returns JSX for displaying name of web-application.
  */
 const ProjectTitle: React.FC<IProps> = ({ name }) => {
-
     return (
         <>
             {name}

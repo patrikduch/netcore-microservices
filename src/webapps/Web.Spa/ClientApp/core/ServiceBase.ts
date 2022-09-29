@@ -60,7 +60,7 @@ export abstract class ServiceBase {
         try {
             switch (opts.method) {
                 case "GET":
-                    var finalUrl = "http://20.86.197.55"+opts.url;
+                    var finalUrl = "http://localhost:9000"+opts.url;
                     axiosResult = await Axios.get(processQuery(finalUrl, opts.data), axiosRequestConfig);
 
                     console.log("axios");

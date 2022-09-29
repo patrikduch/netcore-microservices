@@ -27,11 +27,11 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
-  #web.mvc:
-  #  image: ${DOCKER_REGISTRY-}webmvc
-  #  build:
-  #    context: .
-  #    dockerfile: src/webapps/Web.Mvc/Dockerfile
+  web.mvc:
+    image: ${DOCKER_REGISTRY-}webmvc
+    build:
+      context: .
+      dockerfile: src/webapps/Web.Mvc/Dockerfile
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -81,10 +81,10 @@ services:
         - NUGET_PAT
 
   #web.spa:
-  #  image: ${DOCKER_REGISTRY-}webspa
-  #  build:
-  #    context: .
-  #    dockerfile: src/webapps/Web.Spa/Dockerfile
+   #image: ${DOCKER_REGISTRY-}webspa
+   #build:
+    #  context: .
+    #  dockerfile: src/webapps/Web.Spa/Dockerfile
 
 
   realtimetransmission.api:

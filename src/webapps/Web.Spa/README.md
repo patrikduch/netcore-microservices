@@ -41,13 +41,21 @@ https://www.python.org/downloads/release/python-271/
 npm config set python "C:\Python27\python.exe"
 ```
 
-
-
-
 ## App startup
 
 ### Run with  CLI
+
+#### Unix systems
+
+```bash
 sudo dotnet run --project ./Web.Spa.csproj
+```
+
+#### Windows systems
+
+```bash
+dotnet run --project ./Web.Spa.csproj
+```
 
 ## Deployment
 
@@ -56,13 +64,17 @@ dotnet publish -c Release
 
 ### more advanced production build script
 
+```bash
 dotnet publish [name].sln -c Release -o out
+```
 
 ## Dockerization
 
 ### Build image
 
-docker build -f Dockerfile -t docker-netcore-redux .
+```bash
+docker build -f Dockerfile -t web-spa .
+```
 
 
 ## SEO
@@ -71,7 +83,7 @@ docker build -f Dockerfile -t docker-netcore-redux .
 https://www.xml-sitemaps.com/details-aspnetcorereactreduxtemplate-env.eba-mcv635ym.eu-west-1.elasticbeanstalk.com-da438de8d.html
 
 
-## FE
+## ClientSide
 
 ### dependencies
 

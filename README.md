@@ -2,7 +2,17 @@
 
 ## Development
 
+### BE startup
+
+```bash
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+```
+
+### FE startup
+
+```bash
+dotnet run --project ./src/webapps/Web.Spa/Web.Spa.csproj
+```
 
 ### Nuget packages
 
@@ -11,6 +21,10 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
     <li>in case of private feed (PAT) must be configured properly (even for dev environment)</li>
     <li>recommended private storage: Azure Artifact</li>
 </ul>
+
+
+#### Nuget accessibility
+Define groups of nugets
 
 
 #### Specifiy PAT for Azure Artifact nuget feed
@@ -25,6 +39,9 @@ NUGET_PAT="secretaccesstoken"
 ## AKS
 
 ### Deployment
+
+#### Preparing AKS Cluster
+
 
 #### Secrets
 

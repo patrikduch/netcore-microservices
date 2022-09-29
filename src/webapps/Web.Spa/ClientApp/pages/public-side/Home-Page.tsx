@@ -54,7 +54,7 @@ class HomePage extends React.Component<IProps, IState> {
 
                 <div className='container mt-4 page-container'>
              
-                    <h1>AspnetCore React Redux E-commerce Template</h1>
+                    <h1>Web.Spa</h1>
                     <ParagraphBasic>Isomorphic Single-page application based on React-Redux ecosystem with integration into AspnetCore. All components are completely containerizated for running in cloud or on-premise environment.</ParagraphBasic>
                     <ParagraphBasic>Prerendering phase is resolved via loadData functions, that must be appended to particular page component (same concept that you might know from <AnchorBasic targetUrl='https://nextjs.org' labelUrl='Next.js'></AnchorBasic> framework).</ParagraphBasic>
 

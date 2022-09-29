@@ -1,6 +1,26 @@
 version: '3.4'
 
 services:
+  web.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8081:80"
+
+  #web.spa:
+  #  container_name: webspa
+  #  depends_on:
+   #   - realtimetransmission.api
+   # environment:
+    #  - ASPNETCORE_URLS=https://+:443;http://+:80
+    #  - "SignalRSettings__ConnectionString=http://localhost:8090"
+    #ports:
+     # - "81:80"
+     # - "443"
+    #volumes:
+     # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+     # - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
   mongo.db:
     container_name: mongodbservice
     restart: always
@@ -75,26 +95,6 @@ services:
       - rabbitmq_data:/var/lib/rabbitmq 
     hostname: rabbitmq  # How RabbitMQ stored data internally, if it's not specified then it gets random value
  
-  #web.spa:
-  #  container_name: webspa
-  #  depends_on:
-  #    - realtimetransmission.api
-  #  environment:
-  #    - ASPNETCORE_URLS=https://+:443;http://+:80
-  #    - "SignalRSettings__ConnectionString=http://localhost:8090"
-  #  ports:
-  #    - "81:80"
-  #    - "443"
-  #  volumes:
-  #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-  #    - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-
-  #web.mvc:
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #  ports:
-  #    - "8081:80"
-
   basket.api:
     container_name: basketapi
     environment:
@@ -218,5 +218,3 @@ services:
       - gamecatalog.api
       - inventory.api
       - projectdetail.api
-
-

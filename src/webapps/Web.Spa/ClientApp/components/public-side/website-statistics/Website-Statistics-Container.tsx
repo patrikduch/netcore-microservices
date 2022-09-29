@@ -4,7 +4,6 @@ import SignalRService from '@Services/real-time/SignalR-Service';
 import './Website-Statistics-Container.scss';
 import { ClipLoader } from 'react-spinners';
 
-
 const WebStatisticsContainer: React.FC = () => {
     let [loading, setLoading] = useState(true);
     let [color] = useState("#000");
@@ -12,7 +11,7 @@ const WebStatisticsContainer: React.FC = () => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        const connection = new SignalRService('http://20.76.235.145/hubs/view', 'notifyWatching');
+        const connection = new SignalRService('http://localhost:8090/hubs/view', 'notifyWatching');
         connection.getSignalInstance().start().then(connection.startSuccess, connection.startFail);
 
         // on view update message from client

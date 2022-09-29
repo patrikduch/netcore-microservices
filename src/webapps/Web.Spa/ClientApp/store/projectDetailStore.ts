@@ -37,6 +37,8 @@ export const actionCreators = {
         const service = new ProjectDetailService();
         const result = await service.getDetails();
 
+        debugger;
+
         if (!result.hasErrors) {
             dispatch(slice.actions.setProjectDetail(result.value.name));
         }

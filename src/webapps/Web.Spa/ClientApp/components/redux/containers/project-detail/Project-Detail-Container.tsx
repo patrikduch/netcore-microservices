@@ -3,6 +3,7 @@ import { withStore } from "@Store/index";
 
 /**
  * @class Project setup initialization component.
+ * @author Patrik Duch
 */
 class ProjectDetailContainer extends React.Component<any, any> {
     render() {
