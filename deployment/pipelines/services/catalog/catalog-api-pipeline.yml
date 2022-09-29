@@ -22,7 +22,7 @@ variables:
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Catalog/Catalog.API/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'netcoremicroservicesacr587713ea-auth'
+  imagePullSecret: 'acr-secret'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
