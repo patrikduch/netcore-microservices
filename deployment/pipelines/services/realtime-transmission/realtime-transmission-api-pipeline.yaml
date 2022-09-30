@@ -20,8 +20,9 @@ variables:
   imageRepository: 'realtimetransmissionapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/RealTimeTransmission/RealTimeTransmission.API/Dockerfile'
-  tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr14528368-auth'
+  tag: '$(Build.BuildId)'
+
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
