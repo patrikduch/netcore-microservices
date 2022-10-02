@@ -19,7 +19,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'a4e13493-d135-43c1-914e-566cd6169f6c'
-  imageRepository: 'project-detail-api'
+  imageRepository: 'projectdetailapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/ProjectDetail/ProjectDetail.API/Dockerfile'
   tag: '$(Build.BuildId)'
