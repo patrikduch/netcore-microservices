@@ -87,7 +87,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/deployment/aks/services/project-detail/project-detail-api/project-detail-api.yaml
+                $(Pipeline.Workspace)/aks/services/project-detail/project-detail-api/project-detail-api.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
