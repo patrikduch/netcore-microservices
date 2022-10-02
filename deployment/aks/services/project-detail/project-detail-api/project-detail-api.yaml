@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: projectdetailapi
-          image:  netcoremicroservicesacr.azurecr.io/project-detail-api:v1
+          image:  netcoremicroservicesacr.azurecr.io/projectdetailapi:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
