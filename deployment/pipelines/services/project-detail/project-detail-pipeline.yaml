@@ -46,6 +46,7 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
+        arguments: --build-arg NUGET_PAT=${NUGET_PAT_SECRET}
         tags: |
           $(tag)
     - upload: deployment/aks
