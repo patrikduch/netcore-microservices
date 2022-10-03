@@ -16,8 +16,13 @@
     {
       "DownstreamPathTemplate": "/api/v1/Catalog",
       "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog-api-service",
+          "Port": 80
+        }
+      ],
       "UpstreamPathTemplate": "/Catalog",
-      "ServiceName": "catalog-api-service",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
