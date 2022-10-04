@@ -17,12 +17,12 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '8454a2ba-d7b1-4962-8832-922f293b96db'
+  dockerRegistryServiceConnection: 'a4e13493-d135-43c1-914e-566cd6169f6c'
   imageRepository: 'inventoryapi'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
   dockerfilePath: 'src/services/Inventory/Inventory.API/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'netcoremicroservicesacr1748cec4-auth'
+  imagePullSecret: 'netcoremicroservicesacr14528368-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -70,7 +70,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'patrikduchnetcoremicroservices-2072.default'
+    environment: 'patrikduchnetcoremicroservices.default'
     strategy:
       runOnce:
         deploy:
