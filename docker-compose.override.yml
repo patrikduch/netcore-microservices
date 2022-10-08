@@ -221,6 +221,8 @@ services:
 
 
   web.blazor.client:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80:80"
+      - "80"
 
