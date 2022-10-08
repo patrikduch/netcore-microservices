@@ -2,7 +2,7 @@
 
 ## Development
 
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+docker-compose --env-file .env -f docker-compose.yml -f docker-compose.override.yml up -d
 
 ### Nuget packages
 
@@ -15,11 +15,15 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
 #### Specifiy PAT for Azure Artifact nuget feed
 
-Specify PAT (Personal Access Token) into .env for access private nuget feed.
+Specify PAT (Personal Access Token) into .env for access private nuget feeds.
 
+
+##### .env file configuration
+
+Add .env file to root directory
 
 ```bash
-NUGET_PAT="secretaccesstoken"
+NUGET_PAT=secretaccesstoken
 ```
 
 ## AKS
@@ -62,6 +66,11 @@ helm install rabbitmq-service  azure-marketplace/rabbitmq
 .\deployment\aks\helm\extensions\ingress\install.bat
 
 ##### Microservices deployment
+
+##### WebApps
+
+
+
 
 ##### Web API Gateway
 kubectl apply -f .\deployment\aks\services\api-gateways\web-gw\
