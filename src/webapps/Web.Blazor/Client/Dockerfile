@@ -15,4 +15,3 @@ RUN dotnet publish "Web.Blazor.Client.csproj" -c Release -o /app/publish
 
 FROM nginx AS final
 COPY --from=publish /app/publish/wwwroot .
-COPY . /usr/share/nginx/html
