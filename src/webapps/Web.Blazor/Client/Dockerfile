@@ -7,3 +7,6 @@ RUN dotnet restore "src/webapps/Web.Blazor/Client/Web.Blazor.Client.csproj"
 COPY . .
 WORKDIR "/src/src/webapps/Web.Blazor/Client"
 RUN dotnet build "Web.Blazor.Client.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "Web.Blazor.Client.csproj" -c Release -o /app/publish
