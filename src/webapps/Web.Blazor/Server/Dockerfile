@@ -6,12 +6,12 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/webapps/Web.Blazor/Web.Blazor/Server/Web.Blazor.Server.csproj", "src/webapps/Web.Blazor/Web.Blazor/Server/"]
-COPY ["src/webapps/Web.Blazor/Web.Blazor/Client/Web.Blazor.Client.csproj", "src/webapps/Web.Blazor/Web.Blazor/Client/"]
-COPY ["src/webapps/Web.Blazor/Web.Blazor/Shared/Web.Blazor.Shared.csproj", "src/webapps/Web.Blazor/Web.Blazor/Shared/"]
-RUN dotnet restore "src/webapps/Web.Blazor/Web.Blazor/Server/Web.Blazor.Server.csproj"
+COPY ["src/webapps/Web.Blazor/Server/Web.Blazor.Server.csproj", "src/webapps/Web.Blazor/Web.Blazor/Server/"]
+COPY ["src/webapps/Web.Blazor/Client/Web.Blazor.Client.csproj", "src/webapps/Web.Blazor/Web.Blazor/Client/"]
+COPY ["src/webapps/Web.Blazor/Shared/Web.Blazor.Shared.csproj", "src/webapps/Web.Blazor/Web.Blazor/Shared/"]
+RUN dotnet restore "src/webapps/Web.Blazor/Server/Web.Blazor.Server.csproj"
 COPY . .
-WORKDIR "/src/src/webapps/Web.Blazor/Web.Blazor/Server"
+WORKDIR "/src/src/webapps/Web.Blazor/Server"
 RUN dotnet build "Web.Blazor.Server.csproj" -c Release -o /app/build
 
 FROM build AS publish
