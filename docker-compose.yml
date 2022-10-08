@@ -123,12 +123,6 @@ services:
       args:
         - NUGET_PAT
 
-  web.blazor.client:
-    image: ${DOCKER_REGISTRY-}webblazorclient
-    build:
-      context: .
-      dockerfile: src/webapps/Web.Blazor/Client/Dockerfile
-
 volumes:
   postgres_data:
   pgadmin_data:
