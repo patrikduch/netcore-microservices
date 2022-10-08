@@ -20,7 +20,7 @@ variables:
   dockerRegistryServiceConnection: 'a4e13493-d135-43c1-914e-566cd6169f6c'
   imageRepository: 'webblazor'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
-  dockerfilePath: 'src/webapps/Web.Blazor/Dockerfile'
+  dockerfilePath: 'src/webapps/Web.Blazor/Server/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr14528368-auth'
   
