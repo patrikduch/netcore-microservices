@@ -47,7 +47,7 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        buildContext: src/webapps/Web.Blazor/Client/
+        buildContext: $(Build.SourcesDirectory)/
 
     # Docker image push
     - task: Docker@2
