@@ -11,7 +11,7 @@ COPY ["src/webapps/Web.Blazor/Client/Web.Blazor.Client.csproj", "src/webapps/Web
 COPY ["src/webapps/Web.Blazor/Shared/Web.Blazor.Shared.csproj", "src/webapps/Web.Blazor/Shared/"]
 RUN dotnet restore "src/webapps/Web.Blazor/Server/Web.Blazor.Server.csproj"
 COPY . .
-WORKDIR "/src/webapps/Web.Blazor/Server"
+WORKDIR "/src/src/webapps/Web.Blazor/Server"
 RUN dotnet build "Web.Blazor.Server.csproj" -c Release -o /app/build
 
 FROM build AS publish
