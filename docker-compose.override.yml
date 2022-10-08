@@ -1,6 +1,11 @@
 version: '3.4'
 
 services:
+  web.blazor.server:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8094:80"
   mongo.db:
     container_name: mongodbservice
     restart: always
