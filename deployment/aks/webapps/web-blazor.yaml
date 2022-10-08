@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-blazor-deployment
+  labels:
+    app: web-blazor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-blazoír
+  template:
+    metadata:
+      labels:
+        app: web-blazor
+    spec:
+      containers:
+        - name: web-blazor
+          image:  netcoremicroservicesacr.azurecr.io/webblazor:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+
+      imagePullSecrets:
+        - name: acr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-blazor-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: web-blazor
+  ports:
+    - protocol: TCP
+      port: 80
