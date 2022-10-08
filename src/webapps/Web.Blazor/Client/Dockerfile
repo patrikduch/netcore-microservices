@@ -15,4 +15,4 @@ RUN dotnet publish "Web.Blazor.Client.csproj" -c Release -o /app/publish
 
 FROM nginx AS final
 COPY --from=publish /app/publish/wwwroot .
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY "/src/src/webapps/Web.Blazor/Client/nginx.conf" /etc/nginx/nginx.conf
