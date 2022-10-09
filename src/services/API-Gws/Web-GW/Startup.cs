@@ -20,7 +20,7 @@ namespace Web_GW
                     builder
                     .WithOrigins(
                         "http://localhost",
-                        "http://20.101.154.73"
+                        "http://20.23.74.87"
                     )
                     .AllowAnyMethod()
                     .AllowAnyHeader()
