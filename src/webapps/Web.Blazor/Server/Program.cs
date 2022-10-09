@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 var app = builder.Build();
 

@@ -1,6 +1,13 @@
 version: '3.4'
 
 services:
+  web.blazor.server:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - APIGwUrl=http://localhost:9000
+    ports:
+      - "8094:80"
+
   mongo.db:
     container_name: mongodbservice
     restart: always
@@ -218,4 +225,7 @@ services:
       - gamecatalog.api
       - inventory.api
       - projectdetail.api
+
+
+
 

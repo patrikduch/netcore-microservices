@@ -28,12 +28,12 @@ namespace ProjectDetail.API.Controllers
         /// <returns>Project detail information.</returns>
         [HttpGet]
         [Produces("application/json")]
-        public async Task<ActionResult<Result<ProjectVm>>> GetPersonsList()
+        public async Task<ActionResult<ProjectVm>> GetPersonsList()
         {
             var query = new GetProjectNameQuery();
             var personsList = await _mediatR.Send(query);
 
-            return Ok(personsList);
+            return Ok(personsList.Value);
         }
 
     }

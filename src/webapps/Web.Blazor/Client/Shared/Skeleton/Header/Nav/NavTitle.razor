@@ -1,0 +1,22 @@
+﻿@inject HttpClient HttpClient;
+
+
+<h6>@_projectDetail.Name</h6>
+
+
+@code {
+    private ProjectDetail _projectDetail = new ProjectDetail();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await HttpClient.GetFromJsonAsync<ProjectDetail>("/projectdetail");
+            _projectDetail = response;
+
+        } catch (Exception ex)
+        {
+         
+        }
+    }
+}
