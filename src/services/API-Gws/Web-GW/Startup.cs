@@ -14,26 +14,24 @@ namespace Web_GW
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            /*
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy", builder =>
+                options.AddPolicy("CorsPolicyRelease", builder =>
                     builder
                     .WithOrigins(
                         "http://localhost",
-                        "http://20.86.224.155" // Web.Spa
+                        "http://20.23.74.87"
                     )
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
-                    );
+                );
             });
 
-            */
-
+           
             services.AddCors(options =>
             {
-                options.AddPolicy("PolicyName", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                options.AddPolicy("CorsPolicyDev", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
             services.AddOcelot()
@@ -45,20 +43,21 @@ namespace Web_GW
         {
             if (env.IsDevelopment())
             {
-                app.UseCors("PolicyName");
+                app.UseCors("CorsPolicyDev");
 
                 app.UseDeveloperExceptionPage();
+
+            } else
+            {
+                app.UseCors("CorsPolicyRelease");
             }
 
-
-            app.UseRouting();
-            
+            app.UseRouting();            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-           
             await app.UseOcelot();
         }
     }
