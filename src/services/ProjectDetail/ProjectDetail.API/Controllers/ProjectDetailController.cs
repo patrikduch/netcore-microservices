@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using NetMicroservices.ServiceConfig.Nuget;
 using ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
 using System;
 using System.Threading.Tasks;
@@ -28,7 +27,7 @@ namespace ProjectDetail.API.Controllers
         /// <returns>Project detail information.</returns>
         [HttpGet]
         [Produces("application/json")]
-        public async Task<ActionResult<ProjectVm>> GetPersonsList()
+        public async Task<ActionResult<ProjectVm>> GetProjectDetail()
         {
             var query = new GetProjectNameQuery();
             var personsList = await _mediatR.Send(query);
