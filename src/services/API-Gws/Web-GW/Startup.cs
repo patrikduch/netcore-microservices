@@ -19,7 +19,7 @@ namespace Web_GW
                 options.AddPolicy("CorsPolicyRelease", builder =>
                     builder
                     .WithOrigins(
-                        "http://localhost",
+
                         "http://20.23.74.87"
                     )
                     .AllowAnyMethod()
