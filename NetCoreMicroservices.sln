@@ -123,9 +123,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{45C90D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{B344723C-531F-4603-9029-7F3BC397EA73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Blazor.Client", "src\webapps\Web.Blazor\Client\Web.Blazor.Client.csproj", "{D51A9BBA-1F9A-47C3-8BEB-E60A75A0D34A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Blazor.Client", "src\webapps\Web.Blazor\Client\Web.Blazor.Client.csproj", "{D51A9BBA-1F9A-47C3-8BEB-E60A75A0D34A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Blazor.Shared", "src\webapps\Web.Blazor\Shared\Web.Blazor.Shared.csproj", "{3FAB9535-BE8F-48CB-9770-0A6A2D06E4EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Blazor.Shared", "src\webapps\Web.Blazor\Shared\Web.Blazor.Shared.csproj", "{3FAB9535-BE8F-48CB-9770-0A6A2D06E4EF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Blazor.Server", "src\webapps\Web.Blazor\Server\Web.Blazor.Server.csproj", "{E90DE608-C71D-4C27-9454-8A3A1B2033AA}"
 EndProject
