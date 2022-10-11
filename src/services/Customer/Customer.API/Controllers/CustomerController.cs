@@ -4,7 +4,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NetMicroservices.ServiceConfig.Nuget;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Customer.API.Controllers
