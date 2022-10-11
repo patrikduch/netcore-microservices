@@ -1,7 +1,8 @@
 ﻿@inject HttpClient HttpClient;
+@inject IProjectDetailService ProjectDetailService;
 
 
-<h6>@_projectDetail.Name</h6>
+<h6>@ProjectDetailService.ProjectDetail.Name</h6>
 
 
 @code {
@@ -9,14 +10,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            var response = await HttpClient.GetFromJsonAsync<ProjectDetail>("/projectdetail");
-            _projectDetail = response;
-
-        } catch (Exception ex)
-        {
-         
-        }
+        await ProjectDetailService.GetProjectDetailAsync();
     }
 }

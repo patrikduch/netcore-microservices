@@ -1,12 +1,6 @@
-﻿namespace Web.Blazor.Shared
+﻿namespace Web.Blazor.Shared;
+
+public class ProjectDetail
 {
-    public class ProjectDetail
-    {
-        public ProjectDetail()
-        {
-
-        }
-
-        public string Name { get; set; } = string.Empty;
-    }
+    public string Name { get; set; } = string.Empty;
 }
