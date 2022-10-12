@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-api-deployment
+  labels:
+    app: product-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: product-api
+  template:
+    metadata:
+      labels:
+        app: product-api
+    spec:
+      containers:
+        - name: productapi
+          image:  netcoremicroservicesacr.azurecr.io/productapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+
+      imagePullSecrets:
+        - name: acr-secret
