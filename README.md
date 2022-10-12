@@ -67,13 +67,11 @@ helm install rabbitmq-service  azure-marketplace/rabbitmq
 
 ##### Microservices deployment
 
-##### WebApps
-
-
-
-
 ##### Web API Gateway
 kubectl apply -f .\deployment\aks\services\api-gateways\web-gw\
+
+##### Product microservice (WebAPI)
+kubectl apply -f .\deployment\aks\services\product\product-api\
 
 ##### Basket microservice (WebAPI + Redis)
 kubectl apply -f .\deployment\aks\services\basket\basket-api\

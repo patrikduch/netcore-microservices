@@ -1,0 +1,16 @@
+﻿@inject IProductService ProductService;
+<h3>ProductList</h3>
+
+@foreach(var product in @ProductService.Products)
+{
+    <p>@product.Name</p>
+}
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ProductService.GetProductsAsync();
+    }
+}
