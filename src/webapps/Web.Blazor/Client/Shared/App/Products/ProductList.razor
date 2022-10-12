@@ -6,9 +6,7 @@
     <p>@product.Name</p>
 }
 
-
 @code {
-
     protected override async Task OnInitializedAsync()
     {
         await ProductService.GetProductsAsync();
