@@ -12,7 +12,7 @@ using Product.Domain.Entities;
 /// <summary>
 /// Product management Rest API controller.
 /// </summary>
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
 public class ProductController : ControllerBase
 {

@@ -12,7 +12,18 @@
       "UpstreamPathTemplate": "/ProjectDetail",
       "UpstreamHttpMethod": [ "GET" ]
     },
-
+    {
+      "DownstreamPathTemplate": "/api/v1/Product/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-api-service",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Products",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
     {
       "DownstreamPathTemplate": "/api/v1/Catalog",
       "DownstreamScheme": "http",

@@ -13,6 +13,18 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "DownstreamPathTemplate": "/api/v1/Product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Products",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/Items",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
