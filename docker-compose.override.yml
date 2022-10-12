@@ -8,6 +8,12 @@ services:
     ports:
       - "8094:80"
 
+  product.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8095:80"
+
   mongo.db:
     container_name: mongodbservice
     restart: always
@@ -225,7 +231,3 @@ services:
       - gamecatalog.api
       - inventory.api
       - projectdetail.api
-
-
-
-

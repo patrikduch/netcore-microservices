@@ -1,6 +1,18 @@
 version: '3.4'
 
 services:
+  web.blazor.server:
+    image: ${DOCKER_REGISTRY-}webblazorserver
+    build:
+      context: .
+      dockerfile: src/webapps/Web.Blazor/Server/Dockerfile
+
+  product.api:
+    image: ${DOCKER_REGISTRY-}productapi
+    build:
+      context: .
+      dockerfile: src/services/Product/Product.API/Dockerfile
+
   basketdb:
     image: redis
   discount.db:
@@ -123,18 +135,13 @@ services:
       args:
         - NUGET_PAT
 
-  web.blazor.server:
-    image: ${DOCKER_REGISTRY-}webblazorserver
-    build:
-      context: .
-      dockerfile: src/webapps/Web.Blazor/Server/Dockerfile
-
 volumes:
   postgres_data:
   pgadmin_data:
   rabbitmq_data:
 
    
+
 
 
 
