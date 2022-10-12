@@ -1,4 +1,10 @@
-﻿namespace Product.API.Controllers;
+﻿//---------------------------------------------------------------------------
+// <copyright file="ProductController.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//---------------------------------------------------------------------------
+namespace Product.API.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 using Product.Domain.Entities;

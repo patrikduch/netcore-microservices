@@ -1,4 +1,11 @@
-﻿namespace Product.Domain.Entities;
+﻿//---------------------------------------------------------------------------
+// <copyright file="Product.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//---------------------------------------------------------------------------
+
+namespace Product.Domain.Entities;
 
 /// <summary>
 /// Entity that represents set of products.
