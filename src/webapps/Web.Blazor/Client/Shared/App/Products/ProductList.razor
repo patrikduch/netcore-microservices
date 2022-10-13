@@ -1,10 +1,34 @@
 ﻿@inject IProductService ProductService;
 <h3>ProductList</h3>
 
-@foreach(var product in @ProductService.Products)
-{
-    <p>@product.Name</p>
-}
+
+<ul class="list-unstyled">
+    @foreach(var product in @ProductService.Products)
+    {
+        <li class="media my-3">
+
+            <div class="media-img-wrapper mr-2">
+                <a href="#">
+                    <img  class="media-img" src="@product.ImgUrl" alt="@product.Name" />
+                </a>
+            </div>
+
+            <div class="media-body">
+                <a href="#">
+                    <h3 class="mb-0">@product.Name</h3>
+                </a>
+
+                <p>@product.Description</p>
+
+                <h4 class="price">
+                    $@product.Price
+                </h4>
+            </div>
+        </li>
+    }
+</ul>
+
+
 
 @code {
     protected override async Task OnInitializedAsync()
