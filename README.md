@@ -71,7 +71,18 @@ helm install rabbitmq-service  azure-marketplace/rabbitmq
 kubectl apply -f .\deployment\aks\services\api-gateways\web-gw\
 
 ##### Product microservice (WebAPI)
+
+API
 kubectl apply -f .\deployment\aks\services\product\product-api\
+
+DB
+kubectl apply -f .\deployment\aks\services\product\product-db\
+
+Required secret
+
+```bash
+kubectl create secret generic product-db-secret --from-literal PGUSERNAME=SolutionArchitect --from-literal PGDBNAME=productdb --from-literal PGPASSWORD=patrikduch
+```
 
 ##### Basket microservice (WebAPI + Redis)
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
@@ -178,7 +189,15 @@ kubectl apply -f .\deployment\aks\examples\ingress-controller\without-cors\
 
 ###### Db examples
 
+Postgres
+
+Required secret
 kubectl apply -f .\deployment\aks\examples\dbs\postgres\
+
+
+
+
+
 kubectl apply -f .\deployment\aks\examples\dbs\redis\
 kubectl apply -f .\deployment\aks\examples\dbs\mssql\
 
