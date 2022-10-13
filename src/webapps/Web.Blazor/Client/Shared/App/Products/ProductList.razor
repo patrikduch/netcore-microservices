@@ -1,22 +1,22 @@
 ﻿@inject IProductService ProductService;
-<h3>ProductList</h3>
 
+<h3>Product list</h3>
 
 <ul class="list-unstyled">
     @foreach(var product in @ProductService.Products)
     {
         <li class="media my-3">
 
-            <div class="media-img-wrapper mr-2">
-                <a href="#">
-                    <img  class="media-img" src="@product.ImgUrl" alt="@product.Name" />
-                </a>
-            </div>
-
             <div class="media-body">
                 <a href="#">
                     <h3 class="mb-0">@product.Name</h3>
                 </a>
+
+                <div class="media-img-wrapper">
+                    <a href="#">
+                        <img  class="media-img" src="@product.ImgUrl" alt="@product.Name" />
+                    </a>
+                </div>
 
                 <p>@product.Description</p>
 
