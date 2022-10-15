@@ -8,6 +8,7 @@ namespace Product.API.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 using Product.Domain.Entities;
+using Product.Persistence.Contexts;
 
 /// <summary>
 /// Product management Rest API controller.
@@ -16,6 +17,16 @@ using Product.Domain.Entities;
 [ApiController]
 public class ProductController : ControllerBase
 {
+
+    public ProductController(ProductContext productCtx)
+    {
+
+        var products = productCtx.Products.ToList();
+
+        var test = 4;
+
+    }
+
     private static List<ProductEntity> Products = new()
     {
         new ProductEntity

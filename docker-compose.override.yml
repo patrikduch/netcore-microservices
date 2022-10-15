@@ -1,6 +1,20 @@
 version: '3.4'
 
 services:
+  web-gw:
+    container_name: webgwservice
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9000:80"
+    depends_on:
+      - basket.api
+      - catalog.api
+      - customer.api
+      - gamecatalog.api
+      - inventory.api
+      - projectdetail.api
+
   web.blazor.server:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -11,8 +25,22 @@ services:
   product.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=productdb;Port=5433;Database=ProductDb;Username=admin;Password=duch;"
     ports:
       - "8095:80"
+
+  product.db:
+    container_name: productdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=duch
+      - POSTGRES_DB=ProductDb
+    restart: always
+    ports:
+      - "5433:5433"
+    command: -p 5433
+    volumes:
+      - product_db_data:/var/lib/postgresql/data 
 
   mongo.db:
     container_name: mongodbservice
@@ -139,6 +167,9 @@ services:
     ports:
       - "8085:80"
 
+    depends_on:
+      - discount.db
+
   discount.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -216,18 +247,3 @@ services:
       - "8093:80"
     depends_on:
       - projectdetail.db
-
-  web-gw:
-    container_name: webgwservice
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "9000:80"
-
-    depends_on:
-      - basket.api
-      - catalog.api
-      - customer.api
-      - gamecatalog.api
-      - inventory.api
-      - projectdetail.api

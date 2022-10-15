@@ -13,6 +13,17 @@ services:
       context: .
       dockerfile: src/services/Product/Product.API/Dockerfile
 
+  product.db:
+    image: postgres
+
+  projectdetail.api:
+    image: ${DOCKER_REGISTRY-}projectdetailapi
+    build:
+      context: .
+      dockerfile: src/services/ProjectDetail/ProjectDetail.API/Dockerfile
+      args:
+        - NUGET_PAT
+
   basketdb:
     image: redis
   discount.db:
@@ -127,15 +138,8 @@ services:
       args:
         - NUGET_PAT
 
-  projectdetail.api:
-    image: ${DOCKER_REGISTRY-}projectdetailapi
-    build:
-      context: .
-      dockerfile: src/services/ProjectDetail/ProjectDetail.API/Dockerfile
-      args:
-        - NUGET_PAT
-
 volumes:
+  product_db_data:
   postgres_data:
   pgadmin_data:
   rabbitmq_data:
