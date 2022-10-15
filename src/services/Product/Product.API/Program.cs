@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Product.Application;
 using Product.Persistence;
+using Product.Persistence.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<ProductContext>();
+    context.Database.Migrate();
+}
 
 app.UseAuthorization();
 

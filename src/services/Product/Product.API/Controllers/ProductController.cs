@@ -7,6 +7,7 @@
 namespace Product.API.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Product.Domain.Entities;
 using Product.Persistence.Contexts;
 
@@ -17,14 +18,12 @@ using Product.Persistence.Contexts;
 [ApiController]
 public class ProductController : ControllerBase
 {
+    private readonly ProductContext _context;
+
 
     public ProductController(ProductContext productCtx)
     {
-
-        var products = productCtx.Products.ToList();
-
-        var test = 4;
-
+        _context = productCtx;
     }
 
     private static List<ProductEntity> Products = new()
@@ -60,6 +59,6 @@ public class ProductController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetProductList()
     {
-        return Ok(Products);
+        return Ok(await _context.Products.ToListAsync());
     }
 }

@@ -7,6 +7,7 @@
 namespace Product.Persistence.Contexts;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Product.Domain.Entities;
 using Product.Persistence.EntityConfigurations;
 
@@ -15,12 +16,15 @@ using Product.Persistence.EntityConfigurations;
 /// </summary>
 public class ProductContext : DbContext
 {
+    private readonly IConfiguration _configuration;
+
     /// <summary>
     /// Initializes a new instance of the <seealso cref="ProductContext"/>.
     /// </summary>
     /// <param name="options"> <seealso cref="DbContextOptions{TContext}"/> EFCore context setup.</param>
-    public ProductContext(DbContextOptions<ProductContext> options) : base(options)
+    public ProductContext(DbContextOptions<ProductContext> options, IConfiguration configuration) : base(options)
     {
+        _configuration = configuration;
     }
 
     /// <summary>
@@ -35,10 +39,5 @@ public class ProductContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        Database.Migrate();
     }
 }
