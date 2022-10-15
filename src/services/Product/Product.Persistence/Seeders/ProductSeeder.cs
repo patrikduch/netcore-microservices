@@ -14,7 +14,8 @@ public class ProductSeeder
 
     public void Seed()
     {
-        if (!_productContext.Products.Any())
+
+        if (_productContext.Products is null || !_productContext.Products.Any())
         {
              
             List<ProductEntity> Products = new()
