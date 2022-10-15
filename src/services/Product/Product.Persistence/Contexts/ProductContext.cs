@@ -36,4 +36,9 @@ public class ProductContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        Database.Migrate();
+    }
 }
