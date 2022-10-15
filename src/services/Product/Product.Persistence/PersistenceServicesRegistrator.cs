@@ -1,9 +1,14 @@
-﻿namespace Product.Persistence;
+﻿//-----------------------------------------------------------------------------------
+// <copyright file="PersistenceServicesRegistrator.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//-----------------------------------------------------------------------------------
+namespace Product.Persistence;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Product.Persistence.Configurations;
 using Product.Persistence.Contexts;
 
 /// <summary>
@@ -11,7 +16,6 @@ using Product.Persistence.Contexts;
 /// </summary>
 public static class PersistenceServicesRegistrator
 {
-
     /// <summary>
     /// Definition of service sets that are being used by Persistence project.
     /// </summary>
@@ -19,16 +23,13 @@ public static class PersistenceServicesRegistrator
     /// <returns>Dependency Injection services collection.</returns>
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
-
-
-        var res = configuration.GetSection("DatabaseSettings:ConnectionString").Value;
-
+        var connectionString = configuration.GetSection("DatabaseSettings:ConnectionString").Value;
 
         services.AddScoped<DbContext, ProductContext>();
 
 
         services.AddDbContext<ProductContext>(options =>
-            options.UseNpgsql((res)));
+            options.UseNpgsql((connectionString)));
 
         return services;
     }
