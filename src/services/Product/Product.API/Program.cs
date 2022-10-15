@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Product.Application;
 using Product.Persistence;
 using Product.Persistence.Contexts;
+using Product.Persistence.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,10 @@ using (var scope = app.Services.CreateScope())
 
     var context = services.GetRequiredService<ProductContext>();
     context.Database.Migrate();
+
+
+    var service = scope.ServiceProvider.GetService<ProductSeeder>();
+    service.Seed();
 }
 
 app.UseAuthorization();
