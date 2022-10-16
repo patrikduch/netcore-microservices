@@ -10,7 +10,7 @@ namespace NetMicroservices.SqlWrapper.Nuget
         /// <summary>
         /// Gets or sets numeric identifier of particular entity.
         /// </summary>
-        public int Id { get; protected set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets creator of particular entity item.
