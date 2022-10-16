@@ -1,5 +1,5 @@
 ﻿//---------------------------------------------------------------------------
-// <copyright file="Product.cs" website="Patrikduch.com">
+// <copyright file="ProductEntity.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
@@ -7,16 +7,13 @@
 
 namespace Product.Domain.Entities;
 
+using NetMicroservices.SqlWrapper.Nuget;
+
 /// <summary>
 /// Entity that represents set of products.
 /// </summary>
-public class ProductEntity
+public class ProductEntity : EntityBase
 {
-    /// <summary>
-    /// Gets or sets product identifier.
-    /// </summary>
-    public int Id { get; set; }
-
     /// <summary>
     /// Gets or sets product name.
     /// </summary>

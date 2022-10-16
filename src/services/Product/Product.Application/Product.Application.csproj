@@ -13,4 +13,13 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Products\Queries\GetProduct\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\nugets\NetMicroservices.Dbs\NetMicroservices.SqlWrapper\NetMicroservices.SqlWrapper.Nuget\NetMicroservices.SqlWrapper.Nuget.csproj" />
+    <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

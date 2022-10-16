@@ -1,3 +1,10 @@
+//---------------------------------------------------------------------------
+// <copyright file="Program.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IÈ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//---------------------------------------------------------------------------
+
 using Microsoft.EntityFrameworkCore;
 using Product.Application;
 using Product.Persistence;

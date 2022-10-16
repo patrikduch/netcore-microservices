@@ -4,12 +4,15 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //-----------------------------------------------------------------------------------
+
 namespace Product.Persistence;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Product.Application.Contracts;
 using Product.Persistence.Contexts;
+using Product.Persistence.Repositories;
 using Product.Persistence.Seeders;
 
 /// <summary>
@@ -29,6 +32,7 @@ public static class PersistenceServicesRegistrator
         services.AddScoped<DbContext, ProductContext>();
         services.AddTransient<ProductSeeder>();
 
+        services.AddScoped<IProductRepository, ProductRepository>();
 
 
         services.AddDbContext<ProductContext>(options =>

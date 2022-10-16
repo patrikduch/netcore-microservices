@@ -4,12 +4,12 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
+
 namespace Product.API.Controllers;
 
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Product.Domain.Entities;
-using Product.Persistence.Contexts;
+using Product.Application.Features.Products.Queries.GetProductList;
 
 /// <summary>
 /// Product management Rest API controller.
@@ -18,16 +18,19 @@ using Product.Persistence.Contexts;
 [ApiController]
 public class ProductController : ControllerBase
 {
-    private readonly ProductContext _context;
+    private readonly IMediator _mediator;
 
-    public ProductController(ProductContext productCtx)
+    public ProductController(IMediator mediator)
     {
-        _context = productCtx;
+        _mediator = mediator;
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProductList()
     {
-        return Ok(await _context.Products.ToListAsync());
+        var result = await _mediator.Send(new GetProductListQuery());
+
+        return Ok(result);
     }
 }

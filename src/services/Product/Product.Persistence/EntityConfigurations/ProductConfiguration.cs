@@ -4,6 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
+
 namespace Product.Persistence.EntityConfigurations;
 
 using Microsoft.EntityFrameworkCore;
