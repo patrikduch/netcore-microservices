@@ -43,10 +43,8 @@ public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, L
     /// <returns>Asynchronous task with collection <seealso cref="ProductDto"/> objects.</returns>
     public async Task<List<ProductDto>> Handle(GetProductListQuery request, CancellationToken cancellationToken)
     {
-        var test = await _productRepository.GetAllAsync();
+        var products = await _productRepository.GetAllAsync();
 
-        var result = _mapper.Map<List<ProductDto>>(test);
-
-        return result;
+        return _mapper.Map<List<ProductDto>>(products);
     }
 }
