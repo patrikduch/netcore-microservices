@@ -1,0 +1,16 @@
+﻿<div class="media-img-wrapper">
+    <a href="/product/@ProductId">
+       <img  class="media-img" src="@ImgUrl" alt="@ProductName" />
+    </a>
+</div>
+
+@code {
+    [Parameter]
+    public Guid ProductId { get; set; }
+
+    [Parameter]
+    public string ImgUrl { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ProductName { get; set; } = string.Empty;
+}

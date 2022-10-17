@@ -1,0 +1,27 @@
+﻿@inject IProductService ProductService;
+
+<h3>Product list</h3>
+
+<ul class="list-unstyled">
+    @foreach(var product in @ProductService.Products)
+    {
+        <li class="media my-3">
+            <div class="media-body">
+                <ProductName Name="@product.Name" />
+                <ProductImage 
+                    ImgUrl="@product.ImgUrl"
+                    ProductId="@product.Id"
+                    ProductName="@product.Name" />
+                <ProductDescription Description="@product.Description" />
+                <ProductPrice Price="@product.Price" />
+            </div>
+        </li>
+    }
+</ul>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ProductService.GetProductsAsync();
+    }
+}

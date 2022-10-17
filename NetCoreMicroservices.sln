@@ -139,9 +139,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Domain", "src\servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Application", "src\services\Product\Product.Application\Product.Application.csproj", "{C939EB85-5D07-4960-B7E1-A130483C2F90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Persistence", "src\services\Product\Product.Persistence\Product.Persistence.csproj", "{1EDF4E0A-D976-43A4-B16A-88319418656E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Persistence", "src\services\Product\Product.Persistence\Product.Persistence.csproj", "{1EDF4E0A-D976-43A4-B16A-88319418656E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Infrastructure", "src\services\Product\Product.Infrastructure\Product.Infrastructure.csproj", "{F1039FBC-268E-4D09-92D2-9E229E5A1CA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Infrastructure", "src\services\Product\Product.Infrastructure\Product.Infrastructure.csproj", "{F1039FBC-268E-4D09-92D2-9E229E5A1CA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
