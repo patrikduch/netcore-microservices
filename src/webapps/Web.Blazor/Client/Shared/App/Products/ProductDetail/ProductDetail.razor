@@ -1,5 +1,28 @@
-﻿<h3>ProductDetail</h3>
+﻿ <div class="media">
+    <div class="media-body">
+       <ProductName Name="@ProductName" />
+        <ProductImage 
+           ProductName="@ProductName"
+           ImgUrl="@ProductImgUrl"
+           ProductId="@ProductId"  />
+       <ProductDescription Description="@ProductDescription" />
+       <ProductPrice Price="@Price" />
+     </div>
+</div>
 
 @code {
+    [Parameter]
+    public Guid ProductId { get; set; }
 
+    [Parameter]
+    public string ProductName { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ProductDescription { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ProductImgUrl { get; set; } = string.Empty;
+
+    [Parameter]
+    public decimal Price { get; set; }
 }
