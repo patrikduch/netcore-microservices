@@ -1,14 +1,12 @@
-﻿ <div class="media">
-    <div class="media-body">
-       <ProductName Name="@ProductName" />
-        <ProductImage 
-           ProductName="@ProductName"
-           ImgUrl="@ProductImgUrl"
-           ProductId="@ProductId"  />
-       <ProductDescription Description="@ProductDescription" />
-       <ProductPrice Price="@Price" />
-     </div>
-</div>
+﻿<ProductItemContainer>
+    <ProductName Name="@ProductName" />
+     <ProductImage 
+        ProductName="@ProductName"
+        ImgUrl="@ProductImgUrl"
+        ProductId="@ProductId"  />
+     <ProductDescription Description="@ProductDescription" />
+     <ProductPrice Price="@Price" />
+</ProductItemContainer>
 
 @code {
     [Parameter]
