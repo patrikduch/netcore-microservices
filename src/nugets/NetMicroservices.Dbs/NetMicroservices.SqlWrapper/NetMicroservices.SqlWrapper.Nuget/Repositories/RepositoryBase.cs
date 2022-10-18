@@ -112,5 +112,10 @@ namespace NetMicroservices.SqlWrapper.Nuget.Repositories
         {
             return await _dbContext.Set<TEntity>().FindAsync(id);
         }
+
+        public async Task<TEntity> GetByIdAsync(Guid id)
+        {
+            return await _dbContext.Set<TEntity>().FindAsync(id);
+        }
     }
 }
