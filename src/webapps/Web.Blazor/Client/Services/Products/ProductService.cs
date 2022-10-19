@@ -1,5 +1,14 @@
-﻿namespace Web.Blazor.Client.Services.Products;
+﻿//---------------------------------------------------------------------------
+// <copyright file="ProductService.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//---------------------------------------------------------------------------
 
+namespace Web.Blazor.Client.Services.Products;
+
+using NetMicroservices.ServiceConfig.Nuget;
+using System;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Web.Blazor.Shared;
@@ -24,5 +33,11 @@ public class ProductService : IProductService
         {
             Products = response.ToList();
         }
+    }
+
+    public async Task<ServiceResponse<Product>> GetProductAsync(Guid id)
+    {
+        var result = await _http.GetFromJsonAsync<ServiceResponse<Product>>($"/products/{id}");
+        return result;
     }
 }

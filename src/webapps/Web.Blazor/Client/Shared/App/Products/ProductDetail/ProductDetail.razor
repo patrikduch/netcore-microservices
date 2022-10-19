@@ -1,4 +1,7 @@
-﻿<ProductItemContainer>
+﻿@using NetMicroservices.ServiceConfig.Nuget
+@inject IProductService ProductService;
+
+<ProductItemContainer>
     <ProductName Name="@ProductName" />
      <ProductImage 
         ProductName="@ProductName"
@@ -9,6 +12,9 @@
 </ProductItemContainer>
 
 @code {
+
+    private ServiceResponse<Product> product = null;
+
     [Parameter]
     public Guid ProductId { get; set; }
 
@@ -23,4 +29,12 @@
 
     [Parameter]
     public decimal Price { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        product = await ProductService.GetProductAsync(ProductId);
+    }
+
+
 }

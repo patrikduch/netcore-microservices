@@ -6,7 +6,7 @@
     @foreach(var product in @ProductService.Products)
     {
         <li class="media my-3">
-            <div class="media-body">
+            <ProductItemContainer>
                 <ProductName Name="@product.Name" />
                 <ProductImage 
                     ImgUrl="@product.ImgUrl"
@@ -14,7 +14,7 @@
                     ProductName="@product.Name" />
                 <ProductDescription Description="@product.Description" />
                 <ProductPrice Price="@product.Price" />
-            </div>
+            </ProductItemContainer>
         </li>
     }
 </ul>
