@@ -1,10 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Authors>Patrik Duch</Authors>
     <PackageId>NetMicroservices.ServiceConfig</PackageId>
     <Version>1.1.1</Version>
   </PropertyGroup>
-
 </Project>
