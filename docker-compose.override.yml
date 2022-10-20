@@ -15,12 +15,12 @@ services:
       - inventory.api
       - projectdetail.api
 
-  web.blazor.server:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - APIGwUrl=http://localhost:9000
-    ports:
-      - "8094:80"
+  #web.blazor.server:
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - APIGwUrl=http://localhost:9000
+  #  ports:
+  #    - "8094:80"
 
   product.api:
     environment:

@@ -1,7 +1,6 @@
 ﻿@page "/product/{id:guid}"
 @inject IProductService ProductService
 
-
 @if(product == null)
 {
     <span>@message</span>
@@ -9,11 +8,7 @@
 else
 {
     <Web.Blazor.Client.Shared.App.Products.ProductDetail.ProductDetail
-        Price="@product.Price"
-        ProductDescription="@product.Description"
         ProductId="@product.Id"
-        ProductImgUrl="@product.ImgUrl"
-        ProductName="@product.Name"
     />
 }
 

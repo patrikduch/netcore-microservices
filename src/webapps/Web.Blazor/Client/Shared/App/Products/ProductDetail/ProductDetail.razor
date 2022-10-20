@@ -1,40 +1,27 @@
 ﻿@using NetMicroservices.ServiceConfig.Nuget
 @inject IProductService ProductService;
 
-<ProductItemContainer>
-    <ProductName Name="@ProductName" />
-     <ProductImage 
-        ProductName="@ProductName"
-        ImgUrl="@ProductImgUrl"
-        ProductId="@ProductId"  />
-     <ProductDescription Description="@ProductDescription" />
-     <ProductPrice Price="@Price" />
-</ProductItemContainer>
+@if (product is not  null)
+{
+    <ProductItemContainer>
+        <ProductName Name="@product.Data.Name" />
+        <ProductImage 
+            ProductName="@product.Data.Name"
+            ImgUrl="@product.Data.ImgUrl"
+            ProductId="@ProductId"  />
+        <ProductDescription Description="@product.Data.Description" />
+        <ProductPrice Price="@product.Data.Price" />
+    </ProductItemContainer>
+}
 
 @code {
-
-    private ServiceResponse<Product> product = null;
+    private ServiceResponse<Product>? product = null;
 
     [Parameter]
     public Guid ProductId { get; set; }
-
-    [Parameter]
-    public string ProductName { get; set; } = string.Empty;
-
-    [Parameter]
-    public string ProductDescription { get; set; } = string.Empty;
-
-    [Parameter]
-    public string ProductImgUrl { get; set; } = string.Empty;
-
-    [Parameter]
-    public decimal Price { get; set; }
-
 
     protected override async Task OnInitializedAsync()
     {
         product = await ProductService.GetProductAsync(ProductId);
     }
-
-
 }

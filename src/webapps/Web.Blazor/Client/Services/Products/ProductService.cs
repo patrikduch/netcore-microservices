@@ -27,8 +27,7 @@ public class ProductService : IProductService
     public async Task GetProductsAsync()
     {
         var response = await _http.GetFromJsonAsync<List<Product>>("/products");
-
-
+        
         if (response is not null)
         {
             Products = response.ToList();

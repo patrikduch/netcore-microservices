@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  web.blazor.server:
-    image: ${DOCKER_REGISTRY-}webblazorserver
-    build:
-      context: .
-      dockerfile: src/webapps/Web.Blazor/Server/Dockerfile
+  #web.blazor.server:
+  #  image: ${DOCKER_REGISTRY-}webblazorserver
+  #  build:
+  #    context: .
+  #    dockerfile: src/webapps/Web.Blazor/Server/Dockerfile
 
   product.api:
     image: ${DOCKER_REGISTRY-}productapi
