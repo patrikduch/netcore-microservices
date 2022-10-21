@@ -1,11 +1,4 @@
-﻿//---------------------------------------------------------------------------
-// <copyright file="ProductController.cs" website="Patrikduch.com">
-//     Copyright (c) Patrik Duch, IČ: 09225471
-// </copyright>
-// <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
-
-namespace NetMicroservices.SqlWrapper.Nuget.Extensions;
+﻿namespace NetMicroservices.SqlWrapper.Nuget;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,13 +7,8 @@ using Microsoft.Extensions.Logging;
 using Polly;
 using System;
 using System.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
-
-/// <summary>
-/// Entity framework common extension methods, that are shaed among multiple microservices.
-/// </summary>
-public static class EFCoreExtensions
+public static class MigrationUtil
 {
     /// <summary>
     /// EFCore migration functionality.
