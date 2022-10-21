@@ -32,6 +32,7 @@ public static class PersistenceServicesRegistrator
         services.AddScoped<DbContext, ProductContext>();
         services.AddTransient<ProductSeeder>();
 
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
 
 

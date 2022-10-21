@@ -10,6 +10,7 @@ namespace Product.API.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Product.Application.Dtos;
+using Product.Application.Features.Products.Queries.GetCategoryList;
 using Product.Application.Features.Products.Queries.GetProduct;
 using Product.Application.Features.Products.Queries.GetProductList;
 
@@ -45,6 +46,15 @@ public class ProductController : ControllerBase
         {
             ProductId = id
         });
+
+        return Ok(result);
+    }
+
+    [HttpGet("category-list")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CategoryDto>))]
+    public async Task<IActionResult> GetCategoryList()
+    {
+        var result = await _mediator.Send(new GetCategoryListQuery());
 
         return Ok(result);
     }

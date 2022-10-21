@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Product.Domain.Entities;
 
 /// <summary>
-/// Entitz configuration for  <seealso cref="CategoryEntity"/>.
+/// Entity configuration for  <seealso cref="CategoryEntity"/>.
 /// </summary>
 public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
 {
@@ -20,6 +20,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
     {
         builder.ToTable("category");
 
+        builder.HasKey(c => c.Id).HasName("id");
         builder.Property(c => c.Name).HasColumnName("name");
         builder.Property(c => c.Url).HasColumnName("url");
     }

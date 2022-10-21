@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Products\Queries\GetCategoryList\" />
-  </ItemGroup>
-
 </Project>

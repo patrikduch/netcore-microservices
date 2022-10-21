@@ -7,13 +7,13 @@
 
 namespace Product.Domain.Entities;
 
+using NetMicroservices.SqlWrapper.Nuget;
+
 /// <summary>
 /// Entity for representation product's categories.
 /// </summary>
-public class CategoryEntity
+public class CategoryEntity: EntityBase
 {
-    public Guid Id { get; set; }
-
     /// <summary>
     /// Gets or sets product name.
     /// </summary>
