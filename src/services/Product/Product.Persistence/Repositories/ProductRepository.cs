@@ -19,14 +19,11 @@ using Product.Persistence.Contexts;
 /// </summary>
 public class ProductRepository : RepositoryBase<ProductEntity, ProductContext>, IProductRepository
 {
-    private readonly ProductContext _productContext;
-
     /// <summary>
     /// Initializes a new instance of the <seealso cref="ProductRepository"/>.
     /// </summary>
     /// <param name="productContext">Order <seealso cref="DbContext"/> dependency object.</param>
     public ProductRepository(ProductContext productContext) : base(productContext)
     {
-        _productContext = productContext;
     }
 }
