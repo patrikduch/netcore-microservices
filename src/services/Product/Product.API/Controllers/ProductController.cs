@@ -17,7 +17,7 @@ using Product.Application.Features.Products.Queries.GetProductList;
 /// <summary>
 /// Product management Rest API controller.
 /// </summary>
-[Route("api/v1/[controller]")]
+[Route("api/v1")]
 [ApiController]
 public class ProductController : ControllerBase
 {
@@ -28,7 +28,7 @@ public class ProductController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet]
+    [HttpGet("products")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProductList()
     {
@@ -38,7 +38,7 @@ public class ProductController : ControllerBase
     }
 
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("products/{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductDto))]
     public async Task<IActionResult> GetProduct(Guid id)
     {
