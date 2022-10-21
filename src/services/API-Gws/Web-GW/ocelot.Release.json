@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/v1/ProjectDetail/",
+      "DownstreamPathTemplate": "/api/v1/projectDetail",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +9,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/ProjectDetail",
+      "UpstreamPathTemplate": "/projectDetail",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
@@ -21,11 +21,11 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/Products",
+      "UpstreamPathTemplate": "/products",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Product/{id:guid}",
+      "DownstreamPathTemplate": "/api/v1/products/{id:guid}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -33,7 +33,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/Products/{id:guid}",
+      "UpstreamPathTemplate": "/products/{id:guid}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
@@ -49,7 +49,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Catalog",
+      "DownstreamPathTemplate": "/api/v1/catalog",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -57,7 +57,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/Catalog",
+      "UpstreamPathTemplate": "/catalog",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {

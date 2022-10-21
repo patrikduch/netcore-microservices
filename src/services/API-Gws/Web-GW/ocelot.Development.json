@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/v1/ProjectDetail",
+      "DownstreamPathTemplate": "/api/v1/projectDetail",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +9,7 @@
           "Port": "80"
         }
       ],
-      "UpstreamPathTemplate": "/ProjectDetail",
+      "UpstreamPathTemplate": "/projectDetail",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
@@ -25,7 +25,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Product/{id:guid}",
+      "DownstreamPathTemplate": "/api/v1/products/{id:guid}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -33,11 +33,11 @@
           "Port": "80"
         }
       ],
-      "UpstreamPathTemplate": "/Products/{id:guid}",
+      "UpstreamPathTemplate": "/products/{id:guid}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Category-List",
+      "DownstreamPathTemplate": "/api/v1/category-list",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
