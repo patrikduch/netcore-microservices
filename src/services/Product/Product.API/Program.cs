@@ -42,9 +42,11 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<ProductContext>();
     context.Database.Migrate();
 
+    var productSeeder = scope.ServiceProvider.GetService<ProductSeeder>();
+    productSeeder?.Seed();
 
-    var service = scope.ServiceProvider.GetService<ProductSeeder>();
-    service.Seed();
+    var categorySeeder = scope.ServiceProvider.GetService<CategorySeeder>();
+    categorySeeder?.Seed();
 }
 
 app.UseAuthorization();
