@@ -8,6 +8,6 @@
 namespace Product.Application.Dtos;
 
 /// <summary>
-/// Data transfer object for transfer relevant category information.
+/// Data transfer object for transfer relevant product category information.
 /// </summary>
 public record CategoryDto(Guid Id, string Name, string Url);
