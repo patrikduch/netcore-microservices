@@ -1,4 +1,7 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using Web.Blazor.Client.Services.Category
+@inject ICategoryService CategoryService;
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href=""><NavTitle /> </a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -14,18 +17,15 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-   
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="customers">
-                <span aria-hidden="true"></span> Customers
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="products">
-                <span aria-hidden="true"></span> Products
-            </NavLink>
-        </div>
+        
+        @foreach(var category in CategoryService.Categories)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="@category.Url">
+                    <span aria-hidden="true"></span> @category.Name
+                </NavLink>
+            </div>
+        }
     </nav>
 </div>
 
@@ -37,5 +37,10 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CategoryService.GetCategoriesAsync();
     }
 }
