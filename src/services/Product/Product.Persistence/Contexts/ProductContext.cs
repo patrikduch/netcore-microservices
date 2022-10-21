@@ -29,9 +29,14 @@ public class ProductContext : DbContext
     }
 
     /// <summary>
-    /// Gets or sets Collection of Products.
+    /// Gets or sets collection of products.
     /// </summary>
     public DbSet<ProductEntity>? Products { get; set; }
+
+    /// <summary>
+    /// Gets or sets collection of product categories.
+    /// </summary>
+    public DbSet<CategoryEntity> Categories { get; set; }
 
     /// <summary>
     /// Adding configuration to the <seealso cref="ProductContext"/>.
@@ -40,5 +45,6 @@ public class ProductContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
     }
 }

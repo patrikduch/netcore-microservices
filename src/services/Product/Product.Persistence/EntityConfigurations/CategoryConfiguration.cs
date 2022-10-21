@@ -1,0 +1,26 @@
+﻿//---------------------------------------------------------------------------
+// <copyright file="CategoryConfiguration.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//---------------------------------------------------------------------------
+
+namespace Product.Persistence.EntityConfigurations;
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Product.Domain.Entities;
+
+/// <summary>
+/// Entitz configuration for  <seealso cref="CategoryEntity"/>.
+/// </summary>
+public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
+{
+    public void Configure(EntityTypeBuilder<CategoryEntity> builder)
+    {
+        builder.ToTable("category");
+
+        builder.Property(c => c.Name).HasColumnName("name");
+        builder.Property(c => c.Url).HasColumnName("url");
+    }
+}
