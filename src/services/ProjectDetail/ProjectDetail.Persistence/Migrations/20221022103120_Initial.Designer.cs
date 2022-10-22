@@ -11,7 +11,7 @@ using ProjectDetail.Persistence.Contexts;
 
 namespace ProjectDetail.Persistence.Migrations
 {
-    [DbContext(typeof(ProjectContext))]
+    [DbContext(typeof(ProjectDetailContext))]
     [Migration("20221022103120_Initial")]
     partial class Initial
     {

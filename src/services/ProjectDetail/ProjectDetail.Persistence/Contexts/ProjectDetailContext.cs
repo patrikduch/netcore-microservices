@@ -17,13 +17,13 @@ using System.Threading.Tasks;
 /// <summary>
 /// <seealso cref="DbContext"/>  configuration for  <seealso cref="ProjectDetailEntity"/> entity.
 /// </summary>
-public class ProjectContext : DbContext
+public class ProjectDetailContext : DbContext
 {
     /// <summary>
-    /// Initializes a new instance of the <seealso cref="ProjectContext"/>.
+    /// Initializes a new instance of the <seealso cref="ProjectDetailContext"/>.
     /// </summary>
     /// <param name="options"> <seealso cref="DbContextOptions{TContext}"/> EFCore context setup.</param>
-    public ProjectContext(DbContextOptions<ProjectContext> options) : base(options)
+    public ProjectDetailContext(DbContextOptions<ProjectDetailContext> options) : base(options)
     {
     }
 
@@ -34,9 +34,9 @@ public class ProjectContext : DbContext
 
 
     /// <summary>
-    /// Adding configuration rules to the <seealso cref="ProjectContext"/>.
+    /// Adding configuration rules to the <seealso cref="ProjectDetailContext"/>.
     /// </summary>
-    /// <param name="modelBuilder"><seealso cref="ModelBuilder"/> object for extending current <seealso cref="ProjectContext"/> object.</param>
+    /// <param name="modelBuilder"><seealso cref="ModelBuilder"/> object for extending current <seealso cref="ProjectDetailContext"/> object.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ProjectDetailConfiguration());

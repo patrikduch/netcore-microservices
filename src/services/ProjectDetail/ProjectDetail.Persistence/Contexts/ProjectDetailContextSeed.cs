@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 /// <summary>
 /// Data seed functionality for <seealso cref="ProjectDetailEntity"/> entity.
 /// </summary>
-public class ProjectContextSeed
+public class ProjectDetailContextSeed
 {
     /// <summary>
     /// Seed execution of <seealso cref="ProjectDetailEntity"/> entity.
@@ -24,13 +24,13 @@ public class ProjectContextSeed
     /// <param name="projectContext">Project DbContext dependency.</param>
     /// <param name="logger">Logger functionality dependency.</param>
     /// <returns>Asynchronous task.</returns>
-    public static async Task SeedAsync(ProjectContext projectContext, ILogger<ProjectContextSeed> logger)
+    public static async Task SeedAsync(ProjectDetailContext projectContext, ILogger<ProjectDetailContextSeed> logger)
     {
         if (!projectContext.Projects.Any())
         {
             projectContext.Projects.AddRange(GetPreconfiguredProjectDetail());
             await projectContext.SaveChangesAsync();
-            logger.LogInformation("Seed database associated with context {DbContextName}", typeof(ProjectContext).Name);
+            logger.LogInformation("Seed database associated with context {DbContextName}", typeof(ProjectDetailContext).Name);
         }
     }
 

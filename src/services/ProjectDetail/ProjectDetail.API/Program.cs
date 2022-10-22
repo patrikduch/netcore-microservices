@@ -23,11 +23,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MigrateDatabase<ProjectContext>((context, services) =>
+app.MigrateDatabase<ProjectDetailContext>((context, services) =>
  {
-     var logger = services.GetService(typeof(ILogger<ProjectContextSeed>)) as ILogger<ProjectContextSeed>;
+     var logger = services.GetService(typeof(ILogger<ProjectDetailContextSeed>)) as ILogger<ProjectDetailContextSeed>;
 
-     ProjectContextSeed
+     ProjectDetailContextSeed
             .SeedAsync(context, logger)
             .Wait();
  });

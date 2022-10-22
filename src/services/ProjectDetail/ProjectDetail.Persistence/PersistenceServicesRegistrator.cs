@@ -28,14 +28,14 @@ public static class PersistenceServicesRegistrator
     /// <returns>Dependency Injection services collection.</returns>
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<DbContext, ProjectContext>();
+        services.AddScoped<DbContext, ProjectDetailContext>();
 
         var res = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
 
-        services.AddDbContext<ProjectContext>(options =>
+        services.AddDbContext<ProjectDetailContext>(options =>
             options.UseSqlServer((configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
 
-        services.AddScoped(typeof(IAsyncRepository<ProjectDetailEntity>), typeof(RepositoryBase<ProjectDetailEntity, ProjectContext>));
+        services.AddScoped(typeof(IAsyncRepository<ProjectDetailEntity>), typeof(RepositoryBase<ProjectDetailEntity, ProjectDetailContext>));
         services.AddScoped<IProjectRepository, ProjectDetailRepository>();
 
         return services;

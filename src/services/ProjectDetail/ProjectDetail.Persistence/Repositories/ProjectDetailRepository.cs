@@ -14,13 +14,13 @@ using ProjectDetail.Persistence.Contexts;
 /// <summary>
 /// Data repository for management <seealso cref="ProjectDetailEntity"/>.
 /// </summary>
-public class ProjectDetailRepository : RepositoryBase<ProjectDetailEntity, ProjectContext>, IProjectRepository
+public class ProjectDetailRepository : RepositoryBase<ProjectDetailEntity, ProjectDetailContext>, IProjectRepository
 {
     /// <summary>
     /// Initializes a new instance of the <seealso cref="ProjectDetailRepository"/>.
     /// </summary>
     /// <param name="projectContext">Order <seealso cref="DbContext"/> dependency object.</param>
-    public ProjectDetailRepository(ProjectContext projectContext) : base(projectContext)
+    public ProjectDetailRepository(ProjectDetailContext projectContext) : base(projectContext)
     {
     }
 }

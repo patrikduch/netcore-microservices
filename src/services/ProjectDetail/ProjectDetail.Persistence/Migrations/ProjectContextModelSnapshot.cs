@@ -10,7 +10,7 @@ using ProjectDetail.Persistence.Contexts;
 
 namespace ProjectDetail.Persistence.Migrations
 {
-    [DbContext(typeof(ProjectContext))]
+    [DbContext(typeof(ProjectDetailContext))]
     partial class ProjectContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
