@@ -21,6 +21,6 @@ public class MappingProfile : Profile
     /// </summary>
     public MappingProfile()
     {
-        CreateMap<ProjectDetail, ProjectDetailDto>().ReverseMap();
+        CreateMap<ProjectDetailEntity, ProjectDetailDto>().ReverseMap();
     }
 }

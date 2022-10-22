@@ -35,7 +35,7 @@ public static class PersistenceServicesRegistrator
         services.AddDbContext<ProjectContext>(options =>
             options.UseSqlServer((configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
 
-        services.AddScoped(typeof(IAsyncRepository<ProjectDetail>), typeof(RepositoryBase<ProjectDetail, ProjectContext>));
+        services.AddScoped(typeof(IAsyncRepository<ProjectDetailEntity>), typeof(RepositoryBase<ProjectDetailEntity, ProjectContext>));
         services.AddScoped<IProjectRepository, ProjectDetailRepository>();
 
         return services;

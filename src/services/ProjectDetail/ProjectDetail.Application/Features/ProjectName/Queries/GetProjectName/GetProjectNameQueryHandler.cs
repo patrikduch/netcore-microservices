@@ -30,7 +30,7 @@ public class GetProjectNameQueryHandler : IRequestHandler<GetProjectNameQuery, R
     /// Initializes a new instance of the <seealso cref="GetProjectNameQueryHandler"/>.
     /// </summary>
     /// <param name="mapper">Domain to Application object mapper dependency.</param>
-    /// <param name="projectRepository">Data repository for <seealso cref="ProjectDetail"/> entity.</param>
+    /// <param name="projectRepository">Data repository for <seealso cref="ProjectDetailEntity"/> entity.</param>
     public GetProjectNameQueryHandler(IMapper mapper, IProjectRepository projectRepository)
     {
         _projectRepository = projectRepository ?? throw new ArgumentNullException(nameof(projectRepository));

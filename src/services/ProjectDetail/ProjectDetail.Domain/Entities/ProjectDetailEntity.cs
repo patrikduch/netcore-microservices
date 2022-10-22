@@ -11,7 +11,7 @@ using NetMicroservices.SqlWrapper.Nuget;
 /// <summary>
 /// Project domain entity object.
 /// </summary>
-public class ProjectDetail : EntityBase
+public class ProjectDetailEntity : EntityBase
 {
     /// <summary>
     /// Gets or sets project name.

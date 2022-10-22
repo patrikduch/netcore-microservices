@@ -15,7 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 /// <summary>
-/// <seealso cref="DbContext"/>  configuration for  <seealso cref="ProjectDetail"/> entity.
+/// <seealso cref="DbContext"/>  configuration for  <seealso cref="ProjectDetailEntity"/> entity.
 /// </summary>
 public class ProjectContext : DbContext
 {
@@ -28,9 +28,9 @@ public class ProjectContext : DbContext
     }
 
     /// <summary>
-    /// Set of <seealso cref="ProjectDetail"/> entities.
+    /// Set of <seealso cref="ProjectDetailEntity"/> entities.
     /// </summary>
-    public DbSet<ProjectDetail> Projects { get; set; }
+    public DbSet<ProjectDetailEntity> Projects { get; set; }
 
 
     /// <summary>

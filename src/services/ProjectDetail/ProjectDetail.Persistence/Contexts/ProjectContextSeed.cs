@@ -14,21 +14,18 @@ using System.Linq;
 using System.Threading.Tasks;
 
 /// <summary>
-/// Data seed functionality for <seealso cref="ProjectDetail"/> entity.
+/// Data seed functionality for <seealso cref="ProjectDetailEntity"/> entity.
 /// </summary>
 public class ProjectContextSeed
 {
     /// <summary>
-    /// Seed execution of <seealso cref="ProjectDetail"/> entity.
+    /// Seed execution of <seealso cref="ProjectDetailEntity"/> entity.
     /// </summary>
     /// <param name="projectContext">Project DbContext dependency.</param>
     /// <param name="logger">Logger functionality dependency.</param>
     /// <returns>Asynchronous task.</returns>
     public static async Task SeedAsync(ProjectContext projectContext, ILogger<ProjectContextSeed> logger)
     {
-        var test = projectContext.Database.CanConnect();
-
-
         if (!projectContext.Projects.Any())
         {
             projectContext.Projects.AddRange(GetPreconfiguredProjectDetail());
@@ -41,11 +38,11 @@ public class ProjectContextSeed
     /// Preconfigured project detail data for db initialization.
     /// </summary>
     /// <returns>Project detail info.</returns>
-    private static IEnumerable<ProjectDetail> GetPreconfiguredProjectDetail()
+    private static IEnumerable<ProjectDetailEntity> GetPreconfiguredProjectDetail()
     {
-        return new List<ProjectDetail> 
+        return new List<ProjectDetailEntity> 
         {
-            new ProjectDetail  {
+            new ProjectDetailEntity  {
             Name = "E-Commerce Template",
             CreatedAt = DateTime.Now,
             CreatedBy = "patrikduch",

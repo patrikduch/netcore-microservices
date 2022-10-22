@@ -12,9 +12,9 @@ using ProjectDetail.Domain;
 using ProjectDetail.Persistence.Contexts;
 
 /// <summary>
-/// Data repository for management  <seealso cref="ProjectDetail"/>.
+/// Data repository for management <seealso cref="ProjectDetailEntity"/>.
 /// </summary>
-public class ProjectDetailRepository : RepositoryBase<ProjectDetail, ProjectContext>, IProjectRepository
+public class ProjectDetailRepository : RepositoryBase<ProjectDetailEntity, ProjectContext>, IProjectRepository
 {
     /// <summary>
     /// Initializes a new instance of the <seealso cref="ProjectDetailRepository"/>.

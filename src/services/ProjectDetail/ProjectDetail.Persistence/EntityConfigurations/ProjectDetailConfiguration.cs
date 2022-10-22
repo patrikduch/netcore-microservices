@@ -12,11 +12,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProjectDetail.Domain;
 
 /// <summary>
-/// Entity configuration for  <seealso cref="ProjectDetail"/>.
+/// Entity configuration for  <seealso cref="ProjectDetailEntity"/>.
 /// </summary>
-public class ProjectDetailConfiguration : IEntityTypeConfiguration<ProjectDetail>
+public class ProjectDetailConfiguration : IEntityTypeConfiguration<ProjectDetailEntity>
 {
-    public void Configure(EntityTypeBuilder<ProjectDetail> builder)
+    public void Configure(EntityTypeBuilder<ProjectDetailEntity> builder)
     {
         builder.ToTable("projectdetail");
     }

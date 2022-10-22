@@ -10,8 +10,8 @@ using NetMicroservices.SqlWrapper.Nuget;
 using ProjectDetail.Domain;
 
 /// <summary>
-/// Data repository contract of <seealso cref="ProjectDetail"/> entity.
+/// Data repository contract of <seealso cref="ProjectDetailEntity"/> entity.
 /// </summary>
-public interface IProjectRepository : IAsyncRepository<ProjectDetail>
+public interface IProjectRepository : IAsyncRepository<ProjectDetailEntity>
 {
 }
