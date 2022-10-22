@@ -61,7 +61,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.RabbitMqWr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetMicroservices.MessageContracts.Nuget", "src\nugets\NetMicroservices.Messaging\MessageContracts\NetMicroservices.MessageContracts.Nuget\NetMicroservices.MessageContracts.Nuget.csproj", "{B5A31DAF-4B8E-48DF-8083-EF10B777603D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web-GW", "src\services\API-Gws\Web-GW\Web-GW.csproj", "{7B6C336C-CCB4-447D-AAF8-C41474AA42BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.GW", "src\services\API-Gws\Web-GW\Web.GW.csproj", "{7B6C336C-CCB4-447D-AAF8-C41474AA42BD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{CA24D5C5-3F54-4CDC-8B1A-3DA6E61283ED}"
 EndProject
@@ -139,7 +139,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Persistence", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Infrastructure", "src\services\Product\Product.Infrastructure\Product.Infrastructure.csproj", "{F1039FBC-268E-4D09-92D2-9E229E5A1CA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectDetail.API", "src\services\ProjectDetail\ProjectDetail.API\ProjectDetail.API.csproj", "{1D7FD7D3-BFA3-43F1-B826-21C269D2FEBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectDetail.API", "src\services\ProjectDetail\ProjectDetail.API\ProjectDetail.API.csproj", "{1D7FD7D3-BFA3-43F1-B826-21C269D2FEBA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "src\services\Product\Product.API\Product.API.csproj", "{61D37676-3038-4986-B6EB-0E8D5CFB9426}"
 EndProject
