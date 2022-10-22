@@ -1,34 +1,40 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ProjectDetail.API.Extensions;
+using NetMicroservices.SqlWrapper.Nuget;
+using ProjectDetail.Application;
+using ProjectDetail.Persistence;
 using ProjectDetail.Persistence.Contexts;
 
-namespace ProjectDetail.API
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddApplicationServices();
+builder.Services.AddPersistenceServices(builder.Configuration);
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build()
-
-                .MigrateDatabase<ProjectContext>((context, services) =>
-                {
-                    var logger = services.GetService(typeof(ILogger<ProjectContextSeed>)) as ILogger<ProjectContextSeed>;
-
-                    ProjectContextSeed
-                           .SeedAsync(context, logger)
-                           .Wait();
-                })
-
-                .Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.MigrateDatabase<ProjectContext>((context, services) =>
+ {
+     var logger = services.GetService(typeof(ILogger<ProjectContextSeed>)) as ILogger<ProjectContextSeed>;
+
+     ProjectContextSeed
+            .SeedAsync(context, logger)
+            .Wait();
+ });
+
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

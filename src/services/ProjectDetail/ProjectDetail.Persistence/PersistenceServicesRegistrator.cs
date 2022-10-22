@@ -1,4 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//------------------------------------------------------------------------------------
+// <copyright file="PersistenceServicesRegistrator.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+// -----------------------------------------------------------------------------------
+namespace ProjectDetail.Persistence;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetMicroservices.SqlWrapper.Nuget;
@@ -8,32 +16,28 @@ using ProjectDetail.Domain;
 using ProjectDetail.Persistence.Contexts;
 using ProjectDetail.Persistence.Repositories;
 
-namespace ProjectDetail.Persistence
+/// <summary>
+/// Registration of persistence services.
+/// </summary>
+public static class PersistenceServicesRegistrator
 {
     /// <summary>
-    /// Registration of persistence services.
+    /// Definition of service sets that are being used by Persistence project.
     /// </summary>
-    public static class PersistenceServicesRegistrator
+    /// <param name="services">Service collection fo Dependency Injection Container.</param>
+    /// <returns>Dependency Injection services collection.</returns>
+    public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<DbContext, ProjectContext>();
 
-        /// <summary>
-        /// Definition of service sets that are being used by Persistence project.
-        /// </summary>
-        /// <param name="services">Service collection fo Dependency Injection Container.</param>
-        /// <returns>Dependency Injection services collection.</returns>
-        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddScoped<DbContext, ProjectContext>();
+        var res = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
 
-            var res = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
+        services.AddDbContext<ProjectContext>(options =>
+            options.UseSqlServer((configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
 
-            services.AddDbContext<ProjectContext>(options =>
-                options.UseSqlServer((configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
+        services.AddScoped(typeof(IAsyncRepository<ProjectDetail>), typeof(RepositoryBase<ProjectDetail, ProjectContext>));
+        services.AddScoped<IProjectRepository, ProjectDetailRepository>();
 
-            services.AddScoped(typeof(IAsyncRepository<Project>), typeof(RepositoryBase<Project, ProjectContext>));
-            services.AddScoped<IProjectRepository, ProjectRepository>();
-
-            return services;
-        }
+        return services;
     }
 }

@@ -4,7 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //-----------------------------------------------------------------------------------
-
 namespace Product.Persistence.Repositories;
 
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +11,6 @@ using NetMicroservices.SqlWrapper.Nuget.Repositories;
 using Product.Application.Contracts;
 using Product.Domain.Entities;
 using Product.Persistence.Contexts;
-
 
 /// <summary>
 /// Data repository for management  <seealso cref="ProductEntity"/>.

@@ -1,13 +1,18 @@
-﻿using MediatR;
-using NetMicroservices.ServiceConfig.Nuget;
-using System.Collections.Generic;
+﻿//---------------------------------------------------------------------------
+// <copyright file="GetProjectNameQuery.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//---------------------------------------------------------------------------
+namespace ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
 
-namespace ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName
+using MediatR;
+using NetMicroservices.ServiceConfig.Nuget;
+using ProjectDetail.Application.Dtos;
+
+/// <summary>
+/// CQRS query for fetching information about current project.
+/// </summary>
+public class GetProjectNameQuery : IRequest<Result<ProjectDetailDto>>
 {
-    /// <summary>
-    /// CQRS query for fetching information about current project.
-    /// </summary>
-    public class GetProjectNameQuery:  IRequest<Result<ProjectVm>>
-    {
-    }
 }
