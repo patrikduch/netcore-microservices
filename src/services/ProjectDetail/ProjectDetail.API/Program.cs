@@ -1,3 +1,9 @@
+//------------------------------------------------------------------------------------
+// <copyright file="Program.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IÈ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+// -----------------------------------------------------------------------------------
 using NetMicroservices.SqlWrapper.Nuget;
 using ProjectDetail.Application;
 using ProjectDetail.Persistence;
@@ -24,17 +30,15 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MigrateDatabase<ProjectDetailContext>((context, services) =>
- {
+{
      var logger = services.GetService(typeof(ILogger<ProjectDetailContextSeed>)) as ILogger<ProjectDetailContextSeed>;
 
      ProjectDetailContextSeed
             .SeedAsync(context, logger)
             .Wait();
- });
+});
 
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using ProjectDetail.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 /// <summary>
@@ -26,12 +25,17 @@ public class ProjectDetailContextSeed
     /// <returns>Asynchronous task.</returns>
     public static async Task SeedAsync(ProjectDetailContext projectContext, ILogger<ProjectDetailContextSeed> logger)
     {
-        if (!projectContext.Projects.Any())
-        {
-            projectContext.Projects.AddRange(GetPreconfiguredProjectDetail());
-            await projectContext.SaveChangesAsync();
-            logger.LogInformation("Seed database associated with context {DbContextName}", typeof(ProjectDetailContext).Name);
-        }
+        //if (!projectContext.Projects.Any())
+        // {
+
+        projectContext.Projects.RemoveRange(projectContext.Projects);
+        await projectContext.SaveChangesAsync();
+
+
+        projectContext.Projects.AddRange(GetPreconfiguredProjectDetail());
+        await projectContext.SaveChangesAsync();
+        logger.LogInformation("Seed database associated with context {DbContextName}", typeof(ProjectDetailContext).Name);
+        //}
     }
 
     /// <summary>
@@ -43,7 +47,7 @@ public class ProjectDetailContextSeed
         return new List<ProjectDetailEntity> 
         {
             new ProjectDetailEntity  {
-            Name = "E-Commerce Template",
+            Name = "NetMicroservices project",
             CreatedAt = DateTime.Now,
             CreatedBy = "patrikduch",
             LastModifiedBy = "patrikduch",
