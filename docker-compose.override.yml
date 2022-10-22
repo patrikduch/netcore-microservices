@@ -42,6 +42,24 @@ services:
     volumes:
       - product_db_data:/var/lib/postgresql/data 
 
+  projectdetail.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=projectdetaildb;Database=ProjectDb;User Id=sa;Password=SwN12345678;"
+    ports:
+      - "8093:80"
+    depends_on:
+      - projectdetail.db
+
+  projectdetail.db:
+    container_name: projectdetaildb
+    environment:
+        SA_PASSWORD: "SwN12345678"
+        ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+        - "1431:1433"
+
   mongo.db:
     container_name: mongodbservice
     restart: always
@@ -84,15 +102,6 @@ services:
     restart: always
     ports:
         - "1432:1433"
-
-  projectdetail.db:
-    container_name: projectdetaildb
-    environment:
-        SA_PASSWORD: "SwN12345678"
-        ACCEPT_EULA: "Y"
-    restart: always
-    ports:
-        - "1431:1433"
 
   pgadmin:
     container_name: pgadmin
@@ -239,11 +248,3 @@ services:
     depends_on:
       - customer.db
   
-  projectdetail.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=Server=projectdetaildb;Database=ProjectDb;User Id=sa;Password=SwN12345678;"
-    ports:
-      - "8093:80"
-    depends_on:
-      - projectdetail.db
