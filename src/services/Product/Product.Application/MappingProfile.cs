@@ -4,12 +4,11 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
+namespace Product.Application;
 
 using AutoMapper;
 using Product.Application.Dtos;
 using Product.Domain.Entities;
-
-namespace Product.Application;
 
 /// <summary>
 /// Mapping profiles of domain object to the application objects.

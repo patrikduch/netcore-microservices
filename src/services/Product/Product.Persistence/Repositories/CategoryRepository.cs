@@ -4,7 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
 namespace Product.Persistence.Repositories;
 
 using Microsoft.EntityFrameworkCore;

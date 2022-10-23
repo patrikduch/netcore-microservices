@@ -4,7 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
 namespace Product.Domain.Entities;
 
 using NetMicroservices.SqlWrapper.Nuget;
@@ -24,6 +23,8 @@ public class CategoryEntity: EntityBase
     /// </summary>
     public string Url { get; set; } = string.Empty;
 
-
-    public List<ProductEntity> Products { get; set; }
+    /// <summary>
+    /// Gets or sets collection of products that are associated with particular Category.
+    /// </summary>
+    public List<ProductEntity> Products { get; set; } = new();
 }

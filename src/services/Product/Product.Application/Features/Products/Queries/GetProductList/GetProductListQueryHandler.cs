@@ -4,7 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
 namespace Product.Application.Features.Products.Queries.GetProductList;
 
 using AutoMapper;
@@ -14,7 +13,6 @@ using Product.Application.Contracts;
 using Product.Application.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
-
 
 /// <summary>
 /// CQRS query handler class for fetching list of products.

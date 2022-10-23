@@ -4,8 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
-
 namespace Product.Application.Contracts;
 
 using NetMicroservices.SqlWrapper.Nuget;

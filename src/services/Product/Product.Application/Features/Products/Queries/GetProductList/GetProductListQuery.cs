@@ -4,7 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
 namespace Product.Application.Features.Products.Queries.GetProductList;
 
 using MediatR;
