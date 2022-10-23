@@ -42,25 +42,6 @@ app.MigrateDatabase<ProductContext>((context, services) =>
            .Wait();
 });
 
-
-/*
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-
-    var context = services.GetRequiredService<ProductContext>();
-    context.Database.Migrate();
-
-    var productSeeder = scope.ServiceProvider.GetService<ProductSeeder>();
-    productSeeder?.Seed();
-
-    var categorySeeder = scope.ServiceProvider.GetService<CategorySeeder>();
-    categorySeeder?.Seed();
-} */
-
-
-
-
 app.UseAuthorization();
 
 app.MapControllers();
