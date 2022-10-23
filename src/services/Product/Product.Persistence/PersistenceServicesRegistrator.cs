@@ -13,7 +13,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Product.Application.Contracts;
 using Product.Persistence.Contexts;
 using Product.Persistence.Repositories;
-using Product.Persistence.Seeders;
 
 /// <summary>
 /// Registration of persistence services.
@@ -30,12 +29,9 @@ public static class PersistenceServicesRegistrator
         var connectionString = configuration.GetSection("DatabaseSettings:ConnectionString").Value;
 
         services.AddScoped<DbContext, ProductContext>();
-        services.AddTransient<ProductSeeder>();
-        services.AddTransient<CategorySeeder>();
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
-
 
         services.AddDbContext<ProductContext>(options =>
             options.UseNpgsql((connectionString)));

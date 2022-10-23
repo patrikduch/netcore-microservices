@@ -23,4 +23,7 @@ public class CategoryEntity: EntityBase
     /// Gets or sets product url..
     /// </summary>
     public string Url { get; set; } = string.Empty;
+
+
+    public List<ProductEntity> Products { get; set; }
 }

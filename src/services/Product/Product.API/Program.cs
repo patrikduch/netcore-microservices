@@ -4,12 +4,10 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
-using Microsoft.EntityFrameworkCore;
+using NetMicroservices.SqlWrapper.Nuget;
 using Product.Application;
 using Product.Persistence;
 using Product.Persistence.Contexts;
-using Product.Persistence.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +33,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MigrateDatabase<ProductContext>((context, services) =>
+{
+    var logger = services.GetService(typeof(ILogger<ProductContextSeed>)) as ILogger<ProductContextSeed>;
+
+    ProductContextSeed
+           .SeedAsync(context, logger)
+           .Wait();
+});
+
+
+/*
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -47,7 +56,10 @@ using (var scope = app.Services.CreateScope())
 
     var categorySeeder = scope.ServiceProvider.GetService<CategorySeeder>();
     categorySeeder?.Seed();
-}
+} */
+
+
+
 
 app.UseAuthorization();
 

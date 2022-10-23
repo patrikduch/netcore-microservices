@@ -33,4 +33,8 @@ public class ProductEntity : EntityBase
     /// Gets or sets product price.
     /// </summary>
     public decimal Price { get; set; }
+
+    public CategoryEntity? Category { get; set; }
+
+    public Guid CategoryId { get; set; }
 }
