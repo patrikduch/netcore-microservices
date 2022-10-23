@@ -64,7 +64,18 @@ public static class MigrationUtil
     private static void InvokeSeeder<TContext>(Action<TContext, IServiceProvider> seeder, TContext context, IServiceProvider services)
         where TContext : DbContext
     {
-        context.Database.Migrate();
+        var logger = services.GetRequiredService<ILogger<TContext>>();
+
+        try
+        {
+            context.Database.Migrate();
+            logger.LogInformation("Database was successfully migrated.");
+
+        } catch (Exception ex)
+        {
+            logger.LogError(ex.Message);
+        }
+        
         seeder(context, services);
     }
 }
