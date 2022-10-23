@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: product-db-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       component: product-db
