@@ -49,6 +49,18 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "DownstreamPathTemplate": "/api/v1/category-products/{categoryUrl}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-api-service",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/category-products/{categoryUrl}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/catalog",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
