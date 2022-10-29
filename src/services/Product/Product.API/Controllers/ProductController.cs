@@ -37,7 +37,7 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("category/{categoryUrl}")]
+    [HttpGet("category-products/{categoryUrl}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProductByCategory(string categoryUrl)
     {
