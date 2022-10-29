@@ -17,6 +17,7 @@ public class ProductService : IProductService
 {
     private readonly HttpClient _http;
 
+    public event Action? ProductsChanged;
     public List<Product> Products { get; set; } = new();
 
     public ProductService(HttpClient http)
@@ -24,14 +25,31 @@ public class ProductService : IProductService
         _http = http;
     }
 
-    public async Task GetProductsAsync()
+    public async Task GetProductsAsync(string? categoryUrl=null)
     {
-        var response = await _http.GetFromJsonAsync<List<Product>>("/products");
+        ServiceResponse<List<Product>>? response = null;
+
+        if (categoryUrl is null) return;
         
+        if (categoryUrl.Equals(null))
+        {
+            response = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("/products");    
+        }
+        else
+        {
+            response = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"/category-products/{categoryUrl}");
+        }
+
+        var test = 4;
+
         if (response is not null)
         {
-            Products = response.ToList();
+            Products = response.Data.ToList();
         }
+
+        var testa = Products;
+
+        //ProductsChanged.Invoke();
     }
 
     public async Task<ServiceResponse<Product>> GetProductAsync(Guid id)

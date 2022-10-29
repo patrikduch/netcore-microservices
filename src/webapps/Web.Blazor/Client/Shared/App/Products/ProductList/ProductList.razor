@@ -20,8 +20,17 @@
 </ul>
 
 @code {
+
+    [Parameter]
+    public string CategoryUrl { get; set; } = string.Empty;
+
     protected override async Task OnInitializedAsync()
     {
-        await ProductService.GetProductsAsync();
+        await ProductService.GetProductsAsync(CategoryUrl);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ProductService.GetProductsAsync(CategoryUrl);
     }
 }
