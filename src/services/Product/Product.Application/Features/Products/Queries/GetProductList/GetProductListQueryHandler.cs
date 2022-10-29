@@ -34,7 +34,7 @@ public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, L
     }
 
     /// <summary>
-    /// Handler functionality for fetching list of products from the database.
+    /// Fetchiung list of products from the database.
     /// </summary>
     /// <param name="request">Incoming request object.</param>
     /// <param name="cancellationToken">Cancelation token object dependency.</param>

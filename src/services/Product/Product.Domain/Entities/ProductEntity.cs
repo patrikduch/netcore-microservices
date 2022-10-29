@@ -33,7 +33,7 @@ public class ProductEntity : EntityBase
     /// </summary>
     public decimal Price { get; set; }
 
-    public CategoryEntity? Category { get; set; }
+    public CategoryEntity Category { get; set; }
 
     public Guid CategoryId { get; set; }
 }

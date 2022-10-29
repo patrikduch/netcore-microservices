@@ -12,6 +12,7 @@ using Product.Application.Dtos;
 using Product.Application.Features.Products.Queries.GetCategoryList;
 using Product.Application.Features.Products.Queries.GetProduct;
 using Product.Application.Features.Products.Queries.GetProductList;
+using Product.Application.Features.Products.Queries.GetProductsByCategory;
 
 /// <summary>
 /// Product management Rest API controller.
@@ -32,6 +33,18 @@ public class ProductController : ControllerBase
     public async Task<IActionResult> GetProductList()
     {
         var result = await _mediator.Send(new GetProductListQuery());
+
+        return Ok(result);
+    }
+
+    [HttpGet("category/{categoryUrl}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetProductByCategory(string categoryUrl)
+    {
+        var result = await _mediator.Send(new GetProductsByCategoryQuery
+        {
+            CategoryUrl = categoryUrl
+        });
 
         return Ok(result);
     }
