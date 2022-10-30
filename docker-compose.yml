@@ -138,6 +138,12 @@ services:
       args:
         - NUGET_PAT
 
+  user.api:
+    image: ${DOCKER_REGISTRY-}userapi
+    build:
+      context: .
+      dockerfile: src/services/User/User.API/Dockerfile
+
 volumes:
   product_db_data:
   postgres_data:
@@ -145,6 +151,7 @@ volumes:
   rabbitmq_data:
 
    
+
 
 
 

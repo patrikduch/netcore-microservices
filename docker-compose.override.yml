@@ -248,3 +248,10 @@ services:
     depends_on:
       - customer.db
   
+
+  user.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
