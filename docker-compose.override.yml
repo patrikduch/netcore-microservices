@@ -14,6 +14,7 @@ services:
       - gamecatalog.api
       - inventory.api
       - projectdetail.api
+      - user.api
 
   #web.blazor.server:
   #  environment:
@@ -45,8 +46,22 @@ services:
   user.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings__ConnectionString=Server=userdb;Port=5434;Database=UserDb;Username=admin;Password=duch;"
     ports:
       - "8096:80"
+
+  user.db:
+    container_name: userdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=duch
+      - POSTGRES_DB=UserDb
+    restart: always
+    ports:
+      - "5434:5434"
+    command: -p 5434
+    volumes:
+      - user_db_data:/var/lib/postgresql/data 
 
   projectdetail.api:
     environment:

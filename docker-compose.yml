@@ -22,6 +22,9 @@ services:
       context: .
       dockerfile: src/services/User/User.API/Dockerfile
 
+  user.db:
+    image: postgres
+
   projectdetail.api:
     image: ${DOCKER_REGISTRY-}projectdetailapi
     build:
@@ -148,6 +151,7 @@ services:
 
 volumes:
   product_db_data:
+  user_db_data:
   postgres_data:
   pgadmin_data:
   rabbitmq_data:

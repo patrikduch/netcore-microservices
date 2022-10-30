@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\User.Application\User.Application.csproj" />
   </ItemGroup>
 
 </Project>
