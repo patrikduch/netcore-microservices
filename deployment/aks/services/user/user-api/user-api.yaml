@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-api-deployment
+  labels:
+    app: user-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-api
+  template:
+    metadata:
+      labels:
+        app: user-api
+    spec:
+      containers:
+        - name: userapi
+          image:  netcoremicroservicesacr.azurecr.io/userapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  secretKeyRef:
+                    name: user-api-secret
+                    key: ConnectionString
+
+      imagePullSecrets:
+        - name: acr-secret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: user-api
+  ports:
+    - protocol: TCP
+      port: 80
