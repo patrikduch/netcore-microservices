@@ -42,6 +42,12 @@ services:
     volumes:
       - product_db_data:/var/lib/postgresql/data 
 
+  user.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8096:80"
+
   projectdetail.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -247,11 +253,5 @@ services:
       - "8092:80"
     depends_on:
       - customer.db
-  
-
-  user.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
+ 
 

@@ -16,6 +16,12 @@ services:
   product.db:
     image: postgres
 
+  user.api:
+    image: ${DOCKER_REGISTRY-}userapi
+    build:
+      context: .
+      dockerfile: src/services/User/User.API/Dockerfile
+
   projectdetail.api:
     image: ${DOCKER_REGISTRY-}projectdetailapi
     build:
@@ -138,11 +144,7 @@ services:
       args:
         - NUGET_PAT
 
-  user.api:
-    image: ${DOCKER_REGISTRY-}userapi
-    build:
-      context: .
-      dockerfile: src/services/User/User.API/Dockerfile
+
 
 volumes:
   product_db_data:
