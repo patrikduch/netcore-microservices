@@ -8,6 +8,7 @@ namespace User.API.Controllers;
 
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using NetMicroservices.ServiceConfig.Nuget;
 using User.Application.Dtos;
 using User.Application.Dtos.Requests;
 using User.Application.Features.Auth.Commands.UserRegistration;
@@ -31,13 +32,20 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(UserRegistrationRequestDto request)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ServiceResponse<Guid>>> Register(UserRegistrationRequestDto request)
     {
         var response = await _mediator.Send(new UserRegistrationCommand
         {
             Email = request.Email,
             Password = request.Password
         });
+
+        if (!response.Success)
+        {
+            return BadRequest(response);
+        }
 
         return Ok(response);
     } 
