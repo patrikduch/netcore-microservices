@@ -1,5 +1,7 @@
+using NetMicroservices.SqlWrapper.Nuget;
 using User.Application;
 using User.Persistence;
+using User.Persistence.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Migrate database on each deploy if it is necesarry.
+app.MigrateDatabase<UserContext>((context, services) =>
+{
+});
 
 app.UseAuthorization();
 
