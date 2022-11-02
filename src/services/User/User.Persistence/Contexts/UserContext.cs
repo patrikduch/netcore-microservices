@@ -14,5 +14,11 @@ using User.Domain.Entities;
 /// </summary>
 public class UserContext : DbContext
 {
-    
+    /// <summary>
+    /// Initializes a new instance of the <seealso cref="UserContext"/>.
+    /// </summary>
+    /// <param name="options"> <seealso cref="DbContextOptions{TContext}"/> EFCore context setup.</param>
+    public UserContext(DbContextOptions<UserContext> options) : base(options)
+    {
+    }
 }
