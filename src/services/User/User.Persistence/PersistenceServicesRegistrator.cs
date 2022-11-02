@@ -9,7 +9,9 @@ namespace User.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using User.Application.Contracts;
 using User.Persistence.Contexts;
+using User.Persistence.Services;
 
 /// <summary>
 /// Registration of persistence services.
@@ -29,6 +31,9 @@ public static class PersistenceServicesRegistrator
 
         services.AddDbContext<UserContext>(options =>
             options.UseNpgsql((connectionString)));
+
+
+        services.AddScoped<IAuthService, AuthService>();
 
         return services;
     }
