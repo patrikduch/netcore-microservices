@@ -8,6 +8,8 @@ namespace User.Application;
 
 using AutoMapper;
 using User.Application.Dtos;
+using User.Application.Dtos.Requests;
+using User.Application.Features.Auth.Commands.UserLogin;
 using User.Application.Features.Auth.Commands.UserRegistration;
 using User.Domain.Entities;
 
@@ -25,5 +27,6 @@ public class MappingProfile : Profile
         CreateMap<UserEntity, SignInUserDto>().ReverseMap();
         CreateMap<UserRegistrationDto, UserRegistrationCommand>().ReverseMap();
         CreateMap<UserRegistrationDto, UserEntity>().ReverseMap();
+        CreateMap<UserLoginCommand, UserLoginRequestDto>().ReverseMap();
     }
 }

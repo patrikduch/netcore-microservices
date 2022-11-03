@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using NetMicroservices.ServiceConfig.Nuget;
 using User.Application.Dtos;
 using User.Application.Dtos.Requests;
+using User.Application.Features.Auth.Commands.UserLogin;
 using User.Application.Features.Auth.Commands.UserRegistration;
 
 [Route("api/v1/[controller]")]
@@ -48,5 +49,23 @@ public class AuthController : ControllerBase
         }
 
         return Ok(response);
-    } 
+    }
+
+
+    [HttpPost("login")]
+    public async Task<ActionResult<ServiceResponse<string>>> Login(UserLoginRequestDto request)
+    {
+        var response = await _mediator.Send(new UserLoginCommand
+        {
+            Email = request.Email,
+            Password = request.Password
+        });
+
+        if (!response.Success)
+        {
+            return BadRequest(response);
+        }
+
+        return Ok(response);
+    }
 }
