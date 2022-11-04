@@ -9,17 +9,14 @@ namespace User.Persistence.Services;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using NetMicroservices.ServiceConfig.Nuget;
 using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using User.Application.Contracts;
 using User.Application.Dtos;
 using User.Application.Dtos.Requests;
 using User.Domain.Entities;
+using User.Infrastructure;
 using User.Persistence.Contexts;
 
 public class AuthService : IAuthService
@@ -46,13 +43,13 @@ public class AuthService : IAuthService
             response.Success = false;
             response.Message = "User not found.";
 
-        } else if (!VerifyPasswordHash(userloginDto.Password, user.PasswordHash, user.PasswordSalt))
+        } else if (!PasswordUtil.VerifyPasswordHash(userloginDto.Password, user.PasswordHash, user.PasswordSalt))
         {
             response.Success = false;
             response.Message = "Wrong password";
         } else
         {
-            response.Data = CreateToken(user);
+            response.Data = PasswordUtil.CreateToken(user, _configuration.GetSection("Appsettings:Token").Value);
         }
 
         return response;
@@ -65,7 +62,7 @@ public class AuthService : IAuthService
             return new ServiceResponse<Guid> { Success = false, Message = "User already exists." };
         }
 
-        CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+        PasswordUtil.CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
 
         user.PasswordSalt = passwordSalt;
         user.PasswordHash = passwordHash;
@@ -90,48 +87,5 @@ public class AuthService : IAuthService
         }
 
         return false;
-    }
-
-    private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-    {
-        // Cryptography algorithm
-
-        using (var hmac = new HMACSHA512())
-        {
-            passwordSalt = hmac.Key;
-            passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-        };
-
-    }
-
-    private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-    {
-        using (var hmac = new HMACSHA512(passwordSalt))
-        {
-            var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            return computedHash.SequenceEqual(passwordHash);
-        }
-    }
-
-
-    private string CreateToken(UserEntity user)
-    {
-        List<Claim> claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Email)
-        };
-
-        var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
-            .GetBytes(_configuration.GetSection("AppSettings:Token").Value));
-
-
-        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-        var token = new JwtSecurityToken(claims: claims, expires: DateTime.Now.AddDays(1), signingCredentials: credentials);
-
-        var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-        return jwt;
     }
 }

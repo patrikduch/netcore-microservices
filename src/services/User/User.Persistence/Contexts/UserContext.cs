@@ -8,6 +8,8 @@ namespace User.Persistence.Contexts;
 
 using Microsoft.EntityFrameworkCore;
 using User.Domain.Entities;
+using User.Infrastructure;
+using User.Persistence.EntityConfigurations;
 
 /// <summary>
 /// <seealso cref="DbContext"/>  configuration for  <seealso cref="UserEntity"/>.
@@ -23,4 +25,13 @@ public class UserContext : DbContext
     }
 
     public DbSet<UserEntity>? Users { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.ApplyConfiguration(new UserConfiguration());
+
+        builder.Entity<UserEntity>().HasData(
+            UserUtil.CreateUser("patrikduch@test.com", "duch")
+        );
+    }
 }
