@@ -1,4 +1,6 @@
-﻿@page "/register"
+﻿@using Web.Blazor.Client.Services.Auth
+@page "/register"
+@inject IAuthService AuthService
 
 <PageTitle>Register</PageTitle>
 <h3>Register</h3>
@@ -23,13 +25,29 @@
         <ValidationMessage For="@(() => user.Password)" />
     </div>
     <button class="btn btn-primary">Submit</button>
+    <div class="text-danger">
+        <span>@errorMessage</span>
+    </div>
 </EditForm>
 
 @code {
     UserRegister user = new UserRegister();
 
-    void HandleRegistration()
-    {
-        Console.WriteLine($"Register user with e-mail: {user.Email}");
+    string errorMessage = string.Empty;
+
+    async Task HandleRegistration()
+    { 
+        //Console.WriteLine($"Register user with e-mail: {user.Email}");
+
+        var result = await AuthService.Register(user);
+
+        if (!result.Success)
+        {
+            errorMessage = result.Message;
+        }
+        else
+        {
+            errorMessage = string.Empty;
+        }
     }
 }
