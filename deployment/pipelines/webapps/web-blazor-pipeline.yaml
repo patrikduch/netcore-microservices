@@ -86,7 +86,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/webapps/web-blazor-pipeline.yaml
+                $(Pipeline.Workspace)/aks/webapps/web-blazor.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
