@@ -36,35 +36,19 @@ stages:
     displayName: Build
     pool:
       vmImage: $(vmImageName)
-
-    steps:      
-    
-    # Docker image build
+    steps:
     - task: Docker@2
-      displayName: Build a docker image
+      displayName: Build and push an image to container registry
       inputs:
-        command: build
+        command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
-        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-
-        
-
-    # Docker image push
-    - task: Docker@2
-      displayName: Publish a docker image
-      inputs:
-        command: push
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - publish: deployment/aks
-      artifact: aks    
-
+    - upload: deployment/aks
+      artifact: aks
 
 - stage: Deploy
   displayName: Deploy stage
@@ -92,9 +76,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/webapps/web-blazor.yaml
+                $(Pipeline.Workspace)/aks/webapps/web-blazor-pipeline.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
-
