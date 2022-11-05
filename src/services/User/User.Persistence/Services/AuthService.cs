@@ -73,7 +73,7 @@ public class AuthService : IAuthService
 
         await _userContext.SaveChangesAsync();
 
-        return new ServiceResponse<Guid> { Data = userEntity.Id, Success = true };
+        return new ServiceResponse<Guid> { Data = userEntity.Id, Success = true, Message = "Registration successfull !" };
     }
 
     public async Task<bool> UserExists(string email)
