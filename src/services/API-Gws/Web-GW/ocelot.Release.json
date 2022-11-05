@@ -73,6 +73,18 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "DownstreamPathTemplate": "/api/v1/auth/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user-api-service",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/user-register",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/catalog",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
