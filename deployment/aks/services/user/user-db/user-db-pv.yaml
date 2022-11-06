@@ -1,3 +1,15 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: userdb-storage
+provisioner: kubernetes.io/azure-disk
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  skuName: Standard_LRS
+  kind: Managed
+  cachingmode: None
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -5,7 +17,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: "userdb-storage"
   resources:
     requests:
-      storage: 2Gi
+      storage: 5Gi
       

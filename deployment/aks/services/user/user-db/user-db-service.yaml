@@ -1,45 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: user-db-deployment
+  name: user-db-service  # Reference name that can be used for intercommunication
 spec:
-  replicas: 5
+  type: LoadBalancer
   selector:
-    matchLabels:
-      component: user-db
-  template:
-    metadata:
-      labels:
-        component: user-db
-    spec:
-      volumes:
-        - name: user-db-storage
-          persistentVolumeClaim:
-            claimName: user-db-pv-claim
-      containers:
-        - name: postgres
-          image: postgres
-          ports:
-            - containerPort: 5432
-          volumeMounts:
-            - name: user-db-storage
-              mountPath:  /var/lib/postgresql/data
-              subPath: postgres
-          env:            
-            - name: POSTGRES_USER
-              valueFrom: 
-                secretKeyRef:
-                    name: user-db-secret
-                    key: PGUSERNAME
-
-            - name: POSTGRES_DB
-              valueFrom: 
-                secretKeyRef:
-                    name: user-db-secret
-                    key: PGDBNAME
-
-            - name: POSTGRES_PASSWORD
-              valueFrom: 
-                secretKeyRef:
-                    name: user-db-secret
-                    key: PGPASSWORD
+    component: user-db
+  ports:
+    - port: 5432
+      targetPort: 5432
