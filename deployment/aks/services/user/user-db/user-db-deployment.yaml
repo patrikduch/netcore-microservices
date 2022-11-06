@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: user-db-deployment
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       component: user-db
