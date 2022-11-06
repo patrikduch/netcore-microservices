@@ -15,7 +15,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: "azuredisk"
+  storageClassName: "azure-disk"
   resources:
     requests:
       storage: 2Gi
