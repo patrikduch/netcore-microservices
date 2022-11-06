@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: product-db
+  template:
+    metadata:
+      labels:
+        component: product-db
+    spec:
+      volumes:
+        - name: productdb-storage
+          persistentVolumeClaim:
+            claimName: product-db-pv-claim
+      containers:
+        - name: postgres
+          image: postgres:10.3
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: productdb-storage
+              mountPath:  /var/lib/postgresql/data
+              subPath: postgres
+          env:            
+            - name: POSTGRES_USER
+              valueFrom: 
+                secretKeyRef:
+                    name: product-db-secret
+                    key: PGUSERNAME
+
+            - name: POSTGRES_DB
+              valueFrom: 
+                secretKeyRef:
+                    name: product-db-secret
+                    key: PGDBNAME
+
+            - name: POSTGRES_PASSWORD
+              valueFrom: 
+                secretKeyRef:
+                    name: product-db-secret
+                    key: PGPASSWORD
+
+      volumes:
+      - name: productdb-storage
+        persistentVolumeClaim:
+          claimName: product-db-pv-claim
