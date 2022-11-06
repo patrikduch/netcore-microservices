@@ -1,4 +1,5 @@
 ﻿@using Blazored.LocalStorage
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IAuthService AuthService
 @inject ILocalStorageService LocalStorageService
 @inject NavigationManager NavigationManager
@@ -41,6 +42,7 @@
             _errorMessage = string.Empty;
 
             await LocalStorageService.SetItemAsync("authToken", result.Data);
+            await AuthenticationStateProvider.GetAuthenticationStateAsync();
             NavigationManager.NavigateTo("/");
         }
         else

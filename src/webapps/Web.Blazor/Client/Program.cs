@@ -1,7 +1,11 @@
+
+global using Microsoft.AspNetCore.Components.Authorization;
+
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Web.Blazor.Client;
+using Web.Blazor.Client.Auth;
 using Web.Blazor.Client.Services.Auth;
 using Web.Blazor.Client.Services.Category;
 using Web.Blazor.Client.Services.Products;
@@ -15,6 +19,13 @@ var baseAddress = builder.Configuration.GetValue<string>("APIGwUrl");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
 builder.Services.AddBlazoredLocalStorage();
+
+#region Auth
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, BlazorAuthStateProvider>();
+#endregion
+
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();

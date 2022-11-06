@@ -1,4 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@using Blazored.LocalStorage
+@inject ILocalStorageService LocalStorageService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inherits LayoutComponentBase
 
 <div class="page">
     <div class="sidebar">
@@ -7,11 +11,28 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <AuthorizeView>
+                <Authorized>
+                    <button class="btn-primary" onclick="@HandleLogout">Logout</button>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="/login">Log-in</a>
+                     <a href="/login">Register</a>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
-
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+
+@code
+{
+    private async Task HandleLogout()
+    {
+        await LocalStorageService.RemoveItemAsync("authToken");
+        await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/login");
+    }
+}
