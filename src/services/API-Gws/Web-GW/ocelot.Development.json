@@ -85,6 +85,18 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
+      "DownstreamPathTemplate": "/api/v1/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "user.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/user-login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/Items",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
