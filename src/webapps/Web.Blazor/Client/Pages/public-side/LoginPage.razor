@@ -1,8 +1,51 @@
-﻿@page "/login"
+﻿@using Blazored.LocalStorage
+@inject IAuthService AuthService
+@inject ILocalStorageService LocalStorageService
+@inject NavigationManager NavigationManager
+@page "/login"
 
 <PageTitle>Login</PageTitle>
 <h3>Login</h3>
 
-@code {
+<EditForm Model="_user" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="email">Email</label>
+        <InputText id="email" @bind-Value="_user.Email" class="form-control" type="email"/>
+        <ValidationMessage For="@(() => _user.Email)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="password">Password</label>
+        <InputText id="password" @bind-Value="_user.Password" class="form-control" type="password"></InputText>
+        <ValidationMessage For="@(() => _user.Password)" />
+    </div>
     
+    <button class="btn btn-primary">Login</button>
+</EditForm>
+
+<div class="text-danger">
+    <span>@_errorMessage</span>
+</div>
+
+@code {
+    private UserLogin _user = new UserLogin();
+    private string _errorMessage = string.Empty;
+
+    private async Task HandleLogin()
+    {
+        var result = await AuthService.Login(_user);
+
+        if (result.Success)
+        {
+            _errorMessage = string.Empty;
+
+            await LocalStorageService.SetItemAsync("authToken", result.Data);
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            _errorMessage = result.Message;
+        }
+    }
 }
