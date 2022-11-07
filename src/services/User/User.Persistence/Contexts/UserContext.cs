@@ -24,7 +24,7 @@ public class UserContext : DbContext
     {
     }
 
-    public DbSet<UserEntity>? Users { get; set; }
+    public DbSet<UserEntity> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
