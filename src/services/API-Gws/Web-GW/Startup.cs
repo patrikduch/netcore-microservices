@@ -20,7 +20,8 @@ namespace Web_GW
                     builder
                     .WithOrigins(
 
-                        "http://20.23.74.87"
+                        "http://20.23.74.87",
+                        "http://shopwinner.org"
                     )
                     .AllowAnyMethod()
                     .AllowAnyHeader()
