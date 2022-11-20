@@ -84,6 +84,16 @@ Required secret
 kubectl create secret generic product-db-secret --from-literal PGUSERNAME=SolutionArchitect --from-literal PGDBNAME=productdb --from-literal PGPASSWORD=patrikduch
 ```
 
+
+##### User microservice (WebAPI)
+kubectl create secret generic user-api-secret --from-literal="ConnectionString=Server=user-db-service;Database=userdb;User Id=SolutionArchitect; Password=patrikduch"
+
+kubectl create secret generic user-db-secret --from-literal PGUSERNAME=SolutionArchitect --from-literal PGDBNAME=userdb --from-literal PGPASSWORD=patrikduch
+
+
+kubectl apply -f .\deployment\aks\services\user\user-db\
+
+
 ##### Basket microservice (WebAPI + Redis)
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
 kubectl apply -f .\deployment\aks\services\basket\basket-db\
@@ -191,11 +201,11 @@ kubectl apply -f .\deployment\aks\examples\ingress-controller\without-cors\
 
 Postgres
 
-Required secret
 kubectl apply -f .\deployment\aks\examples\dbs\postgres\
 
+Postgres-Azure-Disk
 
-
+kubectl apply -f .\deployment\aks\examples\dbs\postgres\postgres-azure\
 
 
 kubectl apply -f .\deployment\aks\examples\dbs\redis\
