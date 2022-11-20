@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-gw-ingress
+spec:
+  rules:
+  - host: "api.shopwinner.org"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: web-gw-service
+            port:
+              number: 80

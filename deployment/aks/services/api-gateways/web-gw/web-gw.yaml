@@ -26,15 +26,3 @@ spec:
           
       imagePullSecrets:
         - name: acr-secret
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-gw-service
-spec:
-  type: LoadBalancer
-  selector:
-    app: web-gw
-  ports:
-    - protocol: TCP
-      port: 80
