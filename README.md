@@ -41,6 +41,11 @@ kubectl create secret generic game-catalog-db-secret --from-literal=HOST=bcpatri
 
 #### Deployment scripts
 
+##### Letsencrypt issuer
+```bash
+kubectl apply -f.\deployment\aks\letsencrypt\
+```
+
 ##### Helm extensions
 
 ###### RabbitMQ
@@ -63,21 +68,33 @@ helm install rabbitmq-service  azure-marketplace/rabbitmq
 ```
 
 ###### Ingress controllers
-.\deployment\aks\helm\extensions\ingress\install.bat
+```bash
+kubectl apply -f.\deployment\aks\helm\extensions\ingress\install.bat
+```
 
 ##### Microservices deployment
 
+#### Web Blazor
+```bash
+kubectl apply -f .\deployment\aks\webapps\web-blazor\
+```
+
 ##### Web API Gateway
+```bash
 kubectl apply -f .\deployment\aks\services\api-gateways\web-gw\
+```
 
 ##### Product microservice (WebAPI)
 
 API
+```bash
 kubectl apply -f .\deployment\aks\services\product\product-api\
+```
 
 DB
+```bash
 kubectl apply -f .\deployment\aks\services\product\product-db\
-
+```
 Required secret
 
 ```bash
@@ -86,13 +103,17 @@ kubectl create secret generic product-db-secret --from-literal PGUSERNAME=Soluti
 
 
 ##### User microservice (WebAPI)
+```bash
 kubectl create secret generic user-api-secret --from-literal="ConnectionString=Server=user-db-service;Database=userdb;User Id=SolutionArchitect; Password=patrikduch"
+```
 
+```bash
 kubectl create secret generic user-db-secret --from-literal PGUSERNAME=SolutionArchitect --from-literal PGDBNAME=userdb --from-literal PGPASSWORD=patrikduch
+```
 
-
+```bash
 kubectl apply -f .\deployment\aks\services\user\user-db\
-
+```
 
 ##### Basket microservice (WebAPI + Redis)
 kubectl apply -f .\deployment\aks\services\basket\basket-api\
