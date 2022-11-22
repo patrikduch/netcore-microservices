@@ -23,15 +23,3 @@ spec:
 
       imagePullSecrets:
         - name: acr-secret
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web-blazor-service
-spec:
-  type: LoadBalancer
-  selector:
-    app: web-blazor
-  ports:
-    - protocol: TCP
-      port: 80
