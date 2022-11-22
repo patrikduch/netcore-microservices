@@ -9,7 +9,7 @@ trigger:
     paths:
       include:
       - src/webapps/Web.Blazor/*
-      - deployment/aks/webapps/web-blazor.yaml
+      - deployment/aks/webapps/web-blazor/web-blazor.yaml
 
 resources:
 - repo: self
