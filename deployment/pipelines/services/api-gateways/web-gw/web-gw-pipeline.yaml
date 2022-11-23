@@ -10,7 +10,7 @@ trigger:
     paths:
       include:
       - src/services/API-Gws/Web-GW/*
-      - deployment/aks/services/api-gateways/web-gw/web-gw.yaml
+      - deployment/aks/services/api-gateways/web-gw/web-gw-deployment.yaml
 
 resources:
 - repo: self
@@ -77,7 +77,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/services/api-gateways/web-gw/web-gw.yaml
+                $(Pipeline.Workspace)/aks/services/api-gateways/web-gw/web-gw-deployment.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
