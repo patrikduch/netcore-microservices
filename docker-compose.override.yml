@@ -11,7 +11,7 @@ services:
      # - basket.api
       - catalog.api
      # - customer.api
-      - gamecatalog.api
+     # - gamecatalog.api
       - inventory.api
       - projectdetail.api
       - user.api
@@ -213,18 +213,18 @@ services:
   #  volumes:
   #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
-  gamecatalog.api:
-    container_name: gamecatalogapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "MongoDbSettings__Host=mongodbservice"
-      - "MongoDbSettings__CollectionName=items"
-      - "MongoDbSettings__DatabaseName=ItemsDb"
-      - "MongoDbSettings__Port=27017"
-      - "ServiceSettings__ServiceName=GameCatalog"
-      - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
-    ports:
-      - "8087:80"
+  #gamecatalog.api:
+  #  container_name: gamecatalogapi
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "MongoDbSettings__Host=mongodbservice"
+  #    - "MongoDbSettings__CollectionName=items"
+  #    - "MongoDbSettings__DatabaseName=ItemsDb"
+  #    - "MongoDbSettings__Port=27017"
+  #    - "ServiceSettings__ServiceName=GameCatalog"
+  #    - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
+  #  ports:
+  #    - "8087:80"
 
   signalr.api:
     environment:

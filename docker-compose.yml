@@ -45,8 +45,8 @@ services:
   #mongo.db:
   #  image: mongo
 
-  gamecatalog.db:
-    image: mongo
+  #gamecatalog.db:
+  #  image: mongo
 
   order.db:
     image: mcr.microsoft.com/mssql/server:2017-latest
@@ -92,13 +92,13 @@ services:
   #    context: .
   #    dockerfile: src/services/Discount/Discount.API/Dockerfile
 
-  gamecatalog.api:
-    image: ${DOCKER_REGISTRY-}gamecatalogapi
-    build:
-      context: .
-      dockerfile: src/services/GameCatalog/GameCatalog.API/Dockerfile
-      args:
-        - NUGET_PAT
+  #gamecatalog.api:
+  #  image: ${DOCKER_REGISTRY-}gamecatalogapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/GameCatalog/GameCatalog.API/Dockerfile
+  #    args:
+  #      - NUGET_PAT
 
   signalr.api:
     image: ${DOCKER_REGISTRY-}signalrapi
