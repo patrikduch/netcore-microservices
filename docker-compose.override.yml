@@ -81,13 +81,13 @@ services:
     ports:
         - "1431:1433"
 
-  mongo.db:
-    container_name: mongodbservice
-    restart: always
-    ports:
-      - 27017:27017  
-    volumes:
-      - ${WEBAPP_STORAGE_HOME}/site:/data/db
+  #mongo.db:
+  #  container_name: mongodbservice
+  #  restart: always
+  #  ports:
+  #    - 27017:27017  
+  #  volumes:
+  #    - ${WEBAPP_STORAGE_HOME}/site:/data/db
 
   #basketdb:
   #  container_name: basketdb

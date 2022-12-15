@@ -42,8 +42,8 @@ services:
   pgadmin:
     image: dpage/pgadmin4
 
-  mongo.db:
-    image: mongo
+  #mongo.db:
+  #  image: mongo
 
   gamecatalog.db:
     image: mongo
