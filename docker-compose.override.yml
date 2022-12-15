@@ -95,17 +95,17 @@ services:
   #  ports:
   #      - "6379:6379"
   
-  discount.db:
-    container_name: discountdb
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=duch
-      - POSTGRES_DB=DiscountDb
-    restart: always
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data 
+  #discount.db:
+  #  container_name: discountdb
+  #  environment:
+  #    - POSTGRES_USER=admin
+  #    - POSTGRES_PASSWORD=duch
+  #    - POSTGRES_DB=DiscountDb
+  #  restart: always
+  #  ports:
+  #    - "5432:5432"
+  #  volumes:
+  #    - postgres_data:/var/lib/postgresql/data 
 
   order.db:
     container_name: orderdb
@@ -190,28 +190,28 @@ services:
     ports:
       - "8083:80"
 
-  discount.grpc:
-    container_name: discountgrpc
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
-    ports:
-      - "8085:80"
+  #discount.grpc:
+  #  container_name: discountgrpc
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
+  #  ports:
+  #    - "8085:80"
+  #
+  #  depends_on:
+  #    - discount.db
 
-    depends_on:
-      - discount.db
+  #discount.api:
+  # environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
+  #  ports:
+  #    - "8086:80"
 
-  discount.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=duch;"
-    ports:
-      - "8086:80"
-
-    depends_on:
-      - discount.db
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  #  depends_on:
+  #    - discount.db
+  #  volumes:
+  #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
 
   gamecatalog.api:
     container_name: gamecatalogapi

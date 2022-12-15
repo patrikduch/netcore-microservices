@@ -36,8 +36,8 @@ services:
   #basketdb:
   #  image: redis
   
-  discount.db:
-    image: postgres
+  #discount.db:
+  #  image: postgres
 
   pgadmin:
     image: dpage/pgadmin4
@@ -80,16 +80,17 @@ services:
   #    context: .
   #    dockerfile: src/services/Basket/Basket.API/Dockerfile
 
-  discount.grpc:
-    image: ${DOCKER_REGISTRY-}discountgrpc
-    build:
-      context: .
-      dockerfile: src/services/Discount/Discount.Grpc/Dockerfile
-  discount.api:
-    image: ${DOCKER_REGISTRY-}discountapi
-    build:
-      context: .
-      dockerfile: src/services/Discount/Discount.API/Dockerfile
+  #discount.grpc:
+  #  image: ${DOCKER_REGISTRY-}discountgrpc
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/Discount/Discount.Grpc/Dockerfile
+  
+  #discount.api:
+  #  image: ${DOCKER_REGISTRY-}discountapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/Discount/Discount.API/Dockerfile
 
   gamecatalog.api:
     image: ${DOCKER_REGISTRY-}gamecatalogapi
