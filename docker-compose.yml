@@ -51,8 +51,8 @@ services:
   order.db:
     image: mcr.microsoft.com/mssql/server:2017-latest
 
-  customer.db:
-    image: mcr.microsoft.com/mssql/server:2017-latest
+  #customer.db:
+  #  image: mcr.microsoft.com/mssql/server:2017-latest
 
   projectdetail.db:
     image: mcr.microsoft.com/mssql/server:2017-latest
@@ -141,13 +141,13 @@ services:
       args:
         - NUGET_PAT
 
-  customer.api:
-    image: ${DOCKER_REGISTRY-}customerapi
-    build:
-      context: .
-      dockerfile: src/services/Customer/Customer.API/Dockerfile
-      args:
-        - NUGET_PAT
+  #customer.api:
+  #  image: ${DOCKER_REGISTRY-}customerapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/Customer/Customer.API/Dockerfile
+  #    args:
+  #      - NUGET_PAT
 
 
 
