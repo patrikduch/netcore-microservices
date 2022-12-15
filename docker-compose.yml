@@ -33,8 +33,9 @@ services:
       args:
         - NUGET_PAT
 
-  basketdb:
-    image: redis
+  #basketdb:
+  #  image: redis
+  
   discount.db:
     image: postgres
 
@@ -73,11 +74,11 @@ services:
       args:
         - NUGET_PAT
 
-  basket.api:
-    image: ${DOCKER_REGISTRY-}basketapi
-    build:
-      context: .
-      dockerfile: src/services/Basket/Basket.API/Dockerfile
+  #basket.api:
+  #  image: ${DOCKER_REGISTRY-}basketapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/Basket/Basket.API/Dockerfile
 
   discount.grpc:
     image: ${DOCKER_REGISTRY-}discountgrpc

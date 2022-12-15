@@ -8,7 +8,7 @@ services:
     ports:
       - "9000:80"
     depends_on:
-      - basket.api
+     # - basket.api
       - catalog.api
       - customer.api
       - gamecatalog.api
@@ -89,11 +89,12 @@ services:
     volumes:
       - ${WEBAPP_STORAGE_HOME}/site:/data/db
 
-  basketdb:
-    container_name: basketdb
-    restart: always    
-    ports:
-        - "6379:6379"
+  #basketdb:
+  #  container_name: basketdb
+  #  restart: always    
+  #  ports:
+  #      - "6379:6379"
+  
   discount.db:
     container_name: discountdb
     environment:
@@ -166,16 +167,16 @@ services:
   #  ports:
   #    - "8081:80"
 
-  basket.api:
-    container_name: basketapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "CacheSettings__ConnectionString=basketdb:6379"
-      - "GrpcSettings__DiscountUrl=http://discountgrpc"
-    depends_on:
-        - basketdb
-    ports:
-      - "8082:80"
+  #basket.api:
+  #  container_name: basketapi
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "CacheSettings__ConnectionString=basketdb:6379"
+  #    - "GrpcSettings__DiscountUrl=http://discountgrpc"
+  #  depends_on:
+  #      - basketdb
+  #  ports:
+  #    - "8082:80"
 
   catalog.api:
     container_name: catalogapi
