@@ -29,7 +29,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("products")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductDto>))]
     public async Task<IActionResult> GetProductList()
     {
         var result = await _mediator.Send(new GetProductListQuery());
