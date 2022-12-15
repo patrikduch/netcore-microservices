@@ -9,7 +9,7 @@ services:
       - "9000:80"
     depends_on:
      # - basket.api
-      - catalog.api
+     # - catalog.api
      # - customer.api
      # - gamecatalog.api
       - inventory.api
@@ -178,17 +178,17 @@ services:
   #  ports:
   #    - "8082:80"
 
-  catalog.api:
-    container_name: catalogapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "MongoDbSettings__Host=mongodbservice"
-      - "MongoDbSettings__CollectionName=products"
-      - "MongoDbSettings__DatabaseName=ProductsDb"
-      - "MongoDbSettings__Port=27017"
-      - "ServiceSettings__ServiceName=Catalog"
-    ports:
-      - "8083:80"
+  #catalog.api:
+  #  container_name: catalogapi
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "MongoDbSettings__Host=mongodbservice"
+  #    - "MongoDbSettings__CollectionName=products"
+  #    - "MongoDbSettings__DatabaseName=ProductsDb"
+  #    - "MongoDbSettings__Port=27017"
+  #    - "ServiceSettings__ServiceName=Catalog"
+  #  ports:
+  #    - "8083:80"
 
   #discount.grpc:
   #  container_name: discountgrpc

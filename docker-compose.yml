@@ -66,13 +66,13 @@ services:
   #    context: .
   #    dockerfile: src/webapps/Web.Mvc/Dockerfile
 
-  catalog.api:
-    image: ${DOCKER_REGISTRY-}catalogapi
-    build:
-      context: .
-      dockerfile: src/services/Catalog/Catalog.API/Dockerfile
-      args:
-        - NUGET_PAT
+  #catalog.api:
+  #  image: ${DOCKER_REGISTRY-}catalogapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/Catalog/Catalog.API/Dockerfile
+  #    args:
+  #      - NUGET_PAT
 
   #basket.api:
   #  image: ${DOCKER_REGISTRY-}basketapi
