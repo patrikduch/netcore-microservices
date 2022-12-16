@@ -12,9 +12,10 @@ services:
      # - catalog.api
      # - customer.api
      # - gamecatalog.api
-      - inventory.api
+     # - inventory.api
       - projectdetail.api
       - user.api
+      - product.api
 
   #web.blazor.server:
   #  environment:
@@ -29,6 +30,8 @@ services:
       - "DatabaseSettings__ConnectionString=Server=productdb;Port=5433;Database=ProductDb;Username=admin;Password=duch;"
     ports:
       - "8095:80"
+    depends_on:
+      - product.db
 
   product.db:
     container_name: productdb
@@ -107,14 +110,14 @@ services:
   #  volumes:
   #    - postgres_data:/var/lib/postgresql/data 
 
-  order.db:
-    container_name: orderdb
-    environment:
-        SA_PASSWORD: "SwN12345678"
-        ACCEPT_EULA: "Y"
-    restart: always
-    ports:
-        - "1433:1433"
+  #order.db:
+  #  container_name: orderdb
+  #  environment:
+  #      SA_PASSWORD: "SwN12345678"
+  #      ACCEPT_EULA: "Y"
+  #  restart: always
+  #  ports:
+  #      - "1433:1433"
 
   #customer.db:
   #  container_name: customerdb
@@ -226,40 +229,40 @@ services:
   #  ports:
   #    - "8087:80"
 
-  signalr.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "8088:80"
+  #signalr.api:
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #  ports:
+  #    - "8088:80"
 
-  inventory.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "MongoDbSettings__Host=mongodbservice"
-      - "MongoDbSettings__CollectionName=inventories"
-      - "MongoDbSettings__DatabaseName=InventoryDb"
-      - "MongoDbSettings__Port=27017"
-      - "ServiceSettings__ServiceName=Inventory"
-      - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
-    ports:
-      - "8089:80"
+  #inventory.api:
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "MongoDbSettings__Host=mongodbservice"
+  #    - "MongoDbSettings__CollectionName=inventories"
+  #    - "MongoDbSettings__DatabaseName=InventoryDb"
+  #    - "MongoDbSettings__Port=27017"
+  #    - "ServiceSettings__ServiceName=Inventory"
+  #    - "RabbitMqSettings__Host=amqp://guest:guest@rabbitmq:5672"
+  #  ports:
+  #    - "8089:80"
 
-  realtimetransmission.api:
-    container_name: realtimetransmissionapi
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "8090:80"
+  #realtimetransmission.api:
+  #  container_name: realtimetransmissionapi
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #  ports:
+  #    - "8090:80"
 
-  ordering.api:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;"
-    ports:
-      - "8091:80"
+  #ordering.api:
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - "DatabaseSettings__ConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;"
+  #  ports:
+  #    - "8091:80"
 
-    depends_on:
-      - order.db
+  #  depends_on:
+  #    - order.db
 
   #customer.api:
   #  environment:

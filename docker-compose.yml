@@ -1,30 +1,25 @@
 version: '3.4'
 
 services:
-  #web.blazor.server:
-  #  image: ${DOCKER_REGISTRY-}webblazorserver
-  #  build:
-  #    context: .
-  #    dockerfile: src/webapps/Web.Blazor/Server/Dockerfile
-
+  web-gw:
+    image: ${DOCKER_REGISTRY-}webgw
+    build:
+      context: .
+      dockerfile: src/services/API-Gws/Web-GW/Dockerfile
   product.api:
     image: ${DOCKER_REGISTRY-}productapi
     build:
       context: .
       dockerfile: src/services/Product/Product.API/Dockerfile
-
   product.db:
     image: postgres
-
   user.api:
     image: ${DOCKER_REGISTRY-}userapi
     build:
       context: .
       dockerfile: src/services/User/User.API/Dockerfile
-
   user.db:
     image: postgres
-
   projectdetail.api:
     image: ${DOCKER_REGISTRY-}projectdetailapi
     build:
@@ -32,7 +27,15 @@ services:
       dockerfile: src/services/ProjectDetail/ProjectDetail.API/Dockerfile
       args:
         - NUGET_PAT
+  projectdetail.db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+  #web.blazor.server:
+  #  image: ${DOCKER_REGISTRY-}webblazorserver
+  #  build:
+  #    context: .
+  #    dockerfile: src/webapps/Web.Blazor/Server/Dockerfile
 
+ 
   #basketdb:
   #  image: redis
   
@@ -53,9 +56,6 @@ services:
 
   #customer.db:
   #  image: mcr.microsoft.com/mssql/server:2017-latest
-
-  projectdetail.db:
-    image: mcr.microsoft.com/mssql/server:2017-latest
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -100,19 +100,19 @@ services:
   #    args:
   #      - NUGET_PAT
 
-  signalr.api:
-    image: ${DOCKER_REGISTRY-}signalrapi
-    build:
-      context: .
-      dockerfile: src/services/SignalR.API/Dockerfile
+  #signalr.api:
+  #  image: ${DOCKER_REGISTRY-}signalrapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/SignalR.API/Dockerfile
 
-  inventory.api:
-    image: ${DOCKER_REGISTRY-}inventoryapi
-    build:
-      context: .
-      dockerfile: src/services/Inventory/Inventory.API/Dockerfile
-      args:
-        - NUGET_PAT
+  #inventory.api:
+  #  image: ${DOCKER_REGISTRY-}inventoryapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/Inventory/Inventory.API/Dockerfile
+  #    args:
+  #      - NUGET_PAT
 
   #web.spa:
   #  image: ${DOCKER_REGISTRY-}webspa
@@ -121,25 +121,20 @@ services:
   #    dockerfile: src/webapps/Web.Spa/Dockerfile
 
 
-  realtimetransmission.api:
-    image: ${DOCKER_REGISTRY-}realtimetransmissionapi
-    build:
-      context: .
-      dockerfile: src/services/RealTimeTransmission/RealTimeTransmission.API/Dockerfile
+  #realtimetransmission.api:
+  #  image: ${DOCKER_REGISTRY-}realtimetransmissionapi
+  #   build:
+  #    context: .
+  #    dockerfile: src/services/RealTimeTransmission/RealTimeTransmission.API/Dockerfile
 
-  web-gw:
-    image: ${DOCKER_REGISTRY-}webgw
-    build:
-      context: .
-      dockerfile: src/services/API-Gws/Web-GW/Dockerfile
 
-  ordering.api:
-    image: ${DOCKER_REGISTRY-}orderingapi
-    build:
-      context: .
-      dockerfile: src/services/Ordering/Ordering.API/Dockerfile
-      args:
-        - NUGET_PAT
+  #ordering.api:
+  #  image: ${DOCKER_REGISTRY-}orderingapi
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/Ordering/Ordering.API/Dockerfile
+  #    args:
+  #      - NUGET_PAT
 
   #customer.api:
   #  image: ${DOCKER_REGISTRY-}customerapi
