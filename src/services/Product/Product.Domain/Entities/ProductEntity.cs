@@ -28,10 +28,6 @@ public class ProductEntity : EntityBase
     /// </summary>
     public string ImgUrl { get; set; } = string.Empty;
 
-    /// <summary>
-    /// Gets or sets product price.
-    /// </summary>
-    public decimal Price { get; set; }
 
     public CategoryEntity Category { get; set; }
 

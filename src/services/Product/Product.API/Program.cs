@@ -35,11 +35,6 @@ if (app.Environment.IsDevelopment())
 
 app.MigrateDatabase<ProductContext>((context, services) =>
 {
-    var logger = services.GetService(typeof(ILogger<ProductContextSeed>)) as ILogger<ProductContextSeed>;
-
-    ProductContextSeed
-           .SeedAsync(context, logger)
-           .Wait();
 });
 
 app.UseAuthorization();

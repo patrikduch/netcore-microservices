@@ -23,7 +23,6 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
         builder.Property(p => p.Name).HasColumnName("name");
         builder.Property(p => p.Description).HasColumnName("description");
         builder.Property(p => p.ImgUrl).HasColumnName("imgurl");
-        builder.Property(p => p.Price).HasColumnName("price");
 
         builder.HasOne(p => p.Category).WithMany(c => c.Products);
     }
