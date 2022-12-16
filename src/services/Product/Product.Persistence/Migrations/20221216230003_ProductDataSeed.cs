@@ -31,21 +31,6 @@ namespace Product.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "category",
-                keyColumn: "Id",
-                keyValue: new Guid("58ce0303-7e7a-42d9-af9f-4d7d18aa5991"));
-
-            migrationBuilder.DeleteData(
-                table: "category",
-                keyColumn: "Id",
-                keyValue: new Guid("6bf62e98-a1b4-4e18-9263-8a50e1b20a4a"));
-
-            migrationBuilder.DeleteData(
-                table: "category",
-                keyColumn: "Id",
-                keyValue: new Guid("c47f5493-b9a7-4eb5-812c-74bf453bdce9"));
-
-            migrationBuilder.DeleteData(
                 table: "product",
                 keyColumn: "id",
                 keyValue: new Guid("0b5be7ec-8c0c-47b0-9849-dca1797070e7"));
@@ -100,15 +85,6 @@ namespace Product.Persistence.Migrations
                 keyColumn: "id",
                 keyValue: new Guid("ec0fe11b-568e-466f-bcda-85c6c320d0ba"));
 
-            migrationBuilder.InsertData(
-                table: "category",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "LastModifiedBy", "LastModifiedDate", "name", "url" },
-                values: new object[,]
-                {
-                    { new Guid("430c6139-b227-449e-9936-d6e398eebeab"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, null, "Video Games", "video-games" },
-                    { new Guid("52ca3d2e-1cd8-4247-bf8e-5ac8267d2de5"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, null, "Movies", "movies" },
-                    { new Guid("a5fc30db-2d2e-44fb-b2e1-ab18ad43c691"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, null, "Books", "books" }
-                });
         }
     }
 }
