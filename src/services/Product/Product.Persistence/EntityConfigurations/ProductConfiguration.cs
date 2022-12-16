@@ -9,6 +9,7 @@ namespace Product.Persistence.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Product.Domain.Entities;
+using Product.Persistence.Contexts;
 
 /// <summary>
 /// Entity configuration for  <seealso cref="ProductEntity"/>.
@@ -18,12 +19,10 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
     public void Configure(EntityTypeBuilder<ProductEntity> builder)
     {
         builder.ToTable("product");
-
         builder.Property(p => p.Id).HasColumnName("id");
         builder.Property(p => p.Name).HasColumnName("name");
         builder.Property(p => p.Description).HasColumnName("description");
         builder.Property(p => p.ImgUrl).HasColumnName("imgurl");
-
-        builder.HasOne(p => p.Category).WithMany(c => c.Products);
+        builder.HasOne(p => p.Category).WithMany(c => c.Products);  
     }
 }
