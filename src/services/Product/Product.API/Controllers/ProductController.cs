@@ -15,7 +15,7 @@ using Product.Application.Features.Products.Queries.GetProductList;
 using Product.Application.Features.Products.Queries.GetProductsByCategory;
 
 /// <summary>
-/// Product management Rest API controller.
+/// Management of products.
 /// </summary>
 [Route("api/v1")]
 [ApiController]
