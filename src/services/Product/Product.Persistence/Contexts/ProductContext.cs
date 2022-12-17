@@ -7,7 +7,6 @@
 namespace Product.Persistence.Contexts;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Product.Domain.Entities;
 using Product.Persistence.EntityConfigurations;
 
@@ -16,15 +15,12 @@ using Product.Persistence.EntityConfigurations;
 /// </summary>
 public class ProductContext : DbContext
 {
-    private readonly IConfiguration _configuration;
-
     /// <summary>
     /// Initializes a new instance of the <seealso cref="ProductContext"/>.
     /// </summary>
     /// <param name="options"> <seealso cref="DbContextOptions{TContext}"/> EFCore context setup.</param>
-    public ProductContext(DbContextOptions<ProductContext> options, IConfiguration configuration) : base(options)
+    public ProductContext(DbContextOptions<ProductContext> options) : base(options)
     {
-        _configuration = configuration;
     }
 
     /// <summary>
@@ -35,7 +31,7 @@ public class ProductContext : DbContext
     /// <summary>
     /// Gets or sets collection of product categories.
     /// </summary>
-    public DbSet<CategoryEntity> Categories { get; set; }
+    public DbSet<CategoryEntity>? Categories { get; set; }
 
     /// <summary>
     /// Adding configuration to the <seealso cref="ProductContext"/>.
