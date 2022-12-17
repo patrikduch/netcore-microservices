@@ -25,7 +25,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
 
         // 91d21fc5-3c84-499d-b0f9-7b297738533c
         // a5a546aa-4d13-4318-b4de-04dbf94259be
-
+        // 139abf65-bb9b-4d41-96d8-6c623542ae8d
         builder.HasData(
             new CategoryEntity
             {
@@ -39,34 +39,14 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
                 Id = Guid.Parse("a5a546aa-4d13-4318-b4de-04dbf94259be"),
                 Name = "Movies",
                 Url = "movies"
-            }
-        );
-
-
-        /*
-         
-
-        builder.HasData(
-            new CategoryEntity
-            {
-                Id = Guid.NewGuid(),
-                Name = "Books",
-                Url = "books"
             },
 
             new CategoryEntity
             {
-                Id = Guid.NewGuid(),
-                Name = "Movies",
-                Url = "movies"
-            },
-
-            new CategoryEntity
-            {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("139abf65-bb9b-4d41-96d8-6c623542ae8d"),
                 Name = "Video Games",
                 Url = "video-games"
             }
-       ); */
+        );
     }
 }
