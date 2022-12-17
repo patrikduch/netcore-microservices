@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Product.Persistence.Contexts;
@@ -11,9 +12,10 @@ using Product.Persistence.Contexts;
 namespace Product.Persistence.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    partial class ProductContextModelSnapshot : ModelSnapshot
+    [Migration("20221217092242_ClearProductCategoriesData")]
+    partial class ClearProductCategoriesData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,15 +56,6 @@ namespace Product.Persistence.Migrations
                         .HasName("id");
 
                     b.ToTable("category", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("91d21fc5-3c84-499d-b0f9-7b297738533c"),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Books",
-                            Url = "books"
-                        });
                 });
 
             modelBuilder.Entity("Product.Domain.Entities.ProductEntity", b =>

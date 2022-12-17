@@ -23,7 +23,18 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
         builder.Property(c => c.Name).HasColumnName("name");
         builder.Property(c => c.Url).HasColumnName("url");
 
+        // 91d21fc5-3c84-499d-b0f9-7b297738533c
+
+        builder.HasData(new CategoryEntity
+        {
+            Id = Guid.Parse("91d21fc5-3c84-499d-b0f9-7b297738533c"),
+            Name = "Books",
+            Url = "books"
+        });
+
+
         /*
+         
 
         builder.HasData(
             new CategoryEntity
