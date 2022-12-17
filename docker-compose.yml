@@ -12,14 +12,14 @@ services:
       context: .
       dockerfile: src/services/Product/Product.API/Dockerfile
   product.db:
-    image: postgres
+    image: postgres:14
   user.api:
     image: ${DOCKER_REGISTRY-}userapi
     build:
       context: .
       dockerfile: src/services/User/User.API/Dockerfile
   user.db:
-    image: postgres
+    image: postgres:14
   projectdetail.api:
     image: ${DOCKER_REGISTRY-}projectdetailapi
     build:
