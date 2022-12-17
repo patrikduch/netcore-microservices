@@ -23,6 +23,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
         builder.Property(c => c.Name).HasColumnName("name");
         builder.Property(c => c.Url).HasColumnName("url");
 
+        /*
 
         builder.HasData(
             new CategoryEntity
@@ -45,6 +46,6 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
                 Name = "Video Games",
                 Url = "video-games"
             }
-       );
+       ); */
     }
 }
