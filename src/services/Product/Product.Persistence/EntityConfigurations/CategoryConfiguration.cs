@@ -18,14 +18,11 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
     public void Configure(EntityTypeBuilder<CategoryEntity> builder)
     {
         builder.ToTable("category");
-
         builder.HasKey(c => c.Id).HasName("id");
         builder.Property(c => c.Name).HasColumnName("name");
         builder.Property(c => c.Url).HasColumnName("url");
 
-        // 91d21fc5-3c84-499d-b0f9-7b297738533c
-        // a5a546aa-4d13-4318-b4de-04dbf94259be
-        // 139abf65-bb9b-4d41-96d8-6c623542ae8d
+
         builder.HasData(
             new CategoryEntity
             {
