@@ -24,13 +24,23 @@ public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
         builder.Property(c => c.Url).HasColumnName("url");
 
         // 91d21fc5-3c84-499d-b0f9-7b297738533c
+        // a5a546aa-4d13-4318-b4de-04dbf94259be
 
-        builder.HasData(new CategoryEntity
-        {
-            Id = Guid.Parse("91d21fc5-3c84-499d-b0f9-7b297738533c"),
-            Name = "Books",
-            Url = "books"
-        });
+        builder.HasData(
+            new CategoryEntity
+            {
+                Id = Guid.Parse("91d21fc5-3c84-499d-b0f9-7b297738533c"),
+                Name = "Books",
+                Url = "books"
+            },
+
+            new CategoryEntity
+            {
+                Id = Guid.Parse("a5a546aa-4d13-4318-b4de-04dbf94259be"),
+                Name = "Movies",
+                Url = "movies"
+            }
+        );
 
 
         /*
