@@ -29,6 +29,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
         var movieCategory = Guid.Parse("a5a546aa-4d13-4318-b4de-04dbf94259be");
         var videogamesCategory = Guid.Parse("139abf65-bb9b-4d41-96d8-6c623542ae8d");
 
+        /*
+
         builder.HasData(new ProductEntity
             {
                Id = Guid.NewGuid(),
@@ -128,6 +130,6 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
              ImgUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg",
              //Price = 79.99m,
              CategoryId = videogamesCategory   
-        });
+        }); */
     }
 }
