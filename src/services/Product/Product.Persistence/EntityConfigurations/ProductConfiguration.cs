@@ -29,6 +29,16 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
         var movieCategory = Guid.Parse("a5a546aa-4d13-4318-b4de-04dbf94259be");
         var videogamesCategory = Guid.Parse("139abf65-bb9b-4d41-96d8-6c623542ae8d");
 
+
+        builder.HasData(new ProductEntity
+        {
+            Id = Guid.Parse("ba7656a5-0429-4dec-b3ff-e8b09012b632"),
+            Name = "The Hitchhiker's Guide to the Galaxy",
+            Description = "The Hitchhiker's Guide to the Galaxy[note 1] (sometimes referred to as HG2G,[1] HHGTTG,[2] H2G2,[3] or tHGttG) is a comedy science fiction franchise created by Douglas Adams. Originally a 1978 radio comedy broadcast on BBC Radio 4, it was later adapted to other formats, including stage shows, novels, comic books, a 1981 TV series, a 1984 text-based computer game, and 2005 feature film.",
+            ImgUrl = "https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",     
+            CategoryId = bookCategory,
+        });
+
         /*
 
         builder.HasData(new ProductEntity
