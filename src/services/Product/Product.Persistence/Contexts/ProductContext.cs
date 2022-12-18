@@ -33,13 +33,18 @@ public class ProductContext : DbContext
     /// </summary>
     public DbSet<CategoryEntity>? Categories { get; set; }
 
+
+    public DbSet<ProductTypeEntity>? ProductTypes { get; set; }
+
+
     /// <summary>
     /// Adding configuration to the <seealso cref="ProductContext"/>.
     /// </summary>
     /// <param name="modelBuilder"><seealso cref="ModelBuilder"/> object for extending current <seealso cref="ProductContext"/> object.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new ProductConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductTypeConfiguration());
     }
 }
