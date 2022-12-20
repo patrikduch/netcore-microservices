@@ -115,7 +115,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
             }, 
             new ProductEntity 
             { 
-                Id = Guid.NewGuid(), 
+                Id = Guid.Parse("8eb4489a-b2dc-415c-b9a2-f946a01a2c0e"), 
                 Name = "Super Nintendo Entertainment System", 
                 Description = "The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea.", 
                 ImgUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg", 
