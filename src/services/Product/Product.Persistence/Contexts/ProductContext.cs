@@ -33,7 +33,9 @@ public class ProductContext : DbContext
     /// </summary>
     public DbSet<CategoryEntity>? Categories { get; set; }
 
-
+    /// <summary>
+    /// Gets or sets collection of product types.
+    /// </summary>
     public DbSet<ProductTypeEntity>? ProductTypes { get; set; }
 
 
@@ -46,5 +48,6 @@ public class ProductContext : DbContext
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
         modelBuilder.ApplyConfiguration(new ProductTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductVariantConfiguration());
     }
 }

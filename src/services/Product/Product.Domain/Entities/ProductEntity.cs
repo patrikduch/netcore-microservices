@@ -32,4 +32,6 @@ public class ProductEntity : EntityBase
     public CategoryEntity? Category { get; set; }
 
     public Guid CategoryId { get; set; }
+
+    public List<ProductVariantEntity> ProductVariants { get; set; } = new List<ProductVariantEntity>();
 }
