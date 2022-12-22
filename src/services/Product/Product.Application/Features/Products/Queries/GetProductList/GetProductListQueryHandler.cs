@@ -9,10 +9,10 @@ namespace Product.Application.Features.Products.Queries.GetProductList;
 using AutoMapper;
 using MediatR;
 using Product.Domain.Entities;
-using Product.Application.Contracts;
 using Product.Application.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
+using Product.Application.Contracts.Repositories;
 
 /// <summary>
 /// CQRS query handler class for fetching list of products.

@@ -9,9 +9,11 @@ namespace Product.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Product.Application.Contracts;
+using Product.Application.Contracts.Repositories;
+using Product.Application.Contracts.Services;
 using Product.Persistence.Contexts;
 using Product.Persistence.Repositories;
+using Product.Persistence.Services;
 
 /// <summary>
 /// Registration of persistence services.
@@ -31,6 +33,8 @@ public static class PersistenceServicesRegistrator
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+
+        services.AddScoped<IProductService, ProductService>();
 
         services.AddDbContext<ProductContext>(options =>
             options.UseNpgsql((connectionString)));

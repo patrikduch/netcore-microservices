@@ -9,6 +9,7 @@ namespace Product.Application;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Product.Application.Contracts.Services;
 using System.Reflection;
 
 /// <summary>

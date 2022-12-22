@@ -9,7 +9,7 @@ namespace Product.Application.Features.Products.Queries.GetProduct;
 using AutoMapper;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Contracts;
+using Product.Application.Contracts.Services;
 using Product.Application.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,18 +17,19 @@ using System.Threading.Tasks;
 public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ServiceResponse<ProductDto>>
 {
     private readonly IMapper _mapper;
-    private readonly IProductRepository _productRepository;
+    private readonly IProductService _productService;
 
-    public GetProductQueryHandler(IMapper mapper, IProductRepository productRepository)
+    public GetProductQueryHandler(IMapper mapper, IProductService productService)
     {
         _mapper = mapper;
-        _productRepository = productRepository;
+        _productService = productService;
     }
 
     public async Task<ServiceResponse<ProductDto>> Handle(GetProductQuery request, CancellationToken cancellationToken)
     {
         var response = new ServiceResponse<ProductDto>();
-        var product = await _productRepository.GetByIdAsync(request.ProductId);
+        var product = await _productService.GetProductDetail(request.ProductId);
+
 
         if (product is null)
         {

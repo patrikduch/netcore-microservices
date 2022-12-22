@@ -8,7 +8,7 @@ namespace Product.Application.Features.Products.Queries.GetCategoryList;
 
 using AutoMapper;
 using MediatR;
-using Product.Application.Contracts;
+using Product.Application.Contracts.Repositories;
 using Product.Application.Dtos;
 using Product.Domain.Entities;
 using System.Threading;

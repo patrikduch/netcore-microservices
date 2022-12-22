@@ -125,6 +125,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coupon.Infrastructure", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Coupon.Persistence", "src\services\Coupon\Coupon.Persistence\Coupon.Persistence.csproj", "{2595F137-DD58-4D04-8BBB-B4B5D38A0A2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Tests", "src\services\Product\Product.Tests\Product.Tests.csproj", "{CD9D8527-72A4-4E6A-9CF0-AC86196CF62E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -295,6 +297,10 @@ Global
 		{2595F137-DD58-4D04-8BBB-B4B5D38A0A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2595F137-DD58-4D04-8BBB-B4B5D38A0A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2595F137-DD58-4D04-8BBB-B4B5D38A0A2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD9D8527-72A4-4E6A-9CF0-AC86196CF62E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD9D8527-72A4-4E6A-9CF0-AC86196CF62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD9D8527-72A4-4E6A-9CF0-AC86196CF62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD9D8527-72A4-4E6A-9CF0-AC86196CF62E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -357,6 +363,7 @@ Global
 		{484F188E-AD06-4A9F-BDEB-C1612DF2AC8C} = {713722C0-7B12-4D46-8947-9B62D77710D3}
 		{A7F3D098-2685-4A24-A409-70628FDF04B3} = {713722C0-7B12-4D46-8947-9B62D77710D3}
 		{2595F137-DD58-4D04-8BBB-B4B5D38A0A2B} = {713722C0-7B12-4D46-8947-9B62D77710D3}
+		{CD9D8527-72A4-4E6A-9CF0-AC86196CF62E} = {D6ADF0EC-31DC-455C-9D94-BADC5A34E101}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61E0CB2F-1B7F-4DEF-9463-F5C807E66E33}

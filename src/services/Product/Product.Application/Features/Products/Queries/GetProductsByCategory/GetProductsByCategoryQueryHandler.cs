@@ -9,7 +9,7 @@ namespace Product.Application.Features.Products.Queries.GetProductsByCategory;
 using AutoMapper;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Contracts;
+using Product.Application.Contracts.Repositories;
 using Product.Application.Dtos;
 using Product.Domain.Entities;
 
