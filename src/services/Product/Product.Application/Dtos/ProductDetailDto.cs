@@ -1,14 +1,9 @@
 ﻿//---------------------------------------------------------------------------
-// <copyright file="IProductService.cs" website="Patrikduch.com">
+// <copyright file="ProductDetailDto.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Contracts.Services;
+namespace Product.Application.Dtos;
 
-using Product.Application.Dtos;
-
-public interface IProductService
-{
-    Task<ProductDetailDto> GetProductDetail(Guid productId);
-}
+public record ProductDetailDto(Guid Id, string Name, string Description, string ImgUrl, Guid CategoryId, List<ProductVariantDto> ProductVariants);

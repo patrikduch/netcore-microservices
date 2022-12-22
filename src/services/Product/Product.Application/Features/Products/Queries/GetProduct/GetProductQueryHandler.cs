@@ -14,7 +14,7 @@ using Product.Application.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ServiceResponse<ProductDto>>
+public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ServiceResponse<ProductDetailDto>>
 {
     private readonly IMapper _mapper;
     private readonly IProductService _productService;
@@ -25,9 +25,9 @@ public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ServiceRe
         _productService = productService;
     }
 
-    public async Task<ServiceResponse<ProductDto>> Handle(GetProductQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResponse<ProductDetailDto>> Handle(GetProductQuery request, CancellationToken cancellationToken)
     {
-        var response = new ServiceResponse<ProductDto>();
+        var response = new ServiceResponse<ProductDetailDto>();
         var product = await _productService.GetProductDetail(request.ProductId);
 
 
@@ -37,7 +37,7 @@ public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ServiceRe
             response.Message = "Sorry, but this product does not exists.";
         } else
         {
-            response.Data = _mapper.Map<ProductDto>(product);
+            response.Data = _mapper.Map<ProductDetailDto>(product);
         }
 
         return response;

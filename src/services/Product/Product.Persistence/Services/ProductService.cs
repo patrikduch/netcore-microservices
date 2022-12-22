@@ -25,13 +25,13 @@ public class ProductService : IProductService
         _productContext = productContext;
     }
 
-    public  async Task<ProductDto> GetProductDetail(Guid productId)
+    public  async Task<ProductDetailDto> GetProductDetail(Guid productId)
     {
         var products = await _productContext.Products
             .Where(p => p.Id == productId)
             .Include(p => p.ProductVariants)
                 .ThenInclude(p => p.ProductType).FirstOrDefaultAsync();
 
-        return _mapper.Map<ProductDto>(products);
+        return _mapper.Map<ProductDetailDto>(products);
     }
 }

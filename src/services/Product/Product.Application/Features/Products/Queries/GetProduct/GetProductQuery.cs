@@ -13,7 +13,7 @@ using Product.Application.Dtos;
 /// <summary>
 /// CQRS query for fetching particular product.
 /// </summary>
-public class GetProductQuery : IRequest<ServiceResponse<ProductDto>>
+public class GetProductQuery : IRequest<ServiceResponse<ProductDetailDto>>
 {
     public Guid ProductId { get; set; }
 }
