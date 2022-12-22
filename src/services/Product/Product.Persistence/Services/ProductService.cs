@@ -29,6 +29,7 @@ public class ProductService : IProductService
     {
         var products = await _productContext.Products
             .Where(p => p.Id == productId)
+            .AsNoTracking()
             .Include(p => p.ProductVariants)
                 .ThenInclude(p => p.ProductType).FirstOrDefaultAsync();
 
