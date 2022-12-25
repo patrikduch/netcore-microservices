@@ -10,8 +10,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProductVariantEntity = Domain.Entities.ProductVariantEntity;
 
+/// <summary>
+/// Entity configuration for  <seealso cref="ProductVariantEntity"/>.
+/// </summary>
 public class ProductVariantConfiguration : IEntityTypeConfiguration<ProductVariantEntity>
 {
+    /// <summary>
+    /// Configuration setup of <seealso cref="ProductVariantEntity"/>.
+    /// </summary>
+    /// <param name="builder"><seealso cref="ProductVariantEntity"/> builder object.</param>
     public void Configure(EntityTypeBuilder<ProductVariantEntity> builder)
     {
         builder.ToTable("product-variant");

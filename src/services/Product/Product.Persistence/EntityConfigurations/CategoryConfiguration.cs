@@ -15,6 +15,10 @@ using Product.Domain.Entities;
 /// </summary>
 public class CategoryConfiguration : IEntityTypeConfiguration<CategoryEntity>
 {
+    /// <summary>
+    /// Configuration setup of <seealso cref="CategoryEntity"/>.
+    /// </summary>
+    /// <param name="builder"><seealso cref="CategoryEntity"/> builder object.</param>
     public void Configure(EntityTypeBuilder<CategoryEntity> builder)
     {
         builder.ToTable("category");

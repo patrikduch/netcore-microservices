@@ -10,12 +10,14 @@ using NetMicroservices.SqlWrapper.Nuget;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
+/// <summary>
+/// Entity for representation product's variants.
+/// </summary>
 public class ProductVariantEntity : EntityBase
 {
     [JsonIgnore]
     public ProductEntity? Product { get; set; }
     public Guid ProductId { get; set; }
-
 
     public ProductTypeEntity? ProductType { get; set; }
     public Guid ProductTypeId { get; set; }

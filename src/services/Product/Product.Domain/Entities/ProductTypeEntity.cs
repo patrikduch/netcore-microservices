@@ -8,6 +8,9 @@ namespace Product.Domain.Entities;
 
 using NetMicroservices.SqlWrapper.Nuget;
 
+/// <summary>
+/// Entity for representation product's type inside product's variants.
+/// </summary>
 public class ProductTypeEntity : EntityBase
 {
     public string Name { get; set; } = string.Empty;

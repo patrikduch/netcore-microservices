@@ -6,7 +6,6 @@
 //---------------------------------------------------------------------------
 namespace Product.Application.Features.Products.Queries.GetProduct;
 
-using AutoMapper;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
 using Product.Application.Contracts.Services;
@@ -14,17 +13,28 @@ using Product.Application.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
 
+/// <summary>
+/// CQRS query handler class for fetching product detail.
+/// </summary>
 public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ServiceResponse<ProductDetailDto>>
 {
-    private readonly IMapper _mapper;
     private readonly IProductService _productService;
 
-    public GetProductQueryHandler(IMapper mapper, IProductService productService)
+    /// <summary>
+    /// Initializes a new instance of the <seealso cref="GetProductQueryHandler"/>.
+    /// </summary>
+    /// <param name="productService"><seealso cref="IProductService"/> dependency object.</param>
+    public GetProductQueryHandler(IProductService productService)
     {
-        _mapper = mapper;
         _productService = productService;
     }
 
+    /// <summary>
+    /// Fetchiung product detail from database.
+    /// </summary>
+    /// <param name="request">Incoming request object.</param>
+    /// <param name="cancellationToken">Cancelation token object dependency.</param>
+    /// <returns>Asynchronous task with <seealso cref="ProductDetailDto"/> object.</returns>
     public async Task<ServiceResponse<ProductDetailDto>> Handle(GetProductQuery request, CancellationToken cancellationToken)
     {
         var response = new ServiceResponse<ProductDetailDto>();
@@ -37,7 +47,7 @@ public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ServiceRe
             response.Message = "Sorry, but this product does not exists.";
         } else
         {
-            response.Data = _mapper.Map<ProductDetailDto>(product);
+            response.Data = product;
         }
 
         return response;

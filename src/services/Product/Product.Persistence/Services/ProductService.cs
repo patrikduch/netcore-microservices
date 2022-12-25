@@ -6,33 +6,37 @@
 // ----------------------------------------------------------------------------------
 namespace Product.Persistence.Services;
 
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+using Product.Application.Contracts.Readers;
 using Product.Application.Contracts.Services;
 using Product.Application.Dtos;
-using Product.Persistence.Contexts;
 using System;
+using System.Collections.Generic;
 
+/// <summary>
+/// ProductService provides all CRUD product's functionality.
+/// </summary>
 public class ProductService : IProductService
 {
-    private readonly IMapper _mapper;
-    private readonly ProductContext _productContext;
+    private readonly IProductReader _productReader;
     
 
-    public ProductService(IMapper mapper, ProductContext productContext)
+    public ProductService(IProductReader productReader)
     {
-        _mapper = mapper;
-        _productContext = productContext;
+        _productReader = productReader;
     }
 
     public  async Task<ProductDetailDto> GetProductDetail(Guid productId)
     {
-        var products = await _productContext.Products
-            .Where(p => p.Id == productId)
-            .AsNoTracking()
-            .Include(p => p.ProductVariants)
-                .ThenInclude(p => p.ProductType).FirstOrDefaultAsync();
+        return await _productReader.FetchProductDetail(productId);
+    }
 
-        return _mapper.Map<ProductDetailDto>(products);
+    public async Task<List<ProductDto>> GetProducts()
+    {
+        return await _productReader.FetchProducts();
+    }
+
+    public async Task<List<ProductDto>> GetProductsByCategory(string categoryUrl)
+    {
+        return await _productReader.FetchProducts(categoryUrl);
     }
 }

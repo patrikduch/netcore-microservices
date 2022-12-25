@@ -9,7 +9,7 @@ namespace Product.Domain.Entities;
 using NetMicroservices.SqlWrapper.Nuget;
 
 /// <summary>
-/// Entity for representation product's categories.
+/// Entity for representation product categories.
 /// </summary>
 public class CategoryEntity: EntityBase
 {

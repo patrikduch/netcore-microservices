@@ -10,13 +10,15 @@
             ImgUrl="@product.Data.ImgUrl"
             ProductId="@ProductId"  />
         <ProductDescription Description="@product.Data.Description" />
-        <ProductPrice Price="@product.Data.Price" />
         <ApplyCouponCTA />
         <CartBuyCTA />
     </ProductItemContainer>
 }
 
 @code {
+
+    private Guid currentTypeId = Guid.Empty;
+    
     private ServiceResponse<Product>? product = null;
 
     [Parameter]
@@ -25,5 +27,12 @@
     protected override async Task OnInitializedAsync()
     {
         product = await ProductService.GetProductAsync(ProductId);
+
+
+        if (product.Data.ProductVariants.Count > 0)
+        {
+            
+        }
+
     }
 }

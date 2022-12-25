@@ -15,6 +15,10 @@ using Product.Domain.Entities;
 /// </summary>
 public class ProductConfiguration : IEntityTypeConfiguration<ProductEntity>
 {
+    /// <summary>
+    /// Configuration setup of <seealso cref="ProductEntity"/>.
+    /// </summary>
+    /// <param name="builder"><seealso cref="ProductEntity"/> builder object.</param>
     public void Configure(EntityTypeBuilder<ProductEntity> builder)
     {
         builder.ToTable("product");

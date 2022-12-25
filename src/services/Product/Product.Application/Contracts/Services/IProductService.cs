@@ -8,7 +8,14 @@ namespace Product.Application.Contracts.Services;
 
 using Product.Application.Dtos;
 
+/// <summary>
+/// Contract for ProductService, that provides all functionality for reading and mutating product's data.
+/// </summary>
 public interface IProductService
 {
     Task<ProductDetailDto> GetProductDetail(Guid productId);
+
+    Task<List<ProductDto>> GetProducts();
+
+    Task<List<ProductDto>> GetProductsByCategory(string categoryUrl);
 }

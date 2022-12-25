@@ -10,8 +10,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Product.Domain.Entities;
 
+/// <summary>
+/// Entity configuration for  <seealso cref="ProductTypeEntity"/>.
+/// </summary>
 public class ProductTypeConfiguration : IEntityTypeConfiguration<ProductTypeEntity>
 {
+    /// <summary>
+    /// Configuration setup of <seealso cref="ProductTypeEntity"/>.
+    /// </summary>
+    /// <param name="builder"><seealso cref="ProductTypeEntity"/> builder object.</param>
     public void Configure(EntityTypeBuilder<ProductTypeEntity> builder)
     {
         builder.ToTable("product-type");
