@@ -21,7 +21,7 @@
             // only one variant
             case 1:
                 return $"${variants[0].Price}";
-            default:
+            default: // more variant we calculate minimal price
             {
                 var minPrice = variants.Min(v => v.Price);
                 return $"Starting at ${minPrice}";
