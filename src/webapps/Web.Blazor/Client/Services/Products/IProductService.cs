@@ -5,8 +5,6 @@ using Web.Blazor.Shared;
 
 public interface IProductService
 {
-    event Action? ProductsChanged;
-    
     public List<Product> Products { get; set; }
 
     Task GetProductsAsync(string? categoryUrl=null);

@@ -1,4 +1,4 @@
-﻿namespace Web.Blazor.Client.Services.ProjectDetailService;
+﻿namespace Web.Blazor.Client.Services.ProjectDetail;
 
 using Web.Blazor.Shared;
 
