@@ -9,6 +9,9 @@ namespace Product.Application.Contracts.Repositories;
 using NetMicroservices.SqlWrapper.Nuget;
 using Product.Domain.Entities;
 
+/// <summary>
+/// Data layer contract for <seealso cref="CategoryEntity"/>.
+/// </summary>
 public interface ICategoryRepository : IAsyncRepository<CategoryEntity>
 {
 

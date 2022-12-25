@@ -10,6 +10,9 @@ namespace Product.Application.Contracts.Repositories;
 using NetMicroservices.SqlWrapper.Nuget;
 using Product.Domain.Entities;
 
+/// <summary>
+/// Data layer contract for <seealso cref="ProductEntity"/>.
+/// </summary>
 public interface IProductRepository : IAsyncRepository<ProductEntity>
 {
 }
