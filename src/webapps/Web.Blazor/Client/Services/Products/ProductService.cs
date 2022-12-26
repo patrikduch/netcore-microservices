@@ -16,8 +16,7 @@ using Web.Blazor.Shared;
 public class ProductService : IProductService
 {
     private readonly HttpClient _http;
-
-    public event Action? ProductsChanged;
+    
     public List<Product> Products { get; set; } = new();
 
     public ProductService(HttpClient http)
@@ -39,17 +38,11 @@ public class ProductService : IProductService
         {
             response = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"/category-products/{categoryUrl}");
         }
-
-        var test = 4;
-
+        
         if (response is not null)
         {
             Products = response.Data.ToList();
         }
-
-        var testa = Products;
-
-        //ProductsChanged.Invoke();
     }
 
     public async Task<ServiceResponse<Product>> GetProductAsync(Guid id)
