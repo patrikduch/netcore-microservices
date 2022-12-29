@@ -13,7 +13,7 @@
         
         @if (_product.Data.ProductVariants.Count > 1)
         {
-            <div class="mb-1">
+            <div class="mb-2 mt-2">
                 <select class="form-select" @bind="_currentTypeId">
                     @foreach (var variant in _product.Data.ProductVariants)
                     {
@@ -46,5 +46,4 @@
             _currentTypeId = _product.Data.ProductVariants[0].ProductTypeId;
         }
     }
-    
 }
