@@ -23,12 +23,22 @@ public class ProductReader : IProductReader
     private readonly IMapper _mapper;
     private readonly ProductContext _productCtx;
 
+    /// <summary>
+    /// Initializes a new instance of the <seealso cref="ProductReader"/>.
+    /// </summary>
+    /// <param name="mapper">Mapper depedency object.</param>
+    /// <param name="productCtx"><seealso cref="DbContext"/> dependency object.</param>
     public ProductReader(IMapper mapper, ProductContext productCtx)
     {
         _mapper= mapper;
         _productCtx= productCtx;
     }
 
+    /// <summary>
+    /// Fetch product details with variants.
+    /// </summary>
+    /// <param name="productId">Unique product identifier.</param>
+    /// <returns><seealso cref="ProductDetailDto"/> object. </returns>
     public async Task<ProductDetailDto?> FetchProductDetail(Guid productId)
     {
         if (_productCtx.Products is not null)
@@ -45,6 +55,10 @@ public class ProductReader : IProductReader
         return await Task.FromResult<ProductDetailDto?>(null);
     }
 
+    /// <summary>
+    /// Fetch all products without restrictions.
+    /// </summary>
+    /// <returns>Collection of <seealso cref="ProductDto"/> objects.</returns>
     public async Task<List<ProductDto>> FetchProducts()
     {
         if (_productCtx.Products is not null)
@@ -59,13 +73,23 @@ public class ProductReader : IProductReader
         return Enumerable.Empty<ProductDto>().ToList();
     }
 
+    /// <summary>
+    /// Fetch products by category url.
+    /// </summary>
+    /// <param name="categoryUrl">Category url used for filtering list of products.</param>
+    /// <returns>Collection of <seealso cref="ProductDto"/> objects.</returns>
     public async Task<List<ProductDto>> FetchProducts(string categoryUrl)
     {
-        var productsByCategoryUrl = await _productCtx.Products
+        if (_productCtx.Products is not null)
+        {
+            var productsByCategoryUrl = await _productCtx.Products
             .AsNoTracking()
                 .Where(p => p.Category.Url.Equals(categoryUrl.ToLower()))
                 .Include(p => p.ProductVariants).ToListAsync();
 
-        return _mapper.Map<List<ProductDto>>(productsByCategoryUrl);
+            return _mapper.Map<List<ProductDto>>(productsByCategoryUrl);
+        }
+
+        return Enumerable.Empty<ProductDto>().ToList();
     }
 }

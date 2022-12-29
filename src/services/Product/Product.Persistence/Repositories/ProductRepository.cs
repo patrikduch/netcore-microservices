@@ -13,7 +13,7 @@ using Product.Domain.Entities;
 using Product.Persistence.Contexts;
 
 /// <summary>
-/// Data repository for management  <seealso cref="ProductEntity"/>.
+/// Data repository for management <seealso cref="ProductEntity"/>.
 /// </summary>
 public class ProductRepository : RepositoryBase<ProductEntity, ProductContext>, IProductRepository
 {
