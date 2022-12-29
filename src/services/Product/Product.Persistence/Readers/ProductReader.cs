@@ -64,8 +64,8 @@ public class ProductReader : IProductReader
         if (_productCtx.Products is not null)
         {
             var products = await _productCtx.Products
-           .AsNoTracking()
-           .Include(p => p.ProductVariants).ToListAsync();
+            .AsNoTracking()
+                .Include(p => p.ProductVariants).ToListAsync();
 
             return _mapper.Map<List<ProductDto>>(products);
         }
@@ -84,8 +84,8 @@ public class ProductReader : IProductReader
         {
             var productsByCategoryUrl = await _productCtx.Products
             .AsNoTracking()
-                .Where(p => p.Category.Url.Equals(categoryUrl.ToLower()))
-                .Include(p => p.ProductVariants).ToListAsync();
+                .Where(p => p.Category != null && p.Category.Url.Equals(categoryUrl.ToLower()))
+                    .Include(p => p.ProductVariants).ToListAsync();
 
             return _mapper.Map<List<ProductDto>>(productsByCategoryUrl);
         }
