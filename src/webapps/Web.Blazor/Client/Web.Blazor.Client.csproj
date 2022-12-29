@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Shared\App\Products\Common\ProductVariant\ProductVariantList\ProductVariantList.razor" />
+    <_ContentIncludedByDefault Remove="Shared\App\Products\ProductItem\ProductItemPrice\ProductItemPrice.razor" />
   </ItemGroup>
 
 </Project>
