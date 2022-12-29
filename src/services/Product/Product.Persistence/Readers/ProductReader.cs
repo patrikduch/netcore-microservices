@@ -15,7 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-///  ProductReader implementation class, that provides quering product data.
+/// <summary>
+/// ProductReader implementation class, that provides quering product data.
+/// </summary>
 public class ProductReader : IProductReader
 {
     private readonly IMapper _mapper;
@@ -27,15 +29,20 @@ public class ProductReader : IProductReader
         _productCtx= productCtx;
     }
 
-    public async Task<ProductDetailDto> FetchProductDetail(Guid productId)
+    public async Task<ProductDetailDto?> FetchProductDetail(Guid productId)
     {
-        var products = await _productCtx.Products
+        if (_productCtx.Products is not null)
+        {
+            var products = await _productCtx.Products
             .Where(p => p.Id == productId)
             .AsNoTracking()
             .Include(p => p.ProductVariants)
                 .ThenInclude(p => p.ProductType).FirstOrDefaultAsync();
 
-        return _mapper.Map<ProductDetailDto>(products);
+            return _mapper.Map<ProductDetailDto?>(products);
+        }
+
+        return await Task.FromResult<ProductDetailDto?>(null);
     }
 
     public async Task<List<ProductDto>> FetchProducts()
