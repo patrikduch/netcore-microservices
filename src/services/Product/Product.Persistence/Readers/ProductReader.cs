@@ -40,11 +40,16 @@ public class ProductReader : IProductReader
 
     public async Task<List<ProductDto>> FetchProducts()
     {
-        var products = await _productCtx.Products
+        if (_productCtx.Products is not null)
+        {
+            var products = await _productCtx.Products
            .AsNoTracking()
            .Include(p => p.ProductVariants).ToListAsync();
 
-        return _mapper.Map<List<ProductDto>>(products);
+            return _mapper.Map<List<ProductDto>>(products);
+        }
+
+        return Enumerable.Empty<ProductDto>().ToList();
     }
 
     public async Task<List<ProductDto>> FetchProducts(string categoryUrl)
