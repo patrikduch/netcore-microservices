@@ -19,12 +19,6 @@ namespace Ordering.Application.Features.Commands.UpdateOrder
         private readonly IMapper _mapper;
         private readonly ILogger<UpdateOrderCommandHandler> _logger;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="orderRepository"></param>
-        /// <param name="mapper"></param>
-        /// <param name="logger"></param>
         public UpdateOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, ILogger<UpdateOrderCommandHandler> logger)
         {
             _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
@@ -32,20 +26,13 @@ namespace Ordering.Application.Features.Commands.UpdateOrder
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         public async Task<Unit> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
             var orderToUpdate = await _orderRepository.GetByIdAsync(request.Id);
             if (orderToUpdate == null)
             {
-                throw new NotFoundException(nameof(Order), request.Id);
-
                 _logger.LogError("Order not exists on database.");
+                throw new NotFoundException(nameof(Order), request.Id);
             }
 
             _mapper.Map(request, orderToUpdate, typeof(UpdateOrderCommand), typeof(Order));
