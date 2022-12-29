@@ -15,4 +15,4 @@ namespace Product.Application.Dtos;
 /// <param name="ImgUrl">Product image url.</param>
 /// <param name="CategoryId">CategoryId that is associated with current Product.</param>
 /// <param name="ProductVariants">Product variants that are associated with current Product.</param>
-public record ProductDetailDto(Guid Id, string Name, string Description, string ImgUrl, Guid CategoryId, List<ProductVariantDto> ProductVariants);
+public record ProductDetailDto(Guid Id, string Name, string Description, string ImgUrl, Guid CategoryId, List<ProductDetailVariantDto> ProductVariants);

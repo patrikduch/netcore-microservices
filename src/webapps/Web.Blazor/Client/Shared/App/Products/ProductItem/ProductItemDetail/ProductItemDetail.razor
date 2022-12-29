@@ -1,0 +1,50 @@
+﻿@using NetMicroservices.ServiceConfig.Nuget
+@inject IProductService ProductService;
+
+@if (_product is not null)
+{
+    <ProductItemContainer>
+        <ProductName Name="@_product.Data.Name" />
+        <ProductImage 
+            ProductName="@_product.Data.Name"
+            ImgUrl="@_product.Data.ImgUrl"
+            ProductId="@ProductId"  />
+        <ProductDescription Description="@_product.Data.Description" />
+        
+        @if (_product.Data.ProductVariants.Count > 1)
+        {
+            <div class="mb-1">
+                <select class="form-select" @bind="_currentTypeId">
+                    @foreach (var variant in _product.Data.ProductVariants)
+                    {
+                        <option value="@variant.ProductTypeId">@variant.ProductType.Name</option>
+                    }
+                </select>
+            </div>
+        }
+        <ProductVariantPrice CurrentTypeId="_currentTypeId" Product="@_product.Data" IsProductSelected="true" />
+        <ApplyCouponCTA />
+        <CartBuyCTA />
+    </ProductItemContainer>
+}
+
+@code {
+    
+    private Guid _currentTypeId = Guid.Empty;
+    
+    private ServiceResponse<Product>? _product = null;
+
+    [Parameter]
+    public Guid ProductId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _product = await ProductService.GetProductAsync(ProductId);
+        
+        if (_product.Data.ProductVariants.Count > 0)
+        {
+            _currentTypeId = _product.Data.ProductVariants[0].ProductTypeId;
+        }
+    }
+    
+}

@@ -1,13 +1,32 @@
-﻿@if (Product.ProductVariants.Count == 0)
+﻿@if (Product.ProductVariants.Count == 0 && !IsProductSelected)
 {
     <h4 class="not-available">Not available</h4>
 }
 
-<ProductPrice Price="@GetPriceText(Product)" />
+@if (IsProductSelected)
+{
+    @if (GetSelectedVariant(CurrentTypeId).OriginalPrice > GetSelectedVariant(CurrentTypeId).Price)
+    {
+        <h6 class="text-muted original-price">@GetSelectedVariant(CurrentTypeId).OriginalPrice</h6>
+    }
+        
+    var productPrice = $"${GetSelectedVariant(CurrentTypeId).Price}";
+    <ProductPrice Price="@productPrice" />
+}
+else
+{
+    <ProductPrice Price="@GetPriceText(Product)" />
+}
 
 @code {
     [Parameter]
+    public Guid CurrentTypeId { get; set; }
+
+    [Parameter]
     public Product Product { get; set; } = new();
+
+    [Parameter]
+    public bool IsProductSelected { get; set; }
     
     private string GetPriceText(Product product)
     {
@@ -27,5 +46,10 @@
                 return $"Starting at ${minPrice}";
             }
         }
+    }
+    
+    private ProductVariant? GetSelectedVariant(Guid currentTypeId)
+    {
+        return Product.ProductVariants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
     }
 }

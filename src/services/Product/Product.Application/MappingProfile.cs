@@ -24,6 +24,7 @@ public class MappingProfile : Profile
         CreateMap<ProductEntity, ProductDetailDto>().ReverseMap();
         CreateMap<ProductTypeEntity, ProductTypeItemDto>().ReverseMap();
         CreateMap<ProductVariantEntity, ProductVariantDto>().ReverseMap();
+        CreateMap<ProductVariantEntity, ProductDetailVariantDto>().ReverseMap();
         CreateMap<CategoryEntity, CategoryDto>().ReverseMap();
     }
 }

@@ -30,4 +30,8 @@
     <Folder Include="Pages\admin-side" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Shared\App\Products\Common\ProductVariant\ProductVariantList\ProductVariantList.razor" />
+  </ItemGroup>
+
 </Project>
