@@ -6,11 +6,9 @@
 //---------------------------------------------------------------------------
 namespace Product.Application.Features.Products.Queries.GetCategoryList;
 
-using AutoMapper;
 using MediatR;
-using Product.Application.Contracts.Repositories;
+using Product.Application.Contracts.Services;
 using Product.Application.Dtos;
-using Product.Domain.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,18 +17,14 @@ using System.Threading.Tasks;
 /// </summary>
 public class GetCategoryListQueryHandler : IRequestHandler<GetCategoryListQuery, List<CategoryDto>>
 {
-    private readonly IMapper _mapper;
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly ICategoryService _categoryService;
 
     /// <summary>
     /// Initializes a new instance of the <seealso cref="GetCategoryListQueryHandler"/>.
     /// </summary>
-    /// <param name="mapper">Domain to Application object mapper dependency.</param>
-    /// <param name="categoryRepository">Data repository for <seealso cref="CategoryEntity"/> entity.</param>
-    public GetCategoryListQueryHandler(IMapper mapper, ICategoryRepository categoryRepository)
+    public GetCategoryListQueryHandler(ICategoryService categoryService)
     {
-        _mapper = mapper;
-        _categoryRepository = categoryRepository;
+        _categoryService = categoryService;
     }
 
     /// <summary>
@@ -41,8 +35,6 @@ public class GetCategoryListQueryHandler : IRequestHandler<GetCategoryListQuery,
     /// <returns>Asynchronous task with collection <seealso cref="CategoryDto"/> objects.</returns>
     public async Task<List<CategoryDto>> Handle(GetCategoryListQuery request, CancellationToken cancellationToken)
     {
-        var categoryList = await _categoryRepository.GetAllAsync();
-
-        return _mapper.Map<List<CategoryDto>>(categoryList);
+        return await _categoryService.GetCategoryList();
     }
 }

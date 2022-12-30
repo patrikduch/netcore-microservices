@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 
 /// <summary>
-/// ProductService provides all CRUD product's functionality.
+/// ProductService provides CRUD functionality for product management.
 /// </summary>
 public class ProductService : IProductService
 {
