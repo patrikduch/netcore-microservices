@@ -25,7 +25,7 @@ public class ProductService : IProductService
         _productReader = productReader;
     }
 
-    public  async Task<ProductDetailDto> GetProductDetail(Guid productId)
+    public  async Task<ProductDetailDto?> GetProductDetail(Guid productId)
     {
         return await _productReader.FetchProductDetail(productId);
     }

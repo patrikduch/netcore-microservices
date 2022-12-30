@@ -13,7 +13,7 @@ using Product.Application.Dtos;
 /// </summary>
 public interface IProductService
 {
-    Task<ProductDetailDto> GetProductDetail(Guid productId);
+    Task<ProductDetailDto?> GetProductDetail(Guid productId);
 
     Task<List<ProductDto>> GetProducts();
 
