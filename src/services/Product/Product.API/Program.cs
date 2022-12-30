@@ -6,6 +6,7 @@
 //---------------------------------------------------------------------------
 using NetMicroservices.SqlWrapper.Nuget;
 using Product.Application;
+using Product.Infrastructure;
 using Product.Persistence;
 using Product.Persistence.Contexts;
 
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 
 
