@@ -16,4 +16,5 @@ public interface IProductReader
     Task<ProductDetailDto?> FetchProductDetail(Guid productId);
     Task<List<ProductDto>> FetchProducts();
     Task<List<ProductDto>> FetchProducts(string categoryUrl);
+    Task<List<ProductDto>> SearchProducts(string searchText);
 }

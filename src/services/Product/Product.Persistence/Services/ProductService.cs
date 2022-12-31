@@ -56,4 +56,14 @@ public class ProductService : IProductService
     {
         return await _productReader.FetchProducts(categoryUrl);
     }
+
+    /// <summary>
+    /// Find the products by title and description.
+    /// </summary>
+    /// <param name="searchText">Search term that will be processed.</param>
+    /// <returns>Collection of <seealso cref="ProductDto"/> objects.</returns>
+    public async Task<List<ProductDto>> SearchProducts(string searchText)
+    {
+        return await _productReader.SearchProducts(searchText);
+    }
 }

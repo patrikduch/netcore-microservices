@@ -12,6 +12,7 @@ using Product.Application.Dtos;
 using Product.Application.Features.Products.Queries.GetProduct;
 using Product.Application.Features.Products.Queries.GetProductList;
 using Product.Application.Features.Products.Queries.GetProductsByCategory;
+using Product.Application.Features.Products.Queries.SearchProducts;
 
 /// <summary>
 /// Management of products.
@@ -43,6 +44,18 @@ public class ProductController : ControllerBase
         var result = await _mediator.Send(new GetProductsByCategoryQuery
         {
             CategoryUrl = categoryUrl
+        });
+
+        return Ok(result);
+    }
+
+    [HttpGet("product-search/{searchText}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> SearchProducts(string searchText)
+    {
+        var result = await _mediator.Send(new SearchProductsQuery
+        {
+            SearchText = searchText
         });
 
         return Ok(result);

@@ -30,7 +30,7 @@ public class GetProductsByCategoryQueryHandler : IRequestHandler<GetProductsByCa
     /// <summary>
     /// Fetching list of products by category.
     /// </summary>
-    /// <param name="request"></param>
+    /// <param name="request">Incoming request object.</param>
     /// <param name="cancellationToken"></param>
     /// <returns>Collection of products filtered by category url.</returns>
     public async Task<ServiceResponse<List<ProductDto>>> Handle(GetProductsByCategoryQuery request, CancellationToken cancellationToken)

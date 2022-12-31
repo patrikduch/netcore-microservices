@@ -92,4 +92,24 @@ public class ProductReader : IProductReader
 
         return Enumerable.Empty<ProductDto>().ToList();
     }
+
+    /// <summary>
+    /// Find the products by product title and by product description.
+    /// </summary>
+    /// <param name="searchText">Search term tthat will be processed.</param>
+    /// <returns>Collection of <seealso cref="ProductDto"/> objects.</returns>
+    public async Task<List<ProductDto>> SearchProducts(string searchText)
+    {
+        var products = await _productCtx.Products.
+                Where(p => p.Name.ToLower()
+                    .Contains(searchText.ToLower())
+                        ||  p.Description.ToLower()
+                                .Contains(searchText.ToLower())
+                ).Include(p => p.ProductVariants)
+                
+                .ToListAsync();
+
+
+        return _mapper.Map<List<ProductDto>>(products);
+    }
 }
