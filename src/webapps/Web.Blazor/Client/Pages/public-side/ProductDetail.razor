@@ -1,9 +1,9 @@
 ﻿@page "/product/{id:guid}"
 @inject IProductService ProductService
 
-@if(product == null)
+@if(_product == null)
 {
-    <span>@message</span>
+    <span>@_message</span>
 }
 else
 {
@@ -11,25 +11,25 @@ else
 }
 
 @code {
-    private Product? product = null;
-    private string message = string.Empty;
+    private Product? _product;
+    private string _message = string.Empty;
 
     [Parameter]
     public Guid Id { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
-        message = "Loading Product...";
+        _message = "Loading Product...";
 
         var result = await ProductService.GetProductAsync(Id);
 
         if (!result.Success)
         {
-            message = result.Message;
+            _message = result.Message;
 
         } else
         {
-            product = result.Data;
+            _product = result.Data;
         }
     }
 }

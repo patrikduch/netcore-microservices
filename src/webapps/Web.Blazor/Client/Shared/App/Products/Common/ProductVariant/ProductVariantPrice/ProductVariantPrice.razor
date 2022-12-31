@@ -5,12 +5,14 @@
 
 @if (IsProductSelected)
 {
-    @if (GetSelectedVariant(CurrentTypeId).OriginalPrice > GetSelectedVariant(CurrentTypeId).Price)
+    var variant = GetSelectedVariant(CurrentTypeId);
+    
+    @if (variant is not null && variant.OriginalPrice > variant.Price)
     {
-        <h6 class="text-muted original-price">@GetSelectedVariant(CurrentTypeId).OriginalPrice</h6>
+        <h6 class="text-muted original-price">@variant.OriginalPrice</h6>
     }
         
-    var productPrice = $"${GetSelectedVariant(CurrentTypeId).Price}";
+    var productPrice = $"{(variant is not null ? $"${variant.Price}" : "")}";
     <ProductPrice Price="@productPrice" />
 }
 else
@@ -50,6 +52,9 @@ else
     
     private ProductVariant? GetSelectedVariant(Guid currentTypeId)
     {
-        return Product.ProductVariants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
+        var variant = Product.ProductVariants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
+
+
+        return variant;
     }
 }
