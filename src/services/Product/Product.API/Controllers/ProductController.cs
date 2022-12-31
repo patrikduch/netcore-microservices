@@ -61,13 +61,4 @@ public class ProductController : ControllerBase
 
         return Ok(result);
     }
-
-    [HttpGet("category-list")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CategoryDto>))]
-    public async Task<IActionResult> GetCategoryList()
-    {
-        var result = await _mediator.Send(new GetCategoryListQuery());
-
-        return Ok(result);
-    }
 }
