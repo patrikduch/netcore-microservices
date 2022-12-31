@@ -9,7 +9,6 @@ namespace Product.API.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Product.Application.Dtos;
-using Product.Application.Features.Products.Queries.GetCategoryList;
 using Product.Application.Features.Products.Queries.GetProduct;
 using Product.Application.Features.Products.Queries.GetProductList;
 using Product.Application.Features.Products.Queries.GetProductsByCategory;
