@@ -61,6 +61,18 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "DownstreamPathTemplate": "/api/v1/search/{searchText}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-api-service",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/products-search/{searchText}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/auth",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
