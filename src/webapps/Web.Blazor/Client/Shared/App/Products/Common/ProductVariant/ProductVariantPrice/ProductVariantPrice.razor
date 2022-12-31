@@ -52,9 +52,6 @@ else
     
     private ProductVariant? GetSelectedVariant(Guid currentTypeId)
     {
-        var variant = Product.ProductVariants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
-
-
-        return variant;
+        return Product.ProductVariants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
     }
 }
