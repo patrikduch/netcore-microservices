@@ -20,4 +20,6 @@ public interface IProductService
     Task<List<ProductDto>> GetProductsByCategory(string categoryUrl);
 
     Task<List<ProductDto>> SearchProducts(string searchText);
+
+    Task<List<string>> GetProductSearchSuggestions(string searchText);
 }

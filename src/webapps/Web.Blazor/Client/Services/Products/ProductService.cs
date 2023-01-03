@@ -18,6 +18,7 @@ public class ProductService : IProductService
     private readonly HttpClient _http;
     
     public List<Product> Products { get; set; } = new();
+    public string Message { get; set; } = "Loading products...";
 
     public ProductService(HttpClient http)
     {
@@ -26,7 +27,7 @@ public class ProductService : IProductService
 
     public async Task GetProductsAsync(string? categoryUrl=null)
     {
-        ServiceResponse<List<Product>>? response = null;
+        ServiceResponse<List<Product>>? response;
 
         if (categoryUrl is null) return;
         
@@ -49,5 +50,26 @@ public class ProductService : IProductService
     {
         var result = await _http.GetFromJsonAsync<ServiceResponse<Product>>($"/products/{id}");
         return result;
+    }
+
+    public async Task SearchProducts(string searchText)
+    {
+        var result = await _http
+            .GetFromJsonAsync<ServiceResponse<List<Product>>>($"/product-search/{searchText}");
+        
+        if (result is not null && result.Data is not null)
+        {
+            Products = result.Data;
+        }
+
+        if (Products.Count == 0)
+        {
+            Message = "No products found.";
+        }
+    }
+
+    public Task<List<string>> GetProductSearchSuggestions(string searchText)
+    {
+        throw new NotImplementedException();
     }
 }

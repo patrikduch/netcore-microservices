@@ -11,14 +11,15 @@
 
     <main>
         <div class="top-row px-4">
+            <Searchbar />
             <AuthorizeView>
                 <Authorized>
-                     <a href="/profile">My profile</a>
+                    <a href="/profile">My profile</a>
                     <button class="btn-primary" onclick="@HandleLogout">Logout</button>
                 </Authorized>
                 <NotAuthorized>
                     <a href="/login">Log-in</a>
-                     <a href="/register">Register</a>
+                    <a href="/register">Register</a>
                 </NotAuthorized>
             </AuthorizeView>
         </div>

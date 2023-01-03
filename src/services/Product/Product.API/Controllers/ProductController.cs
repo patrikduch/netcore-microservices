@@ -12,6 +12,7 @@ using Product.Application.Dtos;
 using Product.Application.Features.Products.Queries.GetProduct;
 using Product.Application.Features.Products.Queries.GetProductList;
 using Product.Application.Features.Products.Queries.GetProductsByCategory;
+using Product.Application.Features.Products.Queries.GetProductSuggestions;
 using Product.Application.Features.Products.Queries.SearchProducts;
 
 /// <summary>
@@ -54,6 +55,18 @@ public class ProductController : ControllerBase
     public async Task<IActionResult> SearchProducts(string searchText)
     {
         var result = await _mediator.Send(new SearchProductsQuery
+        {
+            SearchText = searchText
+        });
+
+        return Ok(result);
+    }
+
+    [HttpGet("product-suggestions/{searchText}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetProductSearchSuggestions(string searchText)
+    {
+        var result = await _mediator.Send(new GetProductSuggestionsQuery
         {
             SearchText = searchText
         });

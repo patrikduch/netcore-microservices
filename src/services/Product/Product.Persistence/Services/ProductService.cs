@@ -57,6 +57,11 @@ public class ProductService : IProductService
         return await _productReader.FetchProducts(categoryUrl);
     }
 
+    public Task<List<string>> GetProductSearchSuggestions(string searchText)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Find the products by title and description.
     /// </summary>
