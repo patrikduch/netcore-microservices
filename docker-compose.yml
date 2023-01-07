@@ -146,6 +146,12 @@ services:
 
 
 
+  identityauth:
+    image: ${DOCKER_REGISTRY-}identityauth
+    build:
+      context: .
+      dockerfile: src/services/IdentityAuth/Dockerfile
+
 volumes:
   product_db_data:
   user_db_data:
@@ -154,6 +160,7 @@ volumes:
   rabbitmq_data:
 
    
+
 
 
 
