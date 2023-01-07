@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identity-auth-api-deployment
+  labels:
+    app: identity-auth-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identity-auth-api
+  template:
+    metadata:
+      labels:
+        app: identity-auth-api
+    spec:
+      containers:
+        - name: identityauthapi
+          image:  netcoremicroservicesacr.azurecr.io/identity-auth-api:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Release
+
+      imagePullSecrets:
+        - name: acr-secret
