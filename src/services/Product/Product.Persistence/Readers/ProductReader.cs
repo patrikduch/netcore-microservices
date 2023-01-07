@@ -100,6 +100,8 @@ public class ProductReader : IProductReader
     /// <returns>Collection of product suggestions.</returns>
     public async Task<List<string>> FetchProductSearchSuggestions(string searchText)
     {
+        // TODO - do some optimalization: time complexitiy is polynomial n^3
+
         var products = await FindProductsBySearchText(searchText);
 
         List<string> searchSuggestions = new List<string>();
