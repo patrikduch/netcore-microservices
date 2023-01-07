@@ -3,14 +3,14 @@
 
 <div class="input-group">
     <input 
-        @bind-value="searchText"
+        @bind-value="_searchText"
         @bind-value:event="oninput" 
         type="search"
         list="products"
         @onkeyup="HandleSearch"
         class="form-control"
         placeholder="Search"
-        @ref="searchInput"
+        @ref="_searchInput"
     />
     
     <datalist id="products">
@@ -26,32 +26,34 @@
 
 @code {
 
-    private string searchText = string.Empty;
-    private List<string> suggestions = new List<string>();
-    protected ElementReference searchInput;
+    private string _searchText = string.Empty;
+    private List<string> _suggestions = new ();
+    private ElementReference _searchInput;
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await searchInput.FocusAsync();
+            await _searchInput.FocusAsync();
         }
     }
 
-    public void SearchProducts()
+    private void SearchProducts()
     {
-        NavigationManager.NavigateTo($"search/{searchText}");
+        NavigationManager.NavigateTo($"search/{_searchText}");
     }
 
-    public async Task HandleSearch(KeyboardEventArgs args)
+    private async Task HandleSearch(KeyboardEventArgs args)
     {
         if (args.Key.Equals("Enter"))
         {
             SearchProducts();
-        } else if (searchText.Length > 1)
+        } else if (_searchText.Length > 1)
         {
-            suggestions = await ProductService.GetProductSearchSuggestions(searchText);
+            var res = await ProductService.GetProductSearchSuggestions(_searchText);
+            _suggestions = res.Data;
+        }}
         }
     }
 

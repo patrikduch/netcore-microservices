@@ -18,6 +18,8 @@ public class ProductService : IProductService
     private readonly HttpClient _http;
     
     public List<Product> Products { get; set; } = new();
+    
+    // For displaying no product has been found etc.
     public string Message { get; set; } = "Loading products...";
 
     public ProductService(HttpClient http)
@@ -57,7 +59,7 @@ public class ProductService : IProductService
         var result = await _http
             .GetFromJsonAsync<ServiceResponse<List<Product>>>($"/product-search/{searchText}");
         
-        if (result is not null && result.Data is not null)
+        if (result?.Data != null)
         {
             Products = result.Data;
         }
@@ -68,8 +70,12 @@ public class ProductService : IProductService
         }
     }
 
-    public Task<List<string>> GetProductSearchSuggestions(string searchText)
+    public async Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText)
     {
-        throw new NotImplementedException();
+        var result = await _http
+            .GetFromJsonAsync<ServiceResponse<List<string>>>($"/product-suggestions/{searchText}");
+
+        return result;
+
     }
 }

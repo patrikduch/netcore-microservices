@@ -15,5 +15,5 @@ public interface IProductService
 
     Task SearchProducts(string searchText);
 
-    Task<List<string>> GetProductSearchSuggestions(string searchText);
+    Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText);
 }
