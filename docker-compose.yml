@@ -1,11 +1,12 @@
 version: '3.4'
 
 services:
-  web-gw:
-    image: ${DOCKER_REGISTRY-}webgw
-    build:
-      context: .
-      dockerfile: src/services/API-Gws/Web-GW/Dockerfile
+  #web.gw:
+  #  image: ${DOCKER_REGISTRY-}webgw
+  #  build:
+  #    context: .
+  #    dockerfile: src/services/API-Gws/Web.Gw/Dockerfile
+
   product.api:
     image: ${DOCKER_REGISTRY-}productapi
     build:
@@ -152,6 +153,12 @@ services:
       context: .
       dockerfile: src/services/IdentityAuth/Dockerfile
 
+  web.gw:
+    image: ${DOCKER_REGISTRY-}webgw
+    build:
+      context: .
+      dockerfile: src/services/API-Gws/Web.Gw/Dockerfile
+
 volumes:
   product_db_data:
   user_db_data:
@@ -160,6 +167,9 @@ volumes:
   rabbitmq_data:
 
    
+
+
+
 
 
 

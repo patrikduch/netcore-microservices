@@ -5,7 +5,7 @@ metadata:
   labels:
     app: web-gw
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: web-gw
@@ -15,7 +15,7 @@ spec:
         app: web-gw
     spec:
       containers:
-        - name: basketapi
+        - name: webgw
           image:  netcoremicroservicesacr.azurecr.io/webgw:v1
           imagePullPolicy: IfNotPresent
           ports:

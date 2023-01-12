@@ -5,8 +5,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "projectdetail.api",
-          "Port": "80"
+          "Host": "project-detail-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/projectDetail",
@@ -17,8 +17,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "product.api",
-          "Port": "80"
+          "Host": "product-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/products",
@@ -29,20 +29,20 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "product.api",
-          "Port": "80"
+          "Host": "product-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/products/{id:guid}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/category-list",
+      "DownstreamPathTemplate": "/api/v1/Category-List",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "product.api",
-          "Port": "80"
+          "Host": "product-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/categories",
@@ -53,20 +53,20 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "product.api",
-          "Port": "80"
+          "Host": "product-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/category-products/{categoryUrl}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/product-search/{searchText}",
+      "DownstreamPathTemplate": "/api/v1/search/{searchText}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "product.api",
-          "Port": "80"
+          "Host": "product-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/products-search/{searchText}",
@@ -78,11 +78,11 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "product.api",
-          "Port": "80"
+          "Host": "product-api-service",
+          "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/product-suggestions/{searchText}",
+      "UpstreamPathTemplate": "/products-suggestions/{searchText}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
@@ -90,8 +90,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "user.api",
-          "Port": "80"
+          "Host": "user-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/auth",
@@ -102,7 +102,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "user.api",
+          "Host": "user-api-service",
           "Port": "80"
         }
       ],
@@ -114,7 +114,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "user.api",
+          "Host": "user-api-service",
           "Port": "80"
         }
       ],
@@ -122,15 +122,15 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Items",
+      "DownstreamPathTemplate": "/api/v1/catalog",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "inventory.api",
-          "Port": "80"
+          "Host": "catalog-api-service",
+          "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/Inventory",
+      "UpstreamPathTemplate": "/catalog",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
@@ -138,8 +138,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "basket.api",
-          "Port": "80"
+          "Host": "basket-api-service",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/Basket/{username}",
@@ -150,7 +150,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "basket.api",
+          "Host": "basket-api-service",
           "Port": "80"
         }
       ],
@@ -158,44 +158,45 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/Catalog",
+      "DownstreamPathTemplate": "/api/Items",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "catalog.api",
-          "Port": "80"
-        }
-      ],
-      "UpstreamPathTemplate": "/Catalog",
+      "UpstreamPathTemplate": "/GameCatalog",
+      "ServiceName": "game-catalog-api-service",
       "UpstreamHttpMethod": [ "GET" ]
     },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Items",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/Inventory",
+      "ServiceName": "inventory-api-service",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
     {
       "DownstreamPathTemplate": "/api/Order/{username}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "ordering.api",
-          "Port": "80"
-        }
-      ],
       "UpstreamPathTemplate": "/Order/{username}",
+      "ServiceName": "ordering-api-service",
       "UpstreamHttpMethod": [ "GET" ]
     },
+
     {
-      "DownstreamPathTemplate": "/api/v1/Customer",
+      "DownstreamPathTemplate": "/api/v1/Customer/",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "customer.api",
-          "Port": "80"
-        }
-      ],
       "UpstreamPathTemplate": "/Customer",
+      "ServiceName": "customer-api-service",
       "UpstreamHttpMethod": [ "GET" ]
     }
   ],
 
   "GlobalConfiguration": {
-    "BaseUrl": "http://webgwservice:9000"
+    "ServiceDiscoveryProvider": {
+      "Host": "127.0.0.1",
+      "Port": 80,
+      "Token": "",
+      "Namespace": "default",
+      "Type": "kube"
+    }
   }
 }
