@@ -30,11 +30,6 @@ variables:
 
 stages:
 - stage: Build
-  condition: |
-    and(
-        eq(variables['Build.SourceBranch'], 'master'),
-    )         
-  )
   displayName: Build stage
   jobs:
   - job: Build
