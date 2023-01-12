@@ -28,7 +28,7 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-
+${{ if contains(Build.SourceBranch, 'master') }}:
 stages:
 - stage: Build
   displayName: Build stage
