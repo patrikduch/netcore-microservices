@@ -9,7 +9,7 @@ trigger:
       - master
     paths:
       include:
-      - src/services/API-Gws/Web-GW/*
+      - src/services/API-Gws/Web.Gw/*
       - deployment/aks/services/api-gateways/web-gw/web-gw-deployment.yaml
 
 resources:
@@ -21,17 +21,17 @@ variables:
   dockerRegistryServiceConnection: 'a4e13493-d135-43c1-914e-566cd6169f6c'
   imageRepository: 'webgw'
   containerRegistry: 'netcoremicroservicesacr.azurecr.io'
-  dockerfilePath: 'src/services/API-Gws/Web-GW/Dockerfile'
+  dockerfilePath: 'src/services/API-Gws/Web.Gw/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr14528368-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-
 stages:
 - stage: Build
   displayName: Build stage
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
   - job: Build
     displayName: Build
@@ -53,6 +53,7 @@ stages:
 
 - stage: Deploy
   displayName: Deploy stage
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   dependsOn: Build
 
   jobs:

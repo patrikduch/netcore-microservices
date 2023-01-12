@@ -1,28 +1,17 @@
 version: '3.4'
 
 services:
-  web-gw:
-    container_name: webgwservice
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "9000:80"
-    depends_on:
-     # - basket.api
-     # - catalog.api
-     # - customer.api
-     # - gamecatalog.api
-     # - inventory.api
-      - projectdetail.api
-      - user.api
-      - product.api
 
-  #web.blazor.server:
+  #web.gw:
   #  environment:
   #    - ASPNETCORE_ENVIRONMENT=Development
-  #    - APIGwUrl=http://localhost:9000
+  #    - ASPNETCORE_URLS=https://+:443;http://+:80
   #  ports:
-  #    - "8094:80"
+  #    - "9001:80"
+  #    - "9000:443"
+  #  volumes:
+  #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  #    - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   product.api:
     environment:
@@ -285,3 +274,11 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+
+  web.gw:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9000:80"
+
