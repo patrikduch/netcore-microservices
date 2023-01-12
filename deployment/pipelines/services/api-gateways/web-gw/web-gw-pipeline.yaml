@@ -28,7 +28,6 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-${{ if contains(Build.SourceBranch, 'master') }}:
 stages:
 - stage: Build
   displayName: Build stage
@@ -37,6 +36,7 @@ stages:
     displayName: Build
     pool:
       vmImage: $(vmImageName)
+    ${{ if contains(Build.SourceBranch, 'master') }}:
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -64,6 +64,7 @@ stages:
     strategy:
       runOnce:
         deploy:
+          ${{ if contains(Build.SourceBranch, 'master') }}:
           steps:
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
