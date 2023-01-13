@@ -9,10 +9,8 @@ IConfiguration configuration = new ConfigurationBuilder()
 
 builder.Services.AddOcelot(configuration);
 
-
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
 app.MapControllers();
 await app.UseOcelot();
 
