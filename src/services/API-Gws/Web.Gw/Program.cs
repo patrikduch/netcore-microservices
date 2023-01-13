@@ -1,5 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Web.Gw.Constants;
 using Web.Gw.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +14,9 @@ builder.Services.AddOcelot(configuration)
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicyRelease", builder =>
+    options.AddPolicy(CorsConstants.CORSPOLICYRELEASE, builder =>
         builder
         .WithOrigins(
-
             "http://20.23.74.87",
             "http://shopwinner.org"
         )
@@ -28,21 +28,21 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicyDev", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+    options.AddPolicy(CorsConstants.CORSPOLICYDEV, builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 
 var app = builder.Build();
 
-bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+bool isDevelopment = Environment.GetEnvironmentVariable(EnvConstants.ASPNETCORE_ENVIRONMENT) == EnvConstants.DEV_ENVIRONMENT;
 
 if (isDevelopment)
 {
-    app.UseCors("CorsPolicyDev");
+    app.UseCors(CorsConstants.CORSPOLICYDEV);
     app.UseDeveloperExceptionPage();
 
 } else
 {
-    app.UseCors("CorsPolicyRelease");
+    app.UseCors(CorsConstants.CORSPOLICYRELEASE);
 }
 
 app.MapControllers();
