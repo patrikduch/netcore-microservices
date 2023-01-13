@@ -13,7 +13,10 @@ using Ocelot.ServiceDiscovery;
 using Ocelot.ServiceDiscovery.Providers;
 using Ocelot.Values;
 
-public static class OcelotBuilderExtensions
+/// <summary>
+/// Helper extensions to support ApiGW services discovery within K8s cluster.
+/// </summary>
+public static class KubernetesExtensions
 {
     private static readonly ServiceDiscoveryFinderDelegate FixedKubernetesProviderFactoryGet = (provider, config, reroute) =>
     {

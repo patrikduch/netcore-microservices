@@ -17,8 +17,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(CorsConstants.CORSPOLICYRELEASE, builder =>
         builder
         .WithOrigins(
-            "http://20.23.74.87",
-            "http://shopwinner.org"
+            DomainConstants.PRODUCTION_HOST
         )
         .AllowAnyMethod()
         .AllowAnyHeader()
