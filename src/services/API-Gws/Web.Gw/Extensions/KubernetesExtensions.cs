@@ -1,13 +1,22 @@
-﻿using KubeClient;
+﻿//---------------------------------------------------------------------------
+// <copyright file="OcelotBuilderExtensions.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//---------------------------------------------------------------------------
+namespace Web.Gw.Extensions;
+
+using KubeClient;
 using Ocelot.DependencyInjection;
 using Ocelot.Provider.Kubernetes;
 using Ocelot.ServiceDiscovery;
 using Ocelot.ServiceDiscovery.Providers;
 using Ocelot.Values;
 
-namespace Web.Gw.Extensions;
-
-public static class OcelotBuilderExtensions
+/// <summary>
+/// Helper extensions to support ApiGW services discovery within K8s cluster.
+/// </summary>
+public static class KubernetesExtensions
 {
     private static readonly ServiceDiscoveryFinderDelegate FixedKubernetesProviderFactoryGet = (provider, config, reroute) =>
     {
@@ -44,7 +53,7 @@ public static class OcelotBuilderExtensions
 
         public Task<List<Service>> Get()
         {
-            return this.serviceDiscoveryProvider.Get();
+            return serviceDiscoveryProvider.Get();
         }
     }
 
@@ -59,7 +68,7 @@ public static class OcelotBuilderExtensions
 
         public Task<List<Service>> Get()
         {
-            return this.serviceDiscoveryProvider.Get();
+            return serviceDiscoveryProvider.Get();
         }
     }
 }
