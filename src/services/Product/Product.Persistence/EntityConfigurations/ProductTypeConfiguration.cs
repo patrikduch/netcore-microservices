@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Product.Domain.Entities;
 
 /// <summary>
-/// Entity configuration for  <seealso cref="ProductTypeEntity"/>.
+/// Entity configuration for <seealso cref="ProductTypeEntity"/>.
 /// </summary>
 public class ProductTypeConfiguration : IEntityTypeConfiguration<ProductTypeEntity>
 {

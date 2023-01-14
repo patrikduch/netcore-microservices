@@ -7,11 +7,12 @@
 namespace Product.Application.Features.Products.Queries.GetProductList;
 
 using MediatR;
+using NetMicroservices.ServiceConfig.Nuget;
 using Product.Application.Dtos;
 
 /// <summary>
 /// CQRS query for fetching list of products.
 /// </summary>
-public class GetProductListQuery : IRequest<List<ProductDto>>
+public class GetProductListQuery : IRequest<ServiceResponse<List<ProductDto>>>
 {
 }
