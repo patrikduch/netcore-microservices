@@ -29,7 +29,6 @@ public class GetProductSuggestionsQueryHandler : IRequestHandler<GetProductSugge
     {
         var suggestionList = await _productReader.FetchProductSearchSuggestions(request.SearchText);
 
-
         return new ServiceResponse<List<string>> { Data = suggestionList };
     }
 }
