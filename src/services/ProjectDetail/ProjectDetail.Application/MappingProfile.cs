@@ -8,7 +8,6 @@ namespace ProjectDetail.Application;
 
 using AutoMapper;
 using ProjectDetail.Application.Dtos;
-using ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
 using ProjectDetail.Domain;
 
 /// <summary>
