@@ -1,0 +1,17 @@
+﻿@page "/search/{searchText}"
+@inject IProductService ProductService
+
+<PageTitle>Search products</PageTitle>
+<PageHeading Title="Search products..." />
+<ProductList CategoryUrl="" />
+
+@code {
+
+    [Parameter]
+    public string? SearchText { get; set; } = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        
+    }
+}
