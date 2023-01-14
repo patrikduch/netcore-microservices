@@ -14,7 +14,6 @@ using ProjectDetail.Application.Contracts.Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 using ProjectDetail.Domain;
 using ProjectDetail.Application.Dtos;
 
