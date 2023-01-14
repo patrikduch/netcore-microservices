@@ -22,26 +22,32 @@
 
     [Parameter]
     public string CategoryUrl { get; set; } = string.Empty;
-    
+
+    [Parameter]
+    public string SearchText { get; set; } = string.Empty;
+
+
     protected override async Task OnInitializedAsync()
     {
-        if (CategoryUrl != "")
-        {
-            await ProductService.GetProductsAsync(CategoryUrl);
-        }
-        else
-        {
-            await ProductService.GetProductsAsync();  
-        }
+        await LoadProducts();
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        if (CategoryUrl != "")
+        await LoadProducts();
+    }
+
+    // Shared functionality for loading products by category or by search term.
+    private async Task LoadProducts()
+    {
+        if (SearchText != "")
+        {
+            await ProductService.SearchProducts(SearchText);
+        }
+        else if (CategoryUrl != "")
         {
             await ProductService.GetProductsAsync(CategoryUrl);
         }
-        
         else
         {
             await ProductService.GetProductsAsync();  

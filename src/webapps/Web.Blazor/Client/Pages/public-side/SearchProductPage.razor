@@ -3,15 +3,9 @@
 
 <PageTitle>Search products</PageTitle>
 <PageHeading Title="Search products..." />
-<ProductList CategoryUrl="" />
+<ProductList CategoryUrl="" SearchText="@SearchText" />
 
 @code {
-
     [Parameter]
-    public string? SearchText { get; set; } = null;
-
-    protected override async Task OnParametersSetAsync()
-    {
-        
-    }
+    public string? SearchText { get; set; }
 }
