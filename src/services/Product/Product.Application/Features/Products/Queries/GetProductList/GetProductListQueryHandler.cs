@@ -11,11 +11,12 @@ using Product.Application.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
 using Product.Application.Contracts.Services;
+using NetMicroservices.ServiceConfig.Nuget;
 
 /// <summary>
 /// CQRS query handler class for fetching list of products.
 /// </summary>
-public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, List<ProductDto>>
+public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, ServiceResponse<List<ProductDto>>>
 {
     private readonly IProductService _productService;
 
@@ -34,8 +35,13 @@ public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, L
     /// <param name="request">Incoming request object.</param>
     /// <param name="cancellationToken">Cancelation token object dependency.</param>
     /// <returns>Asynchronous task with collection <seealso cref="ProductDto"/> objects.</returns>
-    public async Task<List<ProductDto>> Handle(GetProductListQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResponse<List<ProductDto>>> Handle(GetProductListQuery request, CancellationToken cancellationToken)
     {
-        return await _productService.GetProducts();
+        var products = await _productService.GetProducts();
+
+        return new ServiceResponse<List<ProductDto>>
+        {
+            Data = products
+        };
     }
 }

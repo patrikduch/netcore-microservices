@@ -9,6 +9,7 @@ public interface IProductService
     
     public string Message { get; set; }
     
+    
     Task GetProductsAsync(string? categoryUrl=null);
 
     Task<ServiceResponse<Product>> GetProductAsync(Guid id);
