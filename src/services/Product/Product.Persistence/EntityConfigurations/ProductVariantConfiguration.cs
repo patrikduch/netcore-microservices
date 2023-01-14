@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProductVariantEntity = Domain.Entities.ProductVariantEntity;
 
 /// <summary>
-/// Entity configuration for  <seealso cref="ProductVariantEntity"/>.
+/// Entity configuration for <seealso cref="ProductVariantEntity"/>.
 /// </summary>
 public class ProductVariantConfiguration : IEntityTypeConfiguration<ProductVariantEntity>
 {

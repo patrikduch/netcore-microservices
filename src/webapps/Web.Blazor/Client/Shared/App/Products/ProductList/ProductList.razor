@@ -1,4 +1,5 @@
-﻿@inject IProductService ProductService;
+﻿@using System.ComponentModel
+@inject IProductService ProductService;
 
 <ul class="list-unstyled">
     @foreach(var product in ProductService.Products)
@@ -22,13 +23,34 @@
     [Parameter]
     public string CategoryUrl { get; set; } = string.Empty;
 
+    [Parameter]
+    public string SearchText { get; set; } = string.Empty;
+
+
     protected override async Task OnInitializedAsync()
     {
-        await ProductService.GetProductsAsync(CategoryUrl);
+        await LoadProducts();
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        await ProductService.GetProductsAsync(CategoryUrl);
+        await LoadProducts();
+    }
+
+    // Shared functionality for loading products by category or by search term.
+    private async Task LoadProducts()
+    {
+        if (SearchText != "")
+        {
+            await ProductService.SearchProducts(SearchText);
+        }
+        else if (CategoryUrl != "")
+        {
+            await ProductService.GetProductsAsync(CategoryUrl);
+        }
+        else
+        {
+            await ProductService.GetProductsAsync();  
+        }
     }
 }

@@ -26,14 +26,13 @@ public class ProductService : IProductService
     {
         _http = http;
     }
+    
 
     public async Task GetProductsAsync(string? categoryUrl=null)
     {
         ServiceResponse<List<Product>>? response;
-
-        if (categoryUrl is null) return;
         
-        if (categoryUrl.Equals(null))
+        if (categoryUrl is null)
         {
             response = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("/products");    
         }

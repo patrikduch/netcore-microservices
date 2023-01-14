@@ -1,0 +1,11 @@
+﻿@page "/search/{searchText}"
+@inject IProductService ProductService
+
+<PageTitle>Search products</PageTitle>
+<PageHeading Title="Search products..." />
+<ProductList CategoryUrl="" SearchText="@SearchText" />
+
+@code {
+    [Parameter]
+    public string? SearchText { get; set; }
+}
