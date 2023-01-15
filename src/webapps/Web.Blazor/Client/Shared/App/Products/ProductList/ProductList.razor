@@ -43,14 +43,14 @@
         if (SearchText != "")
         {
             await ProductService.SearchProducts(SearchText);
+            return;
         }
-        else if (CategoryUrl != "")
+        
+        if (CategoryUrl != "")
         {
             await ProductService.GetProductsAsync(CategoryUrl);
+            return;
         }
-        else
-        {
-            await ProductService.GetProductsAsync();  
-        }
+        await ProductService.GetProductsAsync();
     }
 }
