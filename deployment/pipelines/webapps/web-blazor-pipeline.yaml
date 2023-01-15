@@ -30,6 +30,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
   - job: Build
     displayName: Build
@@ -67,6 +68,7 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     pool:
       vmImage: $(vmImageName)
     environment: 'patrikduchnetcoremicroservices.default'
