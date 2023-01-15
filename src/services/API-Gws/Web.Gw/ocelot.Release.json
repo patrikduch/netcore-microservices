@@ -61,7 +61,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/search/{searchText}",
+      "DownstreamPathTemplate": "/api/v1/product-search/{searchText}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -69,7 +69,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/products-search/{searchText}",
+      "UpstreamPathTemplate": "/product-search/{searchText}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     // Product-Search-Suggestions
