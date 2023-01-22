@@ -4,16 +4,17 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
+
 namespace Product.API.Controllers;
 
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Product.Application.Dtos;
-using Product.Application.Features.Products.Queries.GetProduct;
-using Product.Application.Features.Products.Queries.GetProductList;
-using Product.Application.Features.Products.Queries.GetProductsByCategory;
-using Product.Application.Features.Products.Queries.GetProductSuggestions;
-using Product.Application.Features.Products.Queries.SearchProducts;
+using Application.Dtos;
+using Application.Features.Products.Queries.GetProduct;
+using Application.Features.Products.Queries.GetProductList;
+using Application.Features.Products.Queries.GetProductsByCategory;
+using Application.Features.Products.Queries.GetProductSuggestions;
+using Application.Features.Products.Queries.SearchProducts;
 
 /// <summary>
 /// Management of products.

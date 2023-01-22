@@ -14,7 +14,10 @@
     />
     
     <datalist id="products">
-        
+        @foreach (var suggestion in _suggestions)
+        {
+            <option>@suggestion</option>
+        }
     </datalist>
     
     <div class="input-group-append">
@@ -46,7 +49,7 @@
 
     private async Task HandleSearch(KeyboardEventArgs args)
     {
-        if (args.Key.Equals("Enter"))
+        if (args.Key is null || args.Key.Equals("Enter"))
         {
             SearchProducts();
         } else if (_searchText.Length > 1)
@@ -54,7 +57,4 @@
             var res = await ProductService.GetProductSearchSuggestions(_searchText);
             _suggestions = res.Data;
         }}
-        }
-    }
-
 }
