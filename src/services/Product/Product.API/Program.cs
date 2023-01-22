@@ -24,8 +24,6 @@ builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 
 
-var connectionString = builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString");
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
