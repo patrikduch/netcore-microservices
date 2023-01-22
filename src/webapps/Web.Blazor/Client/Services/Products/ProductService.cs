@@ -27,7 +27,6 @@ public class ProductService : IProductService
         _http = http;
     }
     
-
     public async Task GetProductsAsync(string? categoryUrl=null)
     {
         ServiceResponse<List<Product>>? response;
