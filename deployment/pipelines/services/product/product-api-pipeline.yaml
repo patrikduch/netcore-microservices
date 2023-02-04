@@ -10,12 +10,11 @@ trigger:
       include:
       - src/services/Product/*
       - deployment/aks/services/product/product-api/
-
 resources:
-containers:
+  containers:
   - container: trivy
-      image: aquasec/trivy:0.12.0
-repositories:
+    image: aquasec/trivy:0.12.0
+  repositories:
     - repository: self
 
 variables:
@@ -49,7 +48,7 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-        
+
     # Step 3: Run Trivy scan
     - task: Docker@2
       inputs:
