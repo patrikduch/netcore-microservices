@@ -27,6 +27,7 @@ variables:
   imagePullSecret: 'netcoremicroservicesacr14528368-auth'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
+  system.debug: true
 
 stages:
 - stage: Build
