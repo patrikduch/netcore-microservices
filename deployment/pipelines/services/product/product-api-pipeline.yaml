@@ -14,8 +14,8 @@ trigger:
 
 resources:
   containers:
-  - container: trivy
-    image: aquasec/trivy:0.12.0
+    - container: trivy
+      image: aquasec/trivy:0.12.0
 - repo: self
 
 variables:
