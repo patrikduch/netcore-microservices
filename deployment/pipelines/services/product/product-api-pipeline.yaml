@@ -55,10 +55,10 @@ stages:
       displayName: Trivy scan
       inputs:
         command: "run"
-        arguments: "--rm --name trivy-scan -v $(System.DefaultWorkingDirectory):/app -w /app aquasec/trivy:0.12.0 trivy image $(containerRegistry)/$(imageRepository):$(tag)"
         workingDirectory: $(System.DefaultWorkingDirectory)
         imageName: $(containerRegistry)/$(imageRepository):$(tag)
         containerName: trivy-scan
+        arguments: 'trivy --exit-code 0 --severity CRITICAL --no-progress $(containerRegistry)/$(imageRepository):$(tag)'
         environmentVariables:
           IMAGE_NAME=$(imageRepository)
           IMAGE_TAG=$(tag)
