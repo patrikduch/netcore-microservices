@@ -13,10 +13,11 @@ trigger:
       - deployment/aks/services/product/product-api/
 
 resources:
-  containers:
-    - container: trivy
+containers:
+  - container: trivy
       image: aquasec/trivy:0.12.0
-- repo: self
+repositories:
+    - repository: self
 
 variables:
 
