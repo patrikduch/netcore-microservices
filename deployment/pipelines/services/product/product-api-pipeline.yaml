@@ -55,6 +55,8 @@ stages:
       displayName: Trivy scan
       inputs:
         command: "run"
+        repository: $(imageRepository)
+        containerRegistry: $(dockerRegistryServiceConnection)
         workingDirectory: $(System.DefaultWorkingDirectory)
         imageName: $(containerRegistry)/$(imageRepository):$(tag)
         containerName: trivy-scan
