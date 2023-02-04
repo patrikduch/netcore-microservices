@@ -57,9 +57,12 @@ stages:
         imageName: $(containerRegistry)/$(imageRepository):$(tag)
         containerName: trivy-scan
         environmentVariables:
-          IMAGE_NAME: $(imageRepository)
-          IMAGE_TAG: $(tag)
-          ACR_REGISTRY: $(containerRegistry)
+          - name: IMAGE_NAME
+            value: $(imageRepository)
+          - name: IMAGE_TAG
+            value: $(tag)
+          - name: ACR_REGISTRY
+            value: $(containerRegistry)
       runOptions: "--rm --name trivy-scan -v $(System.DefaultWorkingDirectory):/app -w /app aquasec/trivy:0.12.0 trivy image $(acrLoginServer)/$(imageRepository):$(tag)"
 
     # Docker image push
