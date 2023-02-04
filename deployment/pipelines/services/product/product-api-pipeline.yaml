@@ -62,7 +62,7 @@ stages:
           #IMAGE_NAME: $(imageRepository)
           #IMAGE_TAG: $(tag)
           #ACR_REGISTRY: $(containerRegistry)
-      runOptions: "--rm --name trivy-scan -v $(System.DefaultWorkingDirectory):/app -w /app aquasec/trivy:0.12.0 trivy image $(acrLoginServer)/$(imageRepository):$(tag)"
+        runOptions: "--rm --name trivy-scan -v $(System.DefaultWorkingDirectory):/app -w /app aquasec/trivy:0.12.0 trivy image $(acrLoginServer)/$(imageRepository):$(tag)"
 
     # Docker image push
     - task: Docker@2
