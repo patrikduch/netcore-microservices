@@ -51,14 +51,16 @@ stages:
 
     # Step 3: Run Trivy scan
     - task: Docker@2
+      displayName: Trivy scan
       inputs:
         command: run
         workingDirectory: $(System.DefaultWorkingDirectory)
         imageName: $(containerRegistry)/$(imageRepository):$(tag)
         containerName: trivy-scan
         environmentVariables:
-          env_var_1=$(env_var_1)
-          env_var_2=$(env_var_2)
+          IMAGE_NAME=$(imageRepository)
+          IMAGE_TAG=$(tag)
+          ACR_REGISTRY=$(containerRegistry)
           #IMAGE_NAME: $(imageRepository)
           #IMAGE_TAG: $(tag)
           #ACR_REGISTRY: $(containerRegistry)
