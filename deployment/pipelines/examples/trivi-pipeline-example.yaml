@@ -14,3 +14,10 @@ steps:
     sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
     trivy -v
   displayName: 'Download and install Trivy'
+
+- task: CmdLine@2
+  displayName: "Run trivy scan"
+  inputs:
+    script: |
+      trivy image --exit-code 0 --severity LOW,MEDIUM patrikduch/go-app-dockerization/general:v1.0.1
+      trivy image --exit-code 1 --severity HIGH,CRITICAL patrikduch/go-app-dockerization/general:v1.0.1
