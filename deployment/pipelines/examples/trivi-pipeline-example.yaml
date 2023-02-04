@@ -19,5 +19,5 @@ steps:
   displayName: "Run trivy scan"
   inputs:
     script: |
-      trivy image --exit-code 0 --severity LOW,MEDIUM patrikduch/go-app-dockerization/general:v1.0.1
-      trivy image --exit-code 1 --severity HIGH,CRITICAL patrikduch/go-app-dockerization/general:v1.0.1
+      trivy image --exit-code 0 --severity LOW,MEDIUM patrikduch/go-app-dockerization:v1.0.1
+      trivy image --exit-code 1 --severity HIGH,CRITICAL patrikduch/go-app-dockerization:v1.0.1
