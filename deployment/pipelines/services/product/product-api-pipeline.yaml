@@ -53,6 +53,7 @@ stages:
   - job: Build
     #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: Build
+    dependsOn: TrivyScanContainerImage
     pool:
       vmImage: $(vmImageName)
     steps:
