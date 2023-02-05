@@ -33,6 +33,27 @@ stages:
 - stage: Build
   displayName: Build stage
   jobs:
+  - job: TrivyScanContainerImage
+    #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    # Docker image build
+    - task: Docker@2
+      displayName: Build a docker image
+      inputs:
+        command: build
+        repository: $(containerRegistry)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        buildContext: $(Build.SourcesDirectory)/
+        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
+    - script: |
+        mkdir report
+        trivy image -s HIGH,CRITICAL $(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
+    displayName: "Image scan by Trivy"
+
   - job: Build
     #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: Build
@@ -49,12 +70,8 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-        
-    - script: |    
-          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-          -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy image netcoremicroservicesacr.azurecr.io/$(imageRepository):$(tag)
-      displayName: Scan
 
+        
     # Step 3: Run Trivy scan
     #- task: Docker@2
     #  displayName: Trivy scan
