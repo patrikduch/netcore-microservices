@@ -32,7 +32,7 @@ stages:
   displayName: Build stage
   jobs:
   - job: Build
-    #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: Build
     pool:
       vmImage: $(vmImageName)
@@ -80,7 +80,7 @@ stages:
 
   jobs:
   - deployment: Deploy
-    #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
