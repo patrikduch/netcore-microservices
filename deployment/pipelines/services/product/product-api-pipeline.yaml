@@ -23,7 +23,7 @@ variables:
   dockerfilePath: 'src/services/Product/Product.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr14528368-auth'
-
+  trivyVersion: '0.37.1'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -54,9 +54,7 @@ stages:
       inputs:
         script: |
           sudo apt-get install rpm
-          wget https://github.com/aquasecurity/trivy/releases/download/v${{ parameters.trivyVersion }}/trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
-          sudo dpkg -i trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
-          trivy -v
+          wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
     
     # Docker image push
     - task: Docker@2
