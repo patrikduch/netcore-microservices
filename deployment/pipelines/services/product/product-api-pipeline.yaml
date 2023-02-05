@@ -52,7 +52,7 @@ stages:
     - script: |
         mkdir report
         trivy image -s HIGH,CRITICAL $(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
-    displayName: "Image scan by Trivy"
+      displayName: "Image scan by Trivy"
 
   - job: Build
     #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
