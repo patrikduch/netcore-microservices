@@ -49,14 +49,12 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-
-      steps:
-        - script: |
-              sudo apt-get install rpm
-              wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
-              sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
-              trivy -v
-          displayName: 'Download and install Trivy'
+        
+    - script: |    
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+          -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy \
+          contosoRepository:tag1
+      displayName: Scan
 
     # Step 3: Run Trivy scan
     #- task: Docker@2
