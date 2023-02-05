@@ -47,6 +47,15 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
+        
+    - task: Docker@2
+      displayName: 'Scan the image with trivy'
+      inputs:
+        command: run
+        imageName: $(imageRepository):$(tag)
+        containerName: test-container
+        args: 'trivy --no-progress $(imageRepository):$(tag)'
+
     # Docker image push
     - task: Docker@2
       displayName: Publish a docker image
