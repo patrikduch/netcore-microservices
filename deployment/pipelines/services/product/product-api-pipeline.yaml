@@ -52,8 +52,7 @@ stages:
         
     - script: |    
           docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-          -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy image \
-          netcoremicroservicesacr.azurecr.io/$(containerRegistry)/$(imageRepository):$(tag)
+          -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy image netcoremicroservicesacr.azurecr.io/$(imageRepository):$(tag)
       displayName: Scan
 
     # Step 3: Run Trivy scan
