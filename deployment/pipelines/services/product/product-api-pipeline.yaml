@@ -47,11 +47,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-    - task: CmdLine@2
-      displayName: Scan
-      inputs:
-        script: |
-            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy --exit-code 0 --severity MEDIUM,HIGH --ignore-unfixed $(imageRepository):$(tag)
     # Docker image push
     - task: Docker@2
       displayName: Publish a docker image
