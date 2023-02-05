@@ -26,8 +26,8 @@ variables:
   system.debug: true
 
 stages:
-- stage: Vulnerability scan
-  displayName: Vulnerability scan
+- stage: VulnerabilityScan
+  displayName: Vulnerability scan stage
   jobs:
   - job: TrivyScanContainerImage
     #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
@@ -50,7 +50,7 @@ stages:
         trivy image -s HIGH,CRITICAL $(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
       displayName: "Image scan by Trivy"
 
-- stage: Build stage
+- stage: Build
   displayName: Build stage
   jobs:
   - job: Build
