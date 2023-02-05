@@ -55,11 +55,12 @@ stages:
         trivy -v
       displayName: 'Download and install Trivy'
 
-    - script: |
-        docker run --rm -it $(imageRepository):$(tag) \
-        && curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin \
-        && trivy fs /
-      displayName: scan workspace
+    - task: CmdLine@2
+      displayName: "Run trivy scan"
+      inputs:
+        script: |
+            trivy image --exit-code 0 --severity LOW,MEDIUM $(imageName):$(tag)
+            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageName):$(tag)
 
     # Docker image push
     - task: Docker@2
