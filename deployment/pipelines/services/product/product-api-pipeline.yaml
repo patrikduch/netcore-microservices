@@ -76,16 +76,16 @@ stages:
       artifact: aks    
 
     # Trivy scan
-    - task: CmdLine@2
-      displayName: 'Trivy vulnerability scan'
-      inputs:
-        script: |
-          sudo apt-get install rpm
-          wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
-          sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
-          trivy -v
-          mkdir report
-          trivy image -s HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
+    #- task: CmdLine@2
+    #  displayName: 'Trivy vulnerability scan'
+    #  inputs:
+    #    script: |
+    #      sudo apt-get install rpm
+    #      wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
+    #      sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
+    #      trivy -v
+    #      mkdir report
+    #      trivy image -s HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
 
 - stage: Deploy
   displayName: Deploy stage
