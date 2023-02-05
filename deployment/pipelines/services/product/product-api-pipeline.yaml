@@ -50,7 +50,7 @@ stages:
 
     # Trivy scan
     - task: CmdLine@2
-      displayName: 'Download and Install Trivy vulnerability scanner'
+      displayName: 'Trivy vulnerability scan'
       inputs:
         script: |
           sudo apt-get install rpm
@@ -59,8 +59,7 @@ stages:
           trivy -v
           mkdir report
           trivy image -s HIGH,CRITICAL $(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
-      displayName: "Image scan by Trivy"
-    
+
     # Docker image push
     - task: Docker@2
       displayName: Publish a docker image
