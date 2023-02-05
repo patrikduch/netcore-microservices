@@ -52,6 +52,7 @@ stages:
 
 - stage: Build stage
   displayName: Build stage
+  jobs:
   - job: Build
     #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: Build
