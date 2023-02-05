@@ -59,8 +59,8 @@ stages:
       displayName: "Run trivy scan"
       inputs:
         script: |
-            trivy image --exit-code 0 --severity LOW,MEDIUM $(imageName):$(tag)
-            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageName):$(tag)
+            trivy image --exit-code 0 --severity LOW,MEDIUM $(imageRepository):$(tag)
+            trivy image --exit-code 1 --severity HIGH,CRITICAL $(imageRepository):$(tag)
 
     # Docker image push
     - task: Docker@2
