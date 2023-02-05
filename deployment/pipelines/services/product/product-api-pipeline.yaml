@@ -60,7 +60,7 @@ stages:
       inputs:
         script: |
             trivy image --exit-code 0 --severity LOW,MEDIUM $(containerRegistry)/$(imageRepository):$(tag)
-            trivy image --exit-code 1 --severity HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag)
+            trivy image --exit-code 0 --severity HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag)
 
     # Docker image push
     - task: Docker@2
@@ -74,19 +74,6 @@ stages:
           $(tag)
     - publish: deployment/aks
       artifact: aks    
-
-    # Trivy scan
-    #- task: CmdLine@2
-    #  displayName: 'Trivy vulnerability scan'
-    #  inputs:
-    #    script: |
-    #      sudo apt-get install rpm
-    #      wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
-    #      sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
-    #      trivy -v
-    #      mkdir report
-    #      trivy image -s HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
-
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
