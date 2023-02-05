@@ -55,6 +55,8 @@ stages:
         script: |
           sudo apt-get install rpm
           wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
+          sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
+          trivy -v
     
     # Docker image push
     - task: Docker@2
