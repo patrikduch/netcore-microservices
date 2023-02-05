@@ -26,8 +26,8 @@ variables:
   system.debug: true
 
 stages:
-- stage: Build
-  displayName: Build stage
+- stage: Vulnerability scan
+  displayName: Vulnerability scan
   jobs:
   - job: TrivyScanContainerImage
     #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
@@ -50,6 +50,8 @@ stages:
         trivy image -s HIGH,CRITICAL $(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
       displayName: "Image scan by Trivy"
 
+- stage: Build stage
+  displayName: Build stage
   - job: Build
     #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: Build
@@ -67,27 +69,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-
-        
-    # Step 3: Run Trivy scan
-    #- task: Docker@2
-    #  displayName: Trivy scan
-    #  inputs:
-    #    command: "run"
-    #    repository: $(imageRepository)
-    #    containerRegistry: $(dockerRegistryServiceConnection)
-    #    workingDirectory: $(System.DefaultWorkingDirectory)
-    #    imageName: $(containerRegistry)/$(imageRepository):$(tag)
-    #    containerName: trivy-scan
-    #    arguments: 'trivy --exit-code 0 --severity CRITICAL --no-progress $(containerRegistry)/$(imageRepository):$(tag)'
-    #    environmentVariables:
-    #      IMAGE_NAME=$(imageRepository)
-    #      IMAGE_TAG=$(tag)
-    #      ACR_REGISTRY=$(containerRegistry)
-          #IMAGE_NAME: $(imageRepository)
-          #IMAGE_TAG: $(tag)
-          #ACR_REGISTRY: $(containerRegistry)
-        #runOptions: "--rm --name trivy-scan -v $(System.DefaultWorkingDirectory):/app -w /app aquasec/trivy:0.12.0 trivy image $(containerRegistry)/$(imageRepository):$(tag)"
 
     # Docker image push
     - task: Docker@2
