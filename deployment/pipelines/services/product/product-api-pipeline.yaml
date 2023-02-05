@@ -50,13 +50,13 @@ stages:
 
     # Trivy scan
     - task: CmdLine@2
-        displayName: 'Download and Install Trivy vulnerability scanner'
-        inputs:
-          script: |
-            sudo apt-get install rpm
-            wget https://github.com/aquasecurity/trivy/releases/download/v${{ parameters.trivyVersion }}/trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
-            sudo dpkg -i trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
-            trivy -v
+      displayName: 'Download and Install Trivy vulnerability scanner'
+      inputs:
+        script: |
+          sudo apt-get install rpm
+          wget https://github.com/aquasecurity/trivy/releases/download/v${{ parameters.trivyVersion }}/trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
+          sudo dpkg -i trivy_${{ parameters.trivyVersion }}_Linux-64bit.deb
+          trivy -v
     
     # Docker image push
     - task: Docker@2
