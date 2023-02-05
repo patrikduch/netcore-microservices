@@ -47,7 +47,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-
     - task: CmdLine@2
       displayName: Scan
       inputs:
