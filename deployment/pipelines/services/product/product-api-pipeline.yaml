@@ -57,6 +57,9 @@ stages:
           wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
           sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
           trivy -v
+          mkdir report
+          trivy image -s HIGH,CRITICAL $(imageRepository):$(tag) | tee ./report/trivy-image-scan-report.txt
+      displayName: "Image scan by Trivy"
     
     # Docker image push
     - task: Docker@2
