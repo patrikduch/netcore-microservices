@@ -8,8 +8,8 @@ namespace ProjectDetail.API.Controllers;
 
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ProjectDetail.Application.Dtos;
-using ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
+using Application.Dtos;
+using Application.Features.ProjectName.Queries.GetProjectName;
 
 [Route("api/v1/[controller]")]
 [ApiController]
