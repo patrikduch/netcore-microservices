@@ -8,8 +8,8 @@ namespace Product.API.Controllers;
 
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Product.Application.Dtos;
-using Product.Application.Features.Products.Queries.GetCategoryList;
+using Application.Dtos;
+using Application.Features.Products.Queries.GetCategoryList;
 
 /// <summary>
 /// Management of product categories.

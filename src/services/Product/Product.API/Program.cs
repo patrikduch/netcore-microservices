@@ -35,7 +35,5 @@ app.MigrateDatabase<ProductContext>((context, services) =>
 });
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
