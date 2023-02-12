@@ -31,7 +31,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
   - job: Build
     displayName: Build
@@ -78,7 +78,7 @@ stages:
 
 - stage: Deploy
   displayName: Deploy stage
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   dependsOn: Build
 
   jobs:
