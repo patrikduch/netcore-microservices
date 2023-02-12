@@ -16,7 +16,6 @@ resources:
 - repo: self
 
 variables:
-
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'a4e13493-d135-43c1-914e-566cd6169f6c'
   imageRepository: 'webgw'
@@ -24,7 +23,8 @@ variables:
   dockerfilePath: 'src/services/API-Gws/Web.Gw/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr14528368-auth'
-
+  # trivy vulnerability scanner
+  trivyVersion: '0.37.1'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -38,18 +38,43 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    # Docker image build
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build a docker image
       inputs:
-        command: buildAndPush
+        command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
+        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
+
+    - script: |
+        sudo apt-get install rpm
+        wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
+        sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
+        trivy -v
+      displayName: 'Download and install Trivy'
+
+    - task: CmdLine@2
+      displayName: "Run trivy scan"
+      inputs:
+        script: |
+            trivy image --exit-code 0 --severity LOW,MEDIUM $(containerRegistry)/$(imageRepository):$(tag)
+            trivy image --exit-code 0 --severity HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag)
+
+    # Docker image push
+    - task: Docker@2
+      displayName: Publish a docker image
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - upload: deployment/aks
-      artifact: aks
+    - publish: deployment/aks
+      artifact: aks    
 
 - stage: Deploy
   displayName: Deploy stage
