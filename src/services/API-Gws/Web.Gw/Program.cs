@@ -31,8 +31,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
-bool isDevelopment = Environment.GetEnvironmentVariable(EnvConstants.ASPNETCORE_ENVIRONMENT) == EnvConstants.DEV_ENVIRONMENT;
+var isDevelopment = Environment.GetEnvironmentVariable(EnvConstants.ASPNETCORE_ENVIRONMENT) == EnvConstants.DEV_ENVIRONMENT;
 
 if (isDevelopment)
 {
