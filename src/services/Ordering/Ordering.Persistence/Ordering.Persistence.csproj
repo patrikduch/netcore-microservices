@@ -13,8 +13,4 @@
     <PackageReference Include="NetMicroservices.SqlWrapper" Version="1.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Ordering.Application\Ordering.Application.csproj" />
-  </ItemGroup>
-
 </Project>
