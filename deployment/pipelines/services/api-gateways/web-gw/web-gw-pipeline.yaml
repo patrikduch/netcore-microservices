@@ -38,18 +38,43 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    # Docker image build
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build a docker image
       inputs:
-        command: buildAndPush
+        command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         buildContext: $(Build.SourcesDirectory)/
+        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
+        
+    - script: |
+        sudo apt-get install rpm
+        wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
+        sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
+        trivy -v
+      displayName: 'Download and install Trivy'
+
+    - task: CmdLine@2
+      displayName: "Run trivy scan"
+      inputs:
+        script: |
+            trivy image --exit-code 0 --severity LOW,MEDIUM $(containerRegistry)/$(imageRepository):$(tag)
+            trivy image --exit-code 0 --severity HIGH,CRITICAL $(containerRegistry)/$(imageRepository):$(tag)
+
+    # Docker image push
+    - task: Docker@2
+      displayName: Publish a docker image
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - upload: deployment/aks
-      artifact: aks
+    - publish: deployment/aks
+      artifact: aks    
 
 - stage: Deploy
   displayName: Deploy stage
