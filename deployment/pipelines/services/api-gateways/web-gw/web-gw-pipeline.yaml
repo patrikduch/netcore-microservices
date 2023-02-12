@@ -24,7 +24,8 @@ variables:
   dockerfilePath: 'src/services/API-Gws/Web.Gw/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'netcoremicroservicesacr14528368-auth'
-
+  # trivy vulnerability scanner
+  trivyVersion: '0.37.1'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
