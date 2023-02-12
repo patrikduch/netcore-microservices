@@ -10,7 +10,7 @@ namespace ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
 using AutoMapper;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using ProjectDetail.Application.Contracts.Persistence;
+using Contracts.Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

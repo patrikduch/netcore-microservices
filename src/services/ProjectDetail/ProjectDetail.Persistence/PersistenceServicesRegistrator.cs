@@ -12,9 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using NetMicroservices.SqlWrapper.Nuget;
 using NetMicroservices.SqlWrapper.Nuget.Repositories;
 using ProjectDetail.Application.Contracts.Persistence;
-using ProjectDetail.Domain;
-using ProjectDetail.Persistence.Contexts;
-using ProjectDetail.Persistence.Repositories;
+using Domain;
+using Contexts;
+using Repositories;
 
 /// <summary>
 /// Registration of persistence services.
@@ -29,9 +29,6 @@ public static class PersistenceServicesRegistrator
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<DbContext, ProjectDetailContext>();
-
-        var res = configuration.GetValue<string>("DatabaseSettings:ConnectionString");
-
         services.AddDbContext<ProjectDetailContext>(options =>
             options.UseSqlServer((configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
 

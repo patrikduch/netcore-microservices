@@ -7,7 +7,7 @@
 namespace ProjectDetail.Application.Contracts.Persistence;
 
 using NetMicroservices.SqlWrapper.Nuget;
-using ProjectDetail.Domain;
+using Domain;
 
 /// <summary>
 /// Data repository contract of <seealso cref="ProjectDetailEntity"/> entity.

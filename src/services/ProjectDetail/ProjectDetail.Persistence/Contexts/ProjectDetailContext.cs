@@ -8,8 +8,8 @@ namespace ProjectDetail.Persistence.Contexts;
 
 using Microsoft.EntityFrameworkCore;
 using NetMicroservices.SqlWrapper.Nuget;
-using ProjectDetail.Domain;
-using ProjectDetail.Persistence.EntityConfigurations;
+using Domain;
+using EntityConfigurations;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

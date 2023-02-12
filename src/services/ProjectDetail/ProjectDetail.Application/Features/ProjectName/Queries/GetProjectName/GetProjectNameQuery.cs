@@ -8,7 +8,7 @@ namespace ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
 
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using ProjectDetail.Application.Dtos;
+using Dtos;
 
 /// <summary>
 /// CQRS query for fetching information about current project.

@@ -9,7 +9,7 @@ namespace ProjectDetail.Persistence.EntityConfigurations;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectDetail.Domain;
+using Domain;
 
 /// <summary>
 /// Entity configuration for  <seealso cref="ProjectDetailEntity"/>.
