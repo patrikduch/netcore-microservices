@@ -15,8 +15,8 @@ builder.Services.AddOcelot(configuration)
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(CorsConstants.CORSPOLICYRELEASE, builder =>
-        builder
+    options.AddPolicy(CorsConstants.CORSPOLICYRELEASE, corsPolicyBuilder =>
+        corsPolicyBuilder
         .WithOrigins(
             DomainConstants.PRODUCTION_HOST
         )
@@ -28,7 +28,11 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(CorsConstants.CORSPOLICYDEV, builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+    options.AddPolicy(CorsConstants.CORSPOLICYDEV, corsPolicyBuilder => 
+        corsPolicyBuilder
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 });
 
 var app = builder.Build();
