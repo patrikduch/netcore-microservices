@@ -15,7 +15,8 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new List<ApiScope>
         {
-            new ApiScope("api1", "API 1")
+            new ApiScope("api1", "API 1"),
+            new ApiScope("productAPI", "Product API")
         };
 
     public static IEnumerable<Client> Clients =>
@@ -27,6 +28,19 @@ public static class Config
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets = { new Secret("secret".Sha256()) },
                 AllowedScopes = { "api1" }
+            },
+            new Client
+            {
+                ClientId = "productClient",
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                ClientSecrets =
+                {
+                    new Secret("secret".Sha256())
+
+                },
+
+                AllowedScopes = {"productAPI"}
+
             }
         };
 
