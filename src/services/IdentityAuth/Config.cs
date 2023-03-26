@@ -35,7 +35,7 @@ public static class Config
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
                 ClientSecrets =
                 {
-                    new Secret("secret")
+                    new Secret("secret".Sha256())
 
                 },
 
