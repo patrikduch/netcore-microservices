@@ -60,7 +60,6 @@
       "UpstreamPathTemplate": "/product-search/{searchText}",
       "UpstreamHttpMethod": [ "GET" ]
     },
-    // Product-Search-Suggestions
     {
       "DownstreamPathTemplate": "/api/v1/product-suggestions/{searchText}",
       "DownstreamScheme": "http",
