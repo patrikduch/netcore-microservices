@@ -16,7 +16,7 @@ var additionalConfigFileNames = new List<string>
     $"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json",
     $"ocelot.{builder.Environment.EnvironmentName}.Product.json",
     $"ocelot.{builder.Environment.EnvironmentName}.IdentityAuth.json",
-
+    $"ocelot.{builder.Environment.EnvironmentName}.User.json"
 };
 
 var mainConfigJson = File.ReadAllText(mainConfigFileName);
