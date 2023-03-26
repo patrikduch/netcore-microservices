@@ -11,6 +11,20 @@
       ],
       "UpstreamPathTemplate": "/auth/meta-data",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    // Get token from IdentityServer
+    {
+      "DownstreamPathTemplate": "/connect/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-auth-api-service",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/token",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }
