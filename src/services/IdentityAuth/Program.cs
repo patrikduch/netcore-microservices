@@ -4,7 +4,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add required services for IdentityServer
 builder.Services.AddIdentityServer()
-    .AddInMemoryIdentityResources(Config.IdentityResources)
     .AddInMemoryApiScopes(Config.ApiScopes)
     .AddInMemoryClients(Config.Clients)
     .AddDeveloperSigningCredential();
