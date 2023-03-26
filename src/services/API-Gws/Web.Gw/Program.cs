@@ -9,7 +9,7 @@ IConfiguration configuration = new ConfigurationBuilder()
                                 
                             .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", false, true)
                             .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json", false, true)
-                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.Product.json", false, true)
+                            //.AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.Product.json", false, true)
                             .Build();
 
 builder.Services.AddOcelot(configuration)
