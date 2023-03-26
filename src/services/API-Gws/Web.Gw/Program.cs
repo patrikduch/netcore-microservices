@@ -1,18 +1,55 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
+using Newtonsoft.Json;
+using Ocelot.Configuration.File;
+using Ocelot.Configuration.Repository;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using System.Text;
 using Web.Gw.Constants;
 using Web.Gw.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-IConfiguration configuration = new ConfigurationBuilder()
-            
-                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", false, true)
-                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json", false, true)
-                            .Build();
+//IConfiguration configuration = new ConfigurationBuilder()
+//            
+//                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", false, true)
+//                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json", false, true)
+//                            .Build();}
 
-builder.Services.AddOcelot(configuration)
-    .AddKubernetesFixed();
+
+
+// Read route configuration files
+var mainConfigFileName = $"ocelot.{builder.Environment.EnvironmentName}.json";
+var additionalConfigFileNames = new List<string>
+{
+    $"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json",
+    $"ocelot.{builder.Environment.EnvironmentName}.Product.json"
+};
+
+var mainConfigJson = File.ReadAllText(mainConfigFileName);
+var mainFileConfig = JsonConvert.DeserializeObject<FileConfiguration>(mainConfigJson);
+
+foreach (var fileName in additionalConfigFileNames)
+{
+    var additionalConfigJson = File.ReadAllText(fileName);
+    var additionalFileConfig = JsonConvert.DeserializeObject<FileConfiguration>(additionalConfigJson);
+
+    mainFileConfig.Routes.AddRange(additionalFileConfig.Routes);
+}
+
+var mergedConfigJson = JsonConvert.SerializeObject(mainFileConfig);
+using var mergedConfigStream = new MemoryStream(Encoding.UTF8.GetBytes(mergedConfigJson));
+
+builder.Configuration.AddJsonStream(mergedConfigStream);
+
+// Register Ocelot with the merged route configurations
+builder.Services.AddOcelot(builder.Configuration).AddKubernetesFixed();
+
+
+
+//builder.Services.AddOcelot(configuration)
+//    .AddKubernetesFixed();
 
 builder.Services.AddCors(options =>
 {
@@ -50,6 +87,18 @@ if (isDevelopment)
 }
 
 app.MapControllers();
+
+
 await app.UseOcelot();
+
+// Inspect the routes before app.Run()
+var internalConfigRepo = app.Services.GetService(typeof(IInternalConfigurationRepository)) as IInternalConfigurationRepository;
+var internalConfig = internalConfigRepo.Get().Data;
+
+foreach (var route in internalConfig.Routes)
+{
+    Console.WriteLine($"Route: {route.DownstreamRoute} => {route.UpstreamTemplatePattern}");
+}
+
 
 app.Run();

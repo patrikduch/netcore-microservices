@@ -1,0 +1,16 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/projectDetail",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "projectdetail.api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/project-detail",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}

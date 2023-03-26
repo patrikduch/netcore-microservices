@@ -15,4 +15,16 @@
     <PackageReference Include="Ocelot.Provider.Kubernetes" Version="18.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="ocelot.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="ocelot.Development.Product.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="ocelot.Development.ProjectDetail.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
