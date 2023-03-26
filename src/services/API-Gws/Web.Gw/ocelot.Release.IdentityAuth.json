@@ -1,0 +1,16 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/.well-known/openid-configuration",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-auth-api-service",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/meta-data",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}
