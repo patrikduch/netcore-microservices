@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 IConfiguration configuration = new ConfigurationBuilder()
                             .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", true, true)
-                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json", true, true)
-                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.Product.json", true, true)
+                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json", false, true)
+                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.Product.json", false, true)
                             .Build();
 
 builder.Services.AddOcelot(configuration)
