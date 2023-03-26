@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json;
 using Ocelot.Configuration.File;
 using Ocelot.Configuration.Repository;
@@ -10,14 +8,6 @@ using Web.Gw.Constants;
 using Web.Gw.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
-//IConfiguration configuration = new ConfigurationBuilder()
-//            
-//                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", false, true)
-//                            .AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json", false, true)
-//                            .Build();}
-
-
 
 // Read route configuration files
 var mainConfigFileName = $"ocelot.{builder.Environment.EnvironmentName}.json";
@@ -37,7 +27,10 @@ foreach (var fileName in additionalConfigFileNames)
     var additionalConfigJson = File.ReadAllText(fileName);
     var additionalFileConfig = JsonConvert.DeserializeObject<FileConfiguration>(additionalConfigJson);
 
-    mainFileConfig.Routes.AddRange(additionalFileConfig.Routes);
+    if (additionalFileConfig is not null)
+    {
+        mainFileConfig?.Routes.AddRange(additionalFileConfig.Routes);
+    }
 }
 
 var mergedConfigJson = JsonConvert.SerializeObject(mainFileConfig);
@@ -47,11 +40,6 @@ builder.Configuration.AddJsonStream(mergedConfigStream);
 
 // Register Ocelot with the merged route configurations
 builder.Services.AddOcelot(builder.Configuration).AddKubernetesFixed();
-
-
-
-//builder.Services.AddOcelot(configuration)
-//    .AddKubernetesFixed();
 
 builder.Services.AddCors(options =>
 {
@@ -95,11 +83,14 @@ await app.UseOcelot();
 
 // Inspect the routes before app.Run()
 var internalConfigRepo = app.Services.GetService(typeof(IInternalConfigurationRepository)) as IInternalConfigurationRepository;
-var internalConfig = internalConfigRepo.Get().Data;
+var internalConfig = internalConfigRepo?.Get().Data;
 
-foreach (var route in internalConfig.Routes)
+if (internalConfig is not null)
 {
-    Console.WriteLine($"Route: {route.DownstreamRoute} => {route.UpstreamTemplatePattern}");
+    foreach (var route in internalConfig.Routes)
+    {
+        Console.WriteLine($"Route: {route.DownstreamRoute} => {route.UpstreamTemplatePattern}");
+    }
 }
 
 
