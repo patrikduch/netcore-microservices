@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: identity-auth-api-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: identity-auth-api
   ports:
