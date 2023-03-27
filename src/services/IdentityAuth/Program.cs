@@ -14,6 +14,6 @@ var app = builder.Build();
 app.UseIdentityServer(); // Add IdentityServer middleware
 
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Identity Server v4!");
 
 app.Run();
