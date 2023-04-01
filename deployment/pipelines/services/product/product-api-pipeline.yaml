@@ -67,7 +67,7 @@ stages:
               }
             ]
           }
-    NUGET_PAT: $(NUGET_PAT_SECRET)
+        NUGET_PAT: $(NUGET_PAT_SECRET)
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet test'
