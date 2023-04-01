@@ -27,4 +27,10 @@
     <ProjectReference Include="..\Product.Application\Product.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="nuget.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
