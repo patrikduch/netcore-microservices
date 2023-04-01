@@ -30,27 +30,15 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
-  # classic build - todo
-  # then run tests - todo 
-  # and after all of this => build docker container
   jobs:
   - job: Build
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     displayName: Build
     pool:
       vmImage: $(vmImageName)
+    # run tests - todo 
+    # and after all of this => build docker container
     steps:
-    # Docker image build
-    - task: Docker@2
-      displayName: Build a docker image
-      inputs:
-        command: build
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        buildContext: $(Build.SourcesDirectory)/
-        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
-
     - task: DotNetCoreCLI@2
       displayName: 'dotnet restore'
       env:
@@ -101,7 +89,17 @@ stages:
         command: 'test'
         projects: 'src/services/Product/Product.Tests/Product.Tests.csproj'
         arguments: '--configuration $(buildConfiguration) --logger trx'
-
+    # Docker image build
+    - task: Docker@2
+      displayName: Build a docker image
+      inputs:
+        command: build
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        buildContext: $(Build.SourcesDirectory)/
+        arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
+        
     - script: |
         sudo apt-get install rpm
         wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
