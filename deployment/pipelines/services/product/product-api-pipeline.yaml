@@ -72,10 +72,10 @@ stages:
           }
         NUGET_PAT: $(NUGET_PAT_SECRET)
       inputs:
-      command: 'restore'
-      projects: 'src/services/Product/Product.Tests/Product.Tests.csproj'
-      feedsToUse: 'config'
-      nugetConfigPath: 'nuget.config'
+        command: 'restore'
+        projects: 'src/services/Product/Product.Tests/Product.Tests.csproj'
+        feedsToUse: 'config'
+        nugetConfigPath: 'nuget.config'
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet test'
