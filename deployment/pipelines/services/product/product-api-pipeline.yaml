@@ -49,7 +49,7 @@ stages:
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
 
     - script: |
-        dotnet restore --configfile nuget.config --verbosity detailed
+          dotnet restore --configfile nuget.config --verbosity detailed
       displayName: 'dotnet restore'
       env:
         NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED: true
