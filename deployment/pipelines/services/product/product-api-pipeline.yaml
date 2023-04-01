@@ -75,7 +75,7 @@ stages:
         command: 'restore'
         projects: 'src/services/Product/Product.Tests/Product.Tests.csproj'
         feedsToUse: 'config'
-        nugetConfigPath: 'nuget.config'
+        nugetConfigPath: 'src/services/Product/Product.Tests/bin/$(buildConfiguration)/nuget.config'
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet test'
