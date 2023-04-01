@@ -6,9 +6,9 @@
 // ----------------------------------------------------------------------------------
 namespace Product.Persistence.Services;
 
+using Application.Dtos;
 using Product.Application.Contracts.Readers;
 using Product.Application.Contracts.Services;
-using Product.Application.Dtos;
 using System.Collections.Generic;
 
 /// <summary>
