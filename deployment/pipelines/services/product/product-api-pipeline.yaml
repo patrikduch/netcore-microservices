@@ -50,10 +50,13 @@ stages:
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet test'
+      env:
+        NUGET_PAT: $(NUGET_PAT_SECRET)
       inputs:
         command: 'test'
         projects: 'src/services/Product/Product.Tests/Product.Tests.csproj'
         arguments: '--configuration $(buildConfiguration) --logger trx'
+        
 
     - script: |
         sudo apt-get install rpm
