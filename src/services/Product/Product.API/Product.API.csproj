@@ -10,14 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="nuget.config" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="nuget.config" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
