@@ -30,6 +30,9 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
+  # classic build - todo
+  # then run tests - todo 
+  # and after all of this => build docker container
   jobs:
   - job: Build
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
@@ -48,8 +51,8 @@ stages:
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
 
-    - script: dotnet restore --configfile nuget.config --verbosity detailed
-      displayName: 'dotnet restore'
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet test'
       env:
         NUGET_CREDENTIALPROVIDER_SESSIONTOKENCACHE_ENABLED: true
         VSS_NUGET_EXTERNAL_FEED_ENDPOINTS: >
@@ -67,11 +70,6 @@ stages:
               }
             ]
           }
-        NUGET_PAT: $(NUGET_PAT_SECRET)
-
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet test'
-      env:
         NUGET_PAT: $(NUGET_PAT_SECRET)
       inputs:
         command: 'test'
