@@ -48,6 +48,13 @@ stages:
         buildContext: $(Build.SourcesDirectory)/
         arguments: --build-arg NUGET_PAT=$(NUGET_PAT_SECRET)
 
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet test'
+      inputs:
+        command: 'test'
+        projects: 'src/services/Product/Product.Tests/Product.Tests.csproj'
+        arguments: '--configuration $(buildConfiguration) --logger trx'
+
     - script: |
         sudo apt-get install rpm
         wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
