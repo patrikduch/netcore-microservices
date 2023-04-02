@@ -24,7 +24,7 @@ public class CategoryReader : ICategoryReader
     /// <summary>
     /// Initializes a new instance of the <seealso cref="CategoryReader"/>.
     /// </summary>
-    /// <param name="mapper">Mapper depedency object.</param>
+    /// <param name="mapper">Mapper dependency object.</param>
     /// <param name="productCtx"><seealso cref="DbContext"/> dependency object.</param>
     public CategoryReader(IMapper mapper, ProductContext productCtx)
     {
@@ -38,13 +38,10 @@ public class CategoryReader : ICategoryReader
     /// <returns>Collection of <seealso cref="CategoryDto"/> objects.</returns>
     public async Task<List<CategoryDto>>FetchCategoryList()
     {
-        if (_productContext.Categories is not null)
-        {
-            var categories = await _productContext.Categories.ToListAsync();
+        if (_productContext.Categories is null) return Enumerable.Empty<CategoryDto>().ToList();
+        var categories = await _productContext.Categories.ToListAsync();
 
-            return _mapper.Map<List<CategoryDto>>(categories);
-        }
+        return _mapper.Map<List<CategoryDto>>(categories);
 
-        return Enumerable.Empty<CategoryDto>().ToList();
     }
 }
