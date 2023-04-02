@@ -6,10 +6,10 @@
 //---------------------------------------------------------------------------
 namespace Product.API.Controllers;
 
+using Application.Categories.Dtos;
+using Application.Categories.UseCases;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Application.Dtos;
-using Application.Features.Products.Queries.GetCategoryList;
 
 /// <summary>
 /// Management of product categories.
@@ -29,7 +29,7 @@ public class CategoryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CategoryDto>))]
     public async Task<IActionResult> GetCategoryList()
     {
-        var result = await _mediator.Send(new GetCategoryListQuery());
+        var result = await _mediator.Send(new GetCategoryListUseCase());
 
         return Ok(result);
     }

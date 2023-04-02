@@ -6,9 +6,9 @@
 //---------------------------------------------------------------------------
 namespace Product.Persistence.Contexts;
 
+using Domain.Entities;
+using EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
-using Product.Domain.Entities;
-using Product.Persistence.EntityConfigurations;
 
 /// <summary>
 /// <seealso cref="DbContext"/>  configuration for  <seealso cref="ProductEntity"/>.
@@ -32,11 +32,6 @@ public class ProductContext : DbContext
     /// Gets or sets collection of product categories.
     /// </summary>
     public DbSet<CategoryEntity>? Categories { get; set; }
-
-    /// <summary>
-    /// Gets or sets collection of product types.
-    /// </summary>
-    public DbSet<ProductTypeEntity>? ProductTypes { get; set; }
 
 
     /// <summary>

@@ -7,8 +7,10 @@
 namespace Product.Application;
 
 using AutoMapper;
-using Product.Application.Dtos;
-using Product.Domain.Entities;
+using Domain.Entities;
+using Dtos;
+using Product.Application.Categories.Dtos;
+
 
 /// <summary>
 /// Mapping profiles of domain object to the application objects.

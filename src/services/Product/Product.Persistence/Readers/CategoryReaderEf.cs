@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------
 namespace Product.Persistence.Readers;
 
-using Application.Dtos;
+using Application.Categories.Dtos;
 using AutoMapper;
 using Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -14,19 +14,19 @@ using Product.Application.Contracts.Readers;
 using System.Collections.Generic;
 
 /// <summary>
-/// CategoryReader implementation class, that provides quering product's categories.
+/// CategoryReader implementation class, that provides querying product's categories.
 /// </summary>
-public class CategoryReader : ICategoryReader
+public class CategoryReaderEf : ICategoryReaderEf
 {
     private readonly ProductContext _productContext;
     private readonly IMapper _mapper;
 
     /// <summary>
-    /// Initializes a new instance of the <seealso cref="CategoryReader"/>.
+    /// Initializes a new instance of the <seealso cref="CategoryReaderEf"/>.
     /// </summary>
     /// <param name="mapper">Mapper dependency object.</param>
     /// <param name="productCtx"><seealso cref="DbContext"/> dependency object.</param>
-    public CategoryReader(IMapper mapper, ProductContext productCtx)
+    public CategoryReaderEf(IMapper mapper, ProductContext productCtx)
     {
         _mapper = mapper;
         _productContext= productCtx;
@@ -38,10 +38,14 @@ public class CategoryReader : ICategoryReader
     /// <returns>Collection of <seealso cref="CategoryDto"/> objects.</returns>
     public async Task<List<CategoryDto>>FetchCategoryList()
     {
-        if (_productContext.Categories is null) return Enumerable.Empty<CategoryDto>().ToList();
-        var categories = await _productContext.Categories.ToListAsync();
+        if (_productContext.Categories is null)
+        {
+            return new List<CategoryDto>();
+        }
 
-        return _mapper.Map<List<CategoryDto>>(categories);
+        var categoriesQuery = _productContext.Categories
+            .AsNoTracking();
 
+        return await _mapper.ProjectTo<CategoryDto>(categoriesQuery).ToListAsync();
     }
 }

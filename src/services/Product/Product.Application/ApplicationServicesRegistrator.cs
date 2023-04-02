@@ -4,6 +4,10 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //--------------------------------------------------------------------------------
+
+using Product.Application.Categories.Interfaces;
+using Product.Application.Categories.Readers;
+
 namespace Product.Application;
 
 using FluentValidation;
@@ -26,6 +30,9 @@ public static class ApplicationServicesRegistrator
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
+
+
+        services.AddScoped<ICategoryReader, CategoryReader>();
 
         return services;
     }

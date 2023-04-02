@@ -6,11 +6,11 @@
 //-----------------------------------------------------------------------------------
 namespace Product.Persistence.Repositories;
 
+using Contexts;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NetMicroservices.SqlWrapper.Nuget.Repositories;
 using Product.Application.Contracts.Repositories;
-using Product.Domain.Entities;
-using Product.Persistence.Contexts;
 
 /// <summary>
 /// Data repository for management <seealso cref="ProductEntity"/>.
@@ -20,7 +20,7 @@ public class ProductRepository : RepositoryBase<ProductEntity, ProductContext>, 
     /// <summary>
     /// Initializes a new instance of the <seealso cref="ProductRepository"/>.
     /// </summary>
-    /// <param name="productContext">Order <seealso cref="DbContext"/> dependency object.</param>
+    /// <param name="productContext">Product <seealso cref="DbContext"/> dependency object.</param>
     public ProductRepository(ProductContext productContext) : base(productContext)
     {
     }

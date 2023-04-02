@@ -1,17 +1,17 @@
 ﻿//---------------------------------------------------------------------------
-// <copyright file="ICategoryReader.cs" website="Patrikduch.com">
+// <copyright file="ICategoryReaderEF.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-using Product.Application.Dtos;
-
 namespace Product.Application.Contracts.Readers;
 
+using Product.Application.Categories.Dtos;
+
 /// <summary>
-/// Contract for CategoryReader implementation class, that provides quering product's category data.
+/// Contract for CategoryReader implementation class, that provides querying product's category data.
 /// </summary>
-public interface ICategoryReader
+public interface ICategoryReaderEf
 {
     Task<List<CategoryDto>> FetchCategoryList();
 }

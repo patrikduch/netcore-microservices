@@ -6,8 +6,8 @@
 // ----------------------------------------------------------------------------------
 namespace Product.Persistence.Services;
 
-using Application.Dtos;
-using Product.Application.Contracts.Readers;
+using Application.Categories.Dtos;
+using Application.Categories.Interfaces;
 using Product.Application.Contracts.Services;
 using System.Collections.Generic;
 
@@ -18,10 +18,10 @@ public class CategoryService : ICategoryService
 {
     private readonly ICategoryReader _categoryReader;
 
+
     /// <summary>
     /// Initializes a new instance of the <seealso cref="CategoryService"/>.
     /// </summary>
-    /// <param name="categoryReader">CategoryReader dependency object.</param>
     public CategoryService(ICategoryReader categoryReader)
     {
         _categoryReader= categoryReader;
@@ -33,6 +33,8 @@ public class CategoryService : ICategoryService
     /// <returns>List of <seealso cref="CategoryDto"/> objects.</returns>
     public async Task<List<CategoryDto>> GetCategoryList()
     {
-        return await _categoryReader.FetchCategoryList();
+        var categoryList = await _categoryReader.GetCategoryList();
+
+        return !categoryList.Any() ? new List<CategoryDto>() : categoryList;
     }
 }

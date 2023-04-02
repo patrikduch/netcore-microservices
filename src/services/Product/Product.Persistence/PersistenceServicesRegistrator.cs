@@ -34,7 +34,7 @@ public static class PersistenceServicesRegistrator
         services.AddScoped<DbContext, ProductContext>();
 
         services.AddScoped<ICategoryService, CategoryService>();
-        services.AddScoped<ICategoryReader, CategoryReader>();
+        services.AddScoped<ICategoryReaderEf, CategoryReaderEf>();
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();

@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Dtos;
+namespace Product.Application.Categories.Dtos;
 
 /// <summary>
 /// Data transfer object for transfer relevant product category information.

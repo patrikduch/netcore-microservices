@@ -4,36 +4,30 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
+
 namespace Product.Tests.Persistence.Readers;
 
-using AutoMapper;
+using Application.Categories.Dtos;
+using Application.Categories.Interfaces;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
 using Moq;
-using Product.Persistence.Contexts;
-using Product.Persistence.Readers;
+using Product.Persistence.Services;
 
 public class CategoryReaderTests
 {
-    private readonly CategoryReader _categoryReader;
-    private readonly Mock<IMapper> _mapper = new();
+    private readonly Mock<ICategoryReader> _categoryReader = new();
 
     public CategoryReaderTests()
     {
-        var options = new DbContextOptionsBuilder<ProductContext>()
-            .UseInMemoryDatabase(databaseName: "TestDatabase")
-            .Options;
-
-        IMock<ProductContext> productCtx = new Mock<ProductContext>(options);
-
-        _categoryReader = new CategoryReader(_mapper.Object, productCtx.Object);
+        _categoryReader.Setup(c => c.GetCategoryList()).ReturnsAsync(new List<CategoryDto>());
     }
 
     [Fact]
     public async Task FetchCategories_CannotBeFetched_ReturnsNull()
     {
-        var actual = await _categoryReader.FetchCategoryList();
 
-        actual.Should().BeNull();
+        var categoryService = new CategoryService(_categoryReader.Object);
+        var actual = await categoryService.GetCategoryList();
+        actual.Should().HaveCount(0);
     }
 }

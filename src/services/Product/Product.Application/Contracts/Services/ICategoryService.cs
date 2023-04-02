@@ -4,10 +4,9 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
 namespace Product.Application.Contracts.Services;
 
-using Product.Application.Dtos;
+using Product.Application.Categories.Dtos;
 
 /// <summary>
 /// Contract for CategoryService, that provides all functionality for reading and mutating product's category data.
