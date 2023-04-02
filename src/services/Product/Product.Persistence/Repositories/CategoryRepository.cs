@@ -6,11 +6,11 @@
 //---------------------------------------------------------------------------
 namespace Product.Persistence.Repositories;
 
+using Contexts;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NetMicroservices.SqlWrapper.Nuget.Repositories;
 using Product.Application.Contracts.Repositories;
-using Product.Domain.Entities;
-using Product.Persistence.Contexts;
 
 /// <summary>
 /// Data repository for management  <seealso cref="CategoryRepository"/>.
