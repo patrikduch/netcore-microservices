@@ -6,11 +6,11 @@
 //---------------------------------------------------------------------------
 namespace Product.Persistence.Readers;
 
+using Application.Dtos;
 using AutoMapper;
+using Contexts;
 using Microsoft.EntityFrameworkCore;
 using Product.Application.Contracts.Readers;
-using Product.Application.Dtos;
-using Product.Persistence.Contexts;
 using System.Collections.Generic;
 
 /// <summary>
