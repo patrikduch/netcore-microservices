@@ -1,18 +1,19 @@
 ﻿//---------------------------------------------------------------------------
-// <copyright file="GetProductListQuery.cs" website="Patrikduch.com">
+// <copyright file="GetProductListUseCase.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Features.Products.Queries.GetProductList;
+namespace Product.Application.Products.UseCases;
 
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
 using Product.Application.Dtos;
 
 /// <summary>
-/// CQRS query for fetching list of products.
+/// CQRS object for getting list of products.
 /// </summary>
-public class GetProductListQuery : IRequest<ServiceResponse<List<ProductDto>>>
+public class GetProductListUseCase : IRequest<ServiceResponse<List<ProductDto>>>
 {
+
 }

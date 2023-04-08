@@ -7,7 +7,6 @@
 namespace Product.API.Controllers;
 
 using Application.Dtos;
-using Application.Features.Products.Queries.GetProductList;
 using Application.Features.Products.Queries.GetProductsByCategory;
 using Application.Features.Products.Queries.GetProductSuggestions;
 using Application.Features.Products.Queries.SearchProducts;
@@ -33,7 +32,7 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductDto>))]
     public async Task<IActionResult> GetProductList()
     {
-        var result = await _mediator.Send(new GetProductListQuery());
+        var result = await _mediator.Send(new GetProductListUseCase());
 
         return Ok(result);
     }
