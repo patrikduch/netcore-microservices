@@ -7,7 +7,8 @@
 namespace Product.Persistence.Services;
 
 using Application.Dtos;
-using Product.Application.Contracts.Readers;
+using Application.Products.Dtos;
+using Application.Products.Interfaces;
 using Product.Application.Contracts.Services;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ public class ProductService : IProductService
     /// <summary>
     /// Initializes a new instance of the <seealso cref="ProductService"/>.
     /// </summary>
-    /// <param name="productReader">ProductReader dependency object.</param>
     public ProductService(IProductReader productReader)
     {
         _productReader = productReader;
@@ -33,18 +33,18 @@ public class ProductService : IProductService
     /// </summary>
     /// <param name="productId">Unique product identifier.</param>
     /// <returns><seealso cref="ProductDetailDto"/> object.</returns>
-    public async Task<ProductDetailDto?> GetProductDetail(Guid productId)
+    public Task<ProductDetailDto?> GetProductDetail(Guid productId)
     {
-        return await _productReader.FetchProductDetail(productId);
+        return _productReader.GetProductDetail(productId);
     }
 
     /// <summary>
     /// Get list of all products without restrictions.
     /// </summary>
     /// <returns>Collection of <seealso cref="ProductDto"/> objects.</returns>
-    public async Task<List<ProductDto>> GetProducts()
-    {
-        return await _productReader.FetchProducts();
+    public  Task<List<ProductDto>> GetProducts()
+    { 
+        return _productReader.GetProducts();
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ public class ProductService : IProductService
     /// </summary>
     /// <param name="categoryUrl">Url of selected product category.</param>
     /// <returns>Collection of <seealso cref="ProductDto"/> objects.</returns>
-    public async Task<List<ProductDto>> GetProductsByCategory(string categoryUrl)
+    public Task<List<ProductDto>> GetProductsByCategory(string categoryUrl)
     {
-        return await _productReader.FetchProducts(categoryUrl);
+        return _productReader.GetProducts(categoryUrl);
     }
 
     /// <summary>
@@ -62,9 +62,9 @@ public class ProductService : IProductService
     /// </summary>
     /// <param name="searchText">Searched keyword.</param>
     /// <returns>List of potential search occurences.</returns>
-    public async Task<List<string>> GetProductSearchSuggestions(string searchText)
+    public Task<List<string>> GetProductSearchSuggestions(string searchText)
     {
-        return await _productReader.FetchProductSearchSuggestions(searchText);
+        return _productReader.GetProductSearchSuggestions(searchText);
     }
 
     /// <summary>
@@ -72,8 +72,8 @@ public class ProductService : IProductService
     /// </summary>
     /// <param name="searchText">Search term that will be processed.</param>
     /// <returns>Collection of <seealso cref="ProductDto"/> objects.</returns>
-    public async Task<List<ProductDto>> SearchProducts(string searchText)
+    public Task<List<ProductDto>> SearchProducts(string searchText)
     {
-        return await _productReader.SearchProducts(searchText);
+        return _productReader.SearchProducts(searchText);
     }
 }

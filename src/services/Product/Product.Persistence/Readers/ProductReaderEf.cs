@@ -1,34 +1,35 @@
 ﻿//---------------------------------------------------------------------------
-// <copyright file="ProductReader.cs" website="Patrikduch.com">
+// <copyright file="ProductReaderEf.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
 namespace Product.Persistence.Readers;
 
+using Application.Products.Interfaces;
 using Application.Dtos;
+using Application.Products.Dtos;
 using AutoMapper;
 using Contexts;
 using Microsoft.EntityFrameworkCore;
-using Product.Application.Contracts.Readers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 /// <summary>
-/// ProductReader implementation class, that provides quering product data.
+/// ProductReaderEf implementation class, that provides querying product data.
 /// </summary>
-public class ProductReader : IProductReader
+public class ProductReaderEf : IProductReaderEf
 {
     private readonly IMapper _mapper;
     private readonly ProductContext _productCtx;
 
     /// <summary>
-    /// Initializes a new instance of the <seealso cref="ProductReader"/>.
+    /// Initializes a new instance of the <seealso cref="ProductReaderEf"/>.
     /// </summary>
     /// <param name="mapper">Mapper depedency object.</param>
     /// <param name="productCtx"><seealso cref="DbContext"/> dependency object.</param>
-    public ProductReader(IMapper mapper, ProductContext productCtx)
+    public ProductReaderEf(IMapper mapper, ProductContext productCtx)
     {
         _mapper= mapper;
         _productCtx= productCtx;

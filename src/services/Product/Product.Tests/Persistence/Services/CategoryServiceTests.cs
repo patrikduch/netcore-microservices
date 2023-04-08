@@ -4,8 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
-namespace Product.Tests.Persistence.Readers;
+namespace Product.Tests.Persistence.Services;
 
 using Application.Categories.Dtos;
 using Application.Categories.Interfaces;
@@ -13,11 +12,11 @@ using FluentAssertions;
 using Moq;
 using Product.Persistence.Services;
 
-public class CategoryReaderTests
+public class CategoryServiceTests
 {
     private readonly Mock<ICategoryReader> _categoryReader = new();
 
-    public CategoryReaderTests()
+    public CategoryServiceTests()
     {
         _categoryReader.Setup(c => c.GetCategoryList()).ReturnsAsync(new List<CategoryDto>());
     }

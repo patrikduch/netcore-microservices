@@ -8,8 +8,7 @@ namespace Product.Application.Features.Products.Queries.GetProductSuggestions;
 
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Contracts.Readers;
-using Product.Application.Contracts.Services;
+using Contracts.Services;
 using System.Threading;
 using System.Threading.Tasks;
 

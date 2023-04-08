@@ -4,6 +4,9 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
+
+using Product.Application.Products.Dtos;
+
 namespace Product.Application;
 
 using AutoMapper;

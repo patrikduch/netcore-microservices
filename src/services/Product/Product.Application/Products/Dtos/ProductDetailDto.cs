@@ -4,7 +4,9 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Dtos;
+namespace Product.Application.Products.Dtos;
+
+using Product.Application.Dtos;
 
 /// <summary>
 /// Data transfer object for displaying details about selected product.

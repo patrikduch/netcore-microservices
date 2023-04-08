@@ -5,11 +5,13 @@
 // <author>Patrik Duch</author>
 //--------------------------------------------------------------------------------
 
-using Product.Application.Categories.Interfaces;
-using Product.Application.Categories.Readers;
+using Product.Application.Products.Interfaces;
+using Product.Application.Products.Readers;
 
 namespace Product.Application;
 
+using Categories.Interfaces;
+using Categories.Readers;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +35,8 @@ public static class ApplicationServicesRegistrator
 
 
         services.AddScoped<ICategoryReader, CategoryReader>();
+        services.AddScoped<IProductReader, ProductReader>();
+   
 
         return services;
     }

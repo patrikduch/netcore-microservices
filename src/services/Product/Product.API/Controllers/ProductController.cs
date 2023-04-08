@@ -4,17 +4,16 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
 namespace Product.API.Controllers;
 
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Application.Dtos;
-using Application.Features.Products.Queries.GetProduct;
 using Application.Features.Products.Queries.GetProductList;
 using Application.Features.Products.Queries.GetProductsByCategory;
 using Application.Features.Products.Queries.GetProductSuggestions;
 using Application.Features.Products.Queries.SearchProducts;
+using Application.Products.UseCases;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 /// <summary>
 /// Management of products.
@@ -75,12 +74,11 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
-
     [HttpGet("products/{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductDto))]
     public async Task<IActionResult> GetProduct(Guid id)
     {
-        var result = await _mediator.Send(new GetProductQuery
+        var result = await _mediator.Send(new GetProductUseCase()
         {
             ProductId = id
         });

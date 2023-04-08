@@ -36,6 +36,7 @@ public class GetProductsByCategoryQueryHandler : IRequestHandler<GetProductsByCa
     public async Task<ServiceResponse<List<ProductDto>>> Handle(GetProductsByCategoryQuery request, CancellationToken cancellationToken)
     {
         var products = await _productService.GetProductsByCategory(request.CategoryUrl);
+
         return new ServiceResponse<List<ProductDto>>
         {
             Data = products

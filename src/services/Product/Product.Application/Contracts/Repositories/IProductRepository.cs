@@ -7,8 +7,8 @@
 
 namespace Product.Application.Contracts.Repositories;
 
+using Domain.Entities;
 using NetMicroservices.SqlWrapper.Nuget;
-using Product.Domain.Entities;
 
 /// <summary>
 /// Data layer contract for <seealso cref="ProductEntity"/>.

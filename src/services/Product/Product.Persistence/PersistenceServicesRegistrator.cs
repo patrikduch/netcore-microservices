@@ -6,16 +6,17 @@
 //-----------------------------------------------------------------------------------
 namespace Product.Persistence;
 
+using Application.Categories.Interfaces;
+using Application.Products.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Product.Application.Contracts.Readers;
 using Product.Application.Contracts.Repositories;
 using Product.Application.Contracts.Services;
-using Product.Persistence.Contexts;
-using Product.Persistence.Readers;
-using Product.Persistence.Repositories;
-using Product.Persistence.Services;
+using Contexts;
+using Readers;
+using Repositories;
+using Services;
 
 /// <summary>
 /// Registration of persistence services.
@@ -33,14 +34,19 @@ public static class PersistenceServicesRegistrator
 
         services.AddScoped<DbContext, ProductContext>();
 
+        // Data services
         services.AddScoped<ICategoryService, CategoryService>();
-        services.AddScoped<ICategoryReaderEf, CategoryReaderEf>();
+        services.AddScoped<IProductService, ProductService>();
 
+        // Data repositories
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
 
-        services.AddScoped<IProductService, ProductService>();
-        services.AddScoped<IProductReader, ProductReader>();
+
+        // Persistence data readers
+        services.AddScoped<ICategoryReaderEf, CategoryReaderEf>();
+        services.AddScoped<IProductReaderEf, ProductReaderEf>();
+
 
         services.AddDbContext<ProductContext>(options =>
             options.UseNpgsql((connectionString)));
