@@ -4,10 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //--------------------------------------------------------------------------------
-
-using Product.Application.Products.Interfaces;
-using Product.Application.Products.Readers;
-
 namespace Product.Application;
 
 using Categories.Interfaces;
@@ -15,6 +11,8 @@ using Categories.Readers;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Products.Interfaces;
+using Products.Readers;
 using System.Reflection;
 
 /// <summary>
@@ -33,11 +31,9 @@ public static class ApplicationServicesRegistrator
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
 
-
         services.AddScoped<ICategoryReader, CategoryReader>();
         services.AddScoped<IProductReader, ProductReader>();
-   
-
+        
         return services;
     }
 }
