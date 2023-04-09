@@ -6,7 +6,6 @@
 // ----------------------------------------------------------------------------------
 namespace Product.Persistence.Services;
 
-using Application.Dtos;
 using Application.Products.Dtos;
 using Application.Products.Interfaces;
 using Product.Application.Contracts.Services;

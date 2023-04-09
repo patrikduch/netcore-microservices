@@ -6,8 +6,6 @@
 //----------------------------------------------------------------------------------------
 namespace Product.Application.Products.Dtos;
 
-using Product.Application.Dtos;
-
 /// <summary>
 /// Data transfer object for transfer relevant product's information.
 /// </summary>

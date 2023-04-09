@@ -7,7 +7,6 @@
 namespace Product.Application.Products.Interfaces;
 
 using Dtos;
-using Product.Application.Dtos;
 
 public interface IProductReader
 {

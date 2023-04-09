@@ -6,8 +6,7 @@
 //---------------------------------------------------------------------------
 namespace Product.Application.Contracts.Services;
 
-using Dtos;
-using Product.Application.Products.Dtos;
+using Products.Dtos;
 
 /// <summary>
 /// Contract for ProductService, that provides all functionality for reading and mutating product's data.

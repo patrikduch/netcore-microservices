@@ -1,17 +1,28 @@
-﻿namespace Product.Tests.Persistence.Services;
+﻿//-----------------------------------------------------------------------------------
+// <copyright file="ProductServiceTests.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//-----------------------------------------------------------------------------------
+namespace Product.Tests.Persistence.Services;
 
 using Application.Products.Interfaces;
-using Application.Dtos;
 using Application.Products.Dtos;
 using FluentAssertions;
 using Product.Persistence.Services;
 using Moq;
 
+/// <summary>
+/// Unit tests for <seealso cref="ProductService"/>.
+/// </summary>
 public class ProductServiceTests
 {
     private readonly Mock<IProductReader> _productReader = new();
     private readonly ProductService _productService;
 
+    /// <summary>
+    /// Initializes a new instance of the <seealso cref="ProductServiceTests"/>.
+    /// </summary>
     public ProductServiceTests()
     {
         _productService = new ProductService(_productReader.Object);

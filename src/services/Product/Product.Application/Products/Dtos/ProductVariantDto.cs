@@ -3,8 +3,8 @@
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
-namespace Product.Application.Dtos;
+//----------------------------------------------------------------------------
+namespace Product.Application.Products.Dtos;
 
 /// <summary>
 /// Product type dto that is needed for representing product variant objects.

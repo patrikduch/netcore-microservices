@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Dtos;
+namespace Product.Application.Products.Dtos;
 
 /// <summary>
 /// ProductType DTO object for transfering only relevant data about product type inside product variant object.

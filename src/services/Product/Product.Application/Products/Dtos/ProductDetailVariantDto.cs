@@ -4,7 +4,8 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Dtos;
+
+namespace Product.Application.Products.Dtos;
 
 /// <summary>
 /// DTO for displaying product detail variant info.
