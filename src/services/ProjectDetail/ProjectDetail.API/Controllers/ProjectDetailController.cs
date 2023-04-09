@@ -6,10 +6,10 @@
 //---------------------------------------------------------------------------
 namespace ProjectDetail.API.Controllers;
 
+using Application.Features.ProjectName.Queries.GetProjectName;
+using Application.ProjectName.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Application.Dtos;
-using Application.Features.ProjectName.Queries.GetProjectName;
 
 [Route("api/v1/[controller]")]
 [ApiController]

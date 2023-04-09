@@ -15,7 +15,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ProjectDetail.Domain;
-using ProjectDetail.Application.Dtos;
+using ProjectDetail.Application.ProjectName.Dtos;
 
 /// <summary>
 /// CQRS query handler class for fetching project name.

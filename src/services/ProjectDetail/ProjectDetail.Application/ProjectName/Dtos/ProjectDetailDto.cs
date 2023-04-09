@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace ProjectDetail.Application.Dtos;
+namespace ProjectDetail.Application.ProjectName.Dtos;
 
 using System;
 

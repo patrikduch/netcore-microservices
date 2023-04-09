@@ -25,4 +25,9 @@
     <ProjectReference Include="..\ProjectDetail.Domain\ProjectDetail.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ProjectName\Interfaces\" />
+    <Folder Include="ProjectName\Handlers\" />
+  </ItemGroup>
+
 </Project>

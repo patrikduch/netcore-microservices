@@ -7,8 +7,8 @@
 namespace ProjectDetail.Application;
 
 using AutoMapper;
-using Dtos;
 using Domain;
+using ProjectName.Dtos;
 
 /// <summary>
 /// Mapping profiles of domain object to the application objects.
