@@ -11,6 +11,7 @@ using Application.Products.Dtos;
 using FluentAssertions;
 using Product.Persistence.Services;
 using Moq;
+using Product.Application.Products.Interfaces.Readers;
 
 /// <summary>
 /// Unit tests for <seealso cref="ProductService"/>.

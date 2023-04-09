@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Product.Application.Products.Interfaces.Readers;
 
 /// <summary>
 /// ProductReaderEf implementation class, that provides querying product data.

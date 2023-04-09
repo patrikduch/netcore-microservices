@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //-----------------------------------------------------------------------------------
-namespace Product.Application.Products.Interfaces;
+namespace Product.Application.Products.Interfaces.Readers;
 
 using Dtos;
 

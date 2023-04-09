@@ -8,6 +8,7 @@ namespace Product.Application.Products.Readers;
 
 using Dtos;
 using Interfaces;
+using Product.Application.Products.Interfaces.Readers;
 
 /// <summary>
 /// Encapsulation of read functionality in context of products.

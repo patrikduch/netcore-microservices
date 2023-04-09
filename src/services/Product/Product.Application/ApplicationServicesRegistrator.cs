@@ -11,6 +11,7 @@ using Categories.Readers;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Product.Application.Products.Interfaces.Readers;
 using Products.Interfaces;
 using Products.Readers;
 using System.Reflection;

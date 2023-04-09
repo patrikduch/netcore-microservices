@@ -17,6 +17,7 @@ using Contexts;
 using Readers;
 using Repositories;
 using Services;
+using Product.Application.Products.Interfaces.Readers;
 
 /// <summary>
 /// Registration of persistence services.
