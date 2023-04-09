@@ -8,7 +8,7 @@ namespace Product.Persistence.Services;
 
 using Application.Categories.Dtos;
 using Application.Categories.Interfaces;
-using Product.Application.Contracts.Services;
+using Product.Application.Products.Interfaces.Services;
 using System.Collections.Generic;
 
 /// <summary>

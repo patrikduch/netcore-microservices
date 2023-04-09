@@ -10,7 +10,7 @@ using Contexts;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using NetMicroservices.SqlWrapper.Nuget.Repositories;
-using Product.Application.Contracts.Repositories;
+using Product.Application.Products.Interfaces.Repositories;
 
 /// <summary>
 /// Data repository for management  <seealso cref="CategoryRepository"/>.

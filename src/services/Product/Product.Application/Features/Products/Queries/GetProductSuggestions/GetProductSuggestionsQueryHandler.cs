@@ -8,9 +8,9 @@ namespace Product.Application.Features.Products.Queries.GetProductSuggestions;
 
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Contracts.Services;
 using System.Threading;
 using System.Threading.Tasks;
+using Product.Application.Products.Interfaces.Services;
 
 /// <summary>
 /// CQRS query handler class for fetching list of product's suggestions.

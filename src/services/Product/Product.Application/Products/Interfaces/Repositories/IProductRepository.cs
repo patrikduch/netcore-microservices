@@ -4,7 +4,8 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Contracts.Repositories;
+
+namespace Product.Application.Products.Interfaces.Repositories;
 
 using Domain.Entities;
 using NetMicroservices.SqlWrapper.Nuget;

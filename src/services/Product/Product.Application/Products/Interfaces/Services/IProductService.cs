@@ -4,7 +4,8 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Application.Contracts.Services;
+
+namespace Product.Application.Products.Interfaces.Services;
 
 using Products.Dtos;
 

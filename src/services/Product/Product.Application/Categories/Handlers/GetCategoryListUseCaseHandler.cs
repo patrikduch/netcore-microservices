@@ -6,9 +6,9 @@
 //---------------------------------------------------------------------------
 namespace Product.Application.Categories.Handlers;
 
-using Contracts.Services;
 using Dtos;
 using MediatR;
+using Product.Application.Products.Interfaces.Services;
 using UseCases;
 
 /// <summary>

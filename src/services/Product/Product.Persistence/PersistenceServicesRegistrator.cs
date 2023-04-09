@@ -11,13 +11,13 @@ using Application.Products.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Product.Application.Contracts.Repositories;
-using Product.Application.Contracts.Services;
 using Contexts;
 using Readers;
 using Repositories;
 using Services;
 using Product.Application.Products.Interfaces.Readers;
+using Product.Application.Products.Interfaces.Repositories;
+using Product.Application.Products.Interfaces.Services;
 
 /// <summary>
 /// Registration of persistence services.

@@ -6,10 +6,10 @@
 //---------------------------------------------------------------------------
 namespace Product.Application.Products.Handlers;
 
-using Contracts.Services;
 using Dtos;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
+using Interfaces.Services;
 using UseCases;
 
 /// <summary>

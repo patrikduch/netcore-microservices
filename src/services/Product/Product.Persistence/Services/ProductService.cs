@@ -8,8 +8,8 @@ namespace Product.Persistence.Services;
 
 using Application.Products.Dtos;
 using Application.Products.Interfaces;
-using Product.Application.Contracts.Services;
 using Product.Application.Products.Interfaces.Readers;
+using Product.Application.Products.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 
