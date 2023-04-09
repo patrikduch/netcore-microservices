@@ -7,7 +7,6 @@
 namespace Product.API.Controllers;
 
 using Application.Features.Products.Queries.GetProductSuggestions;
-using Application.Features.Products.Queries.SearchProducts;
 using Application.Products.Dtos;
 using Application.Products.UseCases;
 using MediatR;
@@ -52,7 +51,7 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> SearchProducts(string searchText)
     {
-        var result = await _mediator.Send(new SearchProductsQuery
+        var result = await _mediator.Send(new SearchProductsUseCase()
         {
             SearchText = searchText
         });

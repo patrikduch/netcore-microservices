@@ -1,28 +1,29 @@
-﻿//----------------------------------------------------------------------------------------
-// <copyright file="SearchProductsQueryHandler.cs" website="Patrikduch.com">
+﻿//---------------------------------------------------------------------------
+// <copyright file="SearchProductsUseCaseHandler.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
-//----------------------------------------------------------------------------------------
-namespace Product.Application.Features.Products.Queries.SearchProducts;
+//---------------------------------------------------------------------------
+namespace Product.Application.Products.Handlers;
 
+using Dtos;
+using Interfaces.Services;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Products.Dtos;
-using Product.Application.Products.Interfaces.Services;
+using UseCases;
 
 /// <summary>
 /// CQRS query handler class for searching products.
 /// </summary>
-public class SearchProductsQueryHandler : IRequestHandler<SearchProductsQuery, ServiceResponse<List<ProductDto>>>
+public class SearchProductsUseCaseHandler : IRequestHandler<SearchProductsUseCase, ServiceResponse<List<ProductDto>>>
 {
     private readonly IProductService _productService;
 
     /// <summary>
-    /// Initializes a new instance of the <seealso cref="SearchProductsQueryHandler"/>.
+    /// Initializes a new instance of the <seealso cref="SearchProductsUseCaseHandler"/>.
     /// </summary>
     /// <param name="productService"><seealso cref="IProductService"/> dependency object.</param>
-    public SearchProductsQueryHandler(IProductService productService)
+    public SearchProductsUseCaseHandler(IProductService productService)
     {
         _productService = productService;
     }
@@ -33,11 +34,11 @@ public class SearchProductsQueryHandler : IRequestHandler<SearchProductsQuery, S
     /// <param name="request">Incoming request object.</param>
     /// <param name="cancellationToken">Cancelation token object dependency.</param>
     /// <returns>Collection of products filtered search term.</returns>
-    public async Task<ServiceResponse<List<ProductDto>>> Handle(SearchProductsQuery request, CancellationToken cancellationToken)
+    public async Task<ServiceResponse<List<ProductDto>>> Handle(SearchProductsUseCase request, CancellationToken cancellationToken)
     {
         var response = new ServiceResponse<List<ProductDto>>
         {
-           Data =  await _productService.SearchProducts(request.SearchText)
+            Data = await _productService.SearchProducts(request.SearchText)
         };
 
         return response;
