@@ -12,6 +12,9 @@ using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
 using UseCases;
 
+/// <summary>
+/// CQRS handler for fetching product by id.
+/// </summary>
 public class GetProductUseCaseHandler : IRequestHandler<GetProductUseCase, ServiceResponse<ProductDetailDto>>
 {
     private readonly IProductService _productService;

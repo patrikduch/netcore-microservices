@@ -8,7 +8,7 @@ namespace Product.Application.Features.Products.Queries.SearchProducts;
 
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Dtos;
+using Product.Application.Products.Dtos;
 
 /// <summary>
 /// CQRS query for searching products by title or description.

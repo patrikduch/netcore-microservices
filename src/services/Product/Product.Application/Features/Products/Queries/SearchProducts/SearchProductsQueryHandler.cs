@@ -6,12 +6,10 @@
 //----------------------------------------------------------------------------------------
 namespace Product.Application.Features.Products.Queries.SearchProducts;
 
+using Contracts.Services;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Contracts.Services;
-using Product.Application.Dtos;
-using System.Threading;
-using System.Threading.Tasks;
+using Product.Application.Products.Dtos;
 
 /// <summary>
 /// CQRS query handler class for searching products.

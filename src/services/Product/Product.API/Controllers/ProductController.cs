@@ -6,9 +6,9 @@
 //---------------------------------------------------------------------------
 namespace Product.API.Controllers;
 
-using Application.Dtos;
 using Application.Features.Products.Queries.GetProductSuggestions;
 using Application.Features.Products.Queries.SearchProducts;
+using Application.Products.Dtos;
 using Application.Products.UseCases;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

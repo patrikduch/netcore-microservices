@@ -1,17 +1,20 @@
-﻿//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------------------
 // <copyright file="GetProductsByCategoryUseCaseHandler.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 namespace Product.Application.Products.Handlers;
 
 using Contracts.Services;
+using Dtos;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Dtos;
 using UseCases;
 
+/// <summary>
+/// CQRS handler for fetching list of products by particular category url.
+/// </summary>
 public class GetProductsByCategoryUseCaseHandler : IRequestHandler<GetProductsByCategoryUseCase, ServiceResponse<List<ProductDto>>>
 {
     private readonly IProductService _productService;

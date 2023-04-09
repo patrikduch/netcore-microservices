@@ -6,9 +6,9 @@
 //---------------------------------------------------------------------------
 namespace Product.Application.Products.UseCases;
 
+using Dtos;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Product.Application.Dtos;
 
 /// <summary>
 /// CQRS object for getting list of products by provided category url.
