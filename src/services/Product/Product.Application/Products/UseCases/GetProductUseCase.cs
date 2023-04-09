@@ -10,6 +10,9 @@ using Dtos;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
 
+/// <summary>
+/// CQRS object for getting product by unique identifier.
+/// </summary>
 public class GetProductUseCase : IRequest<ServiceResponse<ProductDetailDto>>
 {
     public Guid ProductId { get; set; }

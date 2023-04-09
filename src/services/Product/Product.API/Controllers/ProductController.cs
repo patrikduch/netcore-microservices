@@ -7,7 +7,6 @@
 namespace Product.API.Controllers;
 
 using Application.Dtos;
-using Application.Features.Products.Queries.GetProductsByCategory;
 using Application.Features.Products.Queries.GetProductSuggestions;
 using Application.Features.Products.Queries.SearchProducts;
 using Application.Products.UseCases;
@@ -41,7 +40,7 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProductByCategory(string categoryUrl)
     {
-        var result = await _mediator.Send(new GetProductsByCategoryQuery
+        var result = await _mediator.Send(new GetProductsByCategoryUseCase()
         {
             CategoryUrl = categoryUrl
         });
