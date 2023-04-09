@@ -3,10 +3,9 @@
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 namespace Product.API.Controllers;
 
-using Application.Features.Products.Queries.GetProductSuggestions;
 using Application.Products.Dtos;
 using Application.Products.UseCases;
 using MediatR;
@@ -63,7 +62,7 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProductSearchSuggestions(string searchText)
     {
-        var result = await _mediator.Send(new GetProductSuggestionsQuery
+        var result = await _mediator.Send(new GetProductsSuggestionsUseCase()
         {
             SearchText = searchText
         });
