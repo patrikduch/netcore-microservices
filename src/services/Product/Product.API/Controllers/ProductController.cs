@@ -9,6 +9,7 @@ namespace Product.API.Controllers;
 using Application.Products.Dtos;
 using Application.Products.UseCases;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 /// <summary>
@@ -24,6 +25,14 @@ public class ProductController : ControllerBase
     {
         _mediator = mediator;
     }
+
+    [Authorize]
+    [HttpPost("add-product")]
+    public async Task<IActionResult> AddProduct()
+    {
+        return Ok("Added product");
+    }
+
 
     [HttpGet("products")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductDto>))]
