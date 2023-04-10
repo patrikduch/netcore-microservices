@@ -4,10 +4,6 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using NetMicroservices.SqlWrapper.Nuget;
 using Product.Application;
 using Product.Infrastructure;
