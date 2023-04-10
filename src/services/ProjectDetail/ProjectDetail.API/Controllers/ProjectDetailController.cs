@@ -6,10 +6,11 @@
 //---------------------------------------------------------------------------
 namespace ProjectDetail.API.Controllers;
 
-using Application.Features.ProjectName.Queries.GetProjectName;
 using Application.ProjectName.Dtos;
+using Application.ProjectName.UseCases;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+
 
 [Route("api/v1/[controller]")]
 [ApiController]
@@ -34,7 +35,7 @@ public class ProjectDetailController : ControllerBase
     [Produces("application/json")]
     public async Task<ActionResult<ProjectDetailDto>> GetProjectDetail()
     {
-        var query = new GetProjectNameQuery();
+        var query = new GetProjectNameUseCase();
         var personsList = await _mediatR.Send(query);
 
         return Ok(personsList.Value);

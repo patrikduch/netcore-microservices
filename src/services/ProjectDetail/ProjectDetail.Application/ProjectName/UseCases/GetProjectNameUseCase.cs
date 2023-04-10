@@ -1,18 +1,20 @@
 ﻿//---------------------------------------------------------------------------
-// <copyright file="GetProjectNameQuery.cs" website="Patrikduch.com">
+// <copyright file="GetProjectNameUseCase.cs" website="Patrikduch.com">
 //     Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
+namespace ProjectDetail.Application.ProjectName.UseCases;
 
+using Dtos;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using ProjectDetail.Application.ProjectName.Dtos;
 
 /// <summary>
-/// CQRS query for fetching information about current project.
+/// CQRS query for fetching current project name.
 /// </summary>
-public class GetProjectNameQuery : IRequest<Result<ProjectDetailDto>>
+public class GetProjectNameUseCase : IRequest<Result<ProjectDetailDto>>
 {
+
 }
+
