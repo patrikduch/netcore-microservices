@@ -8,14 +8,14 @@
 namespace ProjectDetail.Application.Features.ProjectName.Queries.GetProjectName;
 
 using AutoMapper;
+using Domain;
 using MediatR;
 using NetMicroservices.ServiceConfig.Nuget;
-using Contracts.Persistence;
+using ProjectDetail.Application.ProjectName.Dtos;
+using ProjectDetail.Application.ProjectName.Interfaces.Persistence.Repositories;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using ProjectDetail.Domain;
-using ProjectDetail.Application.ProjectName.Dtos;
 
 /// <summary>
 /// CQRS query handler class for fetching project name.

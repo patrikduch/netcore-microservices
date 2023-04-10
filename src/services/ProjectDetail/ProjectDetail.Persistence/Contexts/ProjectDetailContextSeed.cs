@@ -6,8 +6,8 @@
 // -----------------------------------------------------------------------------------
 namespace ProjectDetail.Persistence.Contexts;
 
+using Domain.Entities;
 using Microsoft.Extensions.Logging;
-using ProjectDetail.Domain;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

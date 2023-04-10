@@ -7,7 +7,7 @@
 namespace ProjectDetail.Application;
 
 using AutoMapper;
-using Domain;
+using Domain.Entities;
 using ProjectName.Dtos;
 
 /// <summary>

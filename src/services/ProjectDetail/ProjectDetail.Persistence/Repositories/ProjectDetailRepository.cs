@@ -6,10 +6,11 @@
 // -----------------------------------------------------------------------------------
 namespace ProjectDetail.Persistence.Repositories;
 
+using Contexts;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using NetMicroservices.SqlWrapper.Nuget.Repositories;
-using ProjectDetail.Application.Contracts.Persistence;
-using ProjectDetail.Domain;
-using ProjectDetail.Persistence.Contexts;
+using ProjectDetail.Application.ProjectName.Interfaces.Persistence.Repositories;
 
 /// <summary>
 /// Data repository for management <seealso cref="ProjectDetailEntity"/>.

@@ -6,14 +6,14 @@
 // -----------------------------------------------------------------------------------
 namespace ProjectDetail.Persistence;
 
+using Contexts;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetMicroservices.SqlWrapper.Nuget;
 using NetMicroservices.SqlWrapper.Nuget.Repositories;
-using ProjectDetail.Application.Contracts.Persistence;
-using Domain;
-using Contexts;
+using ProjectDetail.Application.ProjectName.Interfaces.Persistence.Repositories;
 using Repositories;
 
 /// <summary>
@@ -25,6 +25,7 @@ public static class PersistenceServicesRegistrator
     /// Definition of service sets that are being used by Persistence project.
     /// </summary>
     /// <param name="services">Service collection fo Dependency Injection Container.</param>
+    /// <param name="configuration">Access to configuration properties.</param>
     /// <returns>Dependency Injection services collection.</returns>
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {

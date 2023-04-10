@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 // -----------------------------------------------------------------------------------
-namespace ProjectDetail.Domain;
+namespace ProjectDetail.Domain.Entities;
 
 using NetMicroservices.SqlWrapper.Nuget;
 

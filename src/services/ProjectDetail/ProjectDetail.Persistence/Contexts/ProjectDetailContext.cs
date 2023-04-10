@@ -6,10 +6,10 @@
 // -----------------------------------------------------------------------------------
 namespace ProjectDetail.Persistence.Contexts;
 
+using Domain.Entities;
+using EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 using NetMicroservices.SqlWrapper.Nuget;
-using Domain;
-using EntityConfigurations;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

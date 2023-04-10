@@ -4,10 +4,10 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace ProjectDetail.Application.Contracts.Persistence;
+namespace ProjectDetail.Application.ProjectName.Interfaces.Persistence.Repositories;
 
+using Domain.Entities;
 using NetMicroservices.SqlWrapper.Nuget;
-using Domain;
 
 /// <summary>
 /// Data repository contract of <seealso cref="ProjectDetailEntity"/> entity.
