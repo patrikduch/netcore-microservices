@@ -41,7 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MigrateDatabase<ProductContext>((context, services) =>
+app.MigrateDatabase<ProductContext>((_, _) =>
 {
 });
 
