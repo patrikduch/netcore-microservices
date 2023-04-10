@@ -24,5 +24,11 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Release
 
+            - name: IDENTITY_SERVER_URL
+              valueFrom: 
+                secretKeyRef:
+                  name: identity-auth-secret
+                  key: IDENTITY_SERVER_URL
+                  
       imagePullSecrets:
         - name: acr-secret
