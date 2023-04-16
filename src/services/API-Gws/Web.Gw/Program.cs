@@ -46,7 +46,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy(CorsConstants.CORSPOLICYRELEASE, corsPolicyBuilder =>
         corsPolicyBuilder
         .WithOrigins(
-            DomainConstants.ProductionHost
+            DomainConstants.ProductionHttpsHost,
+            DomainConstants.ProductionHttpHost
         )
         .AllowAnyMethod()
         .AllowAnyHeader()
