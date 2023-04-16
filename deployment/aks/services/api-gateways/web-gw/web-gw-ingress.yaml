@@ -13,8 +13,8 @@ metadata:
 spec:
   tls:
     - hosts: 
-        - api.shopwinner.org
-        - shopwinner.org # Add the root domain here
+        - api.shopwinner.org # api domain that is poiting to API GW
+        - shopwinner.org # Root domain
       secretName: shopwinner-api-cert
   rules:
   - host: "api.shopwinner.org"
