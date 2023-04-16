@@ -11,5 +11,5 @@ namespace Web.Gw.Constants;
 /// </summary>
 public static class DomainConstants
 {
-    public const string PRODUCTION_HOST = "http://shopwinner.org";
+    public const string ProductionHost = "https://shopwinner.org";
 }
