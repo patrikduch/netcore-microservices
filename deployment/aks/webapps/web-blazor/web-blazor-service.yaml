@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: web-blazor-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: web-blazor
   ports:
