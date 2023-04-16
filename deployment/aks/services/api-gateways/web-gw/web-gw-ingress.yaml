@@ -14,6 +14,7 @@ spec:
   tls:
     - hosts: 
         - api.shopwinner.org
+        - shopwinner.org # Add the root domain here
       secretName: shopwinner-api-cert
   rules:
   - host: "api.shopwinner.org"
@@ -26,3 +27,14 @@ spec:
             name: web-gw-service
             port:
               number: 80
+
+  - host: "shopwinner.org"
+    http:
+      paths:
+        - path: /(.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: web-blazor-service
+              port:
+                number: 80
