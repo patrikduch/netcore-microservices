@@ -74,6 +74,11 @@ kubectl apply -f.\deployment\aks\helm\extensions\ingress\install.bat
 
 ##### Microservices deployment
 
+#### Ingress
+```bash
+kubectl apply -f .\deployment\aks\services\ingress\
+```
+
 #### Web Blazor
 ```bash
 kubectl apply -f .\deployment\aks\webapps\web-blazor\
