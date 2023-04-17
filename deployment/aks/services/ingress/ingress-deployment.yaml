@@ -14,6 +14,7 @@ spec:
   tls:
     - hosts: 
         - api.shopwinner.org # api domain that is poiting to API GW
+        - identity.shopwinner.org # Identity Server domain
         - shopwinner.org # Root domain
       secretName: shopwinner-api-cert
   rules:
@@ -36,5 +37,16 @@ spec:
           backend:
             service:
               name: web-blazor-service
+              port:
+                number: 80
+
+  - host: "identity.shopwinner.org"
+    http:
+      paths:
+        - path: /(.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: identity-auth-api-service
               port:
                 number: 80
