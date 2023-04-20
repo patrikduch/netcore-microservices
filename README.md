@@ -48,6 +48,15 @@ kubectl apply -f.\deployment\aks\letsencrypt\
 
 ##### Helm extensions
 
+Prerequsities for Windows
+- chocolatey
+
+<sub><b>Installation</b></sub>
+
+```bash
+choco install kubernetes-helm
+```
+
 ###### RabbitMQ
 <sub><b>Installation</b></sub>
 ```bash
@@ -104,6 +113,10 @@ Required secret
 
 ```bash
 kubectl create secret generic product-db-secret --from-literal PGUSERNAME=SolutionArchitect --from-literal PGDBNAME=productdb --from-literal PGPASSWORD=patrikduch
+```
+
+```bash
+kubectl create secret generic product-kafka-secret --from-literal KAFKASERVERS=10.0.63.138
 ```
 
 
