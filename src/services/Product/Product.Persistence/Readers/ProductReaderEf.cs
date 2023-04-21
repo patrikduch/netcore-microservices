@@ -6,7 +6,6 @@
 //---------------------------------------------------------------------------
 namespace Product.Persistence.Readers;
 
-using Application.Products.Interfaces;
 using Application.Products.Dtos;
 using AutoMapper;
 using Contexts;
