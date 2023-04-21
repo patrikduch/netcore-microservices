@@ -6,9 +6,9 @@
 //---------------------------------------------------------------------------
 namespace Product.Persistence.EntityConfigurations;
 
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Product.Domain.Entities;
 
 /// <summary>
 /// Entity configuration for <seealso cref="ProductTypeEntity"/>.
