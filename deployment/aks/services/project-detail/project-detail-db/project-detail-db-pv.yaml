@@ -18,4 +18,5 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
+      memory: 1Gi 
       storage: 1Gi

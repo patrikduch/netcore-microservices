@@ -18,6 +18,11 @@ spec:
         - name: productapi
           image:  netcoremicroservicesacr.azurecr.io/productapi:v1
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: 1Gi  # Add or update the memory request value
+            limits:
+              memory: 1Gi  # Add or update the memory limit value
           ports:
             - containerPort: 80
           env:
