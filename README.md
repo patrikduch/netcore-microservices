@@ -116,7 +116,7 @@ kubectl create secret generic product-db-secret --from-literal PGUSERNAME=Soluti
 ```
 
 ```bash
-kubectl create secret generic product-kafka-secret --from-literal KAFKASERVERS=10.0.63.138
+kubectl create secret generic product-kafka-secret --from-literal KAFKASERVERS=KAFKAURL
 ```
 
 
