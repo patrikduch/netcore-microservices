@@ -3,7 +3,6 @@
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 
-
 /// <summary>
 /// IdentityServer configurations
 /// </summary>

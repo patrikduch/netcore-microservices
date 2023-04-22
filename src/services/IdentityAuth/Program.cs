@@ -9,7 +9,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(Config.ApiResources)
     .AddInMemoryApiScopes(Config.ApiScopes)
     .AddTestUsers(Config.TestsUsers)
-    .AddDeveloperSigningCredential();
+    .AddDeveloperSigningCredential(); // Certificate our application
 
 var app = builder.Build();
 
