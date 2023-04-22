@@ -20,9 +20,9 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              memory: 1Gi  # Add or update the memory request value
+              memory: 1Gi  
             limits:
-              memory: 1Gi  # Add or update the memory limit value
+              memory: 1Gi  
           ports:
             - containerPort: 80
           env:
