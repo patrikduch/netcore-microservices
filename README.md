@@ -133,6 +133,9 @@ kubectl create secret generic user-db-secret --from-literal PGUSERNAME=SolutionA
 kubectl apply -f .\deployment\aks\services\user\user-db\
 ```
 
+```bash
+kubectl apply -f .\deployment\aks\services\user\user-api\
+```
 
 ##### Identity-Auth microservice (IdentityServer)
 kubectl apply -f .\deployment\aks\services\identity-auth\
