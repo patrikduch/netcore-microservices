@@ -40,7 +40,7 @@ public static class Config
 
 
 
-    public static List<TestUser> TesteUsers =>
+    public static List<TestUser> TestsUsers =>
         new List<TestUser>
         {
 
