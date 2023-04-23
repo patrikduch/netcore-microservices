@@ -83,6 +83,19 @@
       ],
       "UpstreamPathTemplate": "/product-suggestions/{searchText}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    // Identity - Get Claims
+    {
+      "DownstreamPathTemplate": "/api/v1/identity",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-api-service",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/product/identity",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ]
 }
