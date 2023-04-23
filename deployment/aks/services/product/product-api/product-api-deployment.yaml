@@ -41,16 +41,3 @@ spec:
 
       imagePullSecrets:
         - name: acr-secret
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: product-api-service
-spec:
-  type: ClusterIP
-  selector:
-    app: product-api
-  ports:
-    - protocol: TCP
-      port: 80
