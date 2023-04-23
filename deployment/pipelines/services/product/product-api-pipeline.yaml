@@ -9,7 +9,7 @@ trigger:
     paths:
       include:
       - src/services/Product/*
-      - deployment/aks/services/product/product-api/
+      - deployment/aks/services/product/product-api/product-api-deployment.yaml
 
 resources:
 - repo: self
@@ -153,7 +153,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/services/product/product-api/product-api.yaml
+                $(Pipeline.Workspace)/aks/services/product/product-api/product-api-deployment.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
