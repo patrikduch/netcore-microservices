@@ -10,7 +10,7 @@ trigger:
     paths:
       include:
       - src/services/ProjectDetail/*
-      - deployment/aks/services/project-detail/project-detail-api/
+      - deployment/aks/services/project-detail/project-detail-api/project-detail-api-deployment.yaml
 
 resources:
 - repo: self
@@ -102,7 +102,7 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/aks/services/project-detail/project-detail-api/project-detail-api.yaml
+                $(Pipeline.Workspace)/aks/services/project-detail/project-detail-api/project-detail-api-deployment.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
