@@ -17,11 +17,6 @@ spec:
       containers:
         - name: projectdetailapi
           image:  netcoremicroservicesacr.azurecr.io/projectdetailapi:v1
-          resources:
-            requests:
-              memory: 1Gi  # Add or update the memory request value
-            limits:
-              memory: 1Gi  # Add or update the memory limit value
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
