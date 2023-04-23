@@ -5,12 +5,7 @@ metadata:
   labels:
     app: product-api
 spec:
-  replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
+  replicas: 1
   selector:
     matchLabels:
       app: product-api
@@ -23,11 +18,6 @@ spec:
         - name: productapi
           image:  netcoremicroservicesacr.azurecr.io/productapi:v1
           imagePullPolicy: IfNotPresent
-          resources:
-            requests:
-              memory: 5Gi  
-            limits:
-              memory: 5Gi  
           ports:
             - containerPort: 80
           env:
