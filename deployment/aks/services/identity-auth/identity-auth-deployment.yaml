@@ -24,6 +24,12 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Release
 
+            - name: IDENTITY_WEB_MVC_URL
+              valueFrom: 
+                secretKeyRef:
+                  name: identity-auth-clients-secret
+                  key: webmvc
+
             - name: IDENTITY_SERVER_URL
               valueFrom: 
                 secretKeyRef:

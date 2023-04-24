@@ -1,5 +1,6 @@
 ﻿namespace IdentityAuth;
 
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 
@@ -34,6 +35,34 @@ public static class Config
                 },
 
                 AllowedScopes = {"productAPI"}
+            },
+
+            new Client
+            {
+                ClientId = "mvc_client",
+                ClientName = "MVC Web App",
+                AllowedGrantTypes = GrantTypes.Code,
+                AllowRememberConsent = false,
+                RedirectUris = new List<string>
+                {
+                    Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signin-oidc"
+
+                },
+                PostLogoutRedirectUris = new List<string>
+                {
+                    Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signout-callback-oidc"
+                },
+
+                ClientSecrets = new List<Secret>
+                {
+                    new Secret("secret".Sha256())
+                },
+
+                AllowedScopes = new List<string>
+                {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile
+                }
             }
         };
 
