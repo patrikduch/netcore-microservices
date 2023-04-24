@@ -77,7 +77,7 @@ public static class Config
             new TestUser
             {
                 SubjectId = Guid.NewGuid().ToString(),
-                Username = "testuser",
+                Username = "duch",
                 Password = "duch",
                 Claims = new List<Claim>
                 {
