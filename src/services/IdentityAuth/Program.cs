@@ -5,6 +5,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Automatically configure all MVC oontrollers
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
+    options.Secure = CookieSecurePolicy.Always;
+});
+
 // Add required services for IdentityServer
 builder.Services.AddIdentityServer()
     .AddInMemoryClients(Config.Clients)
@@ -15,6 +22,8 @@ builder.Services.AddIdentityServer()
     .AddDeveloperSigningCredential(); // Certificate our application
 
 var app = builder.Build();
+
+app.UseCookiePolicy();
 
 app.UseStaticFiles(); // Enable the static files from wwwroot directory
 app.UseRouting();
