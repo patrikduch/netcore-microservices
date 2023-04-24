@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Authors>Patrik Duch</Authors>
-    <PackageId>NetMicroservices.ServiceConfig</PackageId>
-    <Version>1.1.2</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Authors>Patrik Duch</Authors>
+		<PackageId>NetMicroservices.ServiceConfig</PackageId>
+		<Description>Common classes for implementing .NET microservices.</Description>
+		<Version>1.1.3</Version>
+	</PropertyGroup>
 </Project>
