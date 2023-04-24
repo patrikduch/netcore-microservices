@@ -1,4 +1,7 @@
-﻿namespace IdentityAuth;
+﻿using System.Security.Claims;
+using IdentityModel;
+
+namespace IdentityAuth;
 
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -71,7 +74,18 @@ public static class Config
     public static List<TestUser> TestsUsers =>
         new List<TestUser>
         {
+            new TestUser
+            {
+                SubjectId = Guid.NewGuid().ToString(),
+                Username = "testuser",
+                Password = "duch",
+                Claims = new List<Claim>
+                {
+                    new Claim(JwtClaimTypes.GivenName, "Patrik"),
+                    new Claim(JwtClaimTypes.FamilyName, "Duch")
+                }
 
+            }
         };
 
     public static IEnumerable<IdentityResource> IdentityResources =>
