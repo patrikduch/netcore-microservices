@@ -20,6 +20,8 @@ app.UseStaticFiles(); // Enable the static files from wwwroot directory
 app.UseRouting();
 app.UseIdentityServer(); // Add IdentityServer middleware
 
+app.UseAuthorization();
+
 
 app.UseEndpoints(endpoints =>
 {
