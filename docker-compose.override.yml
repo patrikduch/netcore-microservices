@@ -283,3 +283,10 @@ services:
     ports:
       - "9000:80"
 
+
+  web.mvc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8081:80"
+
