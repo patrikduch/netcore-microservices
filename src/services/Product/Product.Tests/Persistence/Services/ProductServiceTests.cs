@@ -6,12 +6,11 @@
 //-----------------------------------------------------------------------------------
 namespace Product.Tests.Persistence.Services;
 
-using Application.Products.Interfaces;
 using Application.Products.Dtos;
+using Application.Products.Interfaces.Readers;
 using FluentAssertions;
-using Product.Persistence.Services;
 using Moq;
-using Product.Application.Products.Interfaces.Readers;
+using Product.Persistence.Services;
 
 /// <summary>
 /// Unit tests for <seealso cref="ProductService"/>.

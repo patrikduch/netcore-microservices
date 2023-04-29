@@ -24,7 +24,6 @@ public class CategoryServiceTests
     [Fact]
     public async Task FetchCategories_CannotBeFetched_ReturnsNull()
     {
-
         var categoryService = new CategoryService(_categoryReader.Object);
         var actual = await categoryService.GetCategoryList();
         actual.Should().HaveCount(0);
