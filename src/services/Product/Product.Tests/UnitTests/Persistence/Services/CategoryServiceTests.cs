@@ -4,7 +4,8 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //---------------------------------------------------------------------------
-namespace Product.Tests.Persistence.Services;
+
+namespace Product.Tests.UnitTests.Persistence.Services;
 
 using Application.Categories.Dtos;
 using Application.Categories.Interfaces;

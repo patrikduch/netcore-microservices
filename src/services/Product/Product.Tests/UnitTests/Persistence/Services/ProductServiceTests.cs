@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Patrik Duch</author>
 //-----------------------------------------------------------------------------------
-namespace Product.Tests.Persistence.Services;
+namespace Product.Tests.UnitTests.Persistence.Services;
 
 using Application.Products.Dtos;
 using Application.Products.Interfaces.Readers;
@@ -108,7 +108,7 @@ public class ProductServiceTests
         // Arrange
 
         var categoryUrl = "phones";
-        
+
         _productReader.Setup(p => p.GetProducts(categoryUrl)).ReturnsAsync(new List<ProductDto>
         {
             new(Guid.NewGuid(), "Iphone X", "Iphone phone", "iphone.png", Guid.NewGuid(), new List<ProductVariantDto>()),
