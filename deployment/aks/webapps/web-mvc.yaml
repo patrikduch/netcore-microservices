@@ -26,9 +26,6 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: Release
 
-            - name: ASPNETCORE_URLS
-              value: "https://+:443"
-
       imagePullSecrets:
         - name: acr-secret
 ---
