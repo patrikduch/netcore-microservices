@@ -26,7 +26,7 @@ builder.Services.AddHttpsRedirection(options =>
 // Add required services for IdentityServer
 builder.Services.AddIdentityServer(options =>
     {
-        options.IssuerUri = "http://identity.shopwinner.org";
+        options.IssuerUri = "https://identity.shopwinner.org";
     })
     .AddInMemoryClients(Config.Clients)
     .AddInMemoryIdentityResources(Config.IdentityResources)
@@ -39,6 +39,7 @@ builder.Services.AddIdentityServer(options =>
 
 
 var app = builder.Build();
+app.UseHttpsRedirection();
 
 //app.Use(async (ctx, next) =>
 //{
