@@ -1,4 +1,7 @@
 using IdentityAuth;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +39,17 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapDefaultControllerRoute();
 });
+
+
+// Create a logger instance
+using var scope = app.Services.CreateScope();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+var envVars = Environment.GetEnvironmentVariables();
+foreach (DictionaryEntry envVar in envVars)
+{
+    logger.LogInformation($"{0}={1}", envVar.Key, envVar.Value);
+}
 
 
 app.Run();
