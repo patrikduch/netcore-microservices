@@ -47,12 +47,12 @@ var app = builder.Build();
 //});
 
 
-app.Use(async (context, next) =>
-{
-    context.Request.Scheme = "https";
-    context.SetIdentityServerOrigin("https://identity.shopwinner.org");
-    await next.Invoke();
-});
+//app.Use(async (context, next) =>
+//{
+  //  context.Request.Scheme = "https";
+  //  context.SetIdentityServerOrigin("https://identity.shopwinner.org");
+  //  await next.Invoke();
+//});
 
 app.UseCookiePolicy();
 
