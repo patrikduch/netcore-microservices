@@ -46,13 +46,20 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 
 var app = builder.Build();
 
+// Add the following lines
+if (app.Environment.IsProduction())
+{
+    app.UseForwardedHeaders();
+}
+
+
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
 
-app.UseForwardedHeaders();
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
