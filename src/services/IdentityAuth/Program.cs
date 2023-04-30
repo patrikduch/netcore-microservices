@@ -36,9 +36,16 @@ var app = builder.Build();
 
 //app.Use(async (ctx, next) =>
 //{
-  //  ctx.SetIdentityServerOrigin("https://identity.shopwinner.org");
-  //  await next();
+//  ctx.SetIdentityServerOrigin("https://identity.shopwinner.org");
+//  await next();
 //});
+
+
+app.Use(async (context, next) =>
+{
+    context.Request.Scheme = "https";
+    await next.Invoke();
+});
 
 app.UseCookiePolicy();
 
