@@ -11,7 +11,6 @@ builder.Services.AddControllersWithViews();
 builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
-
 // Configure Forwarded Headers middleware
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -40,8 +39,6 @@ builder.Services.AddAuthentication(options =>
 
         options.SaveTokens = true;
         options.GetClaimsFromUserInfoEndpoint = true;
-
-        options.CallbackPath = "/signin-oidc";
     });
 
 
