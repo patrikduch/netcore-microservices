@@ -11,11 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.Configure<CookiePolicyOptions>(options =>
-{
-    options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
-    options.Secure = CookieSecurePolicy.Always;
-});
+//builder.Services.Configure<CookiePolicyOptions>(options =>
+//{
+  //  options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
+  //  options.Secure = CookieSecurePolicy.Always;
+//});
 
 builder.Services.AddHttpsRedirection(options =>
 {
