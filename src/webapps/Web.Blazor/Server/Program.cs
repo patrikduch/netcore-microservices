@@ -10,6 +10,8 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 
 var app = builder.Build();
 
+app.UseHttpsRedirection();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
