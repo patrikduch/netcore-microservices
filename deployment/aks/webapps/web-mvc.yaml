@@ -24,7 +24,7 @@ spec:
 
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: Release
+              value: Production
 
       imagePullSecrets:
         - name: acr-secret
