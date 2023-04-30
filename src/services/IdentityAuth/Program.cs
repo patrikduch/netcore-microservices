@@ -1,4 +1,8 @@
 using IdentityAuth;
+using IdentityModel.Client;
+using IdentityServer4.Configuration;
+using IdentityServer4.Extensions;
+using Microsoft.Extensions.Options;
 using System.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,17 +21,24 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 builder.Services.AddIdentityServer(options =>
     {
         options.IssuerUri = "https://identity.shopwinner.org";
-
     })
     .AddInMemoryClients(Config.Clients)
     .AddInMemoryIdentityResources(Config.IdentityResources)
     .AddInMemoryApiResources(Config.ApiResources)
     .AddInMemoryApiScopes(Config.ApiScopes)
     .AddTestUsers(Config.TestsUsers)
+    .AddDefaultEndpoints()
     .AddDeveloperSigningCredential(); // Certificate our application
+
+
 
 var app = builder.Build();
 
+app.Use(async (ctx, next) =>
+{
+    ctx.SetIdentityServerOrigin("https://identity.shopwinner.org");
+    await next();
+});
 
 app.UseCookiePolicy();
 
