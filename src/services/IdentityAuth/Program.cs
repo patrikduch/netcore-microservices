@@ -17,6 +17,12 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.Secure = CookieSecurePolicy.Always;
 });
 
+builder.Services.AddHttpsRedirection(options =>
+{
+    options.HttpsPort = 443;
+    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+});
+
 // Add required services for IdentityServer
 builder.Services.AddIdentityServer(options =>
     {
@@ -44,6 +50,7 @@ var app = builder.Build();
 app.Use(async (context, next) =>
 {
     context.Request.Scheme = "https";
+    context.SetIdentityServerOrigin("https://identity.shopwinner.org");
     await next.Invoke();
 });
 
