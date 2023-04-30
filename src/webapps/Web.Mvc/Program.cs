@@ -46,6 +46,15 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 
 var app = builder.Build();
 
+if (app.Environment.IsProduction())
+{
+    app.Use((context, next) =>
+    {
+        context.Request.Scheme = "https";
+        return next();
+    });
+}
+
 // Add the following lines
 if (app.Environment.IsProduction())
 {
@@ -86,14 +95,6 @@ foreach (DictionaryEntry envVar in envVars)
 }
 
 
-if (app.Environment.IsProduction())
-{
-    app.Use((context, next) =>
-    {
-        context.Request.Scheme = "https";
-        return next();
-    });
-}
 
 
 app.Run();
