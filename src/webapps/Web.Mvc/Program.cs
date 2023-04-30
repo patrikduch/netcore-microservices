@@ -35,15 +35,6 @@ builder.Services.AddAuthentication(options =>
     });
 
 
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-    // Add the following line
-    options.KnownNetworks.Clear();
-    options.KnownProxies.Clear();
-});
-
-
 var app = builder.Build();
 
 // Create a logger instance
@@ -59,7 +50,10 @@ if (app.Environment.IsProduction())
         return next();
     });
 
-    app.UseForwardedHeaders();
+    app.UseForwardedHeaders(new ForwardedHeadersOptions
+    {
+        ForwardedHeaders = ForwardedHeaders.XForwardedProto
+    });
 }
 
 
