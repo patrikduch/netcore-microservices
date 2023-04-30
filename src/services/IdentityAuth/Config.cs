@@ -49,7 +49,8 @@ public static class Config
                 RedirectUris = new List<string>
                 {
                     //Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signin-oidc"
-                    Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"",
+                   "https://webmvc.shopwinner.org",
+                   "http://webmvc.shopwinner.org"
 
                 },
                 PostLogoutRedirectUris = new List<string>
