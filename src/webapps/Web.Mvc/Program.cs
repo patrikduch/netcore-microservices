@@ -38,6 +38,9 @@ builder.Services.AddAuthentication(options =>
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    // Add the following line
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
 });
 
 
