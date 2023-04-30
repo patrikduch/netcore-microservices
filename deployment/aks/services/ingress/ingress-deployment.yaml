@@ -15,6 +15,7 @@ spec:
     - hosts: 
         - api.shopwinner.org # api domain that is poiting to API GW
         - identity.shopwinner.org # Identity Server domain
+        - webmvc.shopwinner.org # WebMvc Server domain
         - shopwinner.org # Root domain
       secretName: shopwinner-api-cert
   rules:
@@ -48,5 +49,15 @@ spec:
           backend:
             service:
               name: identity-auth-api-service
+              port:
+                number: 80
+  - host: "webmvc.shopwinner.org"
+    http:
+      paths:
+        - path: /(.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: web-mvc-service
               port:
                 number: 80
