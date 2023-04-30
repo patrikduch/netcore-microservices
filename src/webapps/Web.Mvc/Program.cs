@@ -11,6 +11,13 @@ builder.Services.AddControllersWithViews();
 builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
+
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders =
+        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+});
+
 // OpenId configuration
 
 builder.Services.AddAuthentication(options =>
@@ -50,10 +57,7 @@ if (app.Environment.IsProduction())
         return next();
     });
 
-    app.UseForwardedHeaders(new ForwardedHeadersOptions
-    {
-        ForwardedHeaders = ForwardedHeaders.XForwardedProto
-    });
+    app.UseForwardedHeaders();
 }
 
 
