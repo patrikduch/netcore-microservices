@@ -44,8 +44,6 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-
 // Create a logger instance
 using var scope = app.Services.CreateScope();
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
