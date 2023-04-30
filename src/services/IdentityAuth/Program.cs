@@ -1,7 +1,4 @@
 using IdentityAuth;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,12 +11,6 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
     options.Secure = CookieSecurePolicy.Always;
-});
-
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.ForwardedHeaders =
-        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 });
 
 // Add required services for IdentityServer
@@ -38,7 +29,6 @@ app.UseCookiePolicy();
 
 app.UseStaticFiles(); // Enable the static files from wwwroot directory
 
-app.UseForwardedHeaders();
 app.UseRouting();
 app.UseIdentityServer(); // Add IdentityServer middleware
 

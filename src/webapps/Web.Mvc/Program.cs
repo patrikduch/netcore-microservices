@@ -12,12 +12,13 @@ builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
 
+// Configure Forwarded Headers middleware
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
-    options.ForwardedHeaders =
-        ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
 });
-
 // OpenId configuration
 
 builder.Services.AddAuthentication(options =>
@@ -50,12 +51,12 @@ var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
 if (app.Environment.IsProduction())
 {
-    logger.LogInformation("Schema changed to HTTPS");
-    app.Use((context, next) =>
-    {
-        context.Request.Scheme = "https";
-        return next();
-    });
+    logger.LogInformation("Https configuration was triggered.");
+    //app.Use((context, next) =>
+    //{
+    //  context.Request.Scheme = "https";
+    //  return next();
+    //});
 
     app.UseForwardedHeaders();
 }
