@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(options =>
     }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
-        options.Authority = "https://identity.shopwinner.org"; // identity server address
+        options.Authority = "http://identity.shopwinner.org"; // identity server address
         options.ClientId = "mvc_client";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
