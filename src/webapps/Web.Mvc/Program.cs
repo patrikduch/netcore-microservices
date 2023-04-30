@@ -46,21 +46,21 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 
 var app = builder.Build();
 
+// Create a logger instance
+using var scope = app.Services.CreateScope();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
 if (app.Environment.IsProduction())
 {
+    logger.LogInformation("Schema changed to HTTPS");
     app.Use((context, next) =>
     {
         context.Request.Scheme = "https";
         return next();
     });
-}
 
-// Add the following lines
-if (app.Environment.IsProduction())
-{
     app.UseForwardedHeaders();
 }
-
 
 
 // Configure the HTTP request pipeline.
@@ -83,18 +83,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
-
-// Create a logger instance
-using var scope = app.Services.CreateScope();
-var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-
 var envVars = Environment.GetEnvironmentVariables();
 foreach (DictionaryEntry envVar in envVars)
 {
     logger.LogInformation("{envKey}={envValue}", envVar.Key, envVar.Value);
 }
-
-
 
 
 app.Run();
