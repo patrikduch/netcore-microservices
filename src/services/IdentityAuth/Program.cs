@@ -14,7 +14,11 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 });
 
 // Add required services for IdentityServer
-builder.Services.AddIdentityServer()
+builder.Services.AddIdentityServer(options =>
+    {
+        options.IssuerUri = "https://identity.shopwinner.org";
+
+    })
     .AddInMemoryClients(Config.Clients)
     .AddInMemoryIdentityResources(Config.IdentityResources)
     .AddInMemoryApiResources(Config.ApiResources)
