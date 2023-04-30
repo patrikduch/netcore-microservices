@@ -17,11 +17,11 @@ builder.Services.AddControllersWithViews();
   //  options.Secure = CookieSecurePolicy.Always;
 //});
 
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = 443;
-    options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
-});
+//builder.Services.AddHttpsRedirection(options =>
+//{
+  //  options.HttpsPort = 443;
+  //  options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+//});
 
 // Add required services for IdentityServer
 builder.Services.AddIdentityServer(options =>
