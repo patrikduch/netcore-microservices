@@ -48,7 +48,8 @@ public static class Config
                 AllowRememberConsent = false,
                 RedirectUris = new List<string>
                 {
-                    Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signin-oidc"
+                    //Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signin-oidc"
+                    Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"",
 
                 },
                 PostLogoutRedirectUris = new List<string>
