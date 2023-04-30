@@ -20,7 +20,7 @@ builder.Services.AddAuthentication(options =>
         options.ClientSecret = "secret";
         options.ResponseType = "code";
 
-        //options.RequireHttpsMetadata = false;
+        options.RequireHttpsMetadata = false;
 
         options.Scope.Add("openid");
         options.Scope.Add("profile");
