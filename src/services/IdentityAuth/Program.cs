@@ -48,7 +48,7 @@ var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 var envVars = Environment.GetEnvironmentVariables();
 foreach (DictionaryEntry envVar in envVars)
 {
-    logger.LogInformation($"{0}={1}", envVar.Key, envVar.Value);
+    logger.LogInformation("{envKey}={envValue}", envVar.Key, envVar.Value);
 }
 
 
