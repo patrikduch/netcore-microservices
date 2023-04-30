@@ -52,6 +52,10 @@ public static class Config
                    "https://webmvc.shopwinner.org/signin-oidc",
 
                 },
+
+                ProtocolType = "https",
+
+
                 PostLogoutRedirectUris = new List<string>
                 {
                     Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signout-callback-oidc"
