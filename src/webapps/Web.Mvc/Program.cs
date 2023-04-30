@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
+using System.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,5 +59,18 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+
+// Create a logger instance
+using var scope = app.Services.CreateScope();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+var envVars = Environment.GetEnvironmentVariables();
+foreach (DictionaryEntry envVar in envVars)
+{
+    logger.LogInformation("{envKey}={envValue}", envVar.Key, envVar.Value);
+}
+
 
 app.Run();
