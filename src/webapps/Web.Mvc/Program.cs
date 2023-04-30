@@ -58,6 +58,8 @@ if (app.Environment.IsProduction())
     //});
 
     app.UseForwardedHeaders();
+
+    app.UseDeveloperExceptionPage();
 }
 
 
