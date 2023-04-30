@@ -34,11 +34,11 @@ builder.Services.AddIdentityServer(options =>
 
 var app = builder.Build();
 
-app.Use(async (ctx, next) =>
-{
-    ctx.SetIdentityServerOrigin("https://identity.shopwinner.org");
-    await next();
-});
+//app.Use(async (ctx, next) =>
+//{
+  //  ctx.SetIdentityServerOrigin("https://identity.shopwinner.org");
+  //  await next();
+//});
 
 app.UseCookiePolicy();
 
