@@ -46,20 +46,11 @@ public static class Config
                 ClientName = "MVC Web App",
                 AllowedGrantTypes = GrantTypes.Code,
                 AllowRememberConsent = false,
-                RedirectUris = new List<string>
-                {
-                    //Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signin-oidc"
-                   "https://webmvc.shopwinner.org/signin-oidc",
 
-                },
+                RedirectUris = { "https://webmvc.shopwinner.org/signin-oidc" },
+                PostLogoutRedirectUris = { "https://webmvc.shopwinner.org/signout-callback-oidc" },
 
-                ProtocolType = "https",
-
-
-                PostLogoutRedirectUris = new List<string>
-                {
-                    Environment.GetEnvironmentVariable("IDENTITY_WEB_MVC_URL")+"/signout-callback-oidc"
-                },
+                //ProtocolType = "https",
 
                 ClientSecrets = new List<Secret>
                 {
