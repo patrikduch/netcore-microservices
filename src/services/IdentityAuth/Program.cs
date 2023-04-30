@@ -39,7 +39,6 @@ builder.Services.AddIdentityServer(options =>
 
 
 var app = builder.Build();
-app.UseHttpsRedirection();
 
 //app.Use(async (ctx, next) =>
 //{
