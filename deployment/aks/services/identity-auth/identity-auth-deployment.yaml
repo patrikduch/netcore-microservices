@@ -22,7 +22,7 @@ spec:
             - containerPort: 80
           env:
             - name: ASPNETCORE_ENVIRONMENT
-              value: Release
+              value: Production
 
             - name: IDENTITY_WEB_MVC_URL
               valueFrom: 
