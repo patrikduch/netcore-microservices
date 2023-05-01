@@ -1,10 +1,19 @@
 using IdentityAuth;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Automatically configure all MVC oontrollers
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    // Everything what was configured implicitly, we need to reset.
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
@@ -22,6 +31,8 @@ builder.Services.AddIdentityServer()
     .AddDeveloperSigningCredential(); // Certificate our application
 
 var app = builder.Build();
+
+app.UseForwardedHeaders();
 
 app.UseCookiePolicy();
 
