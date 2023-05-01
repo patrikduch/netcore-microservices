@@ -7,7 +7,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7062;http://localhost:5073"
+      "applicationUrl": "http://localhost:5297"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -20,16 +20,15 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "publishAllPorts": true,
-      "useSSL": true
+      "publishAllPorts": true
     }
   },
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:11828",
-      "sslPort": 44331
+      "applicationUrl": "http://localhost:8651",
+      "sslPort": 0
     }
   }
 }

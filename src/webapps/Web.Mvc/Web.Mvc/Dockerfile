@@ -3,14 +3,13 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["src/webapps/Web.Mvc/Web.Mvc.csproj", "src/webapps/Web.Mvc/"]
-RUN dotnet restore "src/webapps/Web.Mvc/Web.Mvc.csproj"
+COPY ["src/webapps/Web.Mvc/Web.Mvc/Web.Mvc.csproj", "src/webapps/Web.Mvc/Web.Mvc/"]
+RUN dotnet restore "src/webapps/Web.Mvc/Web.Mvc/Web.Mvc.csproj"
 COPY . .
-WORKDIR "/src/src/webapps/Web.Mvc"
+WORKDIR "/src/src/webapps/Web.Mvc/Web.Mvc"
 RUN dotnet build "Web.Mvc.csproj" -c Release -o /app/build
 
 FROM build AS publish
