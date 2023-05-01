@@ -23,6 +23,10 @@ public class OidcController : Controller
         var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         if (!authenticateResult.Succeeded)
         {
+            // Log the failure details
+            var logger = HttpContext.RequestServices.GetRequiredService<ILoggerFactory>().CreateLogger("OpenIdConnect");
+            logger.LogError($"Authentication failed: {authenticateResult.Failure.Message}");
+
             return RedirectToAction("Index", "Home");
         }
 
