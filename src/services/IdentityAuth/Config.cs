@@ -21,6 +21,12 @@ public static class Config
     public static IEnumerable<ApiResource> ApiResources =>
         new List<ApiResource>
         {
+            new ApiResource
+            {
+                Name = "productAPI",
+                DisplayName = "Product API",
+                Scopes = { "productAPI" }
+            }
 
         };
 
