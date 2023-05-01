@@ -33,7 +33,6 @@ builder.Services.AddIdentityServer(options =>
     .AddInMemoryApiResources(Config.ApiResources)
     .AddInMemoryApiScopes(Config.ApiScopes)
     .AddTestUsers(Config.TestsUsers)
-    .AddDefaultEndpoints()
     .AddDeveloperSigningCredential(); // Certificate our application
 
 
