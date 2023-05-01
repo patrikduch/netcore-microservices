@@ -5,7 +5,7 @@ using Web.Mvc.Models;
 
 namespace Web.Mvc.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
