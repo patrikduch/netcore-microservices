@@ -47,8 +47,8 @@ public static class Config
                 AllowedGrantTypes = GrantTypes.Code,
                 AllowRememberConsent = false,
 
-                RedirectUris = { "https://webmvc.shopwinner.org/signin-oidc" },
-                PostLogoutRedirectUris = { "https://webmvc.shopwinner.org/signout-callback-oidc" },
+                RedirectUris = { "https://webmvc.shopwinner.org/signin-oidc", "https://localhost:1000/signin-oidc" },
+                PostLogoutRedirectUris = { "https://webmvc.shopwinner.org/signout-callback-oidc", "https://localhost:1000/signout-callback-oidc" },
 
                 //ProtocolType = "https",
 
