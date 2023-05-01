@@ -55,6 +55,9 @@ builder.Services.AddAuthentication(options =>
                 return Task.CompletedTask;
             }
         };
+
+        // Update the callback path to match the path in your OIDCController
+        options.CallbackPath = "/your-callback-path";
     });
 
 var app = builder.Build();
