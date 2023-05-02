@@ -1,9 +1,6 @@
-﻿//---------------------------------------------------------------------------
-// <copyright file="CorsConstants.cs" website="Patrikduch.com">
-//     Copyright (c) Patrik Duch, IČ: 09225471
+﻿// <copyright file="CorsConstants.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
-// <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
 namespace Web.Gw.Constants;
 
 /// <summary>
@@ -11,6 +8,6 @@ namespace Web.Gw.Constants;
 /// </summary>
 public class CorsConstants
 {
-    public const string CORSPOLICYDEV = "CorsPolicyDev";
-    public const string CORSPOLICYRELEASE = "CorsPolicyRelease";
+    public const string Corspolicydev = "CorsPolicyDev";
+    public const string Corspolicyrelease = "CorsPolicyRelease";
 }

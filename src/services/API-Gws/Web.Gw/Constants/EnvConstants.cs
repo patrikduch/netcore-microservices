@@ -1,9 +1,6 @@
-﻿//---------------------------------------------------------------------------
-// <copyright file="EnvConstants.cs" website="Patrikduch.com">
-//     Copyright (c) Patrik Duch, IČ: 09225471
+﻿// <copyright file="EnvConstants.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
-// <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
 namespace Web.Gw.Constants;
 
 /// <summary>
@@ -11,6 +8,6 @@ namespace Web.Gw.Constants;
 /// </summary>
 public static class EnvConstants
 {
-    public const string ASPNETCORE_ENVIRONMENT = "ASPNETCORE_ENVIRONMENT";
-    public const string DEV_ENVIRONMENT = "Development";
+    public const string AspnetcoreEnvironment = "ASPNETCORE_ENVIRONMENT";
+    public const string DevEnvironment = "Development";
 }

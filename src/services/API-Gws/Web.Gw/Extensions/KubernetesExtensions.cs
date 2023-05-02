@@ -1,9 +1,6 @@
-﻿//---------------------------------------------------------------------------
-// <copyright file="OcelotBuilderExtensions.cs" website="Patrikduch.com">
-//     Copyright (c) Patrik Duch, IČ: 09225471
+﻿// <copyright file="KubernetesExtensions.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
-// <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
 namespace Web.Gw.Extensions;
 
 using KubeClient;

@@ -1,9 +1,6 @@
-﻿//---------------------------------------------------------------------------
-// <copyright file="DomainConstants.cs" website="Patrikduch.com">
-//     Copyright (c) Patrik Duch, IČ: 09225471
+﻿// <copyright file="DomainConstants.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
-// <author>Patrik Duch</author>
-//---------------------------------------------------------------------------
 namespace Web.Gw.Constants;
 
 /// <summary>

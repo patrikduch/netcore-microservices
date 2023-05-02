@@ -1,11 +1,16 @@
+// <copyright file="Program.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IÈ: 09225471
+// </copyright>
+#pragma warning disable SA1200 // Using directives should be placed correctly
+using System.Text;
 using Newtonsoft.Json;
 using Ocelot.Configuration.File;
 using Ocelot.Configuration.Repository;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using System.Text;
 using Web.Gw.Constants;
 using Web.Gw.Extensions;
+#pragma warning restore SA1200 // Using directives should be placed correctly
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +21,7 @@ var additionalConfigFileNames = new List<string>
     $"ocelot.{builder.Environment.EnvironmentName}.ProjectDetail.json",
     $"ocelot.{builder.Environment.EnvironmentName}.Product.json",
     $"ocelot.{builder.Environment.EnvironmentName}.IdentityAuth.json",
-    $"ocelot.{builder.Environment.EnvironmentName}.User.json"
+    $"ocelot.{builder.Environment.EnvironmentName}.User.json",
 };
 
 var mainConfigJson = File.ReadAllText(mainConfigFileName);
@@ -43,7 +48,7 @@ builder.Services.AddOcelot(builder.Configuration).AddKubernetesFixed();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(CorsConstants.CORSPOLICYRELEASE, corsPolicyBuilder =>
+    options.AddPolicy(CorsConstants.Corspolicyrelease, corsPolicyBuilder =>
         corsPolicyBuilder
         .WithOrigins(
             DomainConstants.ProductionHttpsHost,
@@ -57,7 +62,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(CorsConstants.CORSPOLICYDEV, corsPolicyBuilder => 
+    options.AddPolicy(CorsConstants.Corspolicydev, corsPolicyBuilder => 
         corsPolicyBuilder
             .AllowAnyOrigin()
             .AllowAnyHeader()
@@ -65,16 +70,16 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-var isDevelopment = Environment.GetEnvironmentVariable(EnvConstants.ASPNETCORE_ENVIRONMENT) == EnvConstants.DEV_ENVIRONMENT;
+var isDevelopment = Environment.GetEnvironmentVariable(EnvConstants.AspnetcoreEnvironment) == EnvConstants.DevEnvironment;
 
 if (isDevelopment)
 {
-    app.UseCors(CorsConstants.CORSPOLICYDEV);
+    app.UseCors(CorsConstants.Corspolicydev);
     app.UseDeveloperExceptionPage();
 
 } else
 {
-    app.UseCors(CorsConstants.CORSPOLICYRELEASE);
+    app.UseCors(CorsConstants.Corspolicyrelease);
 }
 
 app.MapControllers();
