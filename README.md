@@ -4,6 +4,14 @@
 
 docker-compose --env-file .env -f docker-compose.yml -f docker-compose.override.yml up -d
 
+### Backend services
+
+#### C# linter
+
+<strong>StyleCop</strong>
+https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/Configuration.md
+
+
 ### Nuget packages
 
 <ul>
