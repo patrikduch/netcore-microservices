@@ -62,8 +62,6 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-app.UseForwardedHeaders();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -71,8 +69,11 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
+app.UseForwardedHeaders();
+
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
