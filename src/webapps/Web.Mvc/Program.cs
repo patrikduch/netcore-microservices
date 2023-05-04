@@ -15,12 +15,10 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownProxies.Clear();
 });
 
-
-
-builder.Services.ConfigureApplicationCookie(options =>
+builder.Services.Configure<CookiePolicyOptions>(options =>
 {
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Make sure cookies are always sent over HTTPS.
-    options.Cookie.SameSite = SameSiteMode.Lax; // Adjust the SameSite attribute as per your requirements.
+    options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
+    options.Secure = CookieSecurePolicy.Always;
 });
 
 
@@ -65,6 +63,7 @@ builder.Services.AddAuthentication(options =>
 var app = builder.Build();
 
 app.UseForwardedHeaders();
+app.UseCookiePolicy();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
