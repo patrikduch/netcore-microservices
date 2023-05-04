@@ -6,9 +6,13 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Host $host;
     
 spec:
   tls:
@@ -56,6 +60,16 @@ spec:
       paths:
         - path: /(.*)
           pathType: Prefix
+          backend:
+            service:
+              name: web-mvc-service
+              port:
+                number: 80
+  - host: "webmvc.shopwinner.org"
+    http:
+      paths:
+        - path: /signin-oidc(/|$)
+          pathType: ImplementationSpecific
           backend:
             service:
               name: web-mvc-service
