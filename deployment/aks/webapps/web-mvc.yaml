@@ -25,9 +25,6 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Production
-              
-            - name:  HTTPS_PORT
-              value: 443
 
       imagePullSecrets:
         - name: acr-secret

@@ -21,11 +21,11 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.Secure = CookieSecurePolicy.Always;
 });
 
-int httpsPort = builder.Configuration.GetValue<int>("HTTPS_PORT");
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = httpsPort;
-});
+//int httpsPort = builder.Configuration.GetValue<int>("HTTPS_PORT");
+//builder.Services.AddHttpsRedirection(options =>
+//{
+  //  options.HttpsPort = httpsPort;
+//});
 
 
 // OpenId configuration
