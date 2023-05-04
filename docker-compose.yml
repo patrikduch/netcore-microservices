@@ -159,6 +159,7 @@ services:
       context: .
       dockerfile: src/services/API-Gws/Web.Gw/Dockerfile
 
+
   web.mvc:
     image: ${DOCKER_REGISTRY-}webmvc
     build:
@@ -173,6 +174,7 @@ volumes:
   rabbitmq_data:
 
    
+
 
 
 

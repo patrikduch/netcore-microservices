@@ -1,63 +1,7 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.HttpOverrides;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
-{
-    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-    // Everything what was configured implicitly, we need to reset.
-    options.KnownNetworks.Clear();
-    options.KnownProxies.Clear();
-});
-
-
-// OpenId configuration
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-})
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
-    {
-        options.Authority = "https://identity.shopwinner.org"; // identity server address
-        options.ClientId = "mvc_client";
-        options.ClientSecret = "secret";
-        options.ResponseType = "code";
-
-        options.Scope.Add("openid");
-        options.Scope.Add("profile");
-
-        options.RequireHttpsMetadata = false;
-
-        options.SaveTokens = true;
-        options.GetClaimsFromUserInfoEndpoint = true;
-
-        options.UsePkce = true;
-
-        options.Events = new OpenIdConnectEvents
-        {
-            OnTokenResponseReceived = context =>
-            {
-                // Log the access token
-                var accessToken = context.TokenEndpointResponse.AccessToken;
-                context.HttpContext.RequestServices
-                    .GetRequiredService<ILoggerFactory>()
-                    .CreateLogger("OpenIdConnect")
-                    .LogInformation($"Access Token: {accessToken}");
-
-                return Task.CompletedTask;
-            }
-        };
-
-        // Update the callback path to match the path in your OIDCController
-        options.CallbackPath = "/your-callback-path";
-    });
 
 var app = builder.Build();
 
@@ -65,14 +9,15 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
-app.UseStaticFiles();
 
-app.UseForwardedHeaders();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
