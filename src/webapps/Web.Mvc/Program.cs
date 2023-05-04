@@ -16,6 +16,14 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 });
 
 
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Make sure cookies are always sent over HTTPS.
+    options.Cookie.SameSite = SameSiteMode.Lax; // Adjust the SameSite attribute as per your requirements.
+});
+
+
 // OpenId configuration
 builder.Services.AddAuthentication(options =>
     {
