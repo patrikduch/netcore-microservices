@@ -47,6 +47,7 @@ builder.Services.AddAuthentication(options =>
         options.RequireHttpsMetadata = true;
         options.SaveTokens = true;
         options.GetClaimsFromUserInfoEndpoint = true;
+        options.UseTokenLifetime = false;
         options.UsePkce = true;
         options.Events = new OpenIdConnectEvents
         {
