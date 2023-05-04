@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(options =>
         options.ResponseType = "code";
         options.Scope.Add("openid");
         options.Scope.Add("profile");
-        options.RequireHttpsMetadata = false;
+        options.RequireHttpsMetadata = true;
         options.SaveTokens = true;
         options.GetClaimsFromUserInfoEndpoint = true;
         options.UsePkce = true;
