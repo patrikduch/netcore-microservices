@@ -56,7 +56,7 @@ public static class Config
                 RequirePkce = true, // Make sure PKCE is required
                 RequireClientSecret = false,
 
-                RedirectUris = { "https://webmvc.shopwinner.org/signin-oidc", "https://webmvc.shopwinner.org/your-callback-path", "https://localhost:1000/signin-oidc", "https://localhost:1000/your-callback-path" },
+                RedirectUris = { "https://webmvc.shopwinner.org/signin-oidc", "https://localhost:1000/signin-oidc", "https://localhost:1000/your-callback-path" },
                 PostLogoutRedirectUris = { "https://webmvc.shopwinner.org/signout-callback-oidc", "https://localhost:1000/signout-callback-oidc" },
 
                 //ProtocolType = "https",

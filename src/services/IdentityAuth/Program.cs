@@ -1,10 +1,15 @@
 using IdentityAuth;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Automatically configure all MVC oontrollers
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"testfolder"))
+    .SetApplicationName("SharedIdentityServerApp");
 
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
