@@ -36,7 +36,10 @@ builder.Services.AddAuthentication(options =>
         options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
     })
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromDays(30); // Set the expiration time for the authentication cookie
+    })
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -92,6 +95,8 @@ if (!app.Environment.IsDevelopment())
 
 }
 
+
+app.UseDeveloperExceptionPage();
 
 
 app.UseStaticFiles();
