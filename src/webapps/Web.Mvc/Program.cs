@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,16 +57,24 @@ builder.Services.AddAuthentication(options =>
             {
                 // Log the access token
                 var accessToken = context.TokenEndpointResponse.AccessToken;
-                context.HttpContext.RequestServices
+                var logger = context.HttpContext.RequestServices
                     .GetRequiredService<ILoggerFactory>()
-                    .CreateLogger("OpenIdConnect")
-                    .LogInformation($"Access Token: {accessToken}");
+                    .CreateLogger("OpenIdConnect");
+
+                logger.LogInformation($"Access Token: {accessToken}");
+
+
+                // Log the complete callback URL
+                var callbackUrl = context.HttpContext.Request.GetDisplayUrl();
+                logger.LogInformation($"Callback URL: {callbackUrl}");
+
+
                 return Task.CompletedTask;
             }
         };
 
-        options.CallbackPath = "/signin-oidc"; // This is the default callback URL.
-        options.SignedOutCallbackPath = "/signout-callback-oidc"; // This is the default signout callback URL.
+        //options.CallbackPath = "/signin-oidc"; // This is the default callback URL.
+        //options.SignedOutCallbackPath = "/signout-callback-oidc"; // This is the default signout callback URL.
     });
 
 var app = builder.Build();
