@@ -17,14 +17,13 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
-    options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
+    options.MinimumSameSitePolicy = SameSiteMode.Lax;
     options.Secure = CookieSecurePolicy.Always;
 });
-
 //int httpsPort = builder.Configuration.GetValue<int>("HTTPS_PORT");
 //builder.Services.AddHttpsRedirection(options =>
 //{
-  //  options.HttpsPort = httpsPort;
+//  options.HttpsPort = httpsPort;
 //});
 
 
@@ -79,7 +78,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 
-    app.UseHttpsRedirection();
+
 }
 
 
