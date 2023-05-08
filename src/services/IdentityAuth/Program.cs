@@ -41,7 +41,13 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 });
 
 // Add required services for IdentityServer
-builder.Services.AddIdentityServer()
+builder.Services.AddIdentityServer(options =>
+    {
+        options.Events.RaiseSuccessEvents = true;
+        options.Events.RaiseFailureEvents = true;
+        options.Events.RaiseErrorEvents = true;
+        options.Events.RaiseInformationEvents = true;
+    })
     .AddInMemoryClients(Config.Clients)
     .AddInMemoryIdentityResources(Config.IdentityResources)
     .AddInMemoryApiResources(Config.ApiResources)
