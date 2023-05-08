@@ -8,9 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo("/app/testfolder"))
-    .SetApplicationName("SharedIdentityServerApp")
-    .ProtectKeysWithDpapi();
+    .PersistKeysToFileSystem(new DirectoryInfo(@"testfolder"))
+    .SetApplicationName("SharedIdentityServerApp");
 
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
@@ -47,6 +46,7 @@ app.UseRouting();
 app.UseIdentityServer(); // Add IdentityServer middleware
 
 app.UseAuthorization();
+ 
 
 app.UseEndpoints(endpoints =>
 {
