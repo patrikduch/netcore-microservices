@@ -8,8 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo(@"testfolder"))
-    .SetApplicationName("SharedIdentityServerApp");
+    .PersistKeysToFileSystem(new DirectoryInfo("/app/testfolder"))
+    .SetApplicationName("SharedIdentityServerApp")
+    .ProtectKeysWithDpapi();
 
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
