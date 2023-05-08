@@ -70,7 +70,9 @@ public static class Config
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile
-                }
+                },
+
+                AllowedCorsOrigins = { "https://webmvc.shopwinner.org" }
             }
         };
 
