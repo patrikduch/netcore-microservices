@@ -47,7 +47,6 @@ app.UseIdentityServer(); // Add IdentityServer middleware
 
 app.UseAuthorization();
 
-
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapDefaultControllerRoute();
