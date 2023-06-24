@@ -74,4 +74,10 @@ app.UseEndpoints(endpoints =>
 });
 
 
+app.Use((context, next) =>
+{
+    context.Request.Scheme = "https";
+    return next();
+});
+
 app.Run();
