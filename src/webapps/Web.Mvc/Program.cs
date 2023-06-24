@@ -58,7 +58,7 @@ builder.Services.AddAuthentication(options =>
         options.GetClaimsFromUserInfoEndpoint = true;
 
         // OpenID flow to use
-        options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
+        options.ResponseType = OpenIdConnectResponseType.CodeIdTokenToken;
 
 
         options.UseTokenLifetime = false;
