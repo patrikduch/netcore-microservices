@@ -56,6 +56,7 @@ builder.Services.AddAuthentication(options =>
         options.RequireHttpsMetadata = true;
         options.SaveTokens = true;
         options.GetClaimsFromUserInfoEndpoint = true;
+        options.AuthenticationMethod = OpenIdConnectRedirectBehavior.FormPost;
 
         // OpenID flow to use
         options.ResponseType = OpenIdConnectResponseType.Code;
