@@ -1,8 +1,10 @@
+using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,10 +38,10 @@ builder.Services.AddAuthentication(options =>
         options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
     })
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-    {
-        options.ExpireTimeSpan = TimeSpan.FromDays(30); // Set the expiration time for the authentication cookie
-    })
+    //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    ///{
+    //    options.ExpireTimeSpan = TimeSpan.FromDays(30); // Set the expiration time for the authentication cookie
+    //})
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -52,6 +54,18 @@ builder.Services.AddAuthentication(options =>
         options.Scope.Add("profile");
         options.RequireHttpsMetadata = true;
         options.SaveTokens = true;
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = false,
+            SignatureValidator = delegate (string token, TokenValidationParameters validationParameters)
+            {
+                var jwt = new JwtSecurityToken(token);
+                return jwt;
+            },
+        };
+
+
         options.GetClaimsFromUserInfoEndpoint = true;
         options.AuthenticationMethod = OpenIdConnectRedirectBehavior.FormPost;
 
