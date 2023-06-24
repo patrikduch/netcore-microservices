@@ -73,11 +73,4 @@ app.UseEndpoints(endpoints =>
     endpoints.MapDefaultControllerRoute();
 });
 
-
-app.Use((context, next) =>
-{
-    context.Request.Scheme = "https";
-    return next();
-});
-
 app.Run();
