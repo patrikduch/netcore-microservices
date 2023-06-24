@@ -14,16 +14,16 @@ builder.Services.AddControllersWithViews();
   //  .SetApplicationName("SharedIdentityServerApp");
 
 
-builder.Services
-    .AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo(@"testfolder"))
-    .UseCryptographicAlgorithms(
-        new AuthenticatedEncryptorConfiguration
-        {
-            EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
-            ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
-        }
-    );
+//builder.Services
+//    .AddDataProtection()
+//    .PersistKeysToFileSystem(new DirectoryInfo(@"testfolder"))
+//   .UseCryptographicAlgorithms(
+//        new AuthenticatedEncryptorConfiguration
+//        {
+//            EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+//            ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+//        }
+//    );}}
 
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
