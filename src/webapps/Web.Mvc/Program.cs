@@ -44,6 +44,7 @@ builder.Services.AddAuthentication(options =>
     {
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.Authority = "https://identity.shopwinner.org"; // identity server address
+        options.CallbackPath = new PathString("/signin-oidc"); // This is the default callback URL.
         options.ClientId = "mvc_client";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
