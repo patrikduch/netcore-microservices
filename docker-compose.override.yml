@@ -17,7 +17,7 @@ services:
     container_name: Product.API
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=Server=productdb;Port=5433;Database=ProductDb;Username=admin;Password=duch;"
+      - "DatabaseSettings__ConnectionString=Server=Product.Db;Port=5433;Database=ProductDb;Username=admin;Password=duch;"
       - "IDENTITY_SERVER_URL=${IDENTITY_SERVER_URL}"
     ports:
       - "8095:80"
@@ -25,7 +25,7 @@ services:
       - product.db
 
   product.db:
-    container_name: productdb
+    container_name: Product.Db
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=duch
@@ -286,6 +286,7 @@ services:
 
 
   web.mvc:
+    container_name: Web.Mvc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
