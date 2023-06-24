@@ -81,16 +81,6 @@ builder.Services.AddAuthentication(options =>
                 logger.LogInformation($"Callback URL: {callbackUrl}");
 
 
-                // Parse the JWT token
-                var handler = new JwtSecurityTokenHandler();
-                var jwtSecurityToken = handler.ReadJwtToken(accessToken);
-
-                // Create a ClaimsPrincipal from the token
-                var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(jwtSecurityToken.Claims, CookieAuthenticationDefaults.AuthenticationScheme));
-
-                // Sign the user in
-                context.HttpContext.SignInAsync(claimsPrincipal).GetAwaiter().GetResult();
-
                 return Task.CompletedTask;
             }
         };
