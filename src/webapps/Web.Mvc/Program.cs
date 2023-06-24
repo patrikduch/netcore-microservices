@@ -107,8 +107,18 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+///app.MapControllerRoute(
+// name: "default",
+// pattern: "{controller=Home}/{action=Index}/{id?}");}
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints
+        .MapDefaultControllerRoute()
+        .RequireAuthorization();
+});
+
+
 
 app.Run();
