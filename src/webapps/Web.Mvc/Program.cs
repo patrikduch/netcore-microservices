@@ -30,18 +30,17 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 //  options.HttpsPort = httpsPort;
 //});
 
-
 // OpenId configuration
 builder.Services.AddAuthentication(options =>
     {
-        options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        //  options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        //  options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        //  options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
     })
-    //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-    ///{
-    //    options.ExpireTimeSpan = TimeSpan.FromDays(30); // Set the expiration time for the authentication cookie
-    //})
+    .AddCookie()
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -105,6 +104,7 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 app.UseCookiePolicy();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
