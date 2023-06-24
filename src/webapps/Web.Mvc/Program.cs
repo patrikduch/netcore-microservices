@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -55,6 +56,11 @@ builder.Services.AddAuthentication(options =>
         options.RequireHttpsMetadata = true;
         options.SaveTokens = true;
         options.GetClaimsFromUserInfoEndpoint = true;
+
+        // OpenID flow to use
+        options.ResponseType = OpenIdConnectResponseType.IdToken;
+
+
         options.UseTokenLifetime = false;
         options.UsePkce = true;
         options.Events = new OpenIdConnectEvents
