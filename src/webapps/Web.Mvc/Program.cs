@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.Extensions.Logging;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +74,16 @@ builder.Services.AddAuthentication(options =>
                 var callbackUrl = context.HttpContext.Request.GetDisplayUrl();
                 logger.LogInformation($"Callback URL: {callbackUrl}");
 
+
+                // Parse the JWT token
+                var handler = new JwtSecurityTokenHandler();
+                var jwtSecurityToken = handler.ReadJwtToken(accessToken);
+
+                // Create a ClaimsPrincipal from the token
+                var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(jwtSecurityToken.Claims, CookieAuthenticationDefaults.AuthenticationScheme));
+
+                // Sign the user in
+                context.HttpContext.SignInAsync(claimsPrincipal).GetAwaiter().GetResult();
 
                 return Task.CompletedTask;
             }
