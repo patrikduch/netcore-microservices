@@ -14,13 +14,12 @@ ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS '{"endpointCredentials":[{"endpoint":"http
 # Get and install the Artifact Credential provider
 RUN wget -O - https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | bash
 
+
+# Copy csproj and restore dependencies
+COPY ./Client/Web.Blazor.Client.csproj ./Client/Web.Blazor.Client.csproj
 # Restore your nugets from nuget.org and your private feed.
 RUN dotnet restore -s "https://api.nuget.org/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Dbs/nuget/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Configuration/nuget/v3/index.json" "Client/Web.Blazor.Client.csproj"
 
-
-
-# Restore and build the project
-RUN dotnet restore
 RUN dotnet publish -c Release -o out Client/Web.Blazor.Client.csproj
 
 # Use the Nginx image to host our application
