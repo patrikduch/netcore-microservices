@@ -33,4 +33,4 @@ WORKDIR /var/www/web
 COPY --from=build-env /app/out/wwwroot .
 
 # Copy Nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY src/webapps/Web.Blazor/nginx.conf /etc/nginx/nginx.conf
