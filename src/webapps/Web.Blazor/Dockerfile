@@ -20,7 +20,7 @@ RUN wget -O - https://raw.githubusercontent.com/Microsoft/artifacts-credprovider
 # Copy csproj and restore dependencies
 COPY ./src/webapps/Web.Blazor/Client/Web.Blazor.Client.csproj src/webapps/Web.Blazor/Client/Web.Blazor.Client.csproj
 # Restore your nugets from nuget.org and your private feed.
-RUN dotnet restore -s "https://api.nuget.org/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Dbs/nuget/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Configuration/nuget/v3/index.json" "Client/Web.Blazor.Client.csproj"
+RUN dotnet restore -s "https://api.nuget.org/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Dbs/nuget/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Configuration/nuget/v3/index.json" "src/webapps/Web.Blazor/Client/Web.Blazor.Client.csproj"
 
 RUN dotnet publish -c Release -o out Client/Web.Blazor.Client.csproj
 
