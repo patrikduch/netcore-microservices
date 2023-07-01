@@ -5,6 +5,8 @@ WORKDIR /app
 # Copy the whole solution
 COPY . ./
 
+RUN ls -la /app
+
 ARG NUGET_PAT
 
 # Set environment variables
