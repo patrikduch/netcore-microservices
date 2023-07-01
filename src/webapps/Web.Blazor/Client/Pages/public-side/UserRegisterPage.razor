@@ -35,9 +35,7 @@
     private string _messageCssClass = string.Empty;
 
     async Task HandleRegistration()
-    { 
-        //Console.WriteLine($"Register user with e-mail: {user.Email}");
-
+    {
         var result = await AuthService.Register(_user);
 
         _message = result.Message;
