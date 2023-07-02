@@ -4,9 +4,10 @@
 <ul class="list-unstyled">
     @foreach(var product in ProductService.Products)
     {
+        var productUrl = "/product/"+ product.Id;
         <li class="media my-3">
             <ProductItemContainer>
-                <ProductName Name="@product.Name" />
+                <ProductName Name="@product.Name" Url="@productUrl" />
                 <ProductImage 
                     ImgUrl="@product.ImgUrl"
                     ProductId="@product.Id"
@@ -25,8 +26,7 @@
 
     [Parameter]
     public string SearchText { get; set; } = string.Empty;
-
-
+    
     protected override async Task OnInitializedAsync()
     {
         await LoadProducts();
