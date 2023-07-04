@@ -3,8 +3,9 @@
 
 @if (_product is not null)
 {
+    var productUrl = "/product/"+ _product.Data.Id;
     <ProductItemContainer>
-        <ProductName Name="@_product.Data.Name" />
+        <ProductName Name="@_product.Data.Name" Url="@productUrl" />
         <ProductImage 
             ProductName="@_product.Data.Name"
             ImgUrl="@_product.Data.ImgUrl"
