@@ -1,17 +1,19 @@
 ﻿@using Blazored.LocalStorage
+@using Toolbelt.Blazor.PWA.Updater
 @inject ILocalStorageService LocalStorageService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inherits LayoutComponentBase
 
 <div class="page">
+    <PWAUpdater />
     <div class="sidebar">
-        <NavMenu />
+        <NavMenu/>
     </div>
 
     <main>
         <div class="top-row px-4">
-            <Searchbar />
+            <Searchbar/>
             <AuthorizeView>
                 <Authorized>
                     <a href="/profile">My profile</a>

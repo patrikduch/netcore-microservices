@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Web.Blazor</title>
     <base href="/" />
+    <!-- Brutal force workaround for caching -->
+    <!--
     <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" /> -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="Web.Blazor.Client.styles.css" rel="stylesheet" />
@@ -24,9 +26,12 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
-<script src="_framework/blazor.webassembly.js"></script>
-<script>navigator.serviceWorker.register('service-worker.js');</script>
-
+    <script src="_framework/blazor.webassembly.js"></script>
+    <!-- 👇 Remove this script, and...
+    <script>navigator.serviceWorker.register('service-worker.js');</script> -->
+    
+    <!-- 👇 add this script element instead. -->
+    <script src="_content/Toolbelt.Blazor.PWA.Updater.Service/script.min.js"></script>
 
 </body>
 

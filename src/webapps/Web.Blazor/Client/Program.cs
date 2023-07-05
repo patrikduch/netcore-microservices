@@ -1,9 +1,10 @@
-
+﻿
 global using Microsoft.AspNetCore.Components.Authorization;
 
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 using Web.Blazor.Client;
 using Web.Blazor.Client.Auth;
 using Web.Blazor.Client.Services.Auth;
@@ -19,6 +20,9 @@ var baseAddress = builder.Configuration.GetValue<string>("APIGwUrl");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
 builder.Services.AddBlazoredLocalStorage();
+
+// Register a PWA updater" service to a DI container.
+builder.Services.AddPWAUpdater();
 
 #region Auth
 builder.Services.AddOptions();
