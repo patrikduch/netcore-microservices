@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Web.Blazor</title>
     <base href="/" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="Web.Blazor.Client.styles.css" rel="stylesheet" />
@@ -25,32 +27,7 @@
 <script src="_framework/blazor.webassembly.js"></script>
 <script>navigator.serviceWorker.register('service-worker.js');</script>
 
-<script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js');
 
-        fetch('version.txt')
-            .then(response => response.text())
-            .then(version => {
-                localStorage.setItem('app-version', version.trim());
-            });
-
-        setInterval(() => {
-            fetch('version.txt')
-                .then(response => response.text())
-                .then(version => {
-                    const currentVersion = localStorage.getItem('app-version');
-                    if (currentVersion !== version.trim()) {
-                        caches.keys().then(names => {
-                            for (let name of names)
-                                caches.delete(name);
-                        });
-                        localStorage.setItem('app-version', version.trim());
-                    }
-                });
-        }, 5000);
-    }
-</script>
 </body>
 
 </html>
