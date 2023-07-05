@@ -21,8 +21,7 @@ var baseAddress = builder.Configuration.GetValue<string>("APIGwUrl");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
 builder.Services.AddBlazoredLocalStorage();
 
-// Register a PWA updater" service to a DI container.
-builder.Services.AddPWAUpdater();
+
 
 #region Auth
 builder.Services.AddOptions();
@@ -35,5 +34,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProjectDetailService, ProjectDetailService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+// Register a PWA updater" service to a DI container.
+builder.Services.AddPWAUpdater();
 
 await builder.Build().RunAsync();
