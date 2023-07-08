@@ -69,7 +69,7 @@ app.UseCookiePolicy();
 
 app.Use((context, next) =>
 {
-    context.Request.Host = new HostString("webmvc.shopwinner.org");
+    context.Request.Host = new HostString("https://webmvc.shopwinner.org");
     return next();
 });
 
