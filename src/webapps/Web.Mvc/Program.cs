@@ -1,15 +1,17 @@
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SameSite = SameSiteMode.Lax;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.IsEssential = true; // This one is optional
+});
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -19,85 +21,36 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownProxies.Clear();
 });
 
-builder.Services.Configure<CookiePolicyOptions>(options =>
-{
-    options.MinimumSameSitePolicy = SameSiteMode.Lax;
-    options.Secure = CookieSecurePolicy.Always;
-});
+//builder.Services.Configure<CookiePolicyOptions>(options =>
+//{
+//  options.MinimumSameSitePolicy = SameSiteMode.Lax;
+//  options.Secure = CookieSecurePolicy.Always;
+//});
 //int httpsPort = builder.Configuration.GetValue<int>("HTTPS_PORT");
 //builder.Services.AddHttpsRedirection(options =>
 //{
 //  options.HttpsPort = httpsPort;
 //});
 
-// OpenId configuration
 builder.Services.AddAuthentication(options =>
     {
-        //  options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        //  options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        //  options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+        options.DefaultScheme = "Cookies";
+        options.DefaultChallengeScheme = "oidc";
+        options.DefaultSignOutScheme = "Cookies";
+        options.DefaultSignInScheme = "Cookies";
     })
-    .AddCookie()
-    .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+    .AddCookie("Cookies")
+    .AddOpenIdConnect("oidc", options =>
     {
-        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.Authority = "https://identity.shopwinner.org"; // identity server address
-        options.CallbackPath = new PathString("/signin-oidc"); // This is the default callback URL.
+        options.Authority = "https://identity.shopwinner.org";
+        options.CallbackPath = new PathString("/signin-oidc");
         options.ClientId = "mvc_client";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
         options.Scope.Add("openid");
         options.Scope.Add("profile");
-        options.RequireHttpsMetadata = true;
+        options.RequireHttpsMetadata = false; // Set this to true in production
         options.SaveTokens = true;
-
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = false,
-            SignatureValidator = delegate (string token, TokenValidationParameters validationParameters)
-            {
-                var jwt = new JwtSecurityToken(token);
-                return jwt;
-            },
-        };
-
-
-        options.GetClaimsFromUserInfoEndpoint = true;
-        options.AuthenticationMethod = OpenIdConnectRedirectBehavior.FormPost;
-
-        // OpenID flow to use
-        options.ResponseType = OpenIdConnectResponseType.Code;
-
-
-        options.UseTokenLifetime = false;
-        options.UsePkce = true;
-        options.Events = new OpenIdConnectEvents
-        {
-            OnTokenResponseReceived = context =>
-            {
-                // Log the access token
-                var accessToken = context.TokenEndpointResponse.AccessToken;
-                var logger = context.HttpContext.RequestServices
-                    .GetRequiredService<ILoggerFactory>()
-                    .CreateLogger("OpenIdConnect");
-
-                logger.LogInformation($"Access Token: {accessToken}");
-
-
-                // Log the complete callback URL
-                var callbackUrl = context.HttpContext.Request.GetDisplayUrl();
-                logger.LogInformation($"Callback URL: {callbackUrl}");
-
-
-                return Task.CompletedTask;
-            }
-        };
-
-        //options.CallbackPath = "/signin-oidc"; // This is the default callback URL.
-        //options.SignedOutCallbackPath = "/signout-callback-oidc"; // This is the default signout callback URL.
     });
 
 var app = builder.Build();
