@@ -55,9 +55,23 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-app.UseForwardedHeaders();
+//app.UseForwardedHeaders();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+    RequireHeaderSymmetry = false,
+    ForwardLimit = null
+});
+
+
 app.UseCookiePolicy();
 
+app.Use((context, next) =>
+{
+    context.Request.Host = new HostString("webmvc.shopwinner.org");
+    return next();
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
