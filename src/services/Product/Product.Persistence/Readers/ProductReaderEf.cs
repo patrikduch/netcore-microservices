@@ -101,7 +101,7 @@ public class ProductReaderEf : IProductReaderEf
 
         var products = await FindProductsBySearchText(searchText);
 
-        List<string> searchSuggestions = new List<string>();
+        var searchSuggestions = new List<string>();
 
         foreach (var product in products)
         {
