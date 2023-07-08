@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: web-blazor
-          image:  netcoremicroservicesacr.azurecr.io/webblazor:v1
+          image:  netcoremicroservicesacr.azurecr.io/webblazor:1747
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
