@@ -49,7 +49,7 @@ builder.Services.AddAuthentication(options =>
         options.ResponseType = "code";
         options.Scope.Add("openid");
         options.Scope.Add("profile");
-        options.RequireHttpsMetadata = false; // Set this to true in production
+        options.RequireHttpsMetadata = true; // Set this to true in production
         options.SaveTokens = true;
     });
 
