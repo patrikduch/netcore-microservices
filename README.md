@@ -1,4 +1,7 @@
-# Netcore-Microservices
+# netcore-microservices
+
+<i>This repository showcases a production-ready example of .NET microservices in action. It utilizes a range of .NET technologies.</i>
+
 
 ## Development
 
