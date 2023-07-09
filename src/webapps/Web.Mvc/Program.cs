@@ -67,11 +67,11 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.UseCookiePolicy();
 
-app.Use((context, next) =>
-{
-    context.Request.Host = new HostString("https://webmvc.shopwinner.org");
-    return next();
-});
+//app.Use((context, next) =>
+//{
+  //  context.Request.Host = new HostString("https://webmvc.shopwinner.org");
+  //  return next();
+//});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
