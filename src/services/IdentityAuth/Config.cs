@@ -1,10 +1,11 @@
-﻿namespace IdentityAuth;
-
+﻿using System.Security.Claims;
 using IdentityModel;
+
+namespace IdentityAuth;
+
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
-using System.Security.Claims;
 
 /// <summary>
 /// IdentityServer configurations
@@ -14,13 +15,13 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new List<ApiScope>
         {
-            new("productAPI", "Product API")
+            new ApiScope("productAPI", "Product API")
         };
 
     public static IEnumerable<ApiResource> ApiResources =>
         new List<ApiResource>
         {
-            new()
+            new ApiResource
             {
                 Name = "productAPI",
                 DisplayName = "Product API",
@@ -32,7 +33,7 @@ public static class Config
     public static IEnumerable<Client> Clients =>
         new List<Client>
         {
-            new()
+            new Client
             {
                 ClientId = "productClient",
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
@@ -45,7 +46,7 @@ public static class Config
                 AllowedScopes = {"productAPI"}
             },
 
-            new()
+            new Client
             {
                 ClientId = "mvc_client",
                 ClientName = "MVC Web App",
@@ -78,17 +79,17 @@ public static class Config
 
 
     public static List<TestUser> TestsUsers =>
-        new()
+        new List<TestUser>
         {
-            new TestUser()
+            new TestUser
             {
                 SubjectId = Guid.NewGuid().ToString(),
                 Username = "duch",
                 Password = "duch",
                 Claims = new List<Claim>
                 {
-                    new(JwtClaimTypes.GivenName, "Patrik"),
-                    new(JwtClaimTypes.FamilyName, "Duch")
+                    new Claim(JwtClaimTypes.GivenName, "Patrik"),
+                    new Claim(JwtClaimTypes.FamilyName, "Duch")
                 }
 
             }
