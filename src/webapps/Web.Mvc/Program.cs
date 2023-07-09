@@ -20,18 +20,8 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     // Everything what was configured implicitly, we need to reset.
     options.KnownNetworks.Clear();
     options.KnownProxies.Clear();
+    options.ForwardLimit = 2; // if there are 2 proxies
 });
-
-//builder.Services.Configure<CookiePolicyOptions>(options =>
-//{
-//  options.MinimumSameSitePolicy = SameSiteMode.Lax;
-//  options.Secure = CookieSecurePolicy.Always;
-//});
-//int httpsPort = builder.Configuration.GetValue<int>("HTTPS_PORT");
-//builder.Services.AddHttpsRedirection(options =>
-//{
-//  options.HttpsPort = httpsPort;
-//});
 
 builder.Services.AddAuthentication(options =>
     {
