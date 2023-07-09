@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -54,6 +55,8 @@ builder.Services.AddAuthentication(options =>
     });
 
 var app = builder.Build();
+var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("RequestInfoLogger");
+
 
 //app.UseForwardedHeaders();
 
@@ -67,11 +70,14 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.UseCookiePolicy();
 
-//app.Use((context, next) =>
-//{
-  //  context.Request.Host = new HostString("https://webmvc.shopwinner.org");
-  //  return next();
-//});
+// Log the updated request details
+app.Use(async (context, next) =>
+{
+    logger.LogInformation("Request scheme: {Scheme}", context.Request.Scheme);
+    logger.LogInformation("Request host: {Host}", context.Request.Host);
+    logger.LogInformation("Request path base: {PathBase}", context.Request.PathBase);
+    await next.Invoke();
+});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
