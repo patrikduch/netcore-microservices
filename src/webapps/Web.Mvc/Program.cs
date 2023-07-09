@@ -58,14 +58,14 @@ var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("RequestInfoLogger");
 
 
-//app.UseForwardedHeaders();
+app.UseForwardedHeaders();
 
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
-    RequireHeaderSymmetry = false,
-    ForwardLimit = null
-});
+//app.UseForwardedHeaders(new ForwardedHeadersOptions
+//{
+  //  ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+  //  RequireHeaderSymmetry = false,
+  //  ForwardLimit = null
+//});
 
 
 app.UseCookiePolicy();
