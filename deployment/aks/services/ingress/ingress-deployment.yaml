@@ -9,6 +9,11 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -60,16 +65,6 @@ spec:
       paths:
         - path: /(.*)
           pathType: Prefix
-          backend:
-            service:
-              name: web-mvc-service
-              port:
-                number: 80
-  - host: "webmvc.shopwinner.org"
-    http:
-      paths:
-        - path: /signin-oidc(/|$)
-          pathType: ImplementationSpecific
           backend:
             service:
               name: web-mvc-service
