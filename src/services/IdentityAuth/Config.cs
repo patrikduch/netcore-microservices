@@ -1,11 +1,16 @@
-﻿using System.Security.Claims;
-using IdentityModel;
-
+﻿//-----------------------------------------------------------------------------------
+// <copyright file="Config.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//-----------------------------------------------------------------------------------
 namespace IdentityAuth;
 
+using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
+using System.Security.Claims;
 
 /// <summary>
 /// IdentityServer configurations
