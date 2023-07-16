@@ -4,6 +4,7 @@ using User.Persistence;
 using User.Persistence.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 
@@ -17,6 +18,14 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 
 var app = builder.Build();
 
+// Access the logger from the DI container
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+logger.LogInformation("User.API started");
+
+// Get IdentityServer Url
+logger.LogInformation("IDENTITY_SERVER_URL: {url}", configuration["IDENTITY_SERVER_URL"]);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -25,7 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Migrate database on each deploy if it is necesarry.
-app.MigrateDatabase<UserContext>((context, services) =>
+app.MigrateDatabase<UserContext>((_, _) =>
 {
 });
 

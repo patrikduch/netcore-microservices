@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: userapi
-          image:  netcoremicroservicesacr.azurecr.io/userapi:v1
+          image:  netcoremicroservicesacr.azurecr.io/userapi:1566
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
