@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.HttpOverrides;
+using Web.Mvc.ApiServices;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -41,6 +42,18 @@ builder.Services.AddAuthentication(options =>
         options.RequireHttpsMetadata = true; // Set this to true in production
         options.SaveTokens = true;
     });
+
+
+#region Infrastructure services
+builder.Services.AddScoped<IProductService, ProductService>();
+#endregion
+
+// Add services to the container.
+builder.Services.AddHttpClient("MyClient", client =>
+{
+    client.BaseAddress = new Uri("https://api.shopwinner.org/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("RequestInfoLogger");

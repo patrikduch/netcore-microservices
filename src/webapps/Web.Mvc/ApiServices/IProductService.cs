@@ -1,9 +1,9 @@
-﻿using NetMicroservices.ServiceConfig.Nuget;
-using Web.Mvc.Models;
+﻿namespace Web.Mvc.ApiServices;
 
-namespace Web.Mvc.ApiServices;
+using Models;
+using NetMicroservices.ServiceConfig.Nuget;
 
 public interface IProductService
 {
-    Task<ServiceResponse<Product>> GetProductAsync(Guid id);
+    Task<ServiceResponse<List<Product>>> GetProductAsync(Guid id);
 }

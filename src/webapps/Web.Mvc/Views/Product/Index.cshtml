@@ -4,4 +4,14 @@
 @{
 }
 
+@using NetMicroservices.ServiceConfig.Nuget;
+
+@model ServiceResponse<List<Product>>;
+
+
 <h1>Products</h1>
+
+@foreach (var item in Model.Data)
+{
+    <h2>@item.Name</h2>
+}
