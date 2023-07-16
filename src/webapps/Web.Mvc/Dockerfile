@@ -22,7 +22,6 @@ RUN wget -O - https://raw.githubusercontent.com/Microsoft/artifacts-credprovider
 # Restore your nugets from nuget.org and your private feed.
 RUN dotnet restore -s "https://api.nuget.org/v3/index.json" -s "https://pkgs.dev.azure.com/duchpatrick/netmicroservices/_packaging/NetMicroservices.Configuration/nuget/v3/index.json" "src/webapps/Web.Mvc/Web.Mvc.csproj"
 
-RUN dotnet restore "src/webapps/Web.Mvc/Web.Mvc.csproj"
 COPY . .
 WORKDIR "/src/src/webapps/Web.Mvc"
 RUN dotnet build "Web.Mvc.csproj" -c Release -o /app/build
