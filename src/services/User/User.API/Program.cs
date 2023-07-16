@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using NetMicroservices.SqlWrapper.Nuget;
 using User.Application;
 using User.Persistence;
@@ -7,6 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 // Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = configuration["IDENTITY_SERVER_URL"]; // This is the address of the IdentityServer where OpenID calls will be processed
+        options.RequireHttpsMetadata = false;
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false, // Audience value to be checked for each OpenId call
+            ValidateIssuer = false,
+        };
+    });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,7 +47,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Migrate database on each deploy if it is necesarry.
+// Migrate database on each deploy if it is necessary.
 app.MigrateDatabase<UserContext>((_, _) =>
 {
 });
