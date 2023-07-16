@@ -33,6 +33,14 @@ spec:
                   secretKeyRef:
                     name: user-api-secret
                     key: ConnectionString
+            - name: IDENTITY_SERVER_URL
+              valueFrom:
+                  secretKeyRef:
+                    name: user-api-secret
+                    key: IDENTITY_SERVER_URL
+
+
+
 
       imagePullSecrets:
         - name: acr-secret
