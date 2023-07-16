@@ -9,7 +9,6 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/webapps/Web.Mvc/Web.Mvc.csproj", "src/webapps/Web.Mvc/"]
 
-
 ARG NUGET_PAT
 
 # Set environment variables
