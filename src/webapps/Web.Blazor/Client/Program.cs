@@ -21,8 +21,6 @@ var baseAddress = builder.Configuration.GetValue<string>("APIGwUrl");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
 builder.Services.AddBlazoredLocalStorage();
 
-
-
 #region Auth
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
