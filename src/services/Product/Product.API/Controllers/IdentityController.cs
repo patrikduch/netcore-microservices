@@ -11,7 +11,6 @@ public class IdentityController : ControllerBase
     [HttpGet]
     public IActionResult GetClaims()
     {
-
         var user = User.Claims.Select(c => new
         {
             tzpe = c.Type,

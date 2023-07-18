@@ -27,17 +27,20 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = configuration["IDENTITY_SERVER_URL"];
+        options.Authority = configuration["IDENTITY_SERVER_URL"]; // This is the address of the IdentityServer where OpenID calls will be processed
         options.RequireHttpsMetadata = false;
 
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateAudience = false,
+            ValidateAudience = false, // Audience value to be checked for each OpenId call
             ValidateIssuer = false,
         };
     });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ClientIdPolicy", policy =>  policy.RequireClaim("client_id", "productClient"));
+});
 
 var app = builder.Build();
 
@@ -61,7 +64,7 @@ app.MigrateDatabase<ProductContext>((_, _) =>
 {
 });
 
-app.UseAuthentication();
+app.UseAuthentication(); // UseAuthentication must be placed before the UseAuthorization
 app.UseAuthorization();
 
 app.MapControllers();
