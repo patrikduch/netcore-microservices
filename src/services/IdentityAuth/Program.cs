@@ -5,7 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Automatically configure all MVC oontrollers
 builder.Services.AddControllersWithViews();
-
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
@@ -38,19 +37,16 @@ builder.Services.AddIdentityServer(options =>
 var app = builder.Build();
 
 app.UseForwardedHeaders();
-
 app.UseCookiePolicy();
-
 app.UseStaticFiles(); // Enable the static files from wwwroot directory
 app.UseRouting();
 app.UseIdentityServer(); // Add IdentityServer middleware
-
-app.UseAuthorization();
+app.UseAuthorization(); // Without that i won't navigate to login page
  
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapDefaultControllerRoute();
+    endpoints.MapDefaultControllerRoute(); // Using default HomeController with index view
 });
 
 app.Run();
