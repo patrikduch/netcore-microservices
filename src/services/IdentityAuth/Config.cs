@@ -64,8 +64,6 @@ public static class Config
                 RedirectUris = { "https://webmvc.shopwinner.org/signin-oidc", "https://localhost:1000/signin-oidc", "https://localhost:1000/your-callback-path" },
                 PostLogoutRedirectUris = { "https://webmvc.shopwinner.org/signout-callback-oidc", "https://localhost:1000/signout-callback-oidc" },
 
-                //ProtocolType = "https",
-
                 ClientSecrets = new List<Secret>
                 {
                     new Secret("secret".Sha256())
@@ -80,7 +78,6 @@ public static class Config
                 AllowedCorsOrigins = { "https://webmvc.shopwinner.org" }
             }
         };
-
 
 
     public static List<TestUser> TestsUsers =>
@@ -107,5 +104,4 @@ public static class Config
             new IdentityResources.Profile(),
             new IdentityResources.Email()
         };
-
 }
