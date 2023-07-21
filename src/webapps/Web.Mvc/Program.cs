@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
 using Web.Mvc.ApiServices;
 
@@ -24,13 +26,13 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 
 builder.Services.AddAuthentication(options =>
     {
-        options.DefaultScheme = "Cookies";
-        options.DefaultChallengeScheme = "oidc";
-        options.DefaultSignOutScheme = "Cookies";
-        options.DefaultSignInScheme = "Cookies";
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+        options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     })
-    .AddCookie("Cookies")
-    .AddOpenIdConnect("oidc", options =>
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
         options.Authority = "https://identity.shopwinner.org";
         options.CallbackPath = new PathString("/signin-oidc");

@@ -1,6 +1,14 @@
-﻿namespace Web.Mvc.Controllers;
+﻿//---------------------------------------------------------------------------
+// <copyright file="HomeController.cs" website="Patrikduch.com">
+//     Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
+// <author>Patrik Duch</author>
+//----------------------------------------------------------------------------
+namespace Web.Mvc.Controllers;
 
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -29,12 +37,9 @@ public class HomeController : Controller
     public async Task Logout()
     {
         // Sign out from the cookie
-        //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         // Sign out from openid donnect
-        //await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
-
-        await HttpContext.SignOutAsync("Cookies");
-        await HttpContext.SignOutAsync("oidc");
+        await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
     }
 
 
