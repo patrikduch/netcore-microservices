@@ -33,7 +33,7 @@ public class ProductController : ControllerBase
         return Ok("Added product");
     }
 
-
+    [Authorize]
     [HttpGet("products")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ProductDto>))]
     public async Task<IActionResult> GetProductList()
