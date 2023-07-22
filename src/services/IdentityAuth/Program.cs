@@ -5,13 +5,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Automatically configure all MVC oontrollers
 builder.Services.AddControllersWithViews();
+
+
+// In this system we are using Nginx Ingress, therefore we need to resend the headers into this service
+#region ReverseProxy - header forwarding
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+
     // Everything what was configured implicitly, we need to reset.
     options.KnownNetworks.Clear();
     options.KnownProxies.Clear();
 });
+#endregion
+
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
