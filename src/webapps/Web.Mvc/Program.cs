@@ -72,10 +72,6 @@ builder.Services.AddScoped<IProductService, ProductService>();
 // Add services to the container.
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("RequestInfoLogger");
-
-logger.LogInformation("IdentityUrl: {IdentityUrl}", apiSettings.IdentityUrl);
-
-
 app.UseForwardedHeaders();
 app.UseCookiePolicy();
 
@@ -109,5 +105,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+// Now log the configuration values:
+var programLogger = app.Services.GetRequiredService<ILogger<Program>>();
+programLogger.LogInformation("ApiSettings: {@ApiSettings}", apiSettings);
 
 app.Run();
