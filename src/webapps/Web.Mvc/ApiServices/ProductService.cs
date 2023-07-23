@@ -1,7 +1,9 @@
-﻿using IdentityModel.Client;
-
+﻿// <copyright file="ProductService.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IČ: 09225471
+// </copyright>
 namespace Web.Mvc.ApiServices;
 
+using IdentityModel.Client;
 using Models;
 using NetMicroservices.ServiceConfig.Nuget;
 
@@ -13,7 +15,6 @@ public class ProductService : IProductService
     {
         _clientFactory = clientFactory;
     }
-
 
     public async Task<ServiceResponse<List<Product>>> GetProductAsync(Guid id)
     {
@@ -60,19 +61,19 @@ public class ProductService : IProductService
         apiGwClient.SetBearerToken(tokenResponse.AccessToken);
 
         // Send request to our protected API
-        var testResponse = await apiGwClient.GetAsync("/products");
-        testResponse.EnsureSuccessStatusCode();
+        var response = await apiGwClient.GetAsync("/products");
+        response.EnsureSuccessStatusCode();
 
 
-        if (testResponse.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
-            var productData = await testResponse.Content.ReadFromJsonAsync<ServiceResponse<List<Product>>>();
+            var productData = await response.Content.ReadFromJsonAsync<ServiceResponse<List<Product>>>();
 
             return productData;
         }
         else
         {
-            throw new Exception($"Error: {testResponse.StatusCode}");
+            throw new Exception($"Error: {response.StatusCode}");
         }
     }
 }
