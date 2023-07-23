@@ -73,6 +73,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("RequestInfoLogger");
 
+logger.LogInformation("IdentityUrl: {IdentityUrl}", apiSettings.IdentityUrl);
+
 
 app.UseForwardedHeaders();
 app.UseCookiePolicy();
@@ -83,10 +85,6 @@ app.Use(async (context, next) =>
     logger.LogInformation("Request scheme: {Scheme}", context.Request.Scheme);
     logger.LogInformation("Request host: {Host}", context.Request.Host);
     logger.LogInformation("Request path base: {PathBase}", context.Request.PathBase);
-
-
-    logger.LogInformation("IdentityUrl: {IdentityUrl}", apiSettings.IdentityUrl);
-
 
     await next.Invoke();
 });
