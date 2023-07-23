@@ -2,17 +2,36 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
 using Web.Mvc.ApiServices;
+using Web.Mvc.Config;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<ApiSettings>(configuration.GetSection("ApiSettings"));
+var apiSettings = configuration.GetSection("ApiSettings").Get<ApiSettings>();
 
+#region HttpClients configuration
+builder.Services.AddHttpClient("api-gw", c =>
+{
+    c.BaseAddress = new Uri(apiSettings.ApiGwUrl);
+    c.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddHttpClient("identity-server", c =>
+{
+    c.BaseAddress = new Uri(apiSettings.IdentityUrl);
+    c.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+#endregion
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.SameSite = SameSiteMode.Lax;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.IsEssential = true; // This one is optional
+    options.Cookie.IsEssential = true;
 });
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
@@ -51,14 +70,9 @@ builder.Services.AddScoped<IProductService, ProductService>();
 #endregion
 
 // Add services to the container.
-builder.Services.AddHttpClient("MyClient", client =>
-{
-    client.BaseAddress = new Uri("https://api.shopwinner.org/");
-    client.DefaultRequestHeaders.Add("Accept", "application/json");
-});
-
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("RequestInfoLogger");
+
 
 app.UseForwardedHeaders();
 app.UseCookiePolicy();
@@ -69,8 +83,14 @@ app.Use(async (context, next) =>
     logger.LogInformation("Request scheme: {Scheme}", context.Request.Scheme);
     logger.LogInformation("Request host: {Host}", context.Request.Host);
     logger.LogInformation("Request path base: {PathBase}", context.Request.PathBase);
+
+
+    logger.LogInformation("IdentityUrl: {IdentityUrl}", apiSettings.IdentityUrl);
+
+
     await next.Invoke();
 });
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -82,8 +102,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseDeveloperExceptionPage();
 app.UseStaticFiles();
-
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
