@@ -6,6 +6,7 @@
 //----------------------------------------------------------------------------
 namespace Web.Mvc.Controllers;
 
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -25,6 +26,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        LogTokenAndClaim();
+
         return View();
     }
 
@@ -40,6 +43,19 @@ public class HomeController : Controller
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         // Sign out from openid donnect
         await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+    }
+
+
+    public async Task LogTokenAndClaim()
+    {
+        var identityToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.IdToken);
+
+        Debug.WriteLine($"Identity token: {identityToken}");
+
+        foreach (var userClaim in User.Claims)
+        {
+            Debug.WriteLine($"Claim type {userClaim.Type} - Claim value: {userClaim.Value}");
+        }
     }
 
 
