@@ -11,18 +11,19 @@ var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<ApiSettings>(configuration.GetSection("ApiSettings"));
-var apiSettings = configuration.GetSection("ApiSettings").Get<ApiSettings>();
+var apiGwUrl = builder.Configuration.GetValue<string>("ApiGwUrl");
+var identityUrl = builder.Configuration.GetValue<string>("IdentityUrl");
 
 #region HttpClients configuration
 builder.Services.AddHttpClient("api-gw", c =>
 {
-    c.BaseAddress = new Uri(apiSettings.ApiGwUrl);
+    c.BaseAddress = new Uri(apiGwUrl);
     c.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
 builder.Services.AddHttpClient("identity-server", c =>
 {
-    c.BaseAddress = new Uri(apiSettings.IdentityUrl);
+    c.BaseAddress = new Uri(identityUrl);
     c.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 #endregion
@@ -108,6 +109,7 @@ app.MapControllerRoute(
 
 // Now log the configuration values:
 var programLogger = app.Services.GetRequiredService<ILogger<Program>>();
-programLogger.LogInformation("ApiSettings: {@ApiSettings}", apiSettings);
+programLogger.LogInformation("ApiGwUrl: {ApiGwUrl}", apiGwUrl);
+programLogger.LogInformation("IdentityUrl: {IdentityUrl}", identityUrl);
 
 app.Run();
