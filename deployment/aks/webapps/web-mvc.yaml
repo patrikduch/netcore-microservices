@@ -25,6 +25,18 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Production
+          env:
+            - name: ApiGwUrl
+              valueFrom:
+                  secretKeyRef:
+                    name: web-mvc-api-secret
+                    key: API_GW_URL
+          env:
+            - name: IdentityUrl
+              valueFrom:
+                  secretKeyRef:
+                    name: web-mvc-api-secret
+                    key: IDENTITY_SERVER_URL
 
       imagePullSecrets:
         - name: acr-secret
