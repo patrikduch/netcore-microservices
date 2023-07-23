@@ -52,17 +52,15 @@ builder.Services.AddCors(options =>
         corsPolicyBuilder
         .WithOrigins(
             DomainConstants.ProductionHttpsHost,
-            DomainConstants.ProductionHttpHost
-        )
+            DomainConstants.ProductionHttpHost)
         .AllowAnyMethod()
         .AllowAnyHeader()
-        .AllowCredentials()
-    );
+        .AllowCredentials());
 });
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(CorsConstants.Corspolicydev, corsPolicyBuilder => 
+    options.AddPolicy(CorsConstants.Corspolicydev, corsPolicyBuilder =>
         corsPolicyBuilder
             .AllowAnyOrigin()
             .AllowAnyHeader()
@@ -76,14 +74,13 @@ if (isDevelopment)
 {
     app.UseCors(CorsConstants.Corspolicydev);
     app.UseDeveloperExceptionPage();
-
-} else
+}
+else
 {
     app.UseCors(CorsConstants.Corspolicyrelease);
 }
 
 app.MapControllers();
-
 
 await app.UseOcelot();
 
@@ -98,6 +95,5 @@ if (internalConfig is not null)
         Console.WriteLine($"Route: {route.DownstreamRoute} => {route.UpstreamTemplatePattern}");
     }
 }
-
 
 app.Run();
