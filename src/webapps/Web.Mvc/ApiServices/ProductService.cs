@@ -3,7 +3,7 @@
 // </copyright>
 namespace Web.Mvc.ApiServices;
 
-using IdentityModel.Client;
+using Constants;
 using Models;
 using NetMicroservices.ServiceConfig.Nuget;
 
@@ -18,52 +18,12 @@ public class ProductService : IProductService
 
     public async Task<ServiceResponse<List<Product>>> GetProductAsync(Guid id)
     {
-        var apiGwClient = _clientFactory.CreateClient("api-gw");
-        var identityServerClient = _clientFactory.CreateClient("identity-server");
+        var apiGwClient = _clientFactory.CreateClient(HttpClientConstants.ApiGwHttpClientName);
+        var request = new HttpRequestMessage(HttpMethod.Get, "/products");
 
-        // Get token from IdentityServer, of course we should provide the IS configuration like address etc.
-        // Send request to a protected API
-        // Deserialize the object 
+        var response = await apiGwClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
 
-        var apiClientCredentials = new ClientCredentialsTokenRequest
-        {
-            Address =  identityServerClient.BaseAddress+"connect/token",
-            ClientId = "productClient",
-            ClientSecret = "secret",
-
-            // This is the scope our protected API
-            Scope = "productAPI",
-        };
-
-        // create a new HttpClient to talk to our IdentityServer
-
-        var discoveryDocument = await identityServerClient.GetDiscoveryDocumentAsync(identityServerClient.BaseAddress.ToString());
-
-        if (discoveryDocument.IsError)
-        {
-            return null; // throw  500 error
-        }
-
-        //  Authenticates and get an access token from IdentityServer
-        var tokenResponse = await identityServerClient.RequestClientCredentialsTokenAsync(apiClientCredentials);
-
-        if (tokenResponse.IsError)
-        {
-            return null;
-        }
-
-
-        // Send request to a protected API
-
-        // Another HttpClient for talking now with our protected API
-
-        //  Set the access token in the request Authorization Bearer <token>
-        apiGwClient.SetBearerToken(tokenResponse.AccessToken);
-
-        // Send request to our protected API
-        var response = await apiGwClient.GetAsync("/products");
         response.EnsureSuccessStatusCode();
-
 
         if (response.IsSuccessStatusCode)
         {

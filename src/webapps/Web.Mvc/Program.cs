@@ -1,12 +1,17 @@
+// <copyright file="Program.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IÈ: 09225471
+// </copyright>
+using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
 using Web.Mvc.ApiServices;
+using Web.Mvc.Auth.HttpHandlers;
 using Web.Mvc.Config;
+using Web.Mvc.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
-
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -15,17 +20,34 @@ var apiGwUrl = builder.Configuration.GetValue<string>("ApiGwUrl");
 var identityUrl = builder.Configuration.GetValue<string>("IdentityUrl");
 
 #region HttpClients configuration
-builder.Services.AddHttpClient("api-gw", c =>
+builder.Services.AddTransient<AuthenticationDelegatingHandler>();
+
+// creation of http client for fetching the data though API GW (Ocelot API GW)
+builder.Services.AddHttpClient(HttpClientConstants.ApiGwHttpClientName, c =>
 {
     c.BaseAddress = new Uri(apiGwUrl);
+    c.DefaultRequestHeaders.Clear();
+    c.DefaultRequestHeaders.Add("Accept", "application/json");
+}).AddHttpMessageHandler<AuthenticationDelegatingHandler>();
+
+// creation of http client for IDP purposes
+builder.Services.AddHttpClient(HttpClientConstants.IdenityServerHttpClientName, c =>
+{
+    c.BaseAddress = new Uri(identityUrl);
+    c.DefaultRequestHeaders.Clear();
     c.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
-builder.Services.AddHttpClient("identity-server", c =>
+var connectTokenUrl = identityUrl + "/connect/token";
+builder.Services.AddSingleton(new ClientCredentialsTokenRequest
 {
-    c.BaseAddress = new Uri(identityUrl);
-    c.DefaultRequestHeaders.Add("Accept", "application/json");
+    Address = connectTokenUrl,
+    ClientId = "productClient",
+    ClientSecret = "secret",
+    Scope = "productAPI"
 });
+
+
 #endregion
 
 builder.Services.ConfigureApplicationCookie(options =>
