@@ -52,6 +52,8 @@ app.MigrateDatabase<UserContext>((_, _) =>
 {
 });
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
