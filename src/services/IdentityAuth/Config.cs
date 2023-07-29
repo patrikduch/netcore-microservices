@@ -26,6 +26,7 @@ public static class Config
     public static IEnumerable<ApiResource> ApiResources =>
         new List<ApiResource>
         {
+            // List of microservices
             new ApiResource
             {
                 Name = "productAPI",
@@ -72,7 +73,8 @@ public static class Config
                 AllowedScopes = new List<string>
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile
+                    IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.Email
                 },
 
                 AllowedCorsOrigins = { "https://webmvc.shopwinner.org" }
