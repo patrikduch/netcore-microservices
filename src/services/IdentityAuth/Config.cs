@@ -31,7 +31,7 @@ public static class Config
             {
                 Name = "productAPI",
                 DisplayName = "Product API",
-                Scopes = { "productAPI" }
+                Scopes = { "productAPI", "openid" }
             }
 
         };
