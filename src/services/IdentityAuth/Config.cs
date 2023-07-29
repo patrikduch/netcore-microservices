@@ -49,7 +49,11 @@ public static class Config
 
                 },
 
-                AllowedScopes = {"productAPI"}
+                AllowedScopes = {
+                    "productAPI",
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    IdentityServerConstants.StandardScopes.Email}
             },
 
             new Client
