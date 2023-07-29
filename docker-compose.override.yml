@@ -41,6 +41,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=Server=userdb;Port=5434;Database=UserDb;Username=admin;Password=duch;"
+      - "IDENTITY_SERVER_URL=${IDENTITY_SERVER_URL}"
     ports:
       - "8096:80"
 
