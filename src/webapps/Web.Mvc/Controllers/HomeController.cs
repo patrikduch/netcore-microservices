@@ -1,17 +1,14 @@
-﻿//---------------------------------------------------------------------------
-// <copyright file="HomeController.cs" website="Patrikduch.com">
-//     Copyright (c) Patrik Duch, IČ: 09225471
+﻿// <copyright file="HomeController.cs" company="Patrik Duch">
+// Copyright (c) Patrik Duch, IČ: 09225471
 // </copyright>
-// <author>Patrik Duch</author>
-//----------------------------------------------------------------------------
 namespace Web.Mvc.Controllers;
 
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Models;
 using System.Diagnostics;
 
@@ -37,14 +34,21 @@ public class HomeController : Controller
         return View();
     }
 
+    /// <summary>
+    /// Asynchronously signs the user out from the application.
+    /// </summary>
+    /// <returns>A task that represents the asynchronous logout operation.</returns>
+    [Authorize]
     public async Task Logout()
     {
-        // Sign out from the cookie
+        // Sign the user out from the application by invalidating the authentication cookie.
+        // This removes the cookie that keeps track of the user's authenticated session.
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        // Sign out from openid donnect
+
+        // Sign the user out from the OpenID Connect session.
+        // This sends a request to the OpenID Connect server to end the user's session.
         await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
     }
-
 
     public async Task LogTokenAndClaim()
     {
@@ -58,7 +62,12 @@ public class HomeController : Controller
         }
     }
 
-
+    /// <summary>
+    /// View for managing error states in the application.
+    /// </summary>
+    // "Duration = 0" means this response is not cached.
+    // "Location = ResponseCacheLocation.None" means the response cannot be stored in any cache location.
+    // "NoStore = true" directs that the response should not be stored in the cache.
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

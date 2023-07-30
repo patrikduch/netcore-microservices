@@ -1,0 +1,12 @@
+﻿@*
+    View to display user details (profile) from IdentityServer 4.
+*@
+
+@using Web.Mvc.Models.Identity;
+@model IdentityProfileModel
+
+
+<h1>Your profile</h1>
+
+<p>FirstName: @Model.GivenName </p>
+<p>Surname: @Model.FamilyName </p>

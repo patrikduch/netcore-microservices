@@ -5,6 +5,8 @@ using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.IdentityModel.Tokens;
+using System.Runtime.ConstrainedExecution;
 using Web.Mvc.ApiServices;
 using Web.Mvc.Auth.HttpHandlers;
 using Web.Mvc.Config;
@@ -81,8 +83,23 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = "mvc_client";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
+
+        options.Scope.Clear();
         options.Scope.Add("openid");
         options.Scope.Add("profile");
+        options.Scope.Add("email");
+
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = false,
+
+            // Other validation parameters...
+        };
+
+
+        //options.Scope.Add("openid");
+        //options.Scope.Add("profile");
         options.RequireHttpsMetadata = true; // Set this to true in production
         options.SaveTokens = true;
     });
@@ -90,6 +107,7 @@ builder.Services.AddAuthentication(options =>
 
 #region Infrastructure services
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
 #endregion
 
 // Add services to the container.

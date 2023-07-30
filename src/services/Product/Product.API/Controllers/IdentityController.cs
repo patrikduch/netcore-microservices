@@ -3,12 +3,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+[Authorize("ClientIdPolicy")]
 [Route("api/v1/{controller}")]
 [ApiController]
-[Authorize]
 public class IdentityController : ControllerBase
 {
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult GetClaims()
     {
         var user = User.Claims.Select(c => new
