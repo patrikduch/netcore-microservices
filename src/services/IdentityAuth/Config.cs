@@ -60,7 +60,8 @@ public static class Config
             {
                 ClientId = "mvc_client",
                 ClientName = "MVC Web App",
-                AllowedGrantTypes = GrantTypes.Code,
+                //AllowedGrantTypes = GrantTypes.Code, // Authorization Code Flow
+                AllowedGrantTypes = GrantTypes.Hybrid,
                 AllowRememberConsent = false,
 
                 RequirePkce = true, // Make sure PKCE is required
@@ -78,7 +79,8 @@ public static class Config
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
-                    IdentityServerConstants.StandardScopes.Email
+                    IdentityServerConstants.StandardScopes.Email,
+                    "productAPI"
                 },
 
                 AllowedCorsOrigins = { "https://webmvc.shopwinner.org" }
