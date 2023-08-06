@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Tokens;
-using System.Runtime.ConstrainedExecution;
 using Web.Mvc.ApiServices;
 using Web.Mvc.Auth.HttpHandlers;
 using Web.Mvc.Config;
@@ -82,12 +81,14 @@ builder.Services.AddAuthentication(options =>
         options.CallbackPath = new PathString("/signin-oidc");
         options.ClientId = "mvc_client";
         options.ClientSecret = "secret";
-        options.ResponseType = "code";
+        //options.ResponseType = "code"; // Authorization Code Flow
+        options.ResponseType = "code id_token"; // Hybrid Flow
 
         options.Scope.Clear();
         options.Scope.Add("openid");
         options.Scope.Add("profile");
         options.Scope.Add("email");
+        options.Scope.Add("productAPI");
 
 
         options.TokenValidationParameters = new TokenValidationParameters
