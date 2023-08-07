@@ -64,7 +64,8 @@ public static class Config
                 AllowedGrantTypes = GrantTypes.Hybrid,
                 AllowRememberConsent = false,
 
-                RequirePkce = true, // Make sure PKCE is required
+                //RequirePkce = true, // Make sure PKCE is required
+                RequirePkce = false,
                 RequireClientSecret = true,
 
                 RedirectUris = { "https://webmvc.shopwinner.org/signin-oidc", "https://localhost:1000/signin-oidc", "https://localhost:1000/your-callback-path" },
