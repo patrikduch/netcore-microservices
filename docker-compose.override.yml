@@ -291,6 +291,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ApiGwUrl=https://api.shopwinner.org/
+      - IdentityUrl=https://identity.shopwinner.org
     ports:
       - "1001:80"
       - "1000:443"
