@@ -59,16 +59,17 @@ services:
       - user_db_data:/var/lib/postgresql/data 
 
   projectdetail.api:
+    container_name: ProjectDetail.API
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=Server=projectdetaildb;Database=ProjectDb;User Id=sa;Password=SwN12345678;"
+      - "DatabaseSettings__ConnectionString=Server=ProjectDetail.Db;Database=ProjectDb;User Id=sa;Password=SwN12345678;"
     ports:
       - "8093:80"
     depends_on:
       - projectdetail.db
 
   projectdetail.db:
-    container_name: projectdetaildb
+    container_name: ProjectDetail.Db
     environment:
         SA_PASSWORD: "SwN12345678"
         ACCEPT_EULA: "Y"
