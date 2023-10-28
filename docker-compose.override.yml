@@ -40,13 +40,13 @@ services:
   user.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings__ConnectionString=Server=userdb;Port=5434;Database=UserDb;Username=admin;Password=duch;"
+      - "DatabaseSettings__ConnectionString=Server=User.Db;Port=5434;Database=UserDb;Username=admin;Password=duch;"
       - "IDENTITY_SERVER_URL=${IDENTITY_SERVER_URL}"
     ports:
       - "8096:80"
 
   user.db:
-    container_name: userdb
+    container_name: User.Db
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=duch
